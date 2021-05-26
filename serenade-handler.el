@@ -29,3 +29,5 @@
      ((equal type "COMMAND_TYPE_CUSTOM")
       ;; (serenade-handle-custom-command command)
       ))))
+
+(provide 'serenade-handler)

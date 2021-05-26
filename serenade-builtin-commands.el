@@ -1,11 +1,5 @@
 
 
-(defun serenade-handle-custom-command (message-command) 
-  (print "eval") 
-  (let* ((command-text (ht-get* message-command "text")) 
-         (command-type (ht-get* message-command "type"))) 
-    (eval (car (read-from-string command-text)))))
-
 ;;   ;; (progn (message (random 10000))
 ;;   ;;        (message type)))
 
@@ -56,3 +50,5 @@
 ;;   (serenade-select-region-evil (+ 1 (ht-get* message-command "cursor"))
 ;;                                (+ 1 (ht-get* message-command "cursorEnd")))))
 ;; (serenade-send-completed))))
+
+(provide 'serenade-builtin-commands)

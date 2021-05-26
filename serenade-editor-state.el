@@ -1,4 +1,4 @@
-(defun serenade-handle-get-editor-state (callback limited) 
+(defun serenade--handle-get-editor-state (callback limited) 
   (let* ((filename (-last-item (s-split "/" (buffer-file-name)))) 
          (buffer-data (ht ("source" (buffer-string)) 
                           ("cursor" (- (point) 1)) 
@@ -11,3 +11,5 @@
     (message "sending state") 
     (message response-json) 
     (websocket-send-text s-websocket response-json)))
+
+(provide 'serenade-editor-state)

@@ -66,8 +66,7 @@ function addEmacsCommands() {
 (defun serenade-get-command-with-named-slots (v e ) 
   (let* ((formatted-api-call (serenade-get-api-call e (serenade-get-named-slots v))) 
          (formatted (format serenade-template-string (s-replace "<" "<%"(s-replace ">" ">" v))
-                            formatted-api-call)))
-     formatted))
+                            formatted-api-call))) formatted))
 
 (defun serenade-get-command-with-anonymous-slots ( v e) 
   (let* ((slots (serenade-get-unnamed-slots v)) 
@@ -104,4 +103,6 @@ function addEmacsCommands() {
       (insert serenade-template-synchronization-fragment) 
       (find-file fpath))))
 
-(serenade-synchronize)
+;; (serenade-synchronize)
+
+(provide 'serenade-synchronize)

@@ -13,3 +13,5 @@
 
 (defun serenade-select-region-evil (min max) 
   (evil-visual-make-region min (- max 1)))
+
+(provide 'serenade-buffer)

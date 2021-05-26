@@ -1,19 +1,19 @@
 
-(setq s-websocket nil)
+(setq serenade--websocket nil)
 
-(defun serenade-open-socket () 
-  (setq s-websocket (websocket-open "ws://localhost:17373" 
-                                    :on-open (lambda (_websocket ) 
-                                               (print "connected to serenade")) 
-                                    :on-message (lambda (_websocket frame) 
-                                                  (serenade-handle-message (json-parse-string
-                                                                            (websocket-frame-text
-                                                                             frame))))
-                                    :on-close (lambda (_websocket) 
-                                                (message "websocket closed")))))
+(defun serenade--open-socket () 
+  (setq serenade--websocket (websocket-open "ws://localhost:17373" 
+                                            :on-open (lambda (_websocket ) 
+                                                       (print "connected to serenade")) 
+                                            :on-message (lambda (_websocket frame) 
+                                                          (serenade-handle-message
+                                                           (json-parse-string (websocket-frame-text
+                                                                               frame))))
+                                            :on-close (lambda (_websocket) 
+                                                        (message "websocket closed")))))
 
-(defun serenade-close-socket () 
-  (websocket-close s-websocket))
+(defun serenade--close-socket () 
+  (websocket-close serenade--websocket))
 
 (defun serenade-connect() 
   (interactive) 
@@ -23,4 +23,6 @@
                                   ("app" "Emacs") 
                                   ("match" "Emacs"))))) 
          (message-json (json-serialize message))) 
-    (websocket-send-text s-websocket message-json)))
+    (websocket-send-text serenade--websocket message-json)))
+
+(provide 'serenade-socket)
