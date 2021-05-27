@@ -10,6 +10,6 @@
          (response-json (json-serialize response))) 
     (message "sending state") 
     (message response-json) 
-    (websocket-send-text s-websocket response-json)))
+    (websocket-send-text serenade--websocket response-json)))
 
 (provide 'serenade-editor-state)

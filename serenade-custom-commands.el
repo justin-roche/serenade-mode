@@ -16,12 +16,13 @@
   (let* ((response (ht("message" "complete") 
                       ("data" nil))) 
          (response-json (json-serialize response))) 
-    (websocket-send-text s-websocket response-json)))
+    (websocket-send-text serenade--websocket response-json)))
 
 (defun serenade--handle-custom-command (message-command) 
   (let* ((command-text (ht-get* message-command "text")) 
          (command-type (ht-get* message-command "type"))) 
     (eval (car (read-from-string command-text)))))
+
 (defun serenade--handle-custom-command (message-command) 
   (let* ((command-text (ht-get* message-command "text")) 
          (command-type (ht-get* message-command "type"))) 

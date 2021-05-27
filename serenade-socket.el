@@ -12,11 +12,7 @@
                                             :on-close (lambda (_websocket) 
                                                         (message "websocket closed")))))
 
-(defun serenade--close-socket () 
-  (websocket-close serenade--websocket))
-
-(defun serenade-connect() 
-  (interactive) 
+(defun serenade-register() 
   (setq serenade-id (random 10000)) 
   (let* ((message (ht ("message" "active") 
                       ("data" (ht ("id" serenade-id) 
@@ -24,5 +20,15 @@
                                   ("match" "Emacs"))))) 
          (message-json (json-serialize message))) 
     (websocket-send-text serenade--websocket message-json)))
+
+(defun serenade--close-socket () 
+  (websocket-close serenade--websocket))
+
+(defun serenade-connect () 
+  (interactive) 
+  (serenade--open-socket) 
+  (serenade-register)
+  ;; (setq serenade-heartbeat-timer (run-with-timer 0 10 'serenade-heartbeat))
+  )
 
 (provide 'serenade-socket)

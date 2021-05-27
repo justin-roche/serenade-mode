@@ -4,9 +4,10 @@
 (source melpa)
 
 (files "*.el")
-(package-file "serenade.el")
+(package-file "serenade-mode.el")
 (  depends-on "websocket")
 (depends-on "s")
+(depends-on "nlinum")
 (depends-on "h")
 (depends-on "dash")
 
