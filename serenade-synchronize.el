@@ -7,13 +7,6 @@
 
 ;; (serenade-set-commands '(("reveal" . reveal-in-osx-finder)
 ;;                          ("yas reload" . yas-reload-all)))
-(serenade-set-command "describe face" 'describe-face)
-
-(serenade-set-command "select window %s %s %s" 'select-window)
-(serenade-set-command "org promote <level>" 'org-do-promote)
-(serenade-set-command "promote <level>" 'org-do-promote)
-;; (serenade-set-command "org promote <level>" 'org-do-promote)
-(serenade-set-command "uncomment-region" 'uncomment-region)
 
 (setq serenade-directory "~/.serenade/scripts/" )
 

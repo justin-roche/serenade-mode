@@ -3,7 +3,7 @@
 (require 's)
 (setq serenade-helm-map (ht))
 
-(defun serenade-update-helm-map (command fn) 
+(defun serenade--update-helm-map (command fn) 
   (let* ((current (ht-get* serenade-helm-map (symbol-name fn)))) 
     (if  (eq nil current) 
         (ht-set serenade-helm-map (symbol-name fn) command) 

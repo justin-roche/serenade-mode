@@ -36,7 +36,6 @@ fer for the first time."
   (run-hooks 'serenade-mode-init-hook) 
   (if serenade-enable-double-line-numbers (serenade-double-line-numbers-on)) 
   (serenade-connect)
-  ;; (setq serenade-heartbeat-timer (run-with-timer 0 10 'serenade-heartbeat))
   )
 
 (defun serenade-mode-start () 
