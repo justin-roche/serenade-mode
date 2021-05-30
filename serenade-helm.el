@@ -1,4 +1,6 @@
 
+(defcustom serenade-helm-M-x nil 
+  "if true, display speech bindings in helm M-x")
 
 (require 's)
 (setq serenade-helm-map (ht))
