@@ -22,6 +22,7 @@
                       :to-equal 1) 
               (expect (ht-get*  (serenade--get-global-map) "uncomment region"  "command") 
                       :to-equal 'uncomment-region )))
+
 (describe "Mode Custom Commands" (before-each (serenade-initialize-mode-maps)) 
           (it "adds to existing mode voice maps" (progn (serenade-define-speech 'org-mode "a" 'b) 
                                                         (serenade-define-speech 'org-mode "c" 'd)) 
@@ -29,40 +30,34 @@
                      :to-equal 'b) 
               (expect(ht-get* serenade-mode-maps "org-mode"  "c" "command") 
                      :to-equal 'd)))
-(describe "Finding voice bindings" (before-each (serenade-initialize-mode-maps) ) 
+
+(describe "Finding voice bindings" (before-each 
+                                    (setq minor-mode-map-alist '()) 
+                                    (serenade-initialize-mode-maps) ) 
           (it "finds voice binding for minor mode" (progn (serenade-define-speech 'edebug-mode "a"
                                                                                   'b))
               (setq minor-mode-map-alist '((edebug-mode nil))) 
               (expect (ht-get* (serenade--find-voice-binding "a") "command") 
                       :to-equal 'b)) 
+          (it "finds voice binding for major mode" (progn (serenade-define-speech 'edebug-mode "a"
+                                                                                  'b))
+              (defun major-mode () 
+                'edebug-mode) 
+              (expect (ht-get* (serenade--find-voice-binding "a") "command") 
+                      :to-equal 'b)) 
+          (it "finds voice binding for minor mode before major mode" (progn (serenade-define-speech
+                                                                             'edebug-mode "a" 'b)
+                                                                            (serenade-define-speech
+                                                                             'org-mode "a" 'c))
+              (setq minor-mode-map-alist '((org-mode nil))) 
+              (defun major-mode () 
+                'edebug-mode) 
+              (expect (ht-get* (serenade--find-voice-binding "a") "command") 
+                      :to-equal 'c)) 
           (it "finds voice binding for minor mode before global mode" (progn (serenade-define-speech
                                                                               'edebug-mode "a" 'b)
                                                                              (serenade-global-set-speech
-                                                                              "a" 'c))
+                                                                              "a" 'c)) 
               (setq minor-mode-map-alist '((edebug-mode nil))) 
               (expect (ht-get* (serenade--find-voice-binding "a") "command") 
                       :to-equal 'b)))
-;;
-;; (serenade-global-set-speech "describe face" 'describe-face)
-;; (serenade-global-set-speech "select window %s %s %s" 'select-window)
-;; ;; universal arg
-;; (serenade-global-set-speech "org promote <level>" 'org-do-promote)
-;; (serenade-global-set-speech "promote <level>" 'org-do-promote)
-;; (serenade-global-set-speech "promote <level>" 'org-do-promote)
-;; ;; (serenade-global-set-speech "org promote <level>" 'org-do-promote)
-;; (serenade-define-speech 'org-mode-speech-map "promote %s"  'org-do-promote
-;;                         :repeat-arg)
-
-                                        ; (setq serenade-global-map (ht ("comment-dwim" "comment")
-                                        ;                                          ("describe-face" "d")))
-;; (serenade-global-set-speech "describe face" 'describe-face)
-;;
-;;
-;;
-;;
-;;
-;;
-;;
-;;
-;;
-;;
