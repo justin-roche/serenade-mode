@@ -1,3 +1,5 @@
+(require 'log4e)
+
 (defun serenade--log-to-scratch (message) 
   (print message (get-buffer "*scratch*")))
 

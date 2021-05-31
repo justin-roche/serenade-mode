@@ -2,11 +2,11 @@
 (require 'cl)
 (require 's)
 (require 'serenade-helm)
+(require 'serenade-persistence)
 ;;
 (defun serenade-initialize-mode-maps () 
-  (setq serenade-mode-maps (ht("global" (ht)) ) ))
-
-(serenade-initialize-mode-maps)
+  (setq serenade-mode-maps (or (serenade--read-data) 
+                               (ht("global" (ht)) )) ))
 
 (defun serenade--get-global-map () 
   (ht-get serenade-mode-maps "global"))

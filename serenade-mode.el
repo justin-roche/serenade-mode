@@ -23,6 +23,7 @@
 ;; see <http://www.gnu.org/licenses/>.
 
 (require 'serenade-socket)
+(require 'serenade-custom-commands)
 
 (defcustom serenade-mode-init-hook nil 
   "List of functions to be called after `serenade-mode'
@@ -35,8 +36,8 @@ fer for the first time."
   (message "connecting to serenade") 
   (run-hooks 'serenade-mode-init-hook) 
   (if serenade-enable-double-line-numbers (serenade-double-line-numbers-on)) 
-  (serenade-connect)
-  )
+  (serenade-initialize-mode-maps) 
+  (serenade-connect))
 
 (defun serenade-mode-start () 
   (interactive) 

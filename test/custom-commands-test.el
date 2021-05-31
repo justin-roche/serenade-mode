@@ -2,16 +2,20 @@
 (require 'ht)
 (require 'serenade-custom-commands)
 
-(describe "Global Custom Commands" (before-each (serenade-initialize-mode-maps)) 
-          (it "adds to global speech map" (serenade-global-set-speech "treemacs rename"
-                                                                      'treemacs-rename)
+(describe "Global Custom Commands" (before-each 
+                                    (defun serenade--read-data () 
+                                      nil)
+                                    (serenade-initialize-mode-maps)) 
+          (it "adds to global speech map"
+              (serenade-global-set-speech "treemacs rename" 'treemacs-rename) 
               (expect (length (ht-items (serenade--get-global-map))) 
                       :to-equal 1) 
               (expect (ht-get*  (serenade--get-global-map) "treemacs rename"  "command") 
                       :to-equal 'treemacs-rename )) 
-          (it "adds a list of speech command pairs to global speech map" (serenade-global-set-speech
-                                                                          '( ("treemacs rename" .
-                                                                              treemacs-rename) ))
+          (it "adds a list of speech command pairs to global speech map" 
+              (defun serenade--read-data () 
+                nil) 
+              (serenade-global-set-speech '( ("treemacs rename" . treemacs-rename) )) 
               (expect (length (ht-items (serenade--get-global-map))) 
                       :to-equal 1) 
               (expect (ht-get*  (serenade--get-global-map) "treemacs rename"  "command") 

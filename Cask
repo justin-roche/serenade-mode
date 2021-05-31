@@ -6,6 +6,7 @@
 (files "*.el")
 (package-file "serenade-mode.el")
 (  depends-on "websocket")
+(  depends-on "log4e")
 (depends-on "ht")
 (depends-on "dash")
 (depends-on "s")
