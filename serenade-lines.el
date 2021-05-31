@@ -1,5 +1,5 @@
 
-(defcustom serenade-enable-double-line-numbers t 
+(defcustom serenade-enable-double-line-numbers nil 
   "if t, serenade mode shows both relative and absolute line numbers")
 
 (defun serenade-double-line-numbers-on () 
@@ -12,7 +12,9 @@
   (interactive) 
   (nlinum-mode -1))
 
-(diminish 'serenade-mode 
-          '(:propertize "Ⓢ" 
-                        face 
-                        '(:foreground "plum3")))
+;; (diminish 'serenade-mode
+;;           '(:propertize "Ⓢ"
+;;                         face
+;;                         '(:foreground "plum3")))
+
+(provide 'serenade-lines)

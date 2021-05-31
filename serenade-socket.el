@@ -1,11 +1,13 @@
 (require 'websocket)
 (require 'serenade-desktop)
-(setq serenade--websocket nil)
+(require 'serenade-log)
 
-(defun serenade-start-prompt (err) 
+(setq serenade--websocket nil)
+(defvar serenade-prompt-for-application-start nil)
+
+(defun serenade-start-prompt () 
   (if (y-or-n-p "There was a problem connecting to Serenade. Start Serenade now?") 
-      (serenade--start-application) 
-    (message (prin1-to-string err ))))
+      (serenade--start-application)))
 
 (defun serenade--open-socket () 
   (setq serenade--websocket (condition-case err (websocket-open "ws://localhost:17373" 
@@ -21,7 +23,9 @@ Serenade"))
                                                                 :on-close (lambda (_websocket) 
                                                                             (message
                                                                              "Serenade websocket closed")))
-                              (file-error (serenade-start-prompt err)))))
+                              (file-error (progn (if serenade-prompt-for-application-start
+                                                     (serenade-start-prompt))
+                                                 (serenade--log-and-message err))))))
 
 (defun serenade--register() 
   (setq serenade-id (random 10000)) 
@@ -32,15 +36,21 @@ Serenade"))
          (message-json (json-serialize message))) 
     (websocket-send-text serenade--websocket message-json)))
 
+(defun serenade--disconnect () 
+  (websocket-close serenade--websocket))
+
 (defun serenade-disconnect () 
   (interactive) 
-  (websocket-close serenade--websocket))
+  (serenade--disconnect))
+
+(defun serenade--connect () 
+  (serenade--open-socket) 
+  (if serenade--websocket (serenade--register)
+    ;; (setq serenade-heartbeat-timer (run-with-timer 0 10 'serenade-heartbeat))
+    ))
 
 (defun serenade-connect () 
   (interactive) 
-  (serenade--open-socket) 
-  (serenade--register)
-  ;; (setq serenade-heartbeat-timer (run-with-timer 0 10 'serenade-heartbeat))
-  )
-;; (serenade--open-socket)
+  (serenade--connect))
+
 (provide 'serenade-socket)

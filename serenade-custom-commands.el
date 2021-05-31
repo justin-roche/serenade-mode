@@ -3,10 +3,12 @@
 (require 's)
 (require 'serenade-helm)
 (require 'serenade-persistence)
-;;
-(defun serenade-initialize-mode-maps () 
-  (setq serenade-mode-maps (or (serenade--read-data) 
-                               (ht("global" (ht)) )) ))
+
+(defvar serenade-mode-maps (ht("global" (ht)) ) 
+  "hashtable of Serenade voice maps")
+
+(defun serenade--initialize-mode-maps () 
+  (setq serenade-mode-maps (ht("global" (ht)) ) ))
 
 (defun serenade--get-global-map () 
   (ht-get serenade-mode-maps "global"))
@@ -42,13 +44,13 @@
       (serenade--find-in-global-map speech)))
 
 (defun serenade--find-in-active-minor-maps (speech) 
-  (catch 'bbb 
+  (catch 'result 
     (mapc (lambda (mode-and-map) 
             (let* ((mode (symbol-name (car mode-and-map))) 
                    (voice-map (ht-get* serenade-mode-maps mode))) 
               (if voice-map (let* ((command (ht-get* voice-map speech))) 
                               (if command 
-                                  (throw 'bbb command)))))) minor-mode-map-alist)
+                                  (throw 'result command)))))) minor-mode-map-alist)
     nil))
 
 (defun serenade--find-in-active-major-map (speech) 

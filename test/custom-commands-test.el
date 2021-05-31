@@ -4,10 +4,10 @@
 
 (describe "Global Custom Commands" (before-each 
                                     (defun serenade--read-data () 
-                                      nil)
-                                    (serenade-initialize-mode-maps)) 
-          (it "adds to global speech map"
-              (serenade-global-set-speech "treemacs rename" 'treemacs-rename) 
+                                      nil) 
+                                    (serenade--initialize-mode-maps)) 
+          (it "adds to global speech map" (serenade-global-set-speech "treemacs rename"
+                                                                      'treemacs-rename)
               (expect (length (ht-items (serenade--get-global-map))) 
                       :to-equal 1) 
               (expect (ht-get*  (serenade--get-global-map) "treemacs rename"  "command") 
@@ -27,7 +27,7 @@
               (expect (ht-get*  (serenade--get-global-map) "uncomment region"  "command") 
                       :to-equal 'uncomment-region )))
 
-(describe "Mode Custom Commands" (before-each (serenade-initialize-mode-maps)) 
+(describe "Mode Custom Commands" (before-each (serenade--initialize-mode-maps)) 
           (it "adds to existing mode voice maps" (progn (serenade-define-speech 'org-mode "a" 'b) 
                                                         (serenade-define-speech 'org-mode "c" 'd)) 
               (expect(ht-get* serenade-mode-maps "org-mode"  "a" "command") 
@@ -37,7 +37,7 @@
 
 (describe "Finding voice bindings" (before-each 
                                     (setq minor-mode-map-alist '()) 
-                                    (serenade-initialize-mode-maps) ) 
+                                    (serenade--initialize-mode-maps) ) 
           (it "finds voice binding for minor mode" (progn (serenade-define-speech 'edebug-mode "a"
                                                                                   'b))
               (setq minor-mode-map-alist '((edebug-mode nil))) 

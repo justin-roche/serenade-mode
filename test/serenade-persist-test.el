@@ -2,7 +2,7 @@
 (require 'ht)
 (require 'serenade-persistence)
 
-(describe "Persists custom commands to file" (before-each (serenade-initialize-mode-maps)) 
+(describe "Persists custom commands to file" (before-each (serenade--initialize-mode-maps)) 
           (it "writes a hashtable to saved data" ;;
               (serenade--save-data (ht ("global" (ht ("b" (ht))))))
 

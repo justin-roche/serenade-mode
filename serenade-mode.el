@@ -24,6 +24,9 @@
 
 (require 'serenade-socket)
 (require 'serenade-custom-commands)
+(require 'serenade-log)
+(require 'serenade-lines)
+;; (require 'serenade-lines)
 
 (defcustom serenade-mode-init-hook nil 
   "List of functions to be called after `serenade-mode'
@@ -33,35 +36,28 @@ fer for the first time."
   :group 'serenade-mode)
 
 (defun serenade-mode--start () 
-  (message "connecting to serenade") 
+  (serenade--info "connecting to serenade") 
   (run-hooks 'serenade-mode-init-hook) 
   (if serenade-enable-double-line-numbers (serenade-double-line-numbers-on)) 
-  (serenade-initialize-mode-maps) 
-  (serenade-connect))
+  (serenade--connect))
 
 (defun serenade-mode-start () 
   (interactive) 
   (serenade-mode--start))
 
 (defun serenade-mode--stop () 
-  (message "disconnecting from serenade")
-  ;; (serenade-toggle-double-line-numbers-off)
+  (serenade--info "disconnecting from serenade") 
+  (if serenade-enable-double-line-numbers (serenade-double-line-numbers-off))
   ;; (serenade--heartbeat-stop)
-  ;; (if (not ( equal serenade--websocket nil ))
-  ;;     (progn (print "disconnecting from serenade")
-  ;;            (serenade--close-socket)))
-  )
+  (serenade--disconnect))
 
 (defun serenade-mode-stop () 
-  (interactive)
-  ;; (serenade-toggle-double-line-numbers-off)
-  ;; (serenade--heartbeat-stop)
+  (interactive) 
   (serenade-mode--stop))
 
 (defun serenade-mode-toggle () 
-  (if (bound-and-true-p serenade-mode) 
-      (serenade-mode--stop) 
-    (serenade-mode--start)))
+  (if serenade-mode (serenade-mode--start) 
+    (serenade-mode--stop)))
 
 (defvar serenade-mode-map (let ((map (make-sparse-keymap))) map))
 
@@ -75,7 +71,6 @@ fer for the first time."
   (serenade-mode-toggle))
 
 (provide 'serenade-mode)
-
 ;; (serenade-mode-toggle)
 
 ;;; serenade-mode.el ends here
