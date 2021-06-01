@@ -16,7 +16,7 @@
 Serenade")) 
                                                                 :on-message (lambda (_websocket
                                                                                      frame)
-                                                                              (serenade-handle-message
+                                                                              (serenade--handle-message
                                                                                (json-parse-string
                                                                                 (websocket-frame-text
                                                                                  frame))))

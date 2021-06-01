@@ -1,0 +1,53 @@
+{
+    "diff": {
+        "data": {
+            "callback": 1,
+            "response": {
+                "execute": {
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_DIFF"
+                        },
+                        {
+                            "limited": false
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "getEditorState": {
+        "data": {
+            "callback": 1,
+            "response": {
+                "execute": {
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_GET_EDITOR_STATE"
+                        },
+                        {
+                            "limited": false
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "evaluateInPlugin": {
+        "data": {
+            "callback": 1,
+            "response": {
+                "execute": {
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN" 
+                        },
+                        {
+                            "limited": false
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

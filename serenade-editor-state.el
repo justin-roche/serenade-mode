@@ -1,4 +1,4 @@
-(defun serenade--handle-get-editor-state (callback limited) 
+(defun serenade--get-editor-state (callback limited) 
   (let* ((filename (-last-item (s-split "/" (buffer-file-name)))) 
          (buffer-data (ht ("source" (buffer-string)) 
                           ("cursor" (- (point) 1)) 
