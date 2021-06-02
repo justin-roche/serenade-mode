@@ -5,21 +5,19 @@
 (require 's)
 (setq serenade-helm-map (ht))
 
-(defun serenade--update-helm-map (command fn) 
-  (let* ((current (ht-get* serenade-helm-map (symbol-name fn)))) 
-    (if  (eq nil current) 
-        (ht-set serenade-helm-map (symbol-name fn) command) 
-      (if (s-contains? (concat " " command) current) 
-          (debug) 
-        (ht-set serenade-helm-map (symbol-name fn) 
-                (concat command " | " current))))))
+(defun serenade--update-helm-map (speech command) 
+  (if-let* ((current (ht-get* serenade-helm-map (symbol-name command)))) 
+      (if  (not (member speech (s-split "|" current t))) 
+          (ht-set serenade-helm-map (symbol-name command) 
+                  (concat speech " | " current))) 
+    (ht-set serenade-helm-map (symbol-name command) speech)))
 
 (defun serenade-map-helm (cand) 
   (or (ht-get* serenade-helm-map cand) 
       nil))
 
-;; see spacemacs-motion-face
-(defface helm-serenade-command '((t :foreground "plum3" 
+;; see spacemacs-motion-face/ plum3
+(defface helm-serenade-command '((t :foreground "#0f1011" 
                                     :underline t)) 
   "Face for serenade helm." 
   :group 'serenade-mode)

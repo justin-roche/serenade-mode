@@ -1,12 +1,9 @@
+
+(provide 'serenade-builtin-commands)
 (setq lexical-binding t)
 (require 'ht)
-(require 'serenade-handler)
-(require 'json)
 
-(defun load-json-commands () 
-  (with-temp-buffer (insert-file-contents "test/commands.json") 
-                    (buffer-string)))
-(describe "Parses incoming message"
+(describe "Calls assigned commands for builtin speech commands"
           ;; :var ()
           (before-each (setf (symbol-function 'serenade--get-editor-state) 
                              (lambda ())) 

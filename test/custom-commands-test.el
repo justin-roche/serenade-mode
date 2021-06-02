@@ -2,10 +2,16 @@
 (require 'ht)
 (require 'serenade-custom-commands)
 
-(describe "Global Custom Commands" (before-each 
-                                    (defun serenade--read-data () 
-                                      nil) 
-                                    (serenade--initialize-mode-maps)) 
+(describe "Global Builtin Commands" (before-each (serenade--initialize-mode-maps)) 
+          (it "contains builtin commands in global speech map" (expect (ht-get* serenade-mode-maps
+                                                                                "global" "save"
+                                                                                "command")
+                                                                       :to-equal 'save-buffer )))
+(describe "Global Custom Commands" (before-each (setf (symbol-function
+                                                       'serenade--add-default-bindings)
+                                                      (lambda ())) 
+                                                (spy-on 'serenade--add-default-bindings) 
+                                                (serenade--initialize-mode-maps)) 
           (it "adds to global speech map" (serenade-global-set-speech "treemacs rename"
                                                                       'treemacs-rename)
               (expect (length (ht-items (serenade--get-global-map))) 

@@ -16,8 +16,12 @@
           ((equal type '"COMMAND_TYPE_DIFF") 
            (serenade--diff command) 
            (serenade--send-completed)) 
+          ((equal type '"COMMAND_TYPE_SELECT") 
+           (serenade-select-region-evil (+ 1 (ht-get* message-command "cursor")) 
+                                        (+ 1 (ht-get* message-command "cursorEnd")))) 
           ((equal type "COMMAND_TYPE_EVALUATE_IN_PLUGIN") 
-           (serenade--evaluate-in-plugin command)))))
+           (serenade--evaluate-in-plugin command)) 
+          (t (serenade--evaluate-in-plugin command)))))
 
 (defun serenade--diff (command) 
   (serenade--update-buffer (ht-get command "source") 
@@ -27,6 +31,12 @@
   (let* ((command-text (ht-get* message-command "text")) 
          (command-type (ht-get* message-command "type"))) 
     (eval (car (read-from-string command-text)))))
+
+;; (defun serenade--execute-builtin-command (command-type)
+;;   (let* ((formatted-speech (s-replace "_" " " (s-replace "COMMAND_TYPE_" "" command-type))))
+;;     (ht-each '(lambda (speech-and-command)
+;;                 (if (eq  formatted-speech (car speech-and-command))
+;;                     (serenade-send-completed))) serenade-builtin-command-map)))
 
 (defun serenade--send-completed () 
   (let* ((response (ht("message" "complete") 
