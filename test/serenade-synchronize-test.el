@@ -47,3 +47,10 @@
               (expect   (serenade-list-to-string serenade--formatted-commands--named-slots) 
                         :to-equal
                         "serenade.app(\"emacs\").command(`a <%z%> <%x%>`, async (api, matches) => { api.evaluateInPlugin(`(b ${matches.z} ${matches.x} )`) });" )))
+(describe "formats combined form" ;;
+          (before-each (reset-maps)) 
+          (it "formats combined form for a single command with named arguments" ;;
+              (serenade-define-speech 'global "b <z><x>" 'b) 
+              (expect   (serenade--generate-combined-text) 
+                        :to-equal
+                        "let emacs = serenade.app(\"Emacs\"); let emacsCommands = {};function addEmacsCommands() { for (const [commandName, command] of Object.entries(emacsCommands)) { serenade.app(\"emacs\").command(commandName, async (api, matches) => { await api.evaluateInPlugin(emacsCommands[commandName]); }); } }serenade.app(\"emacs\").command(`a <%z%> <%x%>`, async (api, matches) => { api.evaluateInPlugin(`(b ${matches.z} ${matches.x} )`) });")))
