@@ -18,6 +18,13 @@
                       :to-equal 1) 
               (expect (ht-get*  (serenade--get-global-map) "treemacs rename"  "command") 
                       :to-equal 'treemacs-rename )) 
+
+          ;; (it "keeps only one global speech map" (serenade-global-set-speech "treemacs rename"
+          ;;                                                             'treemacs-rename)
+          ;;     (expect (length (ht-items (serenade--get-global-map))) 
+          ;;             :to-equal 1) 
+          ;;     )
+          
           (it "adds a list of speech command pairs to global speech map" 
               (defun serenade--read-data () 
                 nil) 

@@ -33,10 +33,11 @@
                         :to-have-been-called) 
               (expect   'serenade--send-completed 
                         :to-have-been-called)) 
-          (it "diffs" (let* ((data (ht-get* (json-parse-string (load-json-commands))
-                                            "evaluateInPlugin")))
-                        (setf (symbol-value 'buffer-file-name) "x") 
-                        (serenade--handle-message data)) 
+          (it "calls evaluateInPlugin" (let* ((data (ht-get* (json-parse-string
+                                                              (load-json-commands))
+                                                             "evaluateInPlugin")))
+                                         (setf (symbol-value 'buffer-file-name) "x") 
+                                         (serenade--handle-message data)) 
               (expect   'serenade--evaluate-in-plugin 
                         :to-have-been-called)))
 ;; (let* ((data

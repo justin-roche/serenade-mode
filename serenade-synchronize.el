@@ -1,14 +1,12 @@
 (require 's)
-
-(setq serenade-commands (ht))
-(setq serenade-formatted-commands--no-slots '())
-(setq serenade-formatted-commands--anonymous-slots '())
-(setq serenade-formatted-commands--named-slots '())
-
-;; (serenade-set-commands '(("reveal" . reveal-in-osx-finder)
-;;                          ("yas reload" . yas-reload-all)))
+(require 'ht)
 
 (setq serenade-directory "~/.serenade/scripts/" )
+
+(defun serenade--clear-formatted-commands () 
+  (setq serenade--formatted-commands--no-slots '()) 
+  (setq serenade--formatted-commands--anonymous-slots '()) 
+  (setq serenade--formatted-commands--named-slots '()))
 
 (setq serenade-template-string "\n\n serenade.app(\"emacs\").command(`%s`, async (api, matches) => {
     api.evaluateInPlugin(`(%s)`)
@@ -26,76 +24,75 @@ function addEmacsCommands() {
 (defun serenade-list-to-string (l) 
   (mapconcat 'identity l "\n"))
 
-(defun serenade-format-block--no-slots () 
+(defun serenade--format-block--no-slots () 
   (format " let emacsCommands = { \n %s \n}" (serenade-list-to-string
-                                              serenade-formatted-commands--no-slots)))
+                                              serenade--formatted-commands--no-slots)))
 
-(defun serenade-get-command-without-slots (v e) 
-  (format "  \"%s\": \"(%s)\"," v e))
+(defun serenade--format-command-without-slots (speech-and-command) 
+  (format "\"%s\":\"(%s)\"," (car speech-and-command) 
+          (car (cdr speech-and-command))))
 
-(defun serenade-get-api-call (e s) 
-  (concat (format "%s " e ) 
-          (mapconcat 'identity (-map (lambda(slot-name) 
-                                       (format "${matches.%s} " slot-name)) s) " ")))
+(defun serenade--format-speech-matches (speech-and-command) 
+  (let* ((sp (s-match-strings-all "<\\(.+?\\\)>" (car speech-and-command))) 
+         (form  (s-join " "(-map '(lambda (match) 
+                                    (format "%s"(format "<%%%s%%>" (nth 1 match)))) sp)))) form))
 
-(defun serenade-get-named-slots (v) 
-  (-map '(lambda (match) 
-           (s-replace ">" "" (s-replace "<" "" match ))) 
-        (s-match "<.+>" v)))
+(defun serenade--format-speech (speech-and-command) 
+  (s-trim (first (s-split "<" (car speech-and-command) ))))
 
-(defun serenade-get-unnamed-slots (v) 
-  (let* ((match-count (s-count-matches "%s" v)) 
-         (matches '())) 
-    (dotimes (i match-count) 
-      (push (concat "match"(number-to-string (+ 1 i)) ) matches)) 
-    (reverse matches)))
+(defun serenade--format-command-call (speech-and-command) 
+  (let* ((trimmed (nth 1 speech-and-command))) trimmed))
 
-(defun serenade-get-command-name-with-anonymous-slots (e s) 
-  (let* ((clean-name (s-replace "%s" "" e)) 
-         (wrapped-slots (-map '(lambda (slot) 
-                                 (concat "<%" slot "%>")) s))) 
-    (concat clean-name ( mapconcat 'identity wrapped-slots " "))))
+(defun serenade--format-call-matches (speech-and-command) 
+  (let* ((sp (s-match-strings-all "<\\(.+?\\\)>" (car speech-and-command))) 
+         (form  (mapconcat 'identity (-map '(lambda (match) 
+                                              (format "${matches.%s}"  (nth 1 match))) sp) " ")))
+    form))
 
-(defun serenade-get-command-with-named-slots (v e ) 
-  (let* ((formatted-api-call (serenade-get-api-call e (serenade-get-named-slots v))) 
-         (formatted (format serenade-template-string (s-replace "<" "<%"(s-replace ">" ">" v))
-                            formatted-api-call))) formatted))
+(defun serenade--format-command-with-named-slots (speech-and-command)
+  ;; (ignore-errors) ;; (debug)
+  (format
+   "serenade.app(\"emacs\").command(`%s %s`, async (api, matches) => { api.evaluateInPlugin(`(%s %s )`) });"
+   ;; "a" "a" "a"
+   (serenade--format-speech speech-and-command) 
+   (serenade--format-speech-matches speech-and-command) 
+   (serenade--format-command-call speech-and-command) 
+   (serenade--format-call-matches speech-and-command)))
 
-(defun serenade-get-command-with-anonymous-slots ( v e) 
-  (let* ((slots (serenade-get-unnamed-slots v)) 
-         (formatted-command-name  (serenade-get-command-name-with-anonymous-slots v slots)) 
-         (formatted-api-call (serenade-get-api-call e slots)) 
-         (formatted (format serenade-template-string formatted-command-name formatted-api-call)))
-    formatted))
-                                        ;===================================== loop ====================================
-
-(defun serenade-format-command (e v)
+(defun serenade--format-command (speech-and-command)
   ;; determine command type and add to appropriate command list
-  (cond ((s-match "<.+>" v) 
-         (add-to-list 'serenade-formatted-commands--named-slots
-                      (serenade-get-command-with-named-slots v e)))
-        ((s-match "%s" v) 
-         (add-to-list 'serenade-formatted-commands--anonymous-slots
-                      (serenade-get-command-with-anonymous-slots v e)))
-        ('t (add-to-list 'serenade-formatted-commands--no-slots (serenade-get-command-without-slots
-                                                                 v e)))))
+  ;; (debug)
+  (cond ((s-match "<.+>" (car speech-and-command )) 
+         (add-to-list 'serenade--formatted-commands--named-slots
+                      (serenade--format-command-with-named-slots speech-and-command)))
+        ;; ((s-match "%s" speech)
+        ;;  (add-to-list 'serenade--formatted-commands--anonymous-slots
+        ;;               (serenade--format-command-with-anonymous-slots speech e)))
+        ('t (add-to-list 'serenade--formatted-commands--no-slots
+                         (serenade--format-command-without-slots speech-and-command)))))
 
-(defun serenade-format-commands () 
-  (ht-each '(lambda (v e) 
-              (serenade-format-command e v)) serenade-commands))
+(defun serenade--format-commands () 
+  (serenade--clear-formatted-commands) 
+  (ht-each '(lambda (key value) 
+              (ht-each '(lambda (speech binding) 
+                          (let* ((command (ht-get* binding "command"))) 
+                            (serenade--format-command (list speech command )))) value))
+           serenade-mode-maps))
 
 (defun serenade-synchronize () 
-  (serenade-format-commands) 
+  (serenade--format-commands) 
   (let* ((name-input "emacsAutogenerated.js") 
          (fpath (concat serenade-directory name-input))) 
     (with-temp-file fpath
-      ;;     ;;
-      (insert (serenade-format-block--no-slots)) 
-      (insert (serenade-list-to-string serenade-formatted-commands--named-slots)) 
-      (insert (serenade-list-to-string serenade-formatted-commands--anonymous-slots)) 
-      (insert serenade-template-synchronization-fragment) 
+      ;; (insert (serenade--format-block--no-slots))
+      (insert (serenade-list-to-string serenade--formatted-commands--named-slots))
+      ;; (insert (serenade-list-to-string serenade--formatted-commands--anonymous-slots))
+      ;; (insert serenade-template-synchronization-fragment)
       (find-file fpath))))
 
+(serenade-define-speech 'global "b <z><x>" 'b)
+
 ;; (serenade-synchronize)
+;; ( serenade--format-commands )
 
 (provide 'serenade-synchronize)
