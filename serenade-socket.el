@@ -13,7 +13,9 @@
   (setq serenade--websocket (condition-case err (websocket-open "ws://localhost:17373" 
                                                                 :on-open (lambda (_websocket ) 
                                                                            (print "connected to
-Serenade")) 
+Serenade") 
+                                                                           (serenade--register) 
+                                                                           (serenade--heartbeat-start)) 
                                                                 :on-message (lambda (_websocket
                                                                                      frame)
                                                                               (serenade--handle-message
@@ -21,6 +23,7 @@ Serenade"))
                                                                                 (websocket-frame-text
                                                                                  frame))))
                                                                 :on-close (lambda (_websocket) 
+                                                                            (serenade--heartbeat-stop) 
                                                                             (message
                                                                              "Serenade websocket closed")))
                               (file-error (progn (if serenade-prompt-for-application-start
@@ -44,10 +47,7 @@ Serenade"))
   (serenade--disconnect))
 
 (defun serenade--connect () 
-  (serenade--open-socket) 
-  (if serenade--websocket (serenade--register)
-    ;; (setq serenade-heartbeat-timer (run-with-timer 0 10 'serenade-heartbeat))
-    ))
+  (serenade--open-socket))
 
 (defun serenade-connect () 
   (interactive) 

@@ -1,26 +1,73 @@
 
-(defcustom serenade-helm-M-x nil 
+(defcustom serenade-helm-M-x t 
   "if true, display speech bindings in helm M-x")
 
 (require 's)
 (setq serenade-helm-map (ht))
 
+(defface helm-serenade-command 
+  `((t ,@(and (>= emacs-major-version 27) 
+              '(:extend t)) 
+       :foreground "plum3" 
+       :underline t)) 
+  "Face used in helm-M-x to show keybinding." 
+  :group 'helm-command-faces)
+
+;; (defface helm-serenade-command
+;;   '((t
+;;      ;; :extend t
+;;      :foreground  "plum3" ;;"#0f1011"
+;;      :underline nil))
+;;   "Face for serenade helm.")
+
 (defun serenade--update-helm-map (speech command) 
   (if-let* ((current (ht-get* serenade-helm-map (symbol-name command)))) 
-      (if  (not (member speech (s-split "|" current t))) 
-          (ht-set serenade-helm-map (symbol-name command) 
-                  (concat speech " | " current))) 
-    (ht-set serenade-helm-map (symbol-name command) speech)))
+      (progn (message current (ht-get* serenade-helm-map)) 
+             (if  (not (member speech (s-split "|" current t))) 
+                 (ht-set serenade-helm-map (symbol-name command) 
+                         (concat speech " | " current)))) 
+    (progn ;; (debug)
+      (ht-set serenade-helm-map (symbol-name command) speech))))
 
 (defun serenade-map-helm (cand) 
+  (message (ht-get* serenade-helm-map "save-buffer")) 
   (or (ht-get* serenade-helm-map cand) 
       nil))
 
+(defun serenade--get-helm-candidates (voice-maps) 
+  (setq serenade--helm-candidates '()) 
+  (ht-each '(lambda (key value) 
+              (ht-each '(lambda (speech binding) 
+                          (let* ((command (ht-get* binding "command"))) 
+                            (setq serenade--helm-candidates (append serenade--helm-candidates (list
+                                                                                               (format
+                                                                                                "%s %s"
+                                                                                                command
+                                                                                                (propertize
+                                                                                                 speech
+                                                                                                 'face
+                                                                                                 'helm-serenade-command))))))) value)) voice-maps)
+  serenade--helm-candidates)
+
+(defun serenade--get-helm-candidates-restricted (voice-maps) 
+  (setq serenade--helm-candidates '()) 
+  (ht-each '(lambda (key value) 
+              (ht-each '(lambda (speech binding) 
+                          (let* ((command (ht-get* binding "command"))) 
+                            (setq serenade--helm-candidates (append serenade--helm-candidates (list
+                                                                                               (format
+                                                                                                "%s %s"
+                                                                                                command
+                                                                                                (propertize
+                                                                                                 speech
+                                                                                                 'face
+                                                                                                 'helm-serenade-command2))))))) value)) voice-maps)
+  serenade--helm-candidates)
+
+;; (serenade--get-helm-candidates)
+;; (message (prin1-to-string serenade--helm-candidates))
+
 ;; see spacemacs-motion-face/ plum3
-(defface helm-serenade-command '((t :foreground "#0f1011" 
-                                    :underline t)) 
-  "Face for serenade helm." 
-  :group 'serenade-mode)
 
 (defun helm-M-x-transformer-1 (candidates &optional sort) 
   "Transformer function to show bindings in emacs commands.

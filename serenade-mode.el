@@ -26,6 +26,7 @@
 (require 'serenade-custom-commands)
 (require 'serenade-log)
 (require 'serenade-lines)
+(require 'serenade-helm)
 ;; (require 'serenade-lines)
 
 (defcustom serenade-mode-init-hook nil 
@@ -47,8 +48,7 @@ fer for the first time."
 
 (defun serenade-mode--stop () 
   (serenade--info "disconnecting from serenade") 
-  (if serenade-enable-double-line-numbers (serenade-double-line-numbers-off))
-  ;; (serenade--heartbeat-stop)
+  (if serenade-enable-double-line-numbers (serenade-double-line-numbers-off)) 
   (serenade--disconnect))
 
 (defun serenade-mode-stop () 

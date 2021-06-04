@@ -24,6 +24,4 @@
      ( "debugger step over" nil) 
      ( "debugger inline breakpoint" nil)  ))
 
-
-
 (provide 'serenade-builtin-commands)

@@ -32,12 +32,6 @@
          (command-type (ht-get* message-command "type"))) 
     (eval (car (read-from-string command-text)))))
 
-;; (defun serenade--execute-builtin-command (command-type)
-;;   (let* ((formatted-speech (s-replace "_" " " (s-replace "COMMAND_TYPE_" "" command-type))))
-;;     (ht-each '(lambda (speech-and-command)
-;;                 (if (eq  formatted-speech (car speech-and-command))
-;;                     (serenade-send-completed))) serenade-builtin-command-map)))
-
 (defun serenade--send-completed () 
   (let* ((response (ht("message" "complete") 
                       ("data" nil))) 

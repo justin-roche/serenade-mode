@@ -22,7 +22,7 @@
 
 (defun serenade--format-block--no-slots () 
   (format " let emacsCommands = {%s};" (serenade-list-to-string
-                                       serenade--formatted-commands--no-slots)))
+                                        serenade--formatted-commands--no-slots)))
 
 (defun serenade--format-command-without-slots (speech-and-command) 
   (format "\"%s\":\"(%s)\"," (car speech-and-command) 

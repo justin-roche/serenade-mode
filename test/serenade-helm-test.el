@@ -4,7 +4,8 @@
 (setq lexical-binding t)
 (require 'ht)
 
-(describe "Updates serenade helm map"(before-each (setf serenade-helm-map (ht))) 
+(describe "Updates serenade helm map" ;;
+          (before-each (setf serenade-helm-map (ht))) 
           (it "adds new voice binding for commad" (serenade--update-helm-map "a" 'b) 
               (expect   (ht-get* serenade-helm-map "b") 
                         :to-equal "a")) 
@@ -16,3 +17,13 @@
               (serenade--update-helm-map "a" 'b) 
               (expect   (ht-get* serenade-helm-map "b") 
                         :to-equal "a")))
+(describe "calls to define-speech update helm map" ;;
+          (before-each                             ;;
+           (setq serenade-helm-M-x t) 
+           (setq serenade-helm-map (ht))) 
+          (it "adds new voice binding for commad" ;;
+
+              ;; (serenade--update-helm-map "a" 'b)
+              (serenade-global-set-speech "a" 'b) 
+              (expect   (ht-get* serenade-helm-map "a") 
+                        :to-equal "b")))
