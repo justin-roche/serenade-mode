@@ -2,7 +2,8 @@
 (defcustom serenade-enable-double-line-numbers nil 
   "if t, serenade mode shows both relative and absolute line numbers")
 
-(defun serenade-double-line-numbers-on () 
+(defun serenade-double-line-numbers-on ()
+  r  
   (interactive) 
   (global-display-line-numbers-mode +1) 
   (nlinum-mode +1) 

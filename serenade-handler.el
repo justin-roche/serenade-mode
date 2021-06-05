@@ -1,4 +1,5 @@
-
+(require 'serenade-editor-state)
+(require 'serenade-buffer)
 
 (defun serenade--handle-message (message) 
   (let* ((callback (ht-get* message "data" "callback")) 

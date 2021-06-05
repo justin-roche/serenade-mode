@@ -2,6 +2,7 @@
 (require 'serenade-desktop)
 (require 'serenade-log)
 (require 'serenade-heartbeat)
+(require 'serenade-handler)
 
 (setq serenade--websocket nil)
 (defvar serenade-prompt-for-application-start nil)
@@ -11,25 +12,25 @@
       (serenade--start-application)))
 
 (defun serenade--open-socket () 
-  (setq serenade--websocket (condition-case err (websocket-open "ws://localhost:17373" 
-                                                                :on-open (lambda (_websocket ) 
-                                                                           (print "connected to
-  Serenade") 
-                                                                           (serenade--register) 
-                                                                           (serenade--heartbeat-start)) 
-                                                                :on-message (lambda (_websocket
-                                                                                     frame)
-                                                                              (serenade--handle-message
-                                                                               (json-parse-string
-                                                                                (websocket-frame-text
-                                                                                 frame))))
-                                                                :on-close (lambda (_websocket) 
-                                                                            (serenade--heartbeat-stop) 
-                                                                            (message
-                                                                             "Serenade websocket closed")))
-                              (file-error (progn (if serenade-prompt-for-application-start
-                                                     (serenade-start-prompt))
-                                                 (serenade--log-and-message err))))))
+  (condition-case err (websocket-open "ws://localhost:17373" 
+                                      :on-open (lambda (_websocket ) 
+                                                 (message "connected to Serenade") 
+                                                 (serenade--info "connected to Serenade") 
+                                                 (setq serenade--websocket _websocket) 
+                                                 (serenade--register) 
+                                                 (serenade--heartbeat-start)) 
+                                      :on-message (lambda (_websocket frame) 
+                                                    (if serenade--websocket
+                                                        (serenade--handle-message (json-parse-string
+                                                                                   (websocket-frame-text
+                                                                                    frame)))))
+                                      :on-close (lambda (_websocket) 
+                                                  (setq serenade--websocket nil) 
+                                                  (serenade--heartbeat-stop) 
+                                                  (message "Serenade websocket closed") 
+                                                  (serenade--info "Serenade websocket closed"))) 
+    (file-error (progn (if serenade-prompt-for-application-start (serenade-start-prompt)) 
+                       (serenade--log-and-message err)))))
 
 (defun serenade--register() 
   (setq serenade-id (random 10000)) 
@@ -38,6 +39,7 @@
                                   ("app" "Emacs") 
                                   ("match" "Emacs"))))) 
          (message-json (json-serialize message))) 
+    (serenade--info (concat "registering with id: " (number-to-string serenade-id))) 
     (websocket-send-text serenade--websocket message-json)))
 
 (defun serenade--disconnect () 

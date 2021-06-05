@@ -5,11 +5,10 @@
 (setq lexical-binding t)
 
 (describe "registers plugin" (before-each ) 
-          (it "calls open socket and heartbeat from connect" ;;
+          (it "calls register and heartbeat from connect" ;;
               (cl-defun 
                   fake-websocket-open
                   (url &key on-open on-message on-close) 
-                (message "on open") 
                 (funcall on-open 1)) 
               (setf (symbol-function 'websocket-open) 'fake-websocket-open) 
               (spy-on-fn 'serenade--register) 
@@ -18,11 +17,21 @@
               (expect 'serenade--register 
                       :to-have-been-called) 
               (expect 'serenade--heartbeat-start 
+                      :to-have-been-called)) 
+          (it "calls heartbeat-stop on socket close" ;;
+              (cl-defun 
+                  fake-websocket-open
+                  (url &key on-open on-message on-close) 
+                (funcall on-close 1)) 
+              (setf (symbol-function 'websocket-open) 'fake-websocket-open) 
+              (spy-on-fn 'serenade--heartbeat-stop) 
+              (serenade--connect) 
+              (expect 'serenade--heartbeat-stop 
                       :to-have-been-called)))
 (describe "Connects to Serenade" (before-each ) 
           (it "calls open socket from connect" ;;
               (spy-on-fn 'serenade--open-socket) 
-              (serenade--connect)
+              (serenade--connect) 
               (expect 'serenade--open-socket 
                       :to-have-been-called)) 
           (it "sanity check" ;;
