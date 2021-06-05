@@ -2,7 +2,6 @@
 
 (require 'serenade-custom-commands)
 (require 'serenade-synchronize)
-;; (setq lexical-binding t)
 (require 'test-utils)
 
 (describe "formats commands with no arguments " ;;

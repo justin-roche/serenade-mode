@@ -1,6 +1,7 @@
 (require 'websocket)
 (require 'serenade-desktop)
 (require 'serenade-log)
+(require 'serenade-heartbeat)
 
 (setq serenade--websocket nil)
 (defvar serenade-prompt-for-application-start nil)
@@ -13,7 +14,7 @@
   (setq serenade--websocket (condition-case err (websocket-open "ws://localhost:17373" 
                                                                 :on-open (lambda (_websocket ) 
                                                                            (print "connected to
-Serenade") 
+  Serenade") 
                                                                            (serenade--register) 
                                                                            (serenade--heartbeat-start)) 
                                                                 :on-message (lambda (_websocket

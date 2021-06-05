@@ -1,38 +1,36 @@
 
 (require 'serenade-mode)
+(require 'test-utils)
 (require 'serenade-socket)
+(setq lexical-binding t)
 
-(describe "Connection start"  (before-each (setf (symbol-function 'serenade--connect) 
-                                                 (lambda ())) 
-                                           (spy-on 'serenade--connect)) 
-          (it "calls start function" (serenade-mode) 
-              (expect 'serenade--connect 
-                      :to-have-been-called) ))
+(describe "Connection start" ;;
+          (before-each ) 
+          (it "calls start function" ;;
+              ;; (spy-on-fn 'serenade--connect)
+              (serenade-mode)
+              ;; (expect 'serenade--connect
+              ;;         :to-have-been-called)
+              ))
 
-(describe "Connection stop"  (before-each (setf (symbol-function 'serenade--disconnect) 
-                                                (lambda ())) 
-                                          (spy-on 'serenade--disconnect)) 
-          (it "calls disconnect function" (setf (symbol-value 'serenade-mode) nil) 
+(describe "Connection stop" ;;
+          (before-each   ) 
+          (it "calls disconnect function" (spy-on-fn 'serenade--disconnect) 
+              (setf (symbol-value 'serenade-mode) nil) 
               (serenade-mode-toggle) 
               (expect 'serenade--disconnect 
                       :to-have-been-called) ))
 
-(describe "Mode initialization"  (before-each (setf (symbol-function 'serenade-mode--start) 
-                                                    (lambda (value) 
-                                                      (setq bar value))) 
-                                              (setf (symbol-function 'serenade-mode--stop) 
-                                                    (lambda (value) 
-                                                      (setq bar value))) 
-                                              (setf (symbol-function 'serenade-connect) 
-                                                    (lambda (value) 
-                                                      (setq bar value))) 
-                                              (spy-on 'serenade-connect) 
-                                              (spy-on 'serenade-mode--start) 
-                                              (spy-on 'serenade-mode--stop)) 
-          (it "calls start function" (serenade-mode) 
+(describe "Mode initialization" ;;
+          (before-each (spy-on-fn 'serenade-mode--stop)) 
+          (it "calls start function" ;;
+              ;; (spy-on-fn 'serenade-connect)
+              (spy-on-fn 'serenade-mode--start) 
+              (serenade-mode) 
               (expect 'serenade-mode--start 
                       :to-have-been-called)) 
-          (it "calls stop function" (setf (symbol-value 'serenade-mode) nil) 
+          (it "calls stop function" ;;
+              (setf (symbol-value 'serenade-mode) nil) 
               (serenade-mode-toggle) 
               (expect 'serenade-mode--stop 
                       :to-have-been-called)))

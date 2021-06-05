@@ -19,11 +19,14 @@
                         :to-equal "a")))
 (describe "calls to define-speech update helm map" ;;
           (before-each                             ;;
-           (setq serenade-helm-M-x t) 
            (setq serenade-helm-map (ht))) 
-          (it "adds new voice binding for commad" ;;
-
-              ;; (serenade--update-helm-map "a" 'b)
+          (it "adds new M-x binding for command if M-x enabled" ;;
+              (setq serenade-helm-M-x t) 
               (serenade-global-set-speech "a" 'b) 
-              (expect   (ht-get* serenade-helm-map "a") 
-                        :to-equal "b")))
+              (expect   (ht-get* serenade-helm-map "b") 
+                        :to-equal "a")) 
+          (it "does not add new M-x binding for command if M-x disabled" ;;
+              (setq serenade-helm-M-x nil) 
+              (serenade-global-set-speech "a" 'b) 
+              (expect   (ht-get* serenade-helm-map "b") 
+                        :to-equal nil)))
