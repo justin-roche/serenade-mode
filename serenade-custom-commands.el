@@ -2,7 +2,7 @@
 (require 'cl)
 (require 's)
 (require 'serenade-helm)
-(require 'serenade-persistence)
+;; (require 'serenade-persistence)
 
 (defvar serenade-mode-maps (ht("global" (ht)) ) 
   "hashtable of Serenade voice maps")

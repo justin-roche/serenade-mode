@@ -1,0 +1,28 @@
+{
+    "getEditorState": {
+        "data": {
+            "data": {
+                "data": {
+                    "filename": "test.js",
+                    "cursor": 3,
+                    "source": "abc"
+                },
+                "message": "editorState"
+            },
+            "callback": "1"
+        },
+        "message": "callback"
+    },
+    "register": {
+        "data": {
+            "match": "Emacs",
+            "app": "Emacs",
+            "id": 9999
+        },
+        "message": "active"
+    },
+    "completed": {
+        "message": "complete",
+        "data":{}
+    }
+}

@@ -33,11 +33,12 @@
                        (serenade--log-and-message err)))))
 
 (defun serenade--register() 
-  (setq serenade-id (random 10000)) 
-  (let* ((message (ht ("message" "active") 
-                      ("data" (ht ("id" serenade-id) 
+  (setq serenade-id (or serenade-id 
+                        (random 10000))) 
+  (let* ((message (ht ("data" (ht ("match" "Emacs") 
                                   ("app" "Emacs") 
-                                  ("match" "Emacs"))))) 
+                                  ("id" serenade-id))) 
+                      ("message" "active"))) 
          (message-json (json-serialize message))) 
     (serenade--info (concat "registering with id: " (number-to-string serenade-id))) 
     (websocket-send-text serenade--websocket message-json)))

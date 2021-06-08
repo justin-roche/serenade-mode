@@ -4,6 +4,22 @@
 (require 'test-utils)
 (setq lexical-binding t)
 
+(describe "Prompts for start on error" (before-each ) 
+          (it "calls open socket from connect" ;;
+              (spy-on-fn 'serenade-start-prompt) 
+              (setq serenade-prompt-for-application-start t) 
+              (serenade--connect) 
+              (expect 'serenade-start-prompt 
+                      :to-have-been-called)))
+(describe "register sends valid message" ;;
+          (before-each (spy-on-fn 'websocket-send-text)) 
+          (it "sends register message" ;;
+              (let* ((data (json-serialize (ht-get* (json-parse-string (load-json-responses))
+                                                    "register"))))
+                (setq serenade-id 9999 ) 
+                (serenade--register ) 
+                (expect   'websocket-send-text 
+                          :to-have-been-called-with nil data))))
 (describe "registers plugin" (before-each ) 
           (it "calls register and heartbeat from connect" ;;
               (cl-defun 
@@ -39,3 +55,10 @@
               (serenade-disconnect) 
               (expect 'serenade--disconnect 
                       :to-have-been-called)))
+;; (describe "Connection start"         ;;
+;;           (it "calls start function" ;;
+;;               (setq serenade-mode t )
+;;               (spy-on-fn 'serenade--connect)
+;;               (serenade-mode)
+;;               (expect 'serenade--connect
+;;                       :to-have-been-called)))

@@ -4,15 +4,6 @@
 (require 'serenade-socket)
 (setq lexical-binding t)
 
-(describe "Connection start" ;;
-          (before-each ) 
-          (it "calls start function" ;;
-              ;; (spy-on-fn 'serenade--connect)
-              (serenade-mode)
-              ;; (expect 'serenade--connect
-              ;;         :to-have-been-called)
-              ))
-
 (describe "Connection stop" ;;
           (before-each   ) 
           (it "calls disconnect function" (spy-on-fn 'serenade--disconnect) 
@@ -24,7 +15,6 @@
 (describe "Mode initialization" ;;
           (before-each (spy-on-fn 'serenade-mode--stop)) 
           (it "calls start function" ;;
-              ;; (spy-on-fn 'serenade-connect)
               (spy-on-fn 'serenade-mode--start) 
               (serenade-mode) 
               (expect 'serenade-mode--start 

@@ -1,14 +1,12 @@
 {
     "diff": {
         "data": {
-            "callback": 1,
+            "callback": "956e2039-88fd-4d35-9e71-ba42abdde6bb",
             "response": {
                 "execute": {
                     "commandsList": [
                         {
-                            "type": "COMMAND_TYPE_DIFF"
-                        },
-                        {
+                            "type": "COMMAND_TYPE_DIFF",
                             "limited": false
                         }
                     ]
@@ -18,14 +16,12 @@
     },
     "getEditorState": {
         "data": {
-            "callback": 1,
+            "callback": "956e2039-88fd-4d35-9e71-ba42abdde6bb",
             "response": {
                 "execute": {
                     "commandsList": [
                         {
-                            "type": "COMMAND_TYPE_GET_EDITOR_STATE"
-                        },
-                        {
+                            "type": "COMMAND_TYPE_GET_EDITOR_STATE",
                             "limited": false
                         }
                     ]
@@ -35,14 +31,12 @@
     },
     "evaluateInPlugin": {
         "data": {
-            "callback": 1,
+            "callback":  "956e2039-88fd-4d35-9e71-ba42abdde6bb",
             "response": {
                 "execute": {
                     "commandsList": [
                         {
-                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN" 
-                        },
-                        {
+                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN" ,
                             "limited": false
                         }
                     ]

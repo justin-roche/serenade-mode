@@ -2,20 +2,19 @@
 
 (defun serenade--get-editor-state (callback limited) 
   (let* ((filename (-last-item (s-split "/" (buffer-file-name)))) 
-         (buffer-data (ht ("source" 
+         (buffer-data (ht ("filename" filename) 
+                          ("cursor" (- (point) 1)) 
+                          ("source" 
                            (buffer-substring-no-properties 
                             (point-min) 
-                            (point-max))) 
-                          ("cursor" (- (point) 1)) 
-                          ("filename" filename))) 
-         (response (ht("message" "callback") 
-                      ("data" (ht ("callback" callback) 
-                                  ("data" (ht ("message" "editorState") 
-                                              ("data" buffer-data))))))) 
+                            (point-max))))) 
+         (response (ht("data" (ht ("data" (ht ("data" buffer-data) 
+                                              ("message" "editorState"))) 
+                                  ("callback" callback))) 
+                      ("message" "callback"))) 
          (response-json (json-serialize response))) 
-    (serenade--save-data response-json)
-    (serenade--info "sending state") 
-    (message (prin1-to-string response)) 
+    (serenade--info "sending state")
+    ;; (message (prin1-to-string response))
     (websocket-send-text serenade--websocket response-json)))
 
 (provide 'serenade-editor-state)
