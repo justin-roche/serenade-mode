@@ -1,6 +1,8 @@
 (require 'serenade-log)
 
-(defun serenade--get-editor-state (callback limited) 
+(defun serenade--get-editor-state (callback limited)
+  ;; (message "limited")
+  ;; (message (prin1-to-string (booleanp limited)) )
   (let* ((filename (-last-item (s-split "/" (buffer-file-name)))) 
          (buffer-data (ht ("filename" filename) 
                           ("cursor" (- (point) 1)) 

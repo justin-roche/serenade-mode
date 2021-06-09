@@ -8,6 +8,7 @@
           (it "calls open socket from connect" ;;
               (spy-on-fn 'serenade-start-prompt) 
               (setq serenade-prompt-for-application-start t) 
+              (setq serenade-port 000) 
               (serenade--connect) 
               (expect 'serenade-start-prompt 
                       :to-have-been-called)))

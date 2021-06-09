@@ -1,18 +1,21 @@
 (require 'websocket)
 (require 'serenade-desktop)
+(require 'test-utils)
 (require 'serenade-log)
+(require 'serenade-globals)
 (require 'serenade-heartbeat)
 (require 'serenade-handler)
 
 (setq serenade--websocket nil)
 (defvar serenade-prompt-for-application-start nil)
+(defvar serenade-port 17373)
 
 (defun serenade-start-prompt () 
   (if (y-or-n-p "There was a problem connecting to Serenade. Start Serenade now?") 
       (serenade--start-application)))
 
 (defun serenade--open-socket () 
-  (condition-case err (websocket-open "ws://localhost:17373" 
+  (condition-case err (websocket-open (concat "ws://localhost:" (number-to-string serenade-port)) 
                                       :on-open (lambda (_websocket ) 
                                                  (message "connected to Serenade") 
                                                  (serenade--info "connected to Serenade") 
@@ -44,7 +47,7 @@
     (websocket-send-text serenade--websocket message-json)))
 
 (defun serenade--disconnect () 
-  (websocket-close serenade--websocket))
+  (if serenade--websocket (websocket-close serenade--websocket)))
 
 (defun serenade-disconnect () 
   (interactive) 

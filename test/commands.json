@@ -1,4 +1,74 @@
 {
+    "cut": {
+        "message": "response",
+        "data": {
+            "callback": "4892e5c8-a148-44dc-8f6a-181da9341cfe",
+            "response": {
+                "alternatives": [
+                    {
+                        "description": "cut",
+                        "transcript": "cut",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_PRESS",
+                                "text": "x",
+                                "modifiers": [
+                                    "command"
+                                ]
+                            }
+                        ],
+                        "alternativeId": "18a60887-c31b-4236-8e37-35c4b407686a"
+                    }
+                ],
+                "execute": {
+                    "description": "cut",
+                    "transcript": "cut",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_PRESS",
+                            "text": "x",
+                            "modifiers": [
+                                "command"
+                            ]
+                        }
+                    ],
+                    "alternativeId": "18a60887-c31b-4236-8e37-35c4b407686a",
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_PRESS",
+                            "text": "x",
+                            "modifiers": [
+                                "command"
+                            ]
+                        }
+                    ]
+                },
+                "chunkId": "1ba6ce79-1a57-4ab3-8a93-de0c59585b82",
+                "final": true,
+                "endpointId": "4393482d-46f6-410c-9240-5fa4cc204c4a",
+                "chunkIds": [
+                    "1ba6ce79-1a57-4ab3-8a93-de0c59585b82"
+                ],
+                "silenceThreshold": 500,
+                "alternativesList": [
+                    {
+                        "description": "cut",
+                        "transcript": "cut",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_PRESS",
+                                "text": "x",
+                                "modifiers": [
+                                    "command"
+                                ]
+                            }
+                        ],
+                        "alternativeId": "18a60887-c31b-4236-8e37-35c4b407686a"
+                    }
+                ]
+            }
+        }
+    },
     "diff": {
         "data": {
             "callback": "956e2039-88fd-4d35-9e71-ba42abdde6bb",
@@ -31,12 +101,42 @@
     },
     "evaluateInPlugin": {
         "data": {
-            "callback":  "956e2039-88fd-4d35-9e71-ba42abdde6bb",
+            "callback": "956e2039-88fd-4d35-9e71-ba42abdde6bb",
             "response": {
                 "execute": {
                     "commandsList": [
                         {
-                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN" ,
+                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN",
+                            "limited": false
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "save": {
+        "data": {
+            "callback": "956e2039-88fd-4d35-9e71-ba42abdde6bb",
+            "response": {
+                "execute": {
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_SAVE",
+                            "limited": false
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "copyLine": {
+        "data": {
+            "callback": "956e2039-88fd-4d35-9e71-ba42abdde6bb",
+            "response": {
+                "execute": {
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_SAVE",
                             "limited": false
                         }
                     ]

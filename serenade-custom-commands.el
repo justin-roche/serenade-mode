@@ -65,6 +65,7 @@
 
 (defun serenade--add-default-bindings () 
   (serenade-global-set-speech '(;; ( "press". nil  )
+                                ( "copy" .  kill-new  ) 
                                 ( "close tab" . delete-window  ) 
                                 ( "save"  . save-buffer  ) 
                                 ( "create tab" . split-window-right-and-focus  ) 
@@ -73,8 +74,8 @@
                                 ( "switch tab" . nil  ) 
                                 ( "open file list" .
                                   spacemacs-layouts/non-restricted-buffer-list-helm) 
-                                ( "open file" . nil  )
-                                ;; ( "undo" .  undo  )
+                                ( "open file" . nil  ) 
+                                ( "undo" .  undo  ) 
                                 ( "redo" . redo  ) 
                                 ( "scroll" . zz-scroll-half-page-down  ) 
                                 ( "style" . nil) 

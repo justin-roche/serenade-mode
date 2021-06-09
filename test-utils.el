@@ -48,4 +48,18 @@
   (with-temp-buffer (insert-file-contents "test/responses.json") 
                     (buffer-string)))
 
+(defun load-request (name) 
+  (ht-get* (json-parse-string (load-json-commands)) name))
+
+(defun load-response (name) 
+  (json-serialize (ht-get* (json-parse-string (load-json-responses)) name)))
+
+(defmacro measure-time 
+    (&rest 
+     body)
+  "Measure and return the running time of the code block."
+  (declare (indent defun)) 
+  (let ((start (make-symbol "start"))) 
+    `(let ((,start (float-time))) ,@body (- (float-time) ,start))))
+
 (provide 'test-utils)
