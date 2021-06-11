@@ -29,7 +29,7 @@
                               ((equal type "COMMAND_TYPE_UNDO") 
                                (serenade--undo)) 
                               ((equal type "COMMAND_TYPE_SELECT") 
-                               (serenade-select-region (+ 1 (ht-get* command "cursor")) 
+                               (serenade--select-region (+ 1 (ht-get* command "cursor")) 
                                                        (+ 1 (ht-get* command "cursorEnd")))) 
                               ((equal type "COMMAND_TYPE_COPY") 
                                (serenade--copy (ht-get* command "text"))) 

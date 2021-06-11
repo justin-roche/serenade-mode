@@ -18,30 +18,31 @@
   (insert source) 
   (goto-char cursor))
 
-(defun serenade-select-region (min max) 
-  (message "selecting region") 
-  (if serenade-evil (serenade--select-region-evil min max) 
-    (serenade--select-region min max)))
-
 (defun serenade--select-region (min max) 
-  (goto-char  min ) 
-  (push-mark max) 
-  (setq mark-active t))
-
-(defun serenade--select-region-evil (min max) 
-  (message "evil serenade--select-region") 
-  (evil-visual-make-region min (- max 1)))
+  (message "selecting region") 
+  (if serenade-evil (evil-visual-make-region min (- max 1)) 
+    (progn (goto-char  min ) 
+           (push-mark max) 
+           (setq mark-active t))))
 
 (defun serenade--cut () 
-  (execute-kbd-macro (kbd "x" )))
+  (if serenade-evil (execute-kbd-macro (kbd "x" )) 
+    (kill-region (region-beginning) 
+                 (region-end))))
 
 (defun serenade--copy (text) 
   (kill-new text))
 
 (defun serenade--undo () 
-  (evil-undo 1))
+  (if serenade-evil (evil-undo 1) 
+    (undo)))
 
 (defun serenade--paste () 
-  (evil-paste-after))
+  (if serenade-evil (evil-paste-after) 
+    (yank)))
 
 (provide 'serenade-buffer)
+
+(global-set-key (kbd "s-v" ) nil)
+(global-set-key (kbd "s-c" ) nil)
+(global-set-key (kbd "s-x" ) nil)

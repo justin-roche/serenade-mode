@@ -15,7 +15,8 @@
           (before-each (spy-on 'websocket-send-text) 
                        (bc/set-var 'serenade-reuse-id-on-connect t) 
                        (bc/set-var 'serenade-id 9999)) 
-           
+          (after-each (bc/revert-serenade-id) 
+                      (bc/revert-serenade-reuse-id-on-connect)) 
           (it "sends register message" ;;
               (let* ((data (json-serialize (ht-get* (json-parse-string (load-json-responses))
                                                     "register"))))
