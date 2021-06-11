@@ -5,17 +5,21 @@
 (setq lexical-binding t)
 
 (describe "Connection stop" ;;
-          (before-each   ) 
-          (it "calls disconnect function" (spy-on-fn 'serenade--disconnect) 
-              (setf (symbol-value 'serenade-mode) nil) 
+          (before-each  (bc/set-spy 'serenade--disconnect) ) 
+          (after-each  (bc/revert-serenade--disconnect) ) 
+          (it "calls disconnect function" (setf (symbol-value 'serenade-mode) nil) 
               (serenade-mode-toggle) 
               (expect 'serenade--disconnect 
                       :to-have-been-called) ))
 
 (describe "Mode initialization" ;;
-          (before-each (spy-on-fn 'serenade-mode--stop)) 
+          (before-each (spy-on 'serenade-mode--start) 
+                       (spy-on 'serenade-mode--stop)
+                       ;; (bc/set-spy 'serenade-mode--stop)
+                       ) 
+          (after-each ;; (bc/revert-serenade-mode--stop)
+           ) 
           (it "calls start function" ;;
-              (spy-on-fn 'serenade-mode--start) 
               (serenade-mode) 
               (expect 'serenade-mode--start 
                       :to-have-been-called)) 
@@ -23,4 +27,12 @@
               (setf (symbol-value 'serenade-mode) nil) 
               (serenade-mode-toggle) 
               (expect 'serenade-mode--stop 
+                      :to-have-been-called)))
+(describe "Connection start" ;;
+          (before-each  (spy-on 'serenade--connect) )
+          ;; (after-each  (bc/revert-serenade--connect) )
+          (it "calls start function" ;;
+              (setq serenade-mode t ) 
+              (serenade-mode) 
+              (expect 'serenade--connect 
                       :to-have-been-called)))

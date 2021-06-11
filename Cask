@@ -9,6 +9,7 @@
 (  depends-on "log4e")
 (depends-on "ht")
 (depends-on "dash")
+(depends-on "evil")
 (depends-on "s")
 (depends-on "nlinum")
 

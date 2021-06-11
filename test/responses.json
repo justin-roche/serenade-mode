@@ -22,7 +22,12 @@
         "message": "active"
     },
     "completed": {
-        "message": "completed",
-        "data":{}
+        "message": "callback",
+        "data": {
+            "callback": "956e2039-88fd-4d35-9e71-ba42abdde6bb",
+            "data": {
+                "message": "completed"
+            }
+        }
     }
 }

@@ -8,9 +8,8 @@
   (with-temp-buffer (insert-file-contents "test/responses.json") 
                     (buffer-string)))
 (describe "gets editor state from buffer" ;;
-          (before-each (spy-on-fn 'websocket-send-text)) 
+          (before-each (bc/set-spy 'websocket-send-text)) 
           (it "gets editor state" ;;
-
               (let* ((data (json-serialize (ht-get* (json-parse-string (load-json-responses))
                                                     "getEditorState"))))
                 (switch-to-buffer (get-buffer-create "test.js")) 

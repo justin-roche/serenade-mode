@@ -1,4 +1,4 @@
-(defvar serenade-evil t 
+(defvar serenade-evil nil 
   "If true, use evil commands where possible for default commands")
 
 (defcustom serenade-mode-filetypes '(".js" ".py" ) 
@@ -12,9 +12,7 @@
           (setq serenade-buffer nil ))) 
     (setq serenade-buffer nil )))
 
-(defun serenade--update-buffer (source cursor)
-  ;; (message (prin1-to-string source))
-  ;; (message (prin1-to-string cursor))
+(defun serenade--update-buffer (source cursor) 
   (delete-region (point-min) 
                  (point-max)) 
   (insert source) 
@@ -26,15 +24,24 @@
     (serenade--select-region min max)))
 
 (defun serenade--select-region (min max) 
-  (message "evil serenade--select-region") 
   (goto-char  min ) 
   (push-mark max) 
   (setq mark-active t))
 
 (defun serenade--select-region-evil (min max) 
-  (message "evil serenade--select-region")
-  ;; (message (prin1-to-string min))
-  ;; (message (prin1-to-string max))
+  (message "evil serenade--select-region") 
   (evil-visual-make-region min (- max 1)))
+
+(defun serenade--cut () 
+  (execute-kbd-macro (kbd "x" )))
+
+(defun serenade--copy (text) 
+  (kill-new text))
+
+(defun serenade--undo () 
+  (evil-undo 1))
+
+(defun serenade--paste () 
+  (evil-paste-after))
 
 (provide 'serenade-buffer)

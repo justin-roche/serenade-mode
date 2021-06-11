@@ -1,23 +1,26 @@
 (require 'serenade-editor-state)
 (require 'serenade-buffer)
 (require 'serenade-log)
+(require 'test-utils)
 
 (defun serenade--handle-message (message)
-  ;; (message (prin1-to-string message))
+  ;; (extract-json message )
   (let* ((callback (ht-get* message "data" "callback")) 
          (command-vector (ht-get* message "data" "response" "execute" "commandsList")) 
          (transcript (ht-get* message "transcript")) 
          (command-list (append command-vector nil))) 
-    (if transcript (serenade--info transcript)) 
+    (if transcript (serenade--info (concat "received command: " transcript))) 
     (dolist (command command-list ) 
       (serenade--handle-command command message callback)) 
-    (serenade--send-completed)))
+    (if serenade--websocket (serenade--send-completed callback))))
 
-(defun serenade--handle-command (command message callback) 
-  (serenade--set-serenade-buffer)
-  ;; (message (prin1-to-string command))
+(defun serenade--handle-command (command message callback)
+  ;; (debug)
+  (serenade--set-serenade-buffer) 
   (let* ((type (ht-get*  command "type")) 
-         (limited (ht-get* command "limited" ))) 
+         (limited (ht-get* command "limited" )) 
+         (log-info (concat type ": limited: "  (prin1-to-string limited) ))) 
+    (serenade--info log-info) 
     (cond ((equal type "COMMAND_TYPE_EVALUATE_IN_PLUGIN") 
            (serenade--evaluate-in-plugin command))) 
     (if serenade-buffer (cond ((equal type "COMMAND_TYPE_GET_EDITOR_STATE") 
@@ -43,22 +46,12 @@
                                         (serenade--paste))))) 
                               (t (serenade--execute-default-command command))))))
 
-(defun serenade--diff (command) 
+(defun serenade--diff (command)
+  ;; (debug)
+  (serenade--info "diffing...") 
   (serenade--update-buffer (ht-get command "source") 
                            (+(or (ht-get command "cursor") 
                                  0) 1)))
-
-(defun serenade--cut () 
-  (execute-kbd-macro (kbd "x" )))
-
-(defun serenade--copy (text) 
-  (kill-new text))
-
-(defun serenade--undo () 
-  (evil-undo 1))
-
-(defun serenade--paste () 
-  (evil-paste-after))
 
 (defun serenade--evaluate-in-plugin (command) 
   (let* ((command-text (ht-get* command "text")) 
@@ -72,45 +65,15 @@
     ;; (eval (car (read-from-string command-text)))
     ))
 
-(defun serenade--send-completed () 
+(defun serenade--send-completed (callback) 
   (serenade--info "sending completed") 
-  (let* ((response (ht("message" "completed") 
-                      ("data" (ht)))) 
-         (response-json (json-serialize response))) 
-    (websocket-send-text serenade--websocket response-json)))
+  (if serenade--websocket (let* ((response (ht ("message" "callback") 
+                                               ("data" (ht ("callback" callback) 
+                                                           ("data" (ht ("message" "completed"))))))) 
+                                 (response-json (json-serialize response))) 
+                            (websocket-send-text serenade--websocket response-json))))
 
 (provide 'serenade-handler)
 (global-set-key (kbd "s-v" ) nil)
 (global-set-key (kbd "s-c" ) nil)
 (global-set-key (kbd "s-x" ) nil)
-
-;; 23:04:34 [INFO ] diffing
-;; 23:04:34 [INFO ] (0.001391 0 0.0)
-;; 23:04:34 [INFO ] sending completed
-;; 23:04:34 [INFO ] sending state
-;; 23:04:34 [INFO ] sending completed
-;; 23:04:35 [INFO ] sending state
-;; 23:04:35 [INFO ] sending completed
-;; 23:04:35 [INFO ] sending state
-;; 23:04:35 [INFO ] sending completed
-;; 23:04:36 [INFO ] sending state
-;; 23:04:36 [INFO ] sending completed
-;; 23:04:36 [INFO ] sending state
-;; 23:04:36 [INFO ] sending completed
-;; 23:04:37 [INFO ] sending state
-;; 23:04:37 [INFO ] sending completed
-;; 23:04:37 [INFO ] sending heartbeat
-;; 23:04:37 [INFO ] sending state
-;; 23:04:37 [INFO ] sending completed
-;; 23:04:37 [INFO ] sending state
-;; 23:04:37 [INFO ] sending completed
-;; 23:04:37 [INFO ] sending state
-;; 23:04:37 [INFO ] sending completed
-;; 23:04:38 [INFO ] sending state
-;; 23:04:38 [INFO ] sending completed
-;; 23:04:38 [INFO ] sending state
-;; 23:04:38 [INFO ] sending completed
-;; 23:04:38 [INFO ] sending state
-;; 23:04:38 [INFO ] sending completed
-;; 23:04:38 [INFO ] diffing
-;; 23:04:38 [INFO ] (0.001464 0 0.0)

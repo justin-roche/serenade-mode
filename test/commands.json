@@ -1,4 +1,402 @@
 {
+    "undo": {
+        "message": "response",
+        "data": {
+            "callback": "777a672c-76d7-45a7-be4e-fa86dbfe3376",
+            "response": {
+                "alternatives": [
+                    {
+                        "description": "undo",
+                        "transcript": "undo",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_UNDO"
+                            }
+                        ],
+                        "alternativeId": "03eb940b-1286-4744-b7a4-9b6ce3843ce0"
+                    }
+                ],
+                "execute": {
+                    "description": "undo",
+                    "transcript": "undo",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_UNDO"
+                        }
+                    ],
+                    "alternativeId": "03eb940b-1286-4744-b7a4-9b6ce3843ce0",
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_UNDO"
+                        }
+                    ]
+                },
+                "chunkId": "92150ba3-35e3-4c0a-9c52-1156c96e4d62",
+                "final": true,
+                "endpointId": "a93f0d59-4966-40f7-873b-1732b837bbbb",
+                "chunkIds": [
+                    "92150ba3-35e3-4c0a-9c52-1156c96e4d62"
+                ],
+                "silenceThreshold": 500,
+                "alternativesList": [
+                    {
+                        "description": "undo",
+                        "transcript": "undo",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_UNDO"
+                            }
+                        ],
+                        "alternativeId": "03eb940b-1286-4744-b7a4-9b6ce3843ce0"
+                    }
+                ]
+            }
+        }
+    },
+    "cutLine2": {
+        "message": "response",
+        "data": {
+            "callback": "bad6382d-a47b-46d7-b1f9-006aacd2668d",
+            "response": {
+                "alternatives": [
+                    {
+                        "description": "cut line 2",
+                        "transcript": "cut line two",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_COPY",
+                                "text": "let y = 2\n"
+                            },
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1\n",
+                                "cursor": 10,
+                                "changes": [
+                                    {
+                                        "start": 10,
+                                        "stop": 20
+                                    }
+                                ]
+                            }
+                        ],
+                        "alternativeId": "c7b89d05-d385-4a97-b3d3-e2adce39f459"
+                    },
+                    {
+                        "remaining": "line two",
+                        "description": "cut, line two",
+                        "transcript": "cut line two",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_PRESS",
+                                "text": "x",
+                                "modifiers": [
+                                    "command"
+                                ]
+                            }
+                        ],
+                        "alternativeId": "5e8785d5-e960-4ee9-88f9-5f50d3d7aba3"
+                    },
+                    {
+                        "description": "Object not found: cut line to",
+                        "transcript": "cut line to",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "d1100d70-d41b-4626-9cb9-53bb69b2cdff"
+                    }
+                ],
+                "execute": {
+                    "description": "cut line 2",
+                    "transcript": "cut line two",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_COPY",
+                            "text": "let y = 2\n"
+                        },
+                        {
+                            "type": "COMMAND_TYPE_DIFF",
+                            "source": "let x = 1\n",
+                            "cursor": 10,
+                            "changes": [
+                                {
+                                    "start": 10,
+                                    "stop": 20
+                                }
+                            ]
+                        }
+                    ],
+                    "alternativeId": "c7b89d05-d385-4a97-b3d3-e2adce39f459",
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_COPY",
+                            "text": "let y = 2\n"
+                        },
+                        {
+                            "type": "COMMAND_TYPE_DIFF",
+                            "source": "let x = 1\n",
+                            "cursor": 10,
+                            "changes": [
+                                {
+                                    "start": 10,
+                                    "stop": 20
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "chunkId": "5b05e0d8-2c29-428d-b29f-a185fe8efa9e",
+                "final": true,
+                "endpointId": "905ae0de-4aa3-4385-a24e-af4a0ef737b7",
+                "chunkIds": [
+                    "ba2ef7c3-142f-40dd-adf9-122e7c627cab",
+                    "5b05e0d8-2c29-428d-b29f-a185fe8efa9e"
+                ],
+                "silenceThreshold": 500,
+                "alternativesList": [
+                    {
+                        "description": "cut line 2",
+                        "transcript": "cut line two",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_COPY",
+                                "text": "let y = 2\n"
+                            },
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1\n",
+                                "cursor": 10,
+                                "changes": [
+                                    {
+                                        "start": 10,
+                                        "stop": 20
+                                    }
+                                ]
+                            }
+                        ],
+                        "alternativeId": "c7b89d05-d385-4a97-b3d3-e2adce39f459"
+                    },
+                    {
+                        "remaining": "line two",
+                        "description": "cut, line two",
+                        "transcript": "cut line two",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_PRESS",
+                                "text": "x",
+                                "modifiers": [
+                                    "command"
+                                ]
+                            }
+                        ],
+                        "alternativeId": "5e8785d5-e960-4ee9-88f9-5f50d3d7aba3"
+                    },
+                    {
+                        "description": "Object not found: cut line to",
+                        "transcript": "cut line to",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "d1100d70-d41b-4626-9cb9-53bb69b2cdff"
+                    }
+                ]
+            }
+        }
+    },
+    "copyLine1": {
+        "message": "response",
+        "data": {
+            "callback": "2ebe19b9-cc57-4104-be50-3cbf44a21bfa",
+            "response": {
+                "alternatives": [
+                    {
+                        "description": "copy line 1",
+                        "transcript": "copy line one",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_COPY",
+                                "text": "let x = 1"
+                            }
+                        ],
+                        "alternativeId": "6215671d-bf0d-4867-973e-e5edcb0d246a"
+                    },
+                    {
+                        "remaining": "line one",
+                        "description": "copy, line one",
+                        "transcript": "copy line one",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_PRESS",
+                                "text": "c",
+                                "modifiers": [
+                                    "command"
+                                ]
+                            }
+                        ],
+                        "alternativeId": "06389339-a516-408a-8664-5fe22159568e"
+                    }
+                ],
+                "execute": {
+                    "description": "copy line 1",
+                    "transcript": "copy line one",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_COPY",
+                            "text": "let x = 1"
+                        }
+                    ],
+                    "alternativeId": "6215671d-bf0d-4867-973e-e5edcb0d246a",
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_COPY",
+                            "text": "let x = 1"
+                        }
+                    ]
+                },
+                "chunkId": "83e069d8-de5b-451c-b3ba-524d9f40e300",
+                "final": true,
+                "endpointId": "3cb50d29-290c-4f7f-8587-de22180adcf6",
+                "chunkIds": [
+                    "83e069d8-de5b-451c-b3ba-524d9f40e300"
+                ],
+                "silenceThreshold": 500,
+                "alternativesList": [
+                    {
+                        "description": "copy line 1",
+                        "transcript": "copy line one",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_COPY",
+                                "text": "let x = 1"
+                            }
+                        ],
+                        "alternativeId": "6215671d-bf0d-4867-973e-e5edcb0d246a"
+                    },
+                    {
+                        "remaining": "line one",
+                        "description": "copy, line one",
+                        "transcript": "copy line one",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_PRESS",
+                                "text": "c",
+                                "modifiers": [
+                                    "command"
+                                ]
+                            }
+                        ],
+                        "alternativeId": "06389339-a516-408a-8664-5fe22159568e"
+                    }
+                ]
+            }
+        }
+    },
+    "goLine2": {
+        "message": "response",
+        "data": {
+            "callback": "3dc37ad9-7887-4072-afc1-e679bca47c7c",
+            "response": {
+                "alternatives": [
+                    {
+                        "description": "go to line 2",
+                        "transcript": "go to line two",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1let y = 2",
+                                "cursor": 10
+                            }
+                        ],
+                        "alternativeId": "d93e2d99-c690-467f-9dee-b735a4343ca6"
+                    },
+                    {
+                        "description": "Object not found: go to line two",
+                        "transcript": "go to line two",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "69c3a63b-7afb-4467-bba2-7b8d6be66f46"
+                    },
+                    {
+                        "description": "Object not found: go to line to",
+                        "transcript": "go to line to",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "47bee658-2782-4847-8bae-1f3d74bb35f2"
+                    }
+                ],
+                "execute": {
+                    "description": "go to line 2",
+                    "transcript": "go to line two",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_DIFF",
+                            "source": "let x = 1let y = 2",
+                            "cursor": 10
+                        }
+                    ],
+                    "alternativeId": "d93e2d99-c690-467f-9dee-b735a4343ca6",
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_DIFF",
+                            "source": "let x = 1let y = 2",
+                            "cursor": 10
+                        }
+                    ]
+                },
+                "chunkId": "47a0267e-c613-4cd4-82e7-343976c7a1d1",
+                "requiresLongSilence": true,
+                "final": true,
+                "endpointId": "3e31716f-d3d9-4e91-b4be-bdd2f6616d1c",
+                "chunkIds": [
+                    "47a0267e-c613-4cd4-82e7-343976c7a1d1"
+                ],
+                "silenceThreshold": 1000,
+                "alternativesList": [
+                    {
+                        "description": "go to line 2",
+                        "transcript": "go to line two",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1let y = 2",
+                                "cursor": 10
+                            }
+                        ],
+                        "alternativeId": "d93e2d99-c690-467f-9dee-b735a4343ca6"
+                    },
+                    {
+                        "description": "Object not found: go to line two",
+                        "transcript": "go to line two",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "69c3a63b-7afb-4467-bba2-7b8d6be66f46"
+                    },
+                    {
+                        "description": "Object not found: go to line to",
+                        "transcript": "go to line to",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "47bee658-2782-4847-8bae-1f3d74bb35f2"
+                    }
+                ]
+            }
+        }
+    },
     "cut": {
         "message": "response",
         "data": {
@@ -143,5 +541,429 @@
                 }
             }
         }
+    },
+    "selectLine2": {
+        "data": {
+            "response": {
+                "alternativesList": [
+                    {
+                        "alternativeId": "15d8388c-6a96-44da-ac91-803cdc998050",
+                        "commands": [
+                            {
+                                "cursorEnd": 19,
+                                "cursor": 10,
+                                "source": "let x = 1let y = 2",
+                                "type": "COMMAND_TYPE_SELECT"
+                            }
+                        ],
+                        "transcript": "select line two",
+                        "description": "select line 2"
+                    },
+                    {
+                        "alternativeId": "be0c1a74-5a51-43c8-bd4c-bc0f06aa6a0c",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "select line two",
+                        "description": "Object not found: select line two"
+                    },
+                    {
+                        "alternativeId": "60bc51c6-07fe-428d-ae2d-f181806691ca",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "select line to",
+                        "description": "Object not found: select line to"
+                    }
+                ],
+                "silenceThreshold": 500,
+                "chunkIds": [
+                    "c279775d-b10f-4e67-8dcd-a03597fff8f6"
+                ],
+                "endpointId": "e42ca4bd-4cf8-45f4-af48-42cd84a4096f",
+                "final": true,
+                "chunkId": "c279775d-b10f-4e67-8dcd-a03597fff8f6",
+                "execute": {
+                    "commandsList": [
+                        {
+                            "cursorEnd": 19,
+                            "cursor": 10,
+                            "source": "let x = 1let y = 2",
+                            "type": "COMMAND_TYPE_SELECT"
+                        }
+                    ],
+                    "alternativeId": "15d8388c-6a96-44da-ac91-803cdc998050",
+                    "commands": [
+                        {
+                            "cursorEnd": 19,
+                            "cursor": 10,
+                            "source": "let x = 1let y = 2",
+                            "type": "COMMAND_TYPE_SELECT"
+                        }
+                    ],
+                    "transcript": "select line two",
+                    "description": "select line 2"
+                },
+                "alternatives": [
+                    {
+                        "alternativeId": "15d8388c-6a96-44da-ac91-803cdc998050",
+                        "commands": [
+                            {
+                                "cursorEnd": 19,
+                                "cursor": 10,
+                                "source": "let x = 1let y = 2",
+                                "type": "COMMAND_TYPE_SELECT"
+                            }
+                        ],
+                        "transcript": "select line two",
+                        "description": "select line 2"
+                    },
+                    {
+                        "alternativeId": "be0c1a74-5a51-43c8-bd4c-bc0f06aa6a0c",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "select line two",
+                        "description": "Object not found: select line two"
+                    },
+                    {
+                        "alternativeId": "60bc51c6-07fe-428d-ae2d-f181806691ca",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "select line to",
+                        "description": "Object not found: select line to"
+                    }
+                ]
+            },
+            "callback": "4b0c28b0-b3d7-4e90-be43-2fba47972633"
+        },
+        "message": "response"
+    },
+    "paste": {
+        "data": {
+            "response": {
+                "textResponse": true,
+                "execute": {
+                    "commandsList": [
+                        {
+                            "changes": [
+                                {
+                                    "substitution": "\nlet x = 1",
+                                    "stop": 20,
+                                    "start": 20
+                                }
+                            ],
+                            "cursor": 30,
+                            "source": "let x = 1\nlet y = 2\n\nlet x = 1",
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "alternativeId": "aa7e3274-a65e-4388-80a0-93c19bd78fc9",
+                    "commands": [
+                        {
+                            "changes": [
+                                {
+                                    "substitution": "\nlet x = 1",
+                                    "stop": 20,
+                                    "start": 20
+                                }
+                            ],
+                            "cursor": 30,
+                            "source": "let x = 1\nlet y = 2\n\nlet x = 1",
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "transcript": "paste",
+                    "description": "paste"
+                }
+            },
+            "callback": "e117a6f4-620f-4a99-95e2-088d9b801535"
+        },
+        "message": "response"
+    },
+    "addLetX": {
+        "data": {
+            "response": {
+                "alternativesList": [
+                    {
+                        "alternativeId": "d991e1ac-f67c-48e2-a01d-5cc7ee533852",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "substitution": "let x = 1;n"
+                                    }
+                                ],
+                                "cursor": 9,
+                                "source": "let x = 1;n",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "add let x equal one",
+                        "description": "add <code>let x = 1;</code>"
+                    },
+                    {
+                        "alternativeId": "a5d67e1c-2482-46ae-b210-9a81a2e712bf",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "substitution": "let ex = 1;n"
+                                    }
+                                ],
+                                "cursor": 10,
+                                "source": "let ex = 1;n",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "add let ex equal one",
+                        "description": "add <code>let ex = 1;</code>"
+                    }
+                ],
+                "silenceThreshold": 1000,
+                "chunkIds": [
+                    "81f36ad1-ff46-49cd-9581-9dd70dc1dfd5"
+                ],
+                "endpointId": "a94ff1fd-68fd-4ea7-b6a0-0557f905fa3a",
+                "final": true,
+                "requiresLongSilence": true,
+                "chunkId": "81f36ad1-ff46-49cd-9581-9dd70dc1dfd5",
+                "execute": {
+                    "commandsList": [
+                        {
+                            "changes": [
+                                {
+                                    "substitution": "let x = 1;\n"
+                                }
+                            ],
+                            "cursor": 9,
+                            "source": "let x = 1;\n",
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "alternativeId": "d991e1ac-f67c-48e2-a01d-5cc7ee533852",
+                    "commands": [
+                        {
+                            "changes": [
+                                {
+                                    "substitution": "let x = 1;\n"
+                                }
+                            ],
+                            "cursor": 9,
+                            "source": "let x = 1;\n",
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "transcript": "add let x equal one",
+                    "description": "add <code>let x = 1;</code>"
+                },
+                "alternatives": [
+                    {
+                        "alternativeId": "d991e1ac-f67c-48e2-a01d-5cc7ee533852",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "substitution": "let x = 1;\n"
+                                    }
+                                ],
+                                "cursor": 9,
+                                "source": "let x = 1;\n",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "add let x equal one",
+                        "description": "add <code>let x = 1;</code>"
+                    },
+                    {
+                        "alternativeId": "a5d67e1c-2482-46ae-b210-9a81a2e712bf",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "substitution": "let ex = 1;n"
+                                    }
+                                ],
+                                "cursor": 10,
+                                "source": "let ex = 1;n",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "add let ex equal one",
+                        "description": "add <code>let ex = 1;</code>"
+                    }
+                ]
+            },
+            "callback": "b5a4f08a-8140-4c52-bc7a-d3492114c8e4"
+        },
+        "message": "response"
+    },
+    "addLetY": {
+        "data": {
+            "response": {
+                "alternativesList": [
+                    {
+                        "alternativeId": "b0b16791-d2f9-47fd-9a5f-fd3f536c6201",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "substitution": "let x = 1;nlet y = 2;n",
+                                        "stop": 11
+                                    }
+                                ],
+                                "cursor": 20,
+                                "source": "let x = 1;nlet y = 2;n",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "add let y equal two",
+                        "description": "add <code>let y = 2;</code>"
+                    },
+                    {
+                        "alternativeId": "5b01dae3-5bf5-4cc4-b4de-9bdd95d9b4d4",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "substitution": "let x = 1;nlet y = to;n",
+                                        "stop": 11
+                                    }
+                                ],
+                                "cursor": 21,
+                                "source": "let x = 1;nlet y = to;n",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "add let y equal to",
+                        "description": "add <code>let y = to;</code>"
+                    },
+                    {
+                        "alternativeId": "008ae482-c31b-4dd3-be2d-c35c20372e0c",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "substitution": "let x = 1;nlet y = too;n",
+                                        "stop": 11
+                                    }
+                                ],
+                                "cursor": 22,
+                                "source": "let x = 1;nlet y = too;n",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "add let y equal too",
+                        "description": "add <code>let y = too;</code>"
+                    }
+                ],
+                "silenceThreshold": 1000,
+                "chunkIds": [
+                    "e87bb774-966b-4dc8-8ef9-11bf6c27fa85"
+                ],
+                "endpointId": "baabe76e-a09c-4149-bea2-6d084ac2ada6",
+                "final": true,
+                "requiresLongSilence": true,
+                "chunkId": "e87bb774-966b-4dc8-8ef9-11bf6c27fa85",
+                "execute": {
+                    "commandsList": [
+                        {
+                            "changes": [
+                                {
+                                    "substitution": "let x = 1;nlet y = 2;n",
+                                    "stop": 11
+                                }
+                            ],
+                            "cursor": 20,
+                            "source": "let x = 1;nlet y = 2;n",
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "alternativeId": "b0b16791-d2f9-47fd-9a5f-fd3f536c6201",
+                    "commands": [
+                        {
+                            "changes": [
+                                {
+                                    "substitution": "let x = 1;nlet y = 2;n",
+                                    "stop": 11
+                                }
+                            ],
+                            "cursor": 20,
+                            "source": "let x = 1;nlet y = 2;n",
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "transcript": "add let y equal two",
+                    "description": "add <code>let y = 2;</code>"
+                },
+                "alternatives": [
+                    {
+                        "alternativeId": "b0b16791-d2f9-47fd-9a5f-fd3f536c6201",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "substitution": "let x = 1;nlet y = 2;n",
+                                        "stop": 11
+                                    }
+                                ],
+                                "cursor": 20,
+                                "source": "let x = 1;nlet y = 2;n",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "add let y equal two",
+                        "description": "add <code>let y = 2;</code>"
+                    },
+                    {
+                        "alternativeId": "5b01dae3-5bf5-4cc4-b4de-9bdd95d9b4d4",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "substitution": "let x = 1;nlet y = to;n",
+                                        "stop": 11
+                                    }
+                                ],
+                                "cursor": 21,
+                                "source": "let x = 1;nlet y = to;n",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "add let y equal to",
+                        "description": "add <code>let y = to;</code>"
+                    },
+                    {
+                        "alternativeId": "008ae482-c31b-4dd3-be2d-c35c20372e0c",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "substitution": "let x = 1;nlet y = too;n",
+                                        "stop": 11
+                                    }
+                                ],
+                                "cursor": 22,
+                                "source": "let x = 1;nlet y = too;n",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "add let y equal too",
+                        "description": "add <code>let y = too;</code>"
+                    }
+                ]
+            },
+            "callback": "fd52fc3d-5cf6-4bc6-b245-b38177c468f5"
+        },
+        "message": "response"
     }
 }
