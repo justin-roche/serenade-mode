@@ -30,7 +30,7 @@
                                (serenade--undo)) 
                               ((equal type "COMMAND_TYPE_SELECT") 
                                (serenade--select-region (+ 1 (ht-get* command "cursor")) 
-                                                       (+ 1 (ht-get* command "cursorEnd")))) 
+                                                        (+ 1 (ht-get* command "cursorEnd")))) 
                               ((equal type "COMMAND_TYPE_COPY") 
                                (serenade--copy (ht-get* command "text"))) 
                               ((equal type "COMMAND_TYPE_PRESS") 
@@ -45,7 +45,7 @@
                                         (serenade--paste))))) 
                               (t (serenade--execute-default-command command))))))
 
-(defun serenade--diff (command)
+(defun serenade--diff (command) 
   (serenade--info "diffing...") 
   (serenade--update-buffer (ht-get command "source") 
                            (+(or (ht-get command "cursor") 
@@ -72,6 +72,3 @@
                             (websocket-send-text serenade--websocket response-json))))
 
 (provide 'serenade-handler)
-(global-set-key (kbd "s-v" ) nil)
-(global-set-key (kbd "s-c" ) nil)
-(global-set-key (kbd "s-x" ) nil)

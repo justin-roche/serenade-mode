@@ -27,6 +27,8 @@
 (require 'serenade-log)
 (require 'serenade-lines)
 (require 'serenade-helm)
+(require 'serenade-keys-patch)
+(require 'serenade-spacemacs)
 ;; (require 'serenade-lines)
 
 (defcustom serenade-mode-init-hook nil 
