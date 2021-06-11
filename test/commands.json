@@ -206,6 +206,76 @@
             }
         }
     },
+    "copy": {
+        "message": "response",
+        "data": {
+            "callback": "de157f83-29ae-4d3e-a5c3-4da03fb58ac1",
+            "response": {
+                "alternatives": [
+                    {
+                        "description": "copy",
+                        "transcript": "copy",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_PRESS",
+                                "text": "c",
+                                "modifiers": [
+                                    "command"
+                                ]
+                            }
+                        ],
+                        "alternativeId": "93f2712a-cffb-4859-859d-40e9346b41e7"
+                    }
+                ],
+                "execute": {
+                    "description": "copy",
+                    "transcript": "copy",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_PRESS",
+                            "text": "c",
+                            "modifiers": [
+                                "command"
+                            ]
+                        }
+                    ],
+                    "alternativeId": "93f2712a-cffb-4859-859d-40e9346b41e7",
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_PRESS",
+                            "text": "c",
+                            "modifiers": [
+                                "command"
+                            ]
+                        }
+                    ]
+                },
+                "chunkId": "9d0019b6-94dd-4edb-a216-289f5529145d",
+                "final": true,
+                "endpointId": "a98f390c-a1e2-46cc-b646-5e96293a78a1",
+                "chunkIds": [
+                    "9d0019b6-94dd-4edb-a216-289f5529145d"
+                ],
+                "silenceThreshold": 500,
+                "alternativesList": [
+                    {
+                        "description": "copy",
+                        "transcript": "copy",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_PRESS",
+                                "text": "c",
+                                "modifiers": [
+                                    "command"
+                                ]
+                            }
+                        ],
+                        "alternativeId": "93f2712a-cffb-4859-859d-40e9346b41e7"
+                    }
+                ]
+            }
+        }
+    },
     "copyLine1": {
         "message": "response",
         "data": {
@@ -527,7 +597,7 @@
             }
         }
     },
-    "copyLine": {
+    "save2": {
         "data": {
             "callback": "956e2039-88fd-4d35-9e71-ba42abdde6bb",
             "response": {
@@ -963,6 +1033,88 @@
                 ]
             },
             "callback": "fd52fc3d-5cf6-4bc6-b245-b38177c468f5"
+        },
+        "message": "response"
+    },
+    "selectLine1": {
+        "data": {
+            "response": {
+                "alternativesList": [
+                    {
+                        "alternativeId": "2d6a14bb-c1bc-4654-9ebf-45ef73369702",
+                        "commands": [
+                            {
+                                "cursorEnd": 10,
+                                "source": "let x = 1;nlet x = 1;nlet y = 2;n",
+                                "type": "COMMAND_TYPE_SELECT"
+                            }
+                        ],
+                        "transcript": "select line one",
+                        "description": "select line 1"
+                    },
+                    {
+                        "alternativeId": "55c55a75-ddf2-4a8b-b137-62ba64dcace5",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "select line one",
+                        "description": "Object not found: select line one"
+                    }
+                ],
+                "silenceThreshold": 500,
+                "chunkIds": [
+                    "d3c8ba3e-329d-41d8-94ee-2f9e506898fe"
+                ],
+                "endpointId": "a09d4968-ddf1-4c70-85b8-346793a4fb77",
+                "final": true,
+                "chunkId": "d3c8ba3e-329d-41d8-94ee-2f9e506898fe",
+                "execute": {
+                    "commandsList": [
+                        {
+                            "cursorEnd": 10,
+                            "source": "let x = 1;nlet x = 1;nlet y = 2;n",
+                            "type": "COMMAND_TYPE_SELECT"
+                        }
+                    ],
+                    "alternativeId": "2d6a14bb-c1bc-4654-9ebf-45ef73369702",
+                    "commands": [
+                        {
+                            "cursorEnd": 10,
+                            "source": "let x = 1;nlet x = 1;nlet y = 2;n",
+                            "type": "COMMAND_TYPE_SELECT"
+                        }
+                    ],
+                    "transcript": "select line one",
+                    "description": "select line 1"
+                },
+                "alternatives": [
+                    {
+                        "alternativeId": "2d6a14bb-c1bc-4654-9ebf-45ef73369702",
+                        "commands": [
+                            {
+                                "cursorEnd": 10,
+                                "source": "let x = 1;nlet x = 1;nlet y = 2;n",
+                                "type": "COMMAND_TYPE_SELECT"
+                            }
+                        ],
+                        "transcript": "select line one",
+                        "description": "select line 1"
+                    },
+                    {
+                        "alternativeId": "55c55a75-ddf2-4a8b-b137-62ba64dcace5",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "select line one",
+                        "description": "Object not found: select line one"
+                    }
+                ]
+            },
+            "callback": "1df2e018-9747-42ec-b87e-a51376a2489d"
         },
         "message": "response"
     }

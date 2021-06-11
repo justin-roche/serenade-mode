@@ -22,7 +22,8 @@
               (expect   'serenade--get-editor-state
                         :not 
                         :to-have-been-called)))
-(describe "gives correct diff result" ;;
+
+(describe "gives correct result using target functions" ;;
           (before-each (spy-on 'websocket-send-text)) 
           (it "goes to lines by number" ;;
               (create-test-buffer "test2.js" "let x = 1\n let y = 2") 
@@ -31,7 +32,7 @@
               (expect (point) 
                       :to-equal 11)) 
           (it "selects lines by number" ;;
-              (create-test-buffer "test2.js" "let x = 1\n let y = 2") 
+              (create-test-buffer "test6.js" "let x = 1\n let y = 2") 
               (let* ((req (load-request "selectLine2"))) 
                 (serenade--handle-message req)) 
               (expect (region-beginning) 
@@ -39,19 +40,30 @@
               (expect (region-end) 
                       :to-equal 20)) 
           (it "cuts lines by number" ;;
-              (create-test-buffer "test2.js" "let x = 1\n let y = 2") 
+              (create-test-buffer "test5.js" "let x = 1\n let y = 2") 
               (let* ((req (load-request "cutLine2"))) 
                 (serenade--handle-message req)) 
               (expect   (buffer-string) 
                         :to-equal "let x = 1\n")) 
           (it "copies lines by number" ;;
-              (create-test-buffer "test2.js" "let x = 1\n let y = 2") 
+              (create-test-buffer "test4.js" "let x = 1\n let y = 2") 
               (let* ((req (load-request "copyLine1"))) 
                 (serenade--handle-message req)) 
-              (expect   (car kill-ring-yank-pointer) 
-                        :to-equal "let x = 1")) 
-          (it "pastes" ;;
-              (create-test-buffer "test2.js" "let x = 1\n let y = 2") 
+              (expect (car kill-ring-yank-pointer) 
+                      :to-equal "let x = 1")))
+
+(describe "gives correct result using keypress functions" ;;
+          (before-each (spy-on 'websocket-send-text)) 
+          (it "copies a selection" ;;
+              (create-test-buffer "test3.js" "let x = 1\nlet y = 2\n") 
+              (serenade--select-target 11 20) 
+              (let* ((req2 (load-request "copy"))) 
+                (serenade--handle-message req2)) 
+              (expect    (car kill-ring-yank-pointer) 
+                         :to-equal "let y = 2")) 
+          (it "pastes evil" ;;
+              (create-test-buffer "test7.js" "let x = 1\nlet y = 2") 
+              (setq serenade-evil t) 
               (let* ((req1 (load-request "copyLine1")) 
                      (req2 (load-request "paste"))) 
                 (serenade--handle-message req1) 
@@ -89,13 +101,13 @@
                         :to-have-been-called)))
 (describe "Calls cut" ;;
           (before-each (spy-on 'websocket-send-text) 
-                       (spy-on 'serenade--cut)) 
+                       (spy-on 'serenade--cut-selection)) 
           (it "calls cut if valid buffer" ;;
               (let* ((req (load-request "cut"))) 
                 (create-test-buffer "test.js" "") 
                 (serenade--handle-message req)) 
-              (expect   'serenade--cut 
-                        :to-have-been-called)))
+              (expect   'serenade--cut-selection 
+                        ':to-have-been-called)))
 
 (describe "sends completed" ;;
           (before-each (spy-on 'websocket-send-text) 

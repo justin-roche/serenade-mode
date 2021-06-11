@@ -38,6 +38,7 @@
 
 (defun serenade-mode--start () 
   (serenade--info "connecting to serenade") 
+  (serenade--info (concat "evil mode" (prin1-to-string serenade-evil))) 
   (run-hooks 'serenade-mode-init-hook) 
   (if serenade-enable-double-line-numbers (serenade-double-line-numbers-on)) 
   (serenade--connect))
