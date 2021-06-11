@@ -36,10 +36,10 @@
     (file-error (progn (if serenade-prompt-for-application-start (serenade-start-prompt)) 
                        (serenade--log-and-message err)))))
 
-(defun serenade--register()
-  ;; (setq serenade-id (or (and serenade-reuse-id-on-connect
-  ;;                            serenade-id)
-  ;;                       (random 10000)))
+(defun serenade--register() 
+  (setq serenade-id (or (and serenade-reuse-id-on-connect 
+                             serenade-id) 
+                        (random 10000))) 
   (let* ((message (ht ("data" (ht ("match" "Emacs") 
                                   ("app" "Emacs") 
                                   ("id" serenade-id))) 

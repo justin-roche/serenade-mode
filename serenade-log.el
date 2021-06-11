@@ -9,8 +9,8 @@
                                                           (info  . "info") 
                                                           (debug . "debug") 
                                                           (trace . "trace")))
-;; (serenade--log-enable-logging)
-(serenade--log-disable-logging)
+(serenade--log-enable-logging)
+;; (serenade--log-disable-logging)
 
 (defun serenade--log-and-message (data) 
   (progn (message (prin1-to-string data )) 

@@ -1,9 +1,7 @@
 (require 'serenade-log)
 (require 'test-utils)
 
-(defun serenade--get-editor-state (callback limited)
-  ;; (message "limited")
-  ;; (message (prin1-to-string (booleanp limited)) )
+(defun serenade--get-editor-state (callback limited) 
   (let* ((filename (-last-item (s-split "/" (buffer-file-name)))) 
          (buffer-data (if limited (ht ("filename" filename)) 
                         (ht ("filename" filename) 
@@ -16,10 +14,7 @@
                                               ("message" "editorState"))) 
                                   ("callback" callback))) 
                       ("message" "callback"))) 
-         (response-json (json-serialize response))
-         ;; (log-info (concat "sending state: source:" (ht-get* buffer-data "source") ))
-         )
-    ;; (serenade--info log-info)
+         (response-json (json-serialize response))) 
     (websocket-send-text serenade--websocket response-json)))
 
 (provide 'serenade-editor-state)

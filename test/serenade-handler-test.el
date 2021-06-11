@@ -10,13 +10,13 @@
                        (spy-on 'websocket-send-text) 
                        (spy-on 'serenade--evaluate-in-plugin)) 
           (it "calls get editor state if valid buffer" ;;
-              (let* ((data (ht-get* (json-parse-string (load-json-commands)) "getEditorState"))) 
+              (let* ((data (load-request "getEditorState"))) 
                 (create-test-buffer "test.js" "") 
                 (serenade--handle-message data)) 
               (expect   'serenade--get-editor-state 
                         :to-have-been-called)) 
           (it "does not call get editor state if invalid buffer" ;;
-              (let* ((data (ht-get* (json-parse-string (load-json-commands)) "getEditorState"))) 
+              (let* ((data (load-request "getEditorState"))) 
                 (create-test-buffer "test.xx" "") 
                 (serenade--handle-message data)) 
               (expect   'serenade--get-editor-state
@@ -91,7 +91,7 @@
           (before-each (spy-on 'websocket-send-text) 
                        (spy-on 'serenade--cut)) 
           (it "calls cut if valid buffer" ;;
-              (let* ((req (ht-get* (json-parse-string (load-json-commands)) "cut"))) 
+              (let* ((req (load-request "cut"))) 
                 (create-test-buffer "test.js" "") 
                 (serenade--handle-message req)) 
               (expect   'serenade--cut 

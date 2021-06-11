@@ -8,7 +8,6 @@
                                                     ("data" (ht ("id" serenade-id))))) 
                                        ( message-json (json-serialize message))) 
                                   (serenade--info "sending heartbeat") 
-                                  (message "hearbeat") 
                                   (websocket-send-text serenade--websocket message-json))))
 
 (defun serenade--heartbeat-stop () 

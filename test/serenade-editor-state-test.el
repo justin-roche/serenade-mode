@@ -1,17 +1,11 @@
-(setq lexical-binding t)
 (require 'ht)
 (require 'serenade-handler)
 (require 'test-utils)
-(require 'json)
 
-(defun load-json-responses () 
-  (with-temp-buffer (insert-file-contents "test/responses.json") 
-                    (buffer-string)))
 (describe "gets editor state from buffer" ;;
           (before-each (spy-on 'websocket-send-text)) 
           (it "gets editor state" ;;
-              (let* ((data (json-serialize (ht-get* (json-parse-string (load-json-responses))
-                                                    "getEditorState"))))
+              (let* ((data (load-response "getEditorState"))) 
                 (switch-to-buffer (get-buffer-create "test.js")) 
                 (setq buffer-file-name "test.js") 
                 (insert "abc") 
