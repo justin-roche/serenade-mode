@@ -1,4 +1,145 @@
 {
+    "goToEndOfFile": {
+        "message": "response",
+        "data": {
+            "callback": "eddeb1dc-64d9-4437-ac69-f485a59870d5",
+            "response": {
+                "alternatives": [
+                    {
+                        "description": "go to end of file",
+                        "transcript": "go to end of file",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
+                                "cursor": 55
+                            }
+                        ],
+                        "alternativeId": "ec7d72ba-f11a-4102-8ae3-14d2e404d226"
+                    },
+                    {
+                        "description": "cut to end of file",
+                        "transcript": "cut to end of file",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_COPY",
+                                "text": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n"
+                            },
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "changes": [
+                                    {
+                                        "stop": 55
+                                    }
+                                ]
+                            }
+                        ],
+                        "alternativeId": "209db907-ca8d-4309-b37c-a2b01d6804da"
+                    },
+                    {
+                        "description": "Object not found: go to end of file",
+                        "transcript": "go to end of file",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "7747f554-9e45-4b2d-9e7d-2516cbefb3cd"
+                    },
+                    {
+                        "description": "Object not found: cut to end of file",
+                        "transcript": "cut to end of file",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "6e93beb8-08f6-4060-8547-895a1f988a83"
+                    }
+                ],
+                "execute": {
+                    "description": "go to end of file",
+                    "transcript": "go to end of file",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_DIFF",
+                            "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
+                            "cursor": 55
+                        }
+                    ],
+                    "alternativeId": "ec7d72ba-f11a-4102-8ae3-14d2e404d226",
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_DIFF",
+                            "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
+                            "cursor": 55
+                        }
+                    ]
+                },
+                "chunkId": "25493f2b-6d1a-4996-83c6-d53b14214af5",
+                "requiresLongSilence": true,
+                "final": true,
+                "endpointId": "c5bd2a91-5ad5-4bf4-8f50-f6f6c74c3ad5",
+                "chunkIds": [
+                    "25493f2b-6d1a-4996-83c6-d53b14214af5"
+                ],
+                "silenceThreshold": 1000,
+                "alternativesList": [
+                    {
+                        "description": "go to end of file",
+                        "transcript": "go to end of file",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
+                                "cursor": 55
+                            }
+                        ],
+                        "alternativeId": "ec7d72ba-f11a-4102-8ae3-14d2e404d226"
+                    },
+                    {
+                        "description": "cut to end of file",
+                        "transcript": "cut to end of file",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_COPY",
+                                "text": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n"
+                            },
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "changes": [
+                                    {
+                                        "stop": 55
+                                    }
+                                ]
+                            }
+                        ],
+                        "alternativeId": "209db907-ca8d-4309-b37c-a2b01d6804da"
+                    },
+                    {
+                        "description": "Object not found: go to end of file",
+                        "transcript": "go to end of file",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "7747f554-9e45-4b2d-9e7d-2516cbefb3cd"
+                    },
+                    {
+                        "description": "Object not found: cut to end of file",
+                        "transcript": "cut to end of file",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "6e93beb8-08f6-4060-8547-895a1f988a83"
+                    }
+                ]
+            }
+        }
+    },
     "undo": {
         "message": "response",
         "data": {
@@ -1115,6 +1256,143 @@
                 ]
             },
             "callback": "1df2e018-9747-42ec-b87e-a51376a2489d"
+        },
+        "message": "response"
+    },
+    "goToBegginingOfFile": {
+        "data": {
+            "response": {
+                "alternativesList": [
+                    {
+                        "alternativeId": "d763bb14-a7b0-4031-b387-259b05578db7",
+                        "commands": [
+                            {
+                                "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "go to beginning of file",
+                        "description": "go to beginning of file"
+                    },
+                    {
+                        "alternativeId": "de4bcc69-e7b6-4ccf-854c-3badda1360e7",
+                        "commands": [
+                            {
+                                "text": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
+                                "type": "COMMAND_TYPE_COPY"
+                            },
+                            {
+                                "changes": [
+                                    {
+                                        "stop": 55
+                                    }
+                                ],
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "cut to beginning of file",
+                        "description": "cut to beginning of file"
+                    },
+                    {
+                        "alternativeId": "1d889a1c-958e-4c9a-b6f8-bfef10bea341",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "go to beginning of file",
+                        "description": "Object not found: go to beginning of file"
+                    },
+                    {
+                        "alternativeId": "a27f0670-863c-4c07-bd74-dac15970a53e",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "cut to beginning of file",
+                        "description": "Object not found: cut to beginning of file"
+                    }
+                ],
+                "silenceThreshold": 1000,
+                "chunkIds": [
+                    "f18a5c14-00f2-43a8-8e66-531203522253"
+                ],
+                "endpointId": "8550fd0e-035d-4d1c-957b-e1d602af8206",
+                "final": true,
+                "requiresLongSilence": true,
+                "chunkId": "f18a5c14-00f2-43a8-8e66-531203522253",
+                "execute": {
+                    "commandsList": [
+                        {
+                            "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "alternativeId": "d763bb14-a7b0-4031-b387-259b05578db7",
+                    "commands": [
+                        {
+                            "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "transcript": "go to beginning of file",
+                    "description": "go to beginning of file"
+                },
+                "alternatives": [
+                    {
+                        "alternativeId": "d763bb14-a7b0-4031-b387-259b05578db7",
+                        "commands": [
+                            {
+                                "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "go to beginning of file",
+                        "description": "go to beginning of file"
+                    },
+                    {
+                        "alternativeId": "de4bcc69-e7b6-4ccf-854c-3badda1360e7",
+                        "commands": [
+                            {
+                                "text": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
+                                "type": "COMMAND_TYPE_COPY"
+                            },
+                            {
+                                "changes": [
+                                    {
+                                        "stop": 55
+                                    }
+                                ],
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "cut to beginning of file",
+                        "description": "cut to beginning of file"
+                    },
+                    {
+                        "alternativeId": "1d889a1c-958e-4c9a-b6f8-bfef10bea341",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "go to beginning of file",
+                        "description": "Object not found: go to beginning of file"
+                    },
+                    {
+                        "alternativeId": "a27f0670-863c-4c07-bd74-dac15970a53e",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "cut to beginning of file",
+                        "description": "Object not found: cut to beginning of file"
+                    }
+                ]
+            },
+            "callback": "3f1cb86a-d716-445a-ba4a-d425811c7471"
         },
         "message": "response"
     }

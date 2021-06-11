@@ -19,7 +19,6 @@
   (goto-char cursor))
 
 (defun serenade--select-target (min max) 
-  (message "selecting region") 
   (if serenade-evil (progn (goto-char min) 
                            (evil-visual-state ) 
                            (goto-char max)) 

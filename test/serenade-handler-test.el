@@ -2,6 +2,7 @@
 (require 'ht)
 (require 'serenade-handler)
 (require 'json)
+(require 'evil)
 (require 'test-utils)
 
 (describe "calls get editor state" ;;
@@ -15,12 +16,11 @@
                 (serenade--handle-message data)) 
               (expect   'serenade--get-editor-state 
                         :to-have-been-called)) 
-          (it "does not call get editor state if invalid buffer" ;;
+          (it "gets editor state if invalid buffer" ;;
               (let* ((data (load-request "getEditorState"))) 
                 (create-test-buffer "test.xx" "") 
                 (serenade--handle-message data)) 
               (expect   'serenade--get-editor-state
-                        :not 
                         :to-have-been-called)))
 
 (describe "gives correct result using target functions" ;;
@@ -38,7 +38,7 @@
               (expect (region-beginning) 
                       :to-equal 11) 
               (expect (region-end) 
-                      :to-equal 20)) 
+                      :to-equal 19)) 
           (it "cuts lines by number" ;;
               (create-test-buffer "test5.js" "let x = 1\n let y = 2") 
               (let* ((req (load-request "cutLine2"))) 
@@ -60,7 +60,15 @@
               (let* ((req2 (load-request "copy"))) 
                 (serenade--handle-message req2)) 
               (expect    (car kill-ring-yank-pointer) 
-                         :to-equal "let y = 2")) 
+                         :to-equal "let y = 2"))
+          ;; (it "copies evil" ;;
+          ;;     (create-test-buffer "test3.js" "let x = 1\nlet y = 2\n")
+          ;;     (setq serenade-evil t)
+          ;;     (serenade--select-target 11 20)
+          ;;     (let* ((req2 (load-request "copy")))
+          ;;       (serenade--handle-message req2))
+          ;;     (expect    (car kill-ring)
+          ;;                :to-equal "let y = 2")
           (it "pastes evil" ;;
               (create-test-buffer "test7.js" "let x = 1\nlet y = 2") 
               (setq serenade-evil t) 
