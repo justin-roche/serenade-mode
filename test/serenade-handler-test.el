@@ -59,10 +59,10 @@
               (expect   (buffer-string) 
                         :to-equal "let x = 1\nlet y = 2\n\nlet x = 1")))
 (describe "calls diff" ;;
-          (before-each (bc/set-spy 'serenade--get-editor-state) 
-                       (bc/set-spy 'serenade--diff) 
-                       (bc/set-spy 'websocket-send-text) 
-                       (bc/set-spy 'serenade--evaluate-in-plugin)) 
+          (before-each (spy-on 'serenade--get-editor-state) 
+                       (spy-on 'serenade--diff) 
+                       (spy-on 'websocket-send-text) 
+                       (spy-on 'serenade--evaluate-in-plugin)) 
           (it "calls diff if valid buffer" ;;
               (create-test-buffer "test.js" "") 
               (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff"))) 
@@ -78,12 +78,9 @@
                         :to-have-been-called)))
 
 (describe "calls diff" ;;
-          (before-each (bc/set-spy 'serenade--get-editor-state) 
-                       (bc/set-spy 'websocket-send-text) 
-                       (bc/set-spy 'serenade--evaluate-in-plugin)) 
-          (after-each (bc/revert-serenade--get-editor-state) 
-                      (bc/revert-websocket-send-text) 
-                      (bc/revert-serenade--evaluate-in-plugin)) 
+          (before-each (spy-on 'serenade--get-editor-state) 
+                       (spy-on 'websocket-send-text) 
+                       (spy-on 'serenade--evaluate-in-plugin)) 
           (it "calls evaluateInPlugin if there is no valid buffer" ;;
               (let* ((data (ht-get* (json-parse-string (load-json-commands)) "evaluateInPlugin"))) 
                 (create-test-buffer "test.xx" "") 
@@ -91,8 +88,8 @@
               (expect   'serenade--evaluate-in-plugin 
                         :to-have-been-called)))
 (describe "Calls cut" ;;
-          (before-each (bc/set-spy 'websocket-send-text) 
-                       (bc/set-spy 'serenade--cut)) 
+          (before-each (spy-on 'websocket-send-text) 
+                       (spy-on 'serenade--cut)) 
           (it "calls cut if valid buffer" ;;
               (let* ((req (ht-get* (json-parse-string (load-json-commands)) "cut"))) 
                 (create-test-buffer "test.js" "") 
@@ -113,8 +110,8 @@
                 (expect   'websocket-send-text 
                           :to-have-been-called-with t res))))
 (describe "calls default commands" ;;
-          (before-each (bc/set-spy 'serenade--send-completed) 
-                       (bc/set-spy 'serenade--execute-default-command)) 
+          (before-each (spy-on 'serenade--send-completed) 
+                       (spy-on 'serenade--execute-default-command)) 
           (it "calls default command handler for save" ;;
               (let* ((req (load-request "save"))) 
                 (create-test-buffer "test.js" "abc") 

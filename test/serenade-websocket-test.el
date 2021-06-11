@@ -4,8 +4,7 @@
 (require 'test-utils)
 
 (describe "Prompts for start on error" ;;
-          (before-each (bc/set-spy 'serenade-start-prompt)) 
-          (after-each (bc/revert-serenade-start-prompt)) 
+          (before-each (spy-on 'serenade-start-prompt))
           (it "calls open socket from connect" ;;
               (setq serenade-prompt-for-application-start t) 
               (setq serenade-port 000) 
@@ -13,12 +12,10 @@
               (expect 'serenade-start-prompt 
                       :to-have-been-called)))
 (describe "register sends valid message" ;;
-          (before-each (bc/set-spy 'websocket-send-text) 
+          (before-each (spy-on 'websocket-send-text) 
                        (bc/set-var 'serenade-reuse-id-on-connect t) 
                        (bc/set-var 'serenade-id 9999)) 
-          (after-each (bc/revert-websocket-send-text) 
-                      (bc/revert-serenade-id) 
-                      (bc/revert-serenade-reuse-id-on-connect)) 
+           
           (it "sends register message" ;;
               (let* ((data (json-serialize (ht-get* (json-parse-string (load-json-responses))
                                                     "register"))))
@@ -26,15 +23,16 @@
                 (serenade--register ) 
                 (expect   'websocket-send-text 
                           :to-have-been-called-with nil data))))
-(describe "registers plugin" (before-each ) 
+(describe "registers plugin" ;;
+          (before-each  (spy-on 'serenade--register) 
+                        (spy-on 'serenade--heartbeat-stop) 
+                        (spy-on 'serenade--heartbeat-start)) 
           (it "calls register and heartbeat from connect" ;;
               (cl-defun 
                   fake-websocket-open
                   (url &key on-open on-message on-close) 
                 (funcall on-open 1)) 
               (setf (symbol-function 'websocket-open) 'fake-websocket-open) 
-              (bc/set-spy 'serenade--register) 
-              (bc/set-spy 'serenade--heartbeat-start) 
               (serenade--connect) 
               (expect 'serenade--register 
                       :to-have-been-called) 
@@ -46,18 +44,17 @@
                   (url &key on-open on-message on-close) 
                 (funcall on-close 1)) 
               (setf (symbol-function 'websocket-open) 'fake-websocket-open) 
-              (bc/set-spy 'serenade--heartbeat-stop) 
               (serenade--connect) 
               (expect 'serenade--heartbeat-stop 
                       :to-have-been-called)))
-(describe "Connects to Serenade" (before-each ) 
+(describe "Connects to Serenade" ;;
+          (before-each (spy-on 'serenade--open-socket) 
+                       (spy-on 'serenade--disconnect)) 
           (it "calls open socket from connect" ;;
-              (bc/set-spy 'serenade--open-socket) 
               (serenade--connect) 
               (expect 'serenade--open-socket 
                       :to-have-been-called)) 
           (it "sanity check" ;;
-              (bc/set-spy 'serenade--disconnect) 
               (serenade-disconnect) 
               (expect 'serenade--disconnect 
                       :to-have-been-called)))

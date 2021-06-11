@@ -14,8 +14,7 @@
       (serenade--handle-command command message callback)) 
     (if serenade--websocket (serenade--send-completed callback))))
 
-(defun serenade--handle-command (command message callback)
-  ;; (debug)
+(defun serenade--handle-command (command message callback) 
   (serenade--set-serenade-buffer) 
   (let* ((type (ht-get*  command "type")) 
          (limited (ht-get* command "limited" )) 
@@ -47,7 +46,6 @@
                               (t (serenade--execute-default-command command))))))
 
 (defun serenade--diff (command)
-  ;; (debug)
   (serenade--info "diffing...") 
   (serenade--update-buffer (ht-get command "source") 
                            (+(or (ht-get command "cursor") 
