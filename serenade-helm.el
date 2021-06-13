@@ -33,6 +33,9 @@
   (or (ht-get* serenade-helm-map cand) 
       nil))
 
+(defun serenade--clear-helm-map () 
+  (setq serenade-helm-map (ht)))
+
 (defun serenade--get-helm-candidates (voice-maps) 
   (setq serenade--helm-candidates '()) 
   (ht-each '(lambda (key value) 
