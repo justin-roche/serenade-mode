@@ -30,7 +30,9 @@
 (require 'serenade-keys-patch)
 (require 'serenade-spacemacs)
 ;; (require 'serenade-lines)
-
+(defface helm-serenade-command '((t :foreground "plum3" 
+                                    :underline t)) 
+  "Face for serenade helm.")
 (defcustom serenade-mode-init-hook nil 
   "The list of functions to be called after `serenade-mode' has initialized all variables, before connecting fer for the first time." 
   :type 'hook 
@@ -42,7 +44,7 @@
   (run-hooks 'serenade-mode-init-hook) 
   (if serenade-enable-double-line-numbers (serenade-double-line-numbers-on)) 
   (serenade--initialize-mode-maps) 
-  (if serenade-helm-M-x (seranade--bind-helm-transformer)) 
+  (if serenade-helm-M-x (serenade--advise-helm-transformer)) 
   (serenade--connect))
 
 (defun serenade-mode-start () 
@@ -52,6 +54,8 @@
 (defun serenade-mode--stop () 
   (serenade--info "disconnecting from serenade") 
   (if serenade-enable-double-line-numbers (serenade-double-line-numbers-off)) 
+
+  (if serenade-helm-M-x (serenade--unadvise-helm-transformer)) 
   (serenade--disconnect))
 
 (defun serenade-mode-stop () 
