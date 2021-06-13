@@ -67,9 +67,10 @@
 (defun serenade--add-default-bindings () 
   (serenade-global-set-speech '(;;
                                 ( "copy" .   serenade--copy-selection ) 
-                                ( "cut" .   serenade--cut-selection ) 
-                                ( "paste" .   serenade--paste ) 
+                                ( "cut" .   serenade--cut-selection )
+                                ;; ( "paste" .   serenade--paste )
                                 ( "undo" .   serenade--undo ) 
+                                ( "redo" .   evil-redo ) 
                                 ( "close tab" . delete-window  ) 
                                 ( "save"  . save-buffer  ) 
                                 ( "create tab" . split-window-right-and-focus  ) 
@@ -78,9 +79,8 @@
                                 ( "switch tab" . nil  ) 
                                 ( "open file list" .
                                   spacemacs-layouts/non-restricted-buffer-list-helm) 
-                                ( "open file" . nil  ) 
-                                ( "undo" .  undo  ) 
-                                ( "redo" . redo  ) 
+                                ( "open file" . nil  )
+                                ;; ( "undo" .  undo  )
                                 ( "scroll" . zz-scroll-half-page-down  ) 
                                 ( "style" . nil) 
                                 ( "go to definition" . spacemacs/jump-to-definition  ) 
@@ -102,7 +102,5 @@
         :buffer "*helm serenade*"))
 
 (provide 'serenade-custom-commands)
-(serenade--initialize-mode-maps)
+;; (serenade--initialize-mode-maps)
 
-(message (ht-get* serenade-helm-map "save-buffer"))
-(message (ht-get* serenade-helm-map "previous-buffer"))

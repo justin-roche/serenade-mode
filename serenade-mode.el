@@ -41,6 +41,8 @@
   (serenade--info (concat "evil mode" (prin1-to-string serenade-evil))) 
   (run-hooks 'serenade-mode-init-hook) 
   (if serenade-enable-double-line-numbers (serenade-double-line-numbers-on)) 
+  (serenade--initialize-mode-maps) 
+  (if serenade-helm-M-x (seranade--bind-helm-transformer)) 
   (serenade--connect))
 
 (defun serenade-mode-start () 

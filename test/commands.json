@@ -1,4 +1,356 @@
 {
+    "deletePhraseX": {
+        "message": "response",
+        "data": {
+            "callback": "1d2b162b-2559-4b5a-b881-d6ca9f6da86b",
+            "response": {
+                "alternatives": [
+                    {
+                        "description": "delete phrase <code>x</code>",
+                        "transcript": "delete phrase x",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let  = 1;",
+                                "cursor": 4,
+                                "changes": [
+                                    {
+                                        "start": 4,
+                                        "stop": 5
+                                    }
+                                ]
+                            }
+                        ],
+                        "alternativeId": "25231510-3fe9-4a9a-8566-c1d506ebf6d8"
+                    },
+                    {
+                        "description": "Object not found: delete phrase ex",
+                        "transcript": "delete phrase ex",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "69328b80-8308-436d-b460-6b029632e82b"
+                    },
+                    {
+                        "description": "Object not found: delete phrase ex",
+                        "transcript": "delete phrase ex",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "dc216f80-5363-4d5b-ad5b-d029400bf7d5"
+                    },
+                    {
+                        "description": "Object not found: delete phrase x",
+                        "transcript": "delete phrase x",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "56a0b225-e770-4d82-a53e-0cfb15227834"
+                    },
+                    {
+                        "description": "Object not found: delete phrase ax",
+                        "transcript": "delete phrase ax",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "dd033912-d8d5-49fa-aed5-6e3f3428e18e"
+                    },
+                    {
+                        "description": "Object not found: delete phrase ax",
+                        "transcript": "delete phrase ax",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "9d5ef9cf-0d49-45a5-b246-cc161b6faa56"
+                    },
+                    {
+                        "description": "Object not found: delete phrase acts",
+                        "transcript": "delete phrase acts",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "0cc47122-6cc1-4fd0-8a3f-9bf13a355c49"
+                    },
+                    {
+                        "description": "Object not found: delete phrase acts",
+                        "transcript": "delete phrase acts",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "d8434b68-3272-4bbc-9678-2e1dcda324cc"
+                    },
+                    {
+                        "description": "Object not found: delete phrase aix",
+                        "transcript": "delete phrase aix",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "14e7c129-8e28-45e0-b745-10a7eed4aea7"
+                    },
+                    {
+                        "description": "Object not found: delete phrase aix",
+                        "transcript": "delete phrase aix",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "f7f11ef8-5a1b-46d0-ac58-a18db69e5cf9"
+                    }
+                ],
+                "execute": {
+                    "description": "delete phrase <code>x</code>",
+                    "transcript": "delete phrase x",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_DIFF",
+                            "source": "let  = 1;",
+                            "cursor": 4,
+                            "changes": [
+                                {
+                                    "start": 4,
+                                    "stop": 5
+                                }
+                            ]
+                        }
+                    ],
+                    "alternativeId": "25231510-3fe9-4a9a-8566-c1d506ebf6d8",
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_DIFF",
+                            "source": "let  = 1;",
+                            "cursor": 4,
+                            "changes": [
+                                {
+                                    "start": 4,
+                                    "stop": 5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "chunkId": "89d1de9e-e34c-4a28-9666-8ac9428df1c5",
+                "final": true,
+                "endpointId": "4a42759f-cfba-433d-9e5e-6fb14aa75d73",
+                "chunkIds": [
+                    "89d1de9e-e34c-4a28-9666-8ac9428df1c5"
+                ],
+                "silenceThreshold": 500,
+                "alternativesList": [
+                    {
+                        "description": "delete phrase <code>x</code>",
+                        "transcript": "delete phrase x",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let  = 1;",
+                                "cursor": 4,
+                                "changes": [
+                                    {
+                                        "start": 4,
+                                        "stop": 5
+                                    }
+                                ]
+                            }
+                        ],
+                        "alternativeId": "25231510-3fe9-4a9a-8566-c1d506ebf6d8"
+                    },
+                    {
+                        "description": "Object not found: delete phrase ex",
+                        "transcript": "delete phrase ex",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "69328b80-8308-436d-b460-6b029632e82b"
+                    },
+                    {
+                        "description": "Object not found: delete phrase ex",
+                        "transcript": "delete phrase ex",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "dc216f80-5363-4d5b-ad5b-d029400bf7d5"
+                    },
+                    {
+                        "description": "Object not found: delete phrase x",
+                        "transcript": "delete phrase x",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "56a0b225-e770-4d82-a53e-0cfb15227834"
+                    },
+                    {
+                        "description": "Object not found: delete phrase ax",
+                        "transcript": "delete phrase ax",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "dd033912-d8d5-49fa-aed5-6e3f3428e18e"
+                    },
+                    {
+                        "description": "Object not found: delete phrase ax",
+                        "transcript": "delete phrase ax",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "9d5ef9cf-0d49-45a5-b246-cc161b6faa56"
+                    },
+                    {
+                        "description": "Object not found: delete phrase acts",
+                        "transcript": "delete phrase acts",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "0cc47122-6cc1-4fd0-8a3f-9bf13a355c49"
+                    },
+                    {
+                        "description": "Object not found: delete phrase acts",
+                        "transcript": "delete phrase acts",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "d8434b68-3272-4bbc-9678-2e1dcda324cc"
+                    },
+                    {
+                        "description": "Object not found: delete phrase aix",
+                        "transcript": "delete phrase aix",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "14e7c129-8e28-45e0-b745-10a7eed4aea7"
+                    },
+                    {
+                        "description": "Object not found: delete phrase aix",
+                        "transcript": "delete phrase aix",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "f7f11ef8-5a1b-46d0-ac58-a18db69e5cf9"
+                    }
+                ]
+            }
+        }
+    },
+    "undo2Times": {
+        "message": "response",
+        "data": {
+            "callback": "010c9926-ced0-4d70-a93c-be1fe2cc5612",
+            "response": {
+                "alternatives": [
+                    {
+                        "description": "undo 2 times",
+                        "transcript": "undo two times",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_UNDO"
+                            },
+                            {
+                                "type": "COMMAND_TYPE_UNDO"
+                            }
+                        ],
+                        "alternativeId": "f34017e1-80a6-4526-9796-047db07df858"
+                    },
+                    {
+                        "description": "undo to times",
+                        "transcript": "undo to times",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "b658321f-643e-4f00-a4c9-d0a0cbaec32a"
+                    }
+                ],
+                "execute": {
+                    "description": "undo 2 times",
+                    "transcript": "undo two times",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_UNDO"
+                        },
+                        {
+                            "type": "COMMAND_TYPE_UNDO"
+                        }
+                    ],
+                    "alternativeId": "f34017e1-80a6-4526-9796-047db07df858",
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_UNDO"
+                        },
+                        {
+                            "type": "COMMAND_TYPE_UNDO"
+                        }
+                    ]
+                },
+                "chunkId": "e5daa5e5-986d-436b-b486-b6b71ee8d18f",
+                "final": true,
+                "endpointId": "e9bdc527-09ca-4122-9921-f77bbaad458f",
+                "chunkIds": [
+                    "e5daa5e5-986d-436b-b486-b6b71ee8d18f"
+                ],
+                "silenceThreshold": 500,
+                "alternativesList": [
+                    {
+                        "description": "undo 2 times",
+                        "transcript": "undo two times",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_UNDO"
+                            },
+                            {
+                                "type": "COMMAND_TYPE_UNDO"
+                            }
+                        ],
+                        "alternativeId": "f34017e1-80a6-4526-9796-047db07df858"
+                    },
+                    {
+                        "description": "undo to times",
+                        "transcript": "undo to times",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "b658321f-643e-4f00-a4c9-d0a0cbaec32a"
+                    }
+                ]
+            }
+        }
+    },
     "goToEndOfFile": {
         "message": "response",
         "data": {
@@ -1393,6 +1745,307 @@
                 ]
             },
             "callback": "3f1cb86a-d716-445a-ba4a-d425811c7471"
+        },
+        "message": "response"
+    },
+    "deleteLine3": {
+        "data": {
+            "response": {
+                "alternativesList": [
+                    {
+                        "alternativeId": "e57a2ee1-71a2-41d3-83a2-91d4fd1104b5",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "stop": 23,
+                                        "start": 12
+                                    }
+                                ],
+                                "cursor": 12,
+                                "source": "let x = 1;let x = 1;",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "delete line three",
+                        "description": "delete line 3"
+                    },
+                    {
+                        "alternativeId": "eece2775-a1c8-45f9-9fda-78d366f000a6",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "delete line three",
+                        "description": "Object not found: delete line three"
+                    }
+                ],
+                "silenceThreshold": 500,
+                "chunkIds": [
+                    "a42e79be-825d-4ecd-b05f-baa6fc281428"
+                ],
+                "endpointId": "13a46a31-39a3-457f-97ce-c38df9867fd3",
+                "final": true,
+                "chunkId": "a42e79be-825d-4ecd-b05f-baa6fc281428",
+                "execute": {
+                    "commandsList": [
+                        {
+                            "changes": [
+                                {
+                                    "stop": 23,
+                                    "start": 12
+                                }
+                            ],
+                            "cursor": 12,
+                            "source": "let x = 1;let x = 1;",
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "alternativeId": "e57a2ee1-71a2-41d3-83a2-91d4fd1104b5",
+                    "commands": [
+                        {
+                            "changes": [
+                                {
+                                    "stop": 23,
+                                    "start": 12
+                                }
+                            ],
+                            "cursor": 12,
+                            "source": "let x = 1;let x = 1;",
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "transcript": "delete line three",
+                    "description": "delete line 3"
+                },
+                "alternatives": [
+                    {
+                        "alternativeId": "e57a2ee1-71a2-41d3-83a2-91d4fd1104b5",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "stop": 23,
+                                        "start": 12
+                                    }
+                                ],
+                                "cursor": 12,
+                                "source": "let x = 1;let x = 1;",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "delete line three",
+                        "description": "delete line 3"
+                    },
+                    {
+                        "alternativeId": "eece2775-a1c8-45f9-9fda-78d366f000a6",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "delete line three",
+                        "description": "Object not found: delete line three"
+                    }
+                ]
+            },
+            "callback": "df509170-856c-47f3-82ea-a95ffbfe70e2"
+        },
+        "message": "response"
+    },
+    "addParameterHello": {
+        "data": {
+            "response": {
+                "alternativesList": [
+                    {
+                        "alternativeId": "f6f3ded5-00c4-4449-ab40-51c644ad0b0d",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "substitution": "let x = 1;function helloWorld(hello) {}",
+                                        "stop": 38
+                                    }
+                                ],
+                                "cursor": 37,
+                                "source": "let x = 1;function helloWorld(hello) {}",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "add parameter hello",
+                        "description": "add parameter <code>hello</code>"
+                    },
+                    {
+                        "alternativeId": "e47ece94-6fa0-493f-a10e-b9d1aac20294",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "substitution": "let x = 1;function helloWorld(halo) {}",
+                                        "stop": 38
+                                    }
+                                ],
+                                "cursor": 36,
+                                "source": "let x = 1;function helloWorld(halo) {}",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "add parameter halo",
+                        "description": "add parameter <code>halo</code>"
+                    },
+                    {
+                        "alternativeId": "156b30e5-9023-4ead-98d5-76209908dc09",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "substitution": "let x = 1;function helloWorld(hallow) {}",
+                                        "stop": 38
+                                    }
+                                ],
+                                "cursor": 38,
+                                "source": "let x = 1;function helloWorld(hallow) {}",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "add parameter hallow",
+                        "description": "add parameter <code>hallow</code>"
+                    },
+                    {
+                        "alternativeId": "7017536b-1252-44e7-9970-4dd839f6d1ee",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "substitution": "let x = 1;function helloWorld(hollow) {}",
+                                        "stop": 38
+                                    }
+                                ],
+                                "cursor": 38,
+                                "source": "let x = 1;function helloWorld(hollow) {}",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "add parameter hollow",
+                        "description": "add parameter <code>hollow</code>"
+                    }
+                ],
+                "silenceThreshold": 1000,
+                "chunkIds": [
+                    "0da0837b-f3c6-40b6-88e5-ab570927f4f2"
+                ],
+                "endpointId": "1ae178ac-8eb4-4804-b62a-35f1651fad92",
+                "final": true,
+                "requiresLongSilence": true,
+                "chunkId": "0da0837b-f3c6-40b6-88e5-ab570927f4f2",
+                "execute": {
+                    "commandsList": [
+                        {
+                            "changes": [
+                                {
+                                    "substitution": "let x = 1;function helloWorld(hello) {}",
+                                    "stop": 38
+                                }
+                            ],
+                            "cursor": 37,
+                            "source": "let x = 1;function helloWorld(hello) {}",
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "alternativeId": "f6f3ded5-00c4-4449-ab40-51c644ad0b0d",
+                    "commands": [
+                        {
+                            "changes": [
+                                {
+                                    "substitution": "let x = 1;function helloWorld(hello) {}",
+                                    "stop": 38
+                                }
+                            ],
+                            "cursor": 37,
+                            "source": "let x = 1;function helloWorld(hello) {}",
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "transcript": "add parameter hello",
+                    "description": "add parameter <code>hello</code>"
+                },
+                "alternatives": [
+                    {
+                        "alternativeId": "f6f3ded5-00c4-4449-ab40-51c644ad0b0d",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "substitution": "let x = 1;function helloWorld(hello) {}",
+                                        "stop": 38
+                                    }
+                                ],
+                                "cursor": 37,
+                                "source": "let x = 1;function helloWorld(hello) {}",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "add parameter hello",
+                        "description": "add parameter <code>hello</code>"
+                    },
+                    {
+                        "alternativeId": "e47ece94-6fa0-493f-a10e-b9d1aac20294",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "substitution": "let x = 1;function helloWorld(halo) {}",
+                                        "stop": 38
+                                    }
+                                ],
+                                "cursor": 36,
+                                "source": "let x = 1;function helloWorld(halo) {}",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "add parameter halo",
+                        "description": "add parameter <code>halo</code>"
+                    },
+                    {
+                        "alternativeId": "156b30e5-9023-4ead-98d5-76209908dc09",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "substitution": "let x = 1;function helloWorld(hallow) {}",
+                                        "stop": 38
+                                    }
+                                ],
+                                "cursor": 38,
+                                "source": "let x = 1;function helloWorld(hallow) {}",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "add parameter hallow",
+                        "description": "add parameter <code>hallow</code>"
+                    },
+                    {
+                        "alternativeId": "7017536b-1252-44e7-9970-4dd839f6d1ee",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "substitution": "let x = 1;function helloWorld(hollow) {}",
+                                        "stop": 38
+                                    }
+                                ],
+                                "cursor": 38,
+                                "source": "let x = 1;function helloWorld(hollow) {}",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "add parameter hollow",
+                        "description": "add parameter <code>hollow</code>"
+                    }
+                ]
+            },
+            "callback": "5901155e-f7ce-4138-8a4c-0d8e04c63794"
         },
         "message": "response"
     }

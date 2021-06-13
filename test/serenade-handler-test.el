@@ -52,6 +52,18 @@
               (expect (car kill-ring-yank-pointer) 
                       :to-equal "let x = 1")))
 
+(describe "gives correct result using undo" ;;
+          ;; (before-each (spy-on 'websocket-send-text))
+          ;; (it "performs undo" ;;
+          ;;     (create-test-buffer "test8.js" "")
+          ;;     (let* ((req1 (load-request "addLetX"))
+          ;;            (req2 (load-request "undo")))
+          ;;       (serenade--handle-message req1)
+          ;;       ;; (serenade--handle-message req2)
+          ;;       )
+          ;;     (expect    (buffer-string)
+          ;;                :to-equal ""))
+          )
 (describe "gives correct result using keypress functions" ;;
           (before-each (spy-on 'websocket-send-text)) 
           (it "copies a selection" ;;
@@ -93,11 +105,12 @@
               (create-test-buffer "test.xx" "") 
               (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff"))) 
                 (serenade--handle-message data)) 
-              (expect   'serenade--diff
+              (expect   'serenade--diff 
+
                         :not 
                         :to-have-been-called)))
 
-(describe "calls diff" ;;
+(describe "calls evaluateInPlugin" ;;
           (before-each (spy-on 'serenade--get-editor-state) 
                        (spy-on 'websocket-send-text) 
                        (spy-on 'serenade--evaluate-in-plugin)) 

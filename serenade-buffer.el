@@ -4,8 +4,7 @@
 (defcustom serenade-mode-filetypes '(".js" ".py" ) 
   "The filetypes that can be used as serenade buffers")
 
-(defun serenade--set-serenade-buffer ()
-  ;; (debug)
+(defun serenade--set-serenade-buffer () 
   (if (and (buffer-file-name) 
            (file-name-extension (buffer-file-name))) 
       (let* ((ext (format ".%s" (file-name-extension (buffer-file-name))))) 

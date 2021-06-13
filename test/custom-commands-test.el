@@ -9,7 +9,7 @@
                        (serenade--initialize-mode-maps)) 
           (it "contains builtin commands in global speech map" ;;
               (expect (length (ht-items (serenade--get-global-map))) 
-                      :to-equal 25) 
+                      :to-equal 26) 
               (expect (ht-get* serenade-mode-maps "global" "save" "command") 
                       :to-equal 'save-buffer )))
 (describe "Global Custom Commands" ;;
@@ -27,7 +27,7 @@
               (expect (ht-get*  (serenade--get-global-map) "a"  "command") 
                       :to-equal 'b )) 
           (it "adds a list of multiple speech command pairs to global speech map"
-              (serenade-global-set-speech '( ("a" . b) 
+              (serenade-global-set-speech '( ("a" . b)
                                              ("c" . d) 
                                              ("e" . f) 
                                              ("g" . h))) 
