@@ -65,8 +65,11 @@
   (ht-get* serenade-mode-maps "global" speech))
 
 (defun serenade--add-default-bindings () 
-  (serenade-global-set-speech '(;; ( "press". nil  )
-                                ( "copy" .  kill-new  ) 
+  (serenade-global-set-speech '(;;
+                                ( "copy" .   serenade--copy-selection ) 
+                                ( "cut" .   serenade--cut-selection ) 
+                                ( "paste" .   serenade--paste ) 
+                                ( "undo" .   serenade--undo ) 
                                 ( "close tab" . delete-window  ) 
                                 ( "save"  . save-buffer  ) 
                                 ( "create tab" . split-window-right-and-focus  ) 
