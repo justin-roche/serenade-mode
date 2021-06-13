@@ -101,7 +101,8 @@
     `(let ((,start (float-time))) ,@body (- (float-time) ,start))))
 
 (defun extract-json (data) 
-  (message (s-replace "\\" "" (s-replace "\\n" "" (json-serialize data)))) 
-  (message (s-replace "\\" "" (json-serialize data))))
+  (s-replace "\\" "" (s-replace "\\n" "" (json-serialize data)))
+  ;; (message (s-replace "\\" "" (json-serialize data)))
+  )
 
 (provide 'test-utils)

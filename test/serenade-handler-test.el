@@ -20,7 +20,7 @@
               (let* ((data (load-request "getEditorState"))) 
                 (create-test-buffer "test.xx" "") 
                 (serenade--handle-message data)) 
-              (expect   'serenade--get-editor-state
+              (expect   'serenade--get-editor-state 
                         :to-have-been-called)))
 
 (describe "gives correct result using target functions" ;;
@@ -93,7 +93,8 @@
               (create-test-buffer "test.xx" "") 
               (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff"))) 
                 (serenade--handle-message data)) 
-              (expect   'serenade--diff
+              (expect   'serenade--diff 
+
                         :not 
                         :to-have-been-called)))
 

@@ -58,7 +58,8 @@
     nil))
 
 (defun serenade--find-in-active-major-map (speech) 
-  (ht-get* serenade-mode-maps (symbol-name(major-mode)) speech))
+  (if-let* ((current-mode-map (ht-get serenade-mode-maps (symbol-name major-mode)))) 
+      (ht-get* current-mode-map speech)))
 
 (defun serenade--find-in-global-map (speech) 
   (ht-get* serenade-mode-maps "global" speech))

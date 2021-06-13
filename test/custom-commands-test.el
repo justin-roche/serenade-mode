@@ -69,8 +69,7 @@
                       :to-equal 'b)) 
           (it "finds voice binding for major mode" ;;
               (progn (serenade-define-speech 'edebug-mode "a" 'b)) 
-              (defun major-mode () 
-                'edebug-mode) 
+              (setq major-mode 'edebug-mode ) 
               (expect (ht-get* (serenade--find-voice-binding "a") "command") 
                       :to-equal 'b)) 
           (it "finds voice binding for minor mode before major mode" ;;

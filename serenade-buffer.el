@@ -4,9 +4,13 @@
 (defcustom serenade-mode-filetypes '(".js" ".py" ) 
   "The filetypes that can be used as serenade buffers")
 
-(defun serenade--set-serenade-buffer () 
-  (if (buffer-file-name) 
-      (let* ((ext (format ".%s" (file-name-extension (buffer-file-name))))) 
+(defun serenade--set-serenade-buffer ()
+  ;; (debug)
+  (if (and (buffer-file-name) 
+           (file-name-extension (buffer-file-name))) 
+      (let* ((ext (format ".%s" (file-name-extension (buffer-file-name)))))
+        ;; (debug)
+        (message "setting buffer") 
         (if (member ext serenade-mode-filetypes) 
             (setq serenade-buffer (current-buffer) ) 
           (setq serenade-buffer nil ))) 
@@ -36,9 +40,8 @@
   (kill-new text))
 
 (defun serenade--copy-selection () 
-  (if serenade-evil (progn
-                      (execute-kbd-macro (kbd "y")) 
-                      (evil-normal-state)) 
+  (if serenade-evil (progn (execute-kbd-macro (kbd "y")) 
+                           (evil-normal-state)) 
     (progn (kill-ring-save nil nil t ))))
 
 (defun serenade--undo () 
