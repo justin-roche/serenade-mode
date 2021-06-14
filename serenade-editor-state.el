@@ -1,5 +1,4 @@
 (require 'serenade-log)
-(require 'test-utils)
 
 (defun serenade--get-editor-state (callback limited) 
   (let* ((filename (-last-item (s-split "/" (buffer-file-name)))) 

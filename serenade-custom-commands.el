@@ -108,4 +108,3 @@
         :buffer "*helm serenade*"))
 
 (provide 'serenade-custom-commands)
-;; (serenade--initialize-mode-maps)

@@ -27,4 +27,3 @@
 ;; #0f1011
 
 (provide 'serenade-lines)
-;; (setq serenade-enable-double-line-numbers t )
