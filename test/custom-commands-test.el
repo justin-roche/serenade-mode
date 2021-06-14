@@ -10,12 +10,12 @@
                        (serenade--initialize-mode-maps)) 
           (it "contains builtin commands in global speech map" ;;
               (expect (length (ht-items (serenade--get-global-map))) 
-                      :to-equal 13) 
+                      :to-equal 25) 
               (expect (ht-get* serenade-mode-maps "global" "save" "command") 
                       :to-equal 'save-buffer )) 
           (it "adds items to helm map" ;;
               (expect (length (ht-items serenade-helm-map)) 
-                      :to-equal 13)))
+                      :to-equal 11)))
 (describe "Global Custom Commands" ;;
           (before-each (serenade--clear-mode-maps)) 
           (it "adds to global speech map" ;;

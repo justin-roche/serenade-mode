@@ -13,7 +13,8 @@
 
 (defun serenade-start-prompt () 
   (if (y-or-n-p "There was a problem connecting to Serenade. Start Serenade now?") 
-      (serenade--start-application)))
+      (serenade--start-application)
+    (serenade-mode -1)))
 
 (defun serenade--open-socket () 
   (condition-case err (websocket-open (concat "ws://localhost:" (number-to-string serenade-port)) 
@@ -32,9 +33,11 @@
                                                   (setq serenade--websocket nil) 
                                                   (serenade--heartbeat-stop) 
                                                   (message "Serenade websocket closed") 
-                                                  (serenade--info "Serenade websocket closed"))) 
+                                                  (serenade--info "Serenade websocket closed") 
+                                                  (serenade-mode -1))) 
     (file-error (progn (if serenade-prompt-for-application-start (serenade-start-prompt)) 
-                       (serenade--log-and-message err)))))
+                       (progn (serenade--log-and-message err) 
+                              (serenade-mode -1))))))
 
 (defun serenade--register() 
   (setq serenade-id (or (and serenade-reuse-id-on-connect 
@@ -49,6 +52,7 @@
     (websocket-send-text serenade--websocket message-json)))
 
 (defun serenade--disconnect () 
+  (serenade--heartbeat-stop) 
   (if serenade--websocket (websocket-close serenade--websocket)))
 
 (defun serenade-disconnect () 

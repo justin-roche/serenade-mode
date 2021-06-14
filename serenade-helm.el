@@ -6,12 +6,11 @@
 (setq serenade-helm-map (ht))
 
 (defun serenade--update-helm-map (speech command) 
-  (serenade--info "adding helm map") 
-  (if-let* ((current (ht-get* serenade-helm-map (symbol-name command)))) 
-      (progn (if  (not (member speech (s-split "|" current t))) 
-                 (ht-set serenade-helm-map (symbol-name command) 
-                         (concat speech " | " current)))) 
-    (progn (ht-set serenade-helm-map (symbol-name command) speech))))
+  (if command (if-let* ((current (ht-get* serenade-helm-map (symbol-name command)))) 
+                  (progn (if  (not (member speech (s-split "|" current t))) 
+                             (ht-set serenade-helm-map (symbol-name command) 
+                                     (concat speech " | " current)))) 
+                (progn (ht-set serenade-helm-map (symbol-name command) speech)))))
 
 (defun serenade--helm-match (cand) 
   (message "matching..") 
