@@ -12,6 +12,8 @@
 (depends-on "evil")
 (depends-on "s")
 (depends-on "nlinum")
+(depends-on "diminish")
+(depends-on "nlinum-relative")
 
 ;; (depends-on "el-mock")
 (development (depends-on "buttercup"))

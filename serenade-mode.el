@@ -40,10 +40,12 @@
   :group 'serenade-mode)
 
 (defun serenade-mode--start () 
-  (serenade--info "connecting to serenade") 
-  (serenade--info (concat "evil mode" (prin1-to-string serenade-evil))) 
   (run-hooks 'serenade-mode-init-hook) 
-  (if serenade-enable-double-line-numbers (serenade-double-line-numbers-on)) 
+  (serenade--info "connecting to serenade") 
+  (if (eq evil-mode t) 
+      (setq serenade-evil t )) 
+  (serenade--info (concat "evil mode" (prin1-to-string serenade-evil))) 
+  (if serenade-enable-double-line-numbers (serenade--double-line-numbers-on)) 
   (serenade--initialize-mode-maps) 
   (if serenade-sync-on-start (serenade-synchronize)) 
   (if serenade-helm-M-x (serenade--advise-helm-transformer)) 
@@ -55,7 +57,7 @@
 
 (defun serenade-mode--stop () 
   (serenade--info "disconnecting from serenade") 
-  (if serenade-enable-double-line-numbers (serenade-double-line-numbers-off)) 
+  (if serenade-enable-double-line-numbers (serenade--double-line-numbers-off)) 
   (if serenade-helm-M-x (serenade--unadvise-helm-transformer)) 
   (serenade--disconnect))
 

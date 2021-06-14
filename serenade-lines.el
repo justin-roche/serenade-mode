@@ -1,21 +1,30 @@
 
-(defcustom serenade-enable-double-line-numbers nil 
+(require 'nlinum)
+(require 'diminish)
+
+(defcustom serenade-enable-double-line-numbers t 
   "if t, serenade mode shows both relative and absolute line numbers")
 
-(defun serenade-double-line-numbers-on ()
-  r  
-  (interactive) 
+(defun serenade--double-line-numbers-on () 
   (global-display-line-numbers-mode +1) 
-  (nlinum-mode +1) 
-  (nlinum-relative-off))
+  (nlinum-mode +1))
+
+(defun serenade-double-line-numbers-on () 
+  (interactive) 
+  (serenade--double-line-numbers-on))
+
+(defun serenade--double-line-numbers-off () 
+  (nlinum-mode -1))
 
 (defun serenade-double-line-numbers-off () 
   (interactive) 
-  (nlinum-mode -1))
+  (serenade--double-line-numbers-off))
 
-;; (diminish 'serenade-mode
-;;           '(:propertize "Ⓢ"
-;;                         face
-;;                         '(:foreground "plum3")))
+(diminish 'serenade-mode 
+          '(:propertize "Ⓢ" 
+                        face 
+                        '(:foreground "plum3")))
+;; #0f1011
 
 (provide 'serenade-lines)
+;; (setq serenade-enable-double-line-numbers t )
