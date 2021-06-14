@@ -113,6 +113,7 @@
 (describe "calls evaluateInPlugin" ;;
           (before-each (spy-on 'serenade--get-editor-state) 
                        (spy-on 'websocket-send-text) 
+                       (spy-on 'switch-to-buffer) 
                        (spy-on 'serenade--evaluate-in-plugin)) 
           (it "calls evaluateInPlugin if there is no valid buffer" ;;
               (let* ((data (ht-get* (json-parse-string (load-json-commands)) "evaluateInPlugin"))) 
@@ -120,6 +121,17 @@
                 (serenade--handle-message data)) 
               (expect   'serenade--evaluate-in-plugin 
                         :to-have-been-called)))
+
+(describe "calls custom functions" ;;
+          (before-each  
+                       (spy-on 'websocket-send-text) 
+                       (spy-on 'switch-to-buffer)) 
+          (it "calls the function assigned to the custom speech bindng" ;;
+              (serenade-define-speech 'global "open buffer <name>" 'switch-to-buffer) 
+              (let* ((data (ht-get* (json-parse-string (load-json-commands)) "openBufferHello2")))
+                (serenade--handle-message data)) 
+              (expect   'switch-to-buffer 
+                        :to-have-been-called-with "hello")))
 (describe "Calls cut" ;;
           (before-each (spy-on 'websocket-send-text) 
                        (spy-on 'serenade--cut-selection)) 

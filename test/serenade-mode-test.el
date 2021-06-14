@@ -23,6 +23,17 @@
               (serenade-mode-toggle) 
               (expect 'serenade-mode--stop 
                       :to-have-been-called)))
+(describe "Star function" ;;
+          (before-each (spy-on 'serenade--initialize-mode-maps)
+                       (spy-on 'serenade-synchronize)) 
+          (it "initializes maps" ;;
+              (serenade-mode) 
+              (expect 'serenade--initialize-mode-maps 
+                      :to-have-been-called)) 
+          (it "calls sync function" ;;
+              (serenade-mode) 
+              (expect 'serenade-synchronize 
+                      :to-have-been-called)))
 (describe "Connection start" ;;
           (before-each  (spy-on 'serenade--connect) ) 
           (it "calls start function" ;;
