@@ -12,6 +12,7 @@
 (depends-on "evil")
 (depends-on "s")
 (depends-on "nlinum")
+(depends-on "winum")
 (depends-on "diminish")
 (depends-on "nlinum-relative")
 

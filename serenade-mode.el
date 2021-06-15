@@ -30,6 +30,7 @@
 (require 'serenade-keys-patch)
 (require 'serenade-spacemacs)
 (require 'serenade-synchronize)
+(require 'serenade-editor-functions)
 (defface helm-serenade-command '((t :foreground "plum3" 
                                     :underline t)) 
   "Face for serenade helm.")

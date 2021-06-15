@@ -72,15 +72,7 @@
               (let* ((req2 (load-request "copy"))) 
                 (serenade--handle-message req2)) 
               (expect    (car kill-ring-yank-pointer) 
-                         :to-equal "let y = 2"))
-          ;; (it "copies evil" ;;
-          ;;     (create-test-buffer "test3.js" "let x = 1\nlet y = 2\n")
-          ;;     (setq serenade-evil t)
-          ;;     (serenade--select-target 11 20)
-          ;;     (let* ((req2 (load-request "copy")))
-          ;;       (serenade--handle-message req2))
-          ;;     (expect    (car kill-ring)
-          ;;                :to-equal "let y = 2")
+                         :to-equal "let y = 2")) 
           (it "pastes evil" ;;
               (create-test-buffer "test7.js" "let x = 1\nlet y = 2") 
               (setq serenade-evil t) 
@@ -105,8 +97,7 @@
               (create-test-buffer "test.xx" "") 
               (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff"))) 
                 (serenade--handle-message data)) 
-              (expect   'serenade--diff 
-
+              (expect   'serenade--diff
                         :not 
                         :to-have-been-called)))
 
