@@ -2,7 +2,7 @@
 (require 'serenade-buffer)
 (require 'serenade-log)
 (require 'test-utils)
-(require 'serenade-custom-commands)
+(require 'serenade-commands)
 
 (defun serenade--handle-message (message) 
   (serenade--info (extract-json message )) 

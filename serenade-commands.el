@@ -11,7 +11,7 @@
                                   ( "cut" .   serenade--cut-selection ) 
                                   ( "paste" .   serenade--paste ) 
                                   ( "undo" .   serenade--undo ) 
-                                  ( "redo" .   evil-redo ) 
+                                  ( "redo" .   serenade--redo ) 
                                   ( "close tab" . delete-window  ) 
                                   ( "save"  . save-buffer  ) 
                                   ( "create tab" . split-window-right-and-focus  ) 
@@ -104,4 +104,4 @@
                    :candidates (serenade--get-helm-candidates serenade-mode-maps)) 
         :buffer "*helm serenade*"))
 
-(provide 'serenade-custom-commands)
+(provide 'serenade-commands)

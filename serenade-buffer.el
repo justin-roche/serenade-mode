@@ -48,6 +48,9 @@
   (if serenade-evil (evil-undo 1) 
     (undo)))
 
+(defun serenade--redo () 
+  (undo-tree-redo))
+
 (defun serenade--paste () 
   (if serenade-evil (progn (evil-normal-state) 
                            (execute-kbd-macro (kbd "p"))) 

@@ -23,7 +23,7 @@
 ;; see <http://www.gnu.org/licenses/>.
 
 (require 'serenade-socket)
-(require 'serenade-custom-commands)
+(require 'serenade-commands)
 (require 'serenade-log)
 (require 'serenade-lines)
 (require 'serenade-helm)

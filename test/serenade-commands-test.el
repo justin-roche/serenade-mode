@@ -1,7 +1,7 @@
 
 (require 'ht)
 (require 'serenade-mode)
-(require 'serenade-custom-commands)
+(require 'serenade-commands)
 (require 'serenade-helm)
 (require 'test-utils)
 
@@ -15,7 +15,7 @@
                       :to-equal 'save-buffer )) 
           (it "adds items to helm map" ;;
               (expect (length (ht-items serenade-helm-map)) 
-                      :to-equal 11)))
+                      :to-equal 10)))
 (describe "Global Custom Commands" ;;
           (before-each (serenade--clear-mode-maps)) 
           (it "adds to global speech map" ;;

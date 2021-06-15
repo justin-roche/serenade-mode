@@ -10,7 +10,7 @@
                                                        ( "cut" .   serenade--cut-selection ) 
                                                        ( "paste" .   serenade--paste ) 
                                                        ( "undo" .   serenade--undo ) 
-                                                       ( "redo" .   evil-redo ) 
+                                                       ( "redo" .   serenade--redo ) 
                                                        ( "close tab" . delete-window  ) 
                                                        ( "save"  . save-buffer  ) 
                                                        ( "create tab" .

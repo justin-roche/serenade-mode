@@ -1,6 +1,6 @@
 
 
-(require 'serenade-custom-commands)
+(require 'serenade-commands)
 (require 'serenade-synchronize)
 (require 'test-utils)
 
