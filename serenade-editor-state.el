@@ -1,8 +1,10 @@
 (require 'serenade-log)
 
 (defun serenade--get-editor-state (callback limited) 
-  (let* ((filename (-last-item (s-split "/" (buffer-file-name)))) 
-         (buffer-data (if nil (ht ("filename" filename)) 
+  (serenade--info (concat "buffer file name: "(buffer-file-name))) 
+  (let* ((filename (if (buffer-file-name) 
+                       (-last-item (s-split "/" (buffer-file-name))) "")) 
+         (buffer-data (if limited (ht ("filename" filename)) 
                         (ht ("filename" filename) 
                             ("cursor" (- (point) 1)) 
                             ("source" 
