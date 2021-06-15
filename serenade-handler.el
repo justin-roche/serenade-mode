@@ -29,18 +29,23 @@
           ((cond ((equal type "COMMAND_TYPE_EVALUATE_IN_PLUGIN") 
                   (serenade--evaluate-in-plugin command)) 
                  ((equal type "COMMAND_TYPE_COPY") 
-                  (serenade--copy-target (ht-get* command "text"))) 
+                  (serenade--execute-default-command  "copy <target>" (list (ht-get* command
+                                                                                     "text"))))
                  ((equal type "COMMAND_TYPE_OPEN_FILE_LIST") 
-                  (serenade--execute-default-command "command" "open <file>" (list (ht-get* command
-                                                                                            "path"))))
+                  (serenade--execute-default-command  "open <file>" (list (ht-get* command
+                                                                                   "path"))))
                  ((equal type "COMMAND_TYPE_SWITCH_TAB") 
-                  (serenade--execute-default-command "command" "<nth> tab"  (list (ht-get* command
-                                                                                           "index"))))
+                  (serenade--execute-default-command  "<nth> tab"  (list (ht-get* command
+                                                                                  "index"))))
                  ((equal type "COMMAND_TYPE_SELECT") 
-                  (serenade--select-target (+ 1 (or (ht-get* command "cursor") 
-                                                    0)) 
-                                           (+ 0 (ht-get* command "cursorEnd")))) 
-                 (t (serenade--execute-default-command command)))))))
+                  (serenade--execute-default-command  "select <target>"  (list (+ 1 (or (ht-get*
+                                                                                         command
+                                                                                         "cursor")
+                                                                                        0)) 
+                                                                               (+ 0 (ht-get* command
+                                                                                             "cursorEnd")))))
+                 (t (serenade--execute-default-command (ht-get* message "data" "response" "execute"
+                                                                "transcript"))))))))
 
 (defun serenade--diff (command) 
   (serenade--info "diffing...") 
@@ -50,12 +55,10 @@
 
 (cl-defun 
     serenade--execute-default-command
-    (command &optional transcript args)
-  ;; Evaluate bindings for default commands. Default commands are commands with speech bindings that do not need registered as custom commands. Speech command COMMAND is mapped to its functional call in the speech maps. For speech commands that have substititions, such as "<nth> tab" and "open <file>", the transcript is overriden with TRANSCRIPT and applied with ARGS.
+    ( transcript &optional args)
+  ;; Evaluate bindings for default commands. Default commands are commands with speech bindings that do not need registered as custom commands. Speech command with TRANSCRIPT is mapped to its functional call in the speech maps. For speech commands that have substititions, such as "<nth> tab" and "open <file>", function is applied with ARGS.
   (serenade--info "executing default command") 
-  (if-let* ((command-transcript (or transcript 
-                                    (ht-get* message "data" "response" "execute" "transcript"))) 
-            (found-command  (serenade--find-voice-binding command-transcript)) 
+  (if-let* ((found-command  (serenade--find-voice-binding transcript)) 
             (bound-fn (ht-get* found-command "command"))) 
       (if args (apply bound-fn args) 
         (funcall bound-fn))))
@@ -82,17 +85,3 @@
                             (websocket-send-text serenade--websocket response-json))))
 
 (provide 'serenade-handler)
-
-;; (serenade-define-speech 'global "open buffer <name> <n>" 'switch-to-buffer)
-;; (let* ((req (ht-get* (json-parse-string (load-json-commands)) "openBufferHello3")))
-;; (serenade--handle-message req))
-;; (defun serenade--create-argument-list-from-speech (speech arg-inputs)
-;;   ;; (debug)
-;;   (let* ((arg-definitions  (s-match-strings-all "<\\(.+?\\\)>" speech)))
-;;     ;; (debug)
-;;     (-map-indexed '(lambda (i item)
-;;                      (if (string-equal (nth 1 item) "n")
-;;                          (progn (debug)
-;;                                 (string-to-number (nth i arg-inputs))))
-;;                      (symbol-name (nth i arg-inputs)))  arg-definitions)
-;;     ))

@@ -9,6 +9,8 @@
 (setq serenade--global-defaults '(;;
                                   ( "copy" .   serenade--copy-selection ) 
                                   ( "cut" .   serenade--cut-selection ) 
+                                  ( "copy <target>" .   serenade--copy-target ) 
+                                  ( "select <target>" .   serenade--select-target ) 
                                   ( "paste" .   serenade--paste ) 
                                   ( "undo" .   serenade--undo ) 
                                   ( "redo" .   serenade--redo ) 
