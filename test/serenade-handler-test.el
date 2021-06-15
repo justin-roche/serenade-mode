@@ -105,7 +105,8 @@
               (create-test-buffer "test.xx" "") 
               (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff"))) 
                 (serenade--handle-message data)) 
-              (expect   'serenade--diff
+              (expect   'serenade--diff 
+
                         :not 
                         :to-have-been-called)))
 
@@ -162,6 +163,7 @@
                           :to-have-been-called-with t res))))
 (describe "calls default commands" ;;
           (before-each (spy-on 'serenade--send-completed) 
+                       (spy-on 'serenade--open-file) 
                        (spy-on 'serenade--execute-default-command)) 
           (it "calls default command handler for save" ;;
               (let* ((req (load-request "save"))) 
@@ -169,3 +171,19 @@
                 (serenade--handle-message req) 
                 (expect   'serenade--execute-default-command 
                           :to-have-been-called))))
+(describe "calls default commands with arguments" ;;
+          (before-each (spy-on 'serenade--send-completed) 
+                       (spy-on 'serenade--switch-tab) 
+                       (spy-on 'serenade--open-file)) 
+          (it "calls default command handler for open <file>" ;;
+              (let* ((req (load-request "openIndexjs"))) 
+                (create-test-buffer "test.js" "abc") 
+                (serenade--handle-message req) 
+                (expect   'serenade--open-file 
+                          :to-have-been-called-with "index.js"))) 
+          (it "calls default command handler for <nth> tab" ;;
+              (let* ((req (load-request "firstTab"))) 
+                (create-test-buffer "test.js" "abc") 
+                (serenade--handle-message req) 
+                (expect   'serenade--switch-tab 
+                          :to-have-been-called-with 1))))

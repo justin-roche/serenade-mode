@@ -29,9 +29,13 @@
           ((cond ((equal type "COMMAND_TYPE_EVALUATE_IN_PLUGIN") 
                   (serenade--evaluate-in-plugin command)) 
                  ((equal type "COMMAND_TYPE_COPY") 
-                  (serenade--copy-target (ht-get* command "text")))
-                 ;; ((equal type "COMMAND_TYPE_OPEN_FILE_LIST")
-                 ;;  (serenade--open (ht-get* command "text")))
+                  (serenade--copy-target (ht-get* command "text"))) 
+                 ((equal type "COMMAND_TYPE_OPEN_FILE_LIST") 
+                  (serenade--execute-default-command "command" "open <file>" (list (ht-get* command
+                                                                                            "path"))))
+                 ((equal type "COMMAND_TYPE_SWITCH_TAB") 
+                  (serenade--execute-default-command "command" "<nth> tab"  (list (ht-get* command
+                                                                                           "index"))))
                  ((equal type "COMMAND_TYPE_SELECT") 
                   (serenade--select-target (+ 1 (or (ht-get* command "cursor") 
                                                     0)) 
@@ -44,24 +48,30 @@
                            (+(or (ht-get command "cursor") 
                                  0) 1)))
 
+(cl-defun 
+    serenade--execute-default-command
+    (command &optional transcript args)
+  ;; Evaluate bindings for default commands. Default commands are commands with speech bindings that do not need registered as custom commands. Speech command COMMAND is mapped to its functional call in the speech maps. For speech commands that have substititions, such as "<nth> tab" and "open <file>", the transcript is overriden with TRANSCRIPT and applied with ARGS.
+  (serenade--info "executing default command") 
+  (if-let* ((command-transcript (or transcript 
+                                    (ht-get* message "data" "response" "execute" "transcript"))) 
+            (found-command  (serenade--find-voice-binding command-transcript)) 
+            (bound-fn (ht-get* found-command "command"))) 
+      (if args (apply bound-fn args) 
+        (funcall bound-fn))))
+
 (defun serenade--evaluate-in-plugin (command) 
   (let* ((command-text (ht-get* command "text")) 
          (command-as-list (eval (car (read-from-string (concat "'"command-text))))) 
          (speeech-binding (car command-as-list) ) 
          (args (cdr command-as-list) ) 
          (converted-args (-map '(lambda (item) 
-                                  (if (eq 'symbol (type-of item)) 
+                                  (if (eq 'symbol (type-of item))
+                                      ;; handle ordinals
                                       (symbol-name item) item)) args) ) 
          (found-command  (serenade--find-voice-binding speeech-binding)) 
          (bound-fn (ht-get* found-command "command"))) 
     (apply bound-fn converted-args)))
-
-(defun serenade--execute-default-command (command) 
-  (serenade--info "executing default command") 
-  (if-let* ((command-transcript (ht-get* message "data" "response" "execute" "transcript")) 
-            (found-command  (serenade--find-voice-binding command-transcript)) 
-            (bound-fn (ht-get* found-command "command"))) 
-      (funcall bound-fn)))
 
 (defun serenade--send-completed (callback) 
   (serenade--info "sending completed") 

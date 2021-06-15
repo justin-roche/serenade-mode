@@ -1,4 +1,62 @@
 {
+    "openIndexjs": {
+        "message": "response",
+        "data": {
+            "callback": "827c707d-ac27-4f99-bca6-8c27f82db96f",
+            "response": {
+                "alternatives": [
+                    {
+                        "description": "open <code>index.js</code>",
+                        "transcript": "open index dot js",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_OPEN_FILE_LIST",
+                                "path": "index.js"
+                            }
+                        ],
+                        "alternativeId": "8dfd6cc5-5f99-46b3-9c8a-e2a00c68fb04"
+                    }
+                ],
+                "execute": {
+                    "description": "open <code>index.js</code>",
+                    "transcript": "open index dot js",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_OPEN_FILE_LIST",
+                            "path": "index.js"
+                        }
+                    ],
+                    "alternativeId": "8dfd6cc5-5f99-46b3-9c8a-e2a00c68fb04",
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_OPEN_FILE_LIST",
+                            "path": "index.js"
+                        }
+                    ]
+                },
+                "chunkId": "b2431192-5149-4e78-be52-30dc64c7a8c8",
+                "final": true,
+                "endpointId": "4daa8d6c-7c8a-443e-bc50-dafeb068766e",
+                "chunkIds": [
+                    "b2431192-5149-4e78-be52-30dc64c7a8c8"
+                ],
+                "silenceThreshold": 500,
+                "alternativesList": [
+                    {
+                        "description": "open <code>index.js</code>",
+                        "transcript": "open index dot js",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_OPEN_FILE_LIST",
+                                "path": "index.js"
+                            }
+                        ],
+                        "alternativeId": "8dfd6cc5-5f99-46b3-9c8a-e2a00c68fb04"
+                    }
+                ]
+            }
+        }
+    },
     "openFileHello": {
         "message": "response",
         "data": {
@@ -2191,6 +2249,64 @@
                 ]
             },
             "callback": "176640ce-0cad-4fb5-99d9-c5759469ba28"
+        },
+        "message": "response"
+    },
+    "firstTab": {
+        "data": {
+            "response": {
+                "alternativesList": [
+                    {
+                        "alternativeId": "d6006c38-a4ce-4366-81e2-e4b6db325968",
+                        "commands": [
+                            {
+                                "index": 1,
+                                "type": "COMMAND_TYPE_SWITCH_TAB"
+                            }
+                        ],
+                        "transcript": "first tab",
+                        "description": "first tab"
+                    }
+                ],
+                "silenceThreshold": 500,
+                "chunkIds": [
+                    "c9bc7ef4-5b3e-4397-9741-5e404604fdc3"
+                ],
+                "endpointId": "ac2c1476-118d-483c-92c1-006417812822",
+                "final": true,
+                "chunkId": "c9bc7ef4-5b3e-4397-9741-5e404604fdc3",
+                "execute": {
+                    "commandsList": [
+                        {
+                            "index": 1,
+                            "type": "COMMAND_TYPE_SWITCH_TAB"
+                        }
+                    ],
+                    "alternativeId": "d6006c38-a4ce-4366-81e2-e4b6db325968",
+                    "commands": [
+                        {
+                            "index": 1,
+                            "type": "COMMAND_TYPE_SWITCH_TAB"
+                        }
+                    ],
+                    "transcript": "first tab",
+                    "description": "first tab"
+                },
+                "alternatives": [
+                    {
+                        "alternativeId": "d6006c38-a4ce-4366-81e2-e4b6db325968",
+                        "commands": [
+                            {
+                                "index": 1,
+                                "type": "COMMAND_TYPE_SWITCH_TAB"
+                            }
+                        ],
+                        "transcript": "first tab",
+                        "description": "first tab"
+                    }
+                ]
+            },
+            "callback": "c73dbfc8-5da1-4931-b24a-8d39efaadce4"
         },
         "message": "response"
     }

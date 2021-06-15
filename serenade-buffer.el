@@ -56,4 +56,8 @@
                            (execute-kbd-macro (kbd "p"))) 
     (yank)))
 
+(defun serenade--open-file (path))
+
+(defun serenade--switch-tab (index))
+
 (provide 'serenade-buffer)
