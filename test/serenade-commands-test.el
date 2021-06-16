@@ -15,7 +15,7 @@
                       :to-equal 'save-buffer )) 
           (it "adds items to helm map" ;;
               (expect (length (ht-items serenade-helm-map)) 
-                      :to-equal 14)))
+                      :to-equal 13)))
 (describe "Global Custom Commands" ;;
           (before-each (serenade--clear-mode-maps)) 
           (it "adds to global speech map" ;;

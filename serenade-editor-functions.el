@@ -7,7 +7,7 @@
                            (evil-visual-state ) 
                            (goto-char max)) 
     (progn (goto-char  min ) 
-           (push-mark max) 
+           (push-mark (+ 1 max)) 
            (setq mark-active t))))
 
 (defun serenade--cut-selection () 
@@ -16,9 +16,6 @@
                  (region-end)) 
     (setq mark-active nil)))
 
-(defun serenade--copy-target (text) 
-  (kill-new text))
-
 (defun serenade--copy-selection () 
   (if serenade-evil (progn (execute-kbd-macro (kbd "y")) 
                            (evil-normal-state)) 
@@ -26,15 +23,11 @@
 
 (defun serenade--undo () 
   (if serenade-evil (evil-undo 1) 
-    (undo)))
+    (undo)) 
+  (goto-char serenade--undo-position))
 
 (defun serenade--redo () 
   (undo-tree-redo))
-
-(defun serenade--paste () 
-  (if serenade-evil (progn (evil-normal-state) 
-                           (execute-kbd-macro (kbd "p"))) 
-    (yank)))
 
 (defun serenade--switch-tab (index) 
   (winum-select-window-by-number index))

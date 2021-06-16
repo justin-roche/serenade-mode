@@ -1,5 +1,6 @@
 
 (require 'nlinum)
+(require 'nlinum-relative)
 (require 'diminish)
 
 (defcustom serenade-enable-double-line-numbers t 
@@ -7,7 +8,8 @@
 
 (defun serenade--double-line-numbers-on () 
   (global-display-line-numbers-mode +1) 
-  (nlinum-mode +1))
+  (nlinum-mode +1) 
+  (nlinum-relative-mode -1))
 
 (defun serenade-double-line-numbers-on () 
   (interactive) 

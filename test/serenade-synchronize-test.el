@@ -10,13 +10,13 @@
               (serenade-define-speech 'global "a" 'b) 
               ( serenade--format-commands ) 
               (expect   (serenade-list-to-string serenade--formatted-commands--no-slots) 
-                        :to-equal "\"a\":\"(\"b\")\",")) 
+                        :to-equal "\"a\":\"(\\\"a\\\")\",")) 
           (it "formats multiple simple commands" ;;
               (serenade-define-speech 'global "a" 'b) 
               (serenade-define-speech 'global "c" 'd) 
               ( serenade--format-commands ) 
               (expect    serenade--formatted-commands--no-slots 
-                         :to-equal '("\"c\":\"(\"d\")\"," "\"a\":\"(\"b\")\","))) 
+                         :to-equal '("\"c\":\"(\\\"c\\\")\"," "\"a\":\"(\\\"a\\\")\","))) 
           (it "resets formatted commands between invocations" ;;
               (serenade-define-speech 'global "c" 'd) 
               ( serenade--format-commands ) 
@@ -60,4 +60,4 @@
               (serenade-define-speech 'global "b <z><x>" 'b) 
               (expect   (serenade--generate-combined-text) 
                         :to-equal
-                        "let emacs = serenade.app(\"Emacs\"); let emacsCommands = {};function addEmacsCommands() { for (const [commandName, command] of Object.entries(emacsCommands)) { serenade.app(\"emacs\").command(commandName, async (api, matches) => { await api.evaluateInPlugin(emacsCommands[commandName]); }); } }serenade.app(\"emacs\").command(`a <%z%> <%x%>`, async (api, matches) => { api.evaluateInPlugin(`(\"a <z> <x>\" ${matches.z} ${matches.x} )`) });")))
+                        "let emacs = serenade.app(\"Emacs\"); let emacsCommands = {};function addEmacsCommands() { for (const [commandName, command] of Object.entries(emacsCommands)) { serenade.app(\"emacs\").command(commandName, async (api, matches) => { await api.evaluateInPlugin(emacsCommands[commandName]); }); } } addEmacsCommands();serenade.app(\"emacs\").command(`a <%z%> <%x%>`, async (api, matches) => { api.evaluateInPlugin(`(\"a <z> <x>\" ${matches.z} ${matches.x} )`) });")))

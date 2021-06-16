@@ -26,8 +26,8 @@
            ;;      (not (string-equal (buffer-file-name) "")))
            (serenade--get-editor-state callback limited)) 
           ((equal type "COMMAND_TYPE_DIFF") 
-
            (if serenade-buffer (serenade--diff command))) 
+          ((equal type "COMMAND_TYPE_CUSTOM") nil) 
           ((cond ((equal type "COMMAND_TYPE_EVALUATE_IN_PLUGIN") 
                   (serenade--evaluate-in-plugin command)) 
                  ((equal type "COMMAND_TYPE_COPY") 
@@ -65,18 +65,20 @@
       (if args (apply bound-fn args) 
         (funcall bound-fn))))
 
-(defun serenade--evaluate-in-plugin (command) 
+(defun serenade--evaluate-in-plugin (command)
+  ;; (debug)
   (let* ((command-text (ht-get* command "text")) 
          (command-as-list (eval (car (read-from-string (concat "'"command-text))))) 
-         (speeech-binding (car command-as-list) ) 
-         (args (cdr command-as-list) ) 
-         (converted-args (-map '(lambda (item) 
-                                  (if (eq 'symbol (type-of item))
-                                      ;; handle ordinals
-                                      (symbol-name item) item)) args) ) 
-         (found-command  (serenade--find-voice-binding speeech-binding)) 
+         (speech-binding (car command-as-list) ) 
+         (found-command  (serenade--find-voice-binding speech-binding)) 
          (bound-fn (ht-get* found-command "command"))) 
-    (apply bound-fn converted-args)))
+    (if-let   ((args (cdr command-as-list) ) 
+               (converted-args (-map '(lambda (item) 
+                                        (if (eq 'symbol (type-of item))
+                                            ;; handle ordinals
+                                            (symbol-name item) item)) args) )) 
+        (apply bound-fn converted-args) 
+      (progn (funcall bound-fn)))))
 
 (defun serenade--send-completed (callback) 
   (serenade--info "sending completed") 
@@ -87,3 +89,6 @@
                             (websocket-send-text serenade--websocket response-json))))
 
 (provide 'serenade-handler)
+
+;; (let* ((req (ht-get* (json-parse-string (load-json-commands)) "showTree")))
+;; (serenade--handle-message req))

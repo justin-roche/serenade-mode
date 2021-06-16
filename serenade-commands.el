@@ -6,10 +6,12 @@
 (defvar serenade-mode-maps (ht("global" (ht)) ) 
   "hashtable of Serenade voice maps")
 
+;; Serenade itself will handle "copy <target>" and "cut <target>", sending a dif message and populating the system clipboard. Serenades built-in "paste" command is also sufficient for sending a diff with the correct result.
+
 (setq serenade--global-defaults '(;;
                                   ( "copy" .   serenade--copy-selection ) 
-                                  ( "cut" .   serenade--cut-selection ) 
-                                  ( "copy <target>" .   serenade--copy-target ) 
+                                  ( "cut" .   serenade--cut-selection )
+                                  ;; ( "copy <target>" .   serenade--copy-target )
                                   ( "select <target>" .   serenade--select-target ) 
                                   ( "paste" .   serenade--paste ) 
                                   ( "undo" .   serenade--undo ) 
@@ -43,7 +45,9 @@
 
 (defun serenade--initialize-mode-maps () 
   (setq serenade-mode-maps (ht("global" (ht)) ) ) 
-  (serenade--add-default-bindings))
+  (serenade--add-default-bindings)
+  ;; (serenade-global-set-speech  "show tree"  'treemacs)
+  )
 
 (defun serenade--clear-mode-maps () 
   (setq serenade-mode-maps (ht("global" (ht)) ) ) 

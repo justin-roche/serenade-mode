@@ -38,19 +38,29 @@
               (expect (region-beginning) 
                       :to-equal 11) 
               (expect (region-end) 
+                      :to-equal 20)) 
+          (it "selects lines by number in evil-mode" ;;
+              (create-test-buffer "test9.js" "let x = 1\n let y = 2") 
+              (setq serenade-evil t ) 
+              (let* ((req (load-request "selectLine2"))) 
+                (serenade--handle-message req)) 
+              (expect (region-beginning) 
+                      :to-equal 11) 
+              (expect (region-end) 
                       :to-equal 19)) 
           (it "cuts lines by number" ;;
               (create-test-buffer "test5.js" "let x = 1\n let y = 2") 
               (let* ((req (load-request "cutLine2"))) 
                 (serenade--handle-message req)) 
               (expect   (buffer-string) 
-                        :to-equal "let x = 1\n")) 
-          (it "copies lines by number" ;;
-              (create-test-buffer "test4.js" "let x = 1\n let y = 2") 
-              (let* ((req (load-request "copyLine1"))) 
-                (serenade--handle-message req)) 
-              (expect (car kill-ring-yank-pointer) 
-                      :to-equal "let x = 1")))
+                        :to-equal "let x = 1\n"))
+          ;; (it "copies lines by number" ;;
+          ;;     (create-test-buffer "test4.js" "let x = 1\n let y = 2")
+          ;;     (let* ((req (load-request "copyLine1")))
+          ;;       (serenade--handle-message req))
+          ;;     (expect (car kill-ring-yank-pointer)
+          ;;             :to-equal "let x = 1"))
+          )
 
 (describe "gives correct result using undo" ;;
           ;; (before-each (spy-on 'websocket-send-text))
@@ -72,7 +82,7 @@
               (let* ((req2 (load-request "copy"))) 
                 (serenade--handle-message req2)) 
               (expect    (car kill-ring-yank-pointer) 
-                         :to-equal "let y = 2")) 
+                         :to-equal "let y = 2\n")) 
           (it "pastes evil" ;;
               (create-test-buffer "test7.js" "let x = 1\nlet y = 2") 
               (setq serenade-evil t) 
@@ -97,7 +107,8 @@
               (create-test-buffer "test.xx" "") 
               (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff"))) 
                 (serenade--handle-message data)) 
-              (expect   'serenade--diff
+              (expect   'serenade--diff 
+
                         :not 
                         :to-have-been-called)))
 

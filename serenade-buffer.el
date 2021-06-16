@@ -15,9 +15,14 @@
     (setq serenade-buffer nil )))
 
 (defun serenade--update-buffer (source cursor) 
+  (if (not serenade-evil) 
+      (undo-boundary)) 
+  (setq serenade--undo-position (point)) 
+  (if serenade-evil (evil-insert-state)) 
   (delete-region (point-min) 
                  (point-max)) 
   (insert source) 
+  (if serenade-evil (evil-normal-state)) 
   (goto-char cursor))
 
 (provide 'serenade-buffer)

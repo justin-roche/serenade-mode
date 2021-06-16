@@ -39,12 +39,15 @@
   "The list of functions to be called after `serenade-mode' has initialized all variables, before connecting fer for the first time." 
   :type 'hook 
   :group 'serenade-mode)
+(setq serenade--auto-set-evil nil )
 
 (defun serenade-mode--start () 
   (run-hooks 'serenade-mode-init-hook) 
   (serenade--info "connecting to serenade") 
-  (if (eq evil-mode t) 
-      (setq serenade-evil t )) 
+  (setq  serenade-evil nil )
+  ;; (if serenade--auto-set-evil (if (eq evil-mode t)
+  ;;                                 (setq serenade-evil t)
+  ;;                               ((setq serenade-evil nil )) ))
   (serenade--info (concat "evil mode" (prin1-to-string serenade-evil))) 
   (if serenade-enable-double-line-numbers (serenade--double-line-numbers-on)) 
   (serenade--initialize-mode-maps) 
@@ -75,8 +78,8 @@
 (define-minor-mode serenade-mode "Toggle Serenade mode." 
   nil
   " Serenade" 
-  :global t 
-  :lighter " serenade" 
+  :global t
+  ;; :lighter " serenade"
   :keymap serenade-mode-map 
   :group 'serenade-mode
   (serenade-mode-toggle))
