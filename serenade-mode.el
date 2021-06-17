@@ -22,6 +22,7 @@
 ;; For a full copy of the GNU General Public License
 ;; see <http://www.gnu.org/licenses/>.
 
+(require 'diminish)
 (require 'serenade-socket)
 (require 'serenade-commands)
 (require 'serenade-log)
@@ -44,13 +45,12 @@
 (defun serenade-mode--start () 
   (run-hooks 'serenade-mode-init-hook) 
   (serenade--info "connecting to serenade") 
-  (setq  serenade-evil nil )
+  (setq  serenade-evil t )
   ;; (if serenade--auto-set-evil (if (eq evil-mode t)
   ;;                                 (setq serenade-evil t)
   ;;                               ((setq serenade-evil nil )) ))
   (serenade--info (concat "evil mode" (prin1-to-string serenade-evil))) 
   (if serenade-enable-double-line-numbers (serenade--double-line-numbers-on)) 
-  (serenade--initialize-mode-maps) 
   (if serenade-sync-on-start (serenade-synchronize)) 
   (if serenade-helm-M-x (serenade--advise-helm-transformer)) 
   (serenade--connect))
@@ -78,12 +78,18 @@
 (define-minor-mode serenade-mode "Toggle Serenade mode." 
   nil
   " Serenade" 
-  :global t
-  ;; :lighter " serenade"
+  :global t 
+  :lighter " serenade" 
   :keymap serenade-mode-map 
   :group 'serenade-mode
   (serenade-mode-toggle))
 
+(diminish 'serenade-mode 
+          '(:propertize "Ⓢ" 
+                        face 
+                        '(:foreground "plum3")))
+
+(serenade--initialize-mode-maps)
 (provide 'serenade-mode)
 
 ;;; serenade-mode.el ends here

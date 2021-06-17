@@ -66,7 +66,6 @@
         (funcall bound-fn))))
 
 (defun serenade--evaluate-in-plugin (command)
-  ;; (debug)
   (let* ((command-text (ht-get* command "text")) 
          (command-as-list (eval (car (read-from-string (concat "'"command-text))))) 
          (speech-binding (car command-as-list) ) 

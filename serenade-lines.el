@@ -1,7 +1,6 @@
 
 (require 'nlinum)
 (require 'nlinum-relative)
-(require 'diminish)
 
 (defcustom serenade-enable-double-line-numbers t 
   "if t, serenade mode shows both relative and absolute line numbers")
@@ -22,10 +21,6 @@
   (interactive) 
   (serenade--double-line-numbers-off))
 
-(diminish 'serenade-mode 
-          '(:propertize "Ⓢ" 
-                        face 
-                        '(:foreground "plum3")))
 ;; #0f1011
 
 (provide 'serenade-lines)

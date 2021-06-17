@@ -3,17 +3,15 @@
 (require 's)
 (require 'serenade-helm)
 
-(defvar serenade-mode-maps (ht("global" (ht)) ) 
+(defvar serenade-speech-maps (ht("global" (ht)) ) 
   "hashtable of Serenade voice maps")
 
-;; Serenade itself will handle "copy <target>" and "cut <target>", sending a dif message and populating the system clipboard. Serenades built-in "paste" command is also sufficient for sending a diff with the correct result.
+;; Serenade itself will handle "copy <target>" and "cut <target>", sending a diff message and populating the system clipboard. Serenades built-in "paste" command is also sufficient for sending a diff with the correct result.
 
 (setq serenade--global-defaults '(;;
                                   ( "copy" .   serenade--copy-selection ) 
-                                  ( "cut" .   serenade--cut-selection )
-                                  ;; ( "copy <target>" .   serenade--copy-target )
+                                  ( "cut" .   serenade--cut-selection ) 
                                   ( "select <target>" .   serenade--select-target ) 
-                                  ( "paste" .   serenade--paste ) 
                                   ( "undo" .   serenade--undo ) 
                                   ( "redo" .   serenade--redo ) 
                                   ( "open <file>" . serenade--open-file  ) 
@@ -43,23 +41,26 @@
                                   ( "step over" . nil) 
                                   ( "continue" . nil)))
 
-(defun serenade--initialize-mode-maps () 
-  (setq serenade-mode-maps (ht("global" (ht)) ) ) 
-  (serenade--add-default-bindings)
-  ;; (serenade-global-set-speech  "show tree"  'treemacs)
-  )
+(defun serenade--initialize-mode-maps ()
+  ;; This function clears the SERENADE-SPEECH-MAPS and sets them according to the default binding.
+  (serenade--clear-mode-maps) 
+  (serenade--add-default-bindings) 
+  (run-hooks 'serenade-speech-maps-hook))
 
 (defun serenade--clear-mode-maps () 
-  (setq serenade-mode-maps (ht("global" (ht)) ) ) 
+  (setq serenade-speech-maps (ht("global" (ht)) ) ) 
   (serenade--clear-helm-map))
 
 (defun serenade--get-global-map () 
-  (ht-get serenade-mode-maps "global"))
+  (ht-get serenade-speech-maps "global"))
+
+(defun serenade--add-default-bindings () 
+  (serenade-global-set-speech serenade--global-defaults))
 
 (cl-defun 
     serenade-global-set-speech
     (speech &optional command )
-  ;; Convenience function for adding speech bindings to the global serenade speech map. Possible inputs are an association list of speech-command bindings, a single command from which the asociated speech is automatically generated, or a parameter pair of speech and command.
+  ;; Convenience function for adding speech bindings to the global serenade speech map. Possible inputs are an association list of speech-command bindings, a single command from which the asociated speech is automatically generated, or a pair of SPEECH and COMMAND.
   (if (and (listp speech)) 
       (dolist (item speech ) 
         (serenade-global-set-speech (car item) 
@@ -72,14 +73,15 @@
            (symbolp command)) 
       (serenade-define-speech 'global speech command)))
 
-(defun serenade-define-speech (mode-name speech command) 
-  (let* ((name (symbol-name mode-name)) 
-         (voice-map (ht-get serenade-mode-maps name ))) 
+(defun serenade-define-speech (mode speech command)
+  ;; this function associates speech pattern SPEECH with an 8lisp function COMMAND for the symbol MODE. If the speech-map provided by MODE does not exist a speech-map is created. If mode is the special symbol 'global then the binding is created for the global speech map. If a previous binding exists for the speech pattern it is overwritten.
+  (let* ((name (symbol-name mode)) 
+         (voice-map (ht-get serenade-speech-maps name ))) 
     (if (string-equal name "global") 
-        (ht-set (ht-get serenade-mode-maps "global") speech (ht("command" command))  ) 
+        (ht-set (ht-get serenade-speech-maps "global") speech (ht("command" command))  ) 
       (if voice-map (ht-set voice-map speech (ht ("command" command))) 
-        (progn (ht-set serenade-mode-maps name (ht)) 
-               (ht-set (ht-get serenade-mode-maps name ) speech (ht ("command" command)))))) 
+        (progn (ht-set serenade-speech-maps name (ht)) 
+               (ht-set (ht-get serenade-speech-maps name ) speech (ht ("command" command)))))) 
     (if serenade-helm-M-x (serenade--update-helm-map speech command))))
 
 (defun serenade--find-voice-binding (speech) 
@@ -87,33 +89,29 @@
       (serenade--find-in-active-major-map speech) 
       (serenade--find-in-global-map speech)))
 
-(defun serenade--find-in-active-minor-maps (speech) 
+(defun serenade--find-in-active-minor-maps (speech)
+  ;; search speech map applicable to the current minor-mode-map-alist. If any contain the speech patterns SPEECH return the command for the speech.
   (catch 'result 
     (mapc (lambda (mode-and-map) 
             (let* ((mode (symbol-name (car mode-and-map))) 
-                   (voice-map (ht-get* serenade-mode-maps mode))) 
+                   (voice-map (ht-get* serenade-speech-maps mode))) 
               (if voice-map (let* ((command (ht-get* voice-map speech))) 
                               (if command 
                                   (throw 'result command)))))) minor-mode-map-alist)
     nil))
 
 (defun serenade--find-in-active-major-map (speech) 
-  (if-let* ((current-mode-map (ht-get serenade-mode-maps (symbol-name major-mode)))) 
+  (if-let* ((current-mode-map (ht-get serenade-speech-maps (symbol-name major-mode)))) 
       (ht-get* current-mode-map speech)))
 
 (defun serenade--find-in-global-map (speech) 
-  (ht-get* serenade-mode-maps "global" speech))
-
-(defun serenade--add-default-bindings ()
-  ;; (serenade-define-speech 'global "open buffer <name>" 'switch-to-buffer)
-  (serenade-global-set-speech serenade--global-defaults))
-
-(serenade--add-default-bindings)
+  (ht-get* serenade-speech-maps "global" speech))
 
 (defun serenade-helm-commands () 
+  ;; This function provide all current speech bindings in a helm buffer.
   (interactive) 
   (helm :sources (helm-build-sync-source "serenade" 
-                   :candidates (serenade--get-helm-candidates serenade-mode-maps)) 
+                   :candidates (serenade--get-helm-candidates serenade-speech-maps)) 
         :buffer "*helm serenade*"))
 
 (provide 'serenade-commands)

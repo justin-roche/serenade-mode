@@ -68,7 +68,7 @@
   (insert text))
 
 (defun reset-maps () 
-  (setf (symbol-value 'serenade-mode-maps ) 
+  (setf (symbol-value 'serenade-speech-maps ) 
         (ht("global" (ht)))))
 
 (defmacro async-with-timeout (timeout &rest body) 

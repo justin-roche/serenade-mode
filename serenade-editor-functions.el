@@ -40,7 +40,6 @@
 
 (defun serenade--open-file (fragment) 
   (let* ((b (serenade--get-buffer-by-regex fragment)))
-    ;; (split-window-right-and-focus)
     (switch-to-buffer (first b))))
 
 (provide 'serenade-editor-functions)

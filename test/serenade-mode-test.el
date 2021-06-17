@@ -4,13 +4,12 @@
 (require 'serenade-socket)
 (setq lexical-binding t)
 
-(describe "Connection stop" ;;
-          (before-each  (spy-on 'serenade--disconnect) ) 
-          (it "calls disconnect function" (setf (symbol-value 'serenade-mode) nil) 
-              (serenade-mode-toggle) 
-              (expect 'serenade--disconnect 
-                      :to-have-been-called) ))
-
+(describe "Load behaviors" ;;
+          (before-each (load "./serenade-mode.el")) 
+          (it "initializes maps" ;;
+              ;; (serenade-mode)
+              (expect (length (ht-items (serenade--get-global-map))) 
+                      :to-equal (length serenade--global-defaults))))
 (describe "Mode initialization" ;;
           (before-each (spy-on 'serenade-mode--start) 
                        (spy-on 'serenade-mode--stop)) 
@@ -23,13 +22,9 @@
               (serenade-mode-toggle) 
               (expect 'serenade-mode--stop 
                       :to-have-been-called)))
-(describe "Star function" ;;
-          (before-each (spy-on 'serenade--initialize-mode-maps)
+(describe "Start function" ;;
+          (before-each (spy-on 'serenade--initialize-mode-maps) 
                        (spy-on 'serenade-synchronize)) 
-          (it "initializes maps" ;;
-              (serenade-mode) 
-              (expect 'serenade--initialize-mode-maps 
-                      :to-have-been-called)) 
           (it "calls sync function" ;;
               (serenade-mode) 
               (expect 'serenade-synchronize 
@@ -41,3 +36,10 @@
               (serenade-mode) 
               (expect 'serenade--connect 
                       :to-have-been-called)))
+(describe "Connection stop" ;;
+          (before-each  (spy-on 'serenade--disconnect) ) 
+          (it "calls disconnect function" (setf (symbol-value 'serenade-mode) nil) 
+              (serenade-mode-toggle) 
+              (expect 'serenade--disconnect 
+                      :to-have-been-called) 
+              (serenade-mode-toggle)))

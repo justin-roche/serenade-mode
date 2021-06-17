@@ -11,7 +11,7 @@
           (it "contains builtin commands in global speech map" ;;
               (expect (length (ht-items (serenade--get-global-map))) 
                       :to-equal (length serenade--global-defaults)) 
-              (expect (ht-get* serenade-mode-maps "global" "save" "command") 
+              (expect (ht-get* serenade-speech-maps "global" "save" "command") 
                       :to-equal 'save-buffer )) 
           (it "adds items to helm map" ;;
               (expect (length (ht-items serenade-helm-map)) 
@@ -57,9 +57,9 @@
           (it "adds to existing mode voice maps" ;;
               (progn (serenade-define-speech 'org-mode "a" 'b) 
                      (serenade-define-speech 'org-mode "c" 'd)) 
-              (expect(ht-get* serenade-mode-maps "org-mode"  "a" "command") 
+              (expect(ht-get* serenade-speech-maps "org-mode"  "a" "command") 
                      :to-equal 'b) 
-              (expect(ht-get* serenade-mode-maps "org-mode"  "c" "command") 
+              (expect(ht-get* serenade-speech-maps "org-mode"  "c" "command") 
                      :to-equal 'd)))
 
 (describe "Finding voice bindings" ;;

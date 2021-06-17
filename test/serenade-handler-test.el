@@ -124,23 +124,6 @@
               (expect   'serenade--evaluate-in-plugin 
                         :to-have-been-called)))
 
-(describe "calls custom functions" ;;
-          (before-each (spy-on 'websocket-send-text) 
-                       (defun test-fn-2 (a b)) 
-                       (spy-on 'test-fn-2) 
-                       (spy-on 'switch-to-buffer)) 
-          (it "calls the function assigned to the custom speech bindng with single argument" ;;
-              (serenade-define-speech 'global "open buffer <name>" 'switch-to-buffer) 
-              (let* ((data (ht-get* (json-parse-string (load-json-commands)) "openBufferHello2"))) 
-                (serenade--handle-message data)) 
-              (expect   'switch-to-buffer 
-                        :to-have-been-called-with "hello")) 
-          (it "calls the function assigned to the custom speech bindng with single argument" ;;
-              (serenade-define-speech 'global "open buffer <name> <n>" 'test-fn-2) 
-              (let* ((data (ht-get* (json-parse-string (load-json-commands)) "openBufferHello3"))) 
-                (serenade--handle-message data)) 
-              (expect   'test-fn-2 
-                        :to-have-been-called-with "hello" 2)))
 (describe "Calls cut" ;;
           (before-each (spy-on 'websocket-send-text) 
                        (spy-on 'serenade--cut-selection)) 
@@ -163,7 +146,7 @@
                 (setq serenade--websocket nil) 
                 (expect   'websocket-send-text 
                           :to-have-been-called-with t res))))
-(describe "calls default commands" ;;
+(describe "calls default commands without arguments" ;;
           (before-each (spy-on 'serenade--send-completed) 
                        (spy-on 'serenade--open-file) 
                        (spy-on 'serenade--execute-default-command)) 
@@ -189,3 +172,29 @@
                 (serenade--handle-message req) 
                 (expect   'serenade--switch-tab 
                           :to-have-been-called-with 1))))
+(describe "calls custom functions" ;;
+          (before-each (spy-on 'websocket-send-text) 
+                       (defun test-fn-2 (a b)) 
+                       (spy-on 'test-fn-2) 
+                       (spy-on 'switch-to-buffer)) 
+          (it "calls the function assigned to the custom speech binding with single text argument" ;;
+              (serenade-define-speech 'global "open buffer <name>" 'switch-to-buffer) 
+              (let* ((data (ht-get* (json-parse-string (load-json-commands)) "openBufferHello2"))) 
+                (serenade--handle-message data)) 
+              (expect   'switch-to-buffer 
+                        :to-have-been-called-with "hello")) 
+          (it
+           "calls the function assigned to the custom speech binding with multiple text arguments"
+           ;;
+           (serenade-define-speech 'global "open buffer <name> <direction>" 'test-fn-2) 
+           (let* ((data (ht-get* (json-parse-string (load-json-commands)) "openBufferIndexLeft"))) 
+             (serenade--handle-message data)) 
+           (expect   'test-fn-2 
+                     :to-have-been-called-with "index" "left")) 
+          (it
+           "calls the function assigned to the custom speech binding with text argument and number argument" ;;
+           (serenade-define-speech 'global "open buffer <name> <n>" 'test-fn-2) 
+           (let* ((data (ht-get* (json-parse-string (load-json-commands)) "openBufferHello3"))) 
+             (serenade--handle-message data)) 
+           (expect   'test-fn-2 
+                     :to-have-been-called-with "hello" 2)) )
