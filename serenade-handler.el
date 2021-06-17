@@ -28,7 +28,7 @@
           ((equal type "COMMAND_TYPE_DIFF") 
            (if serenade-buffer (serenade--diff command))) 
           ((equal type "COMMAND_TYPE_CUSTOM") nil)
-          ;; custom commands are sent with both COMMAND_TYPE_CUSTOM and COMMAND_TYPE_EVALUATE_IN_PLUGIN, so ignore the first these
+          ;; custom commands are sent with both COMMAND_TYPE_CUSTOM and COMMAND_TYPE_EVALUATE_IN_PLUGIN, so ignore the first of these.
           ((cond ((equal type "COMMAND_TYPE_EVALUATE_IN_PLUGIN") 
                   (serenade--evaluate-in-plugin command)) 
                  ((equal type "COMMAND_TYPE_COPY") 

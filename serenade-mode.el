@@ -29,7 +29,6 @@
 (require 'serenade-lines)
 (require 'serenade-helm)
 (require 'serenade-keys-patch)
-(require 'serenade-spacemacs)
 (require 'serenade-synchronize)
 (require 'serenade-editor-functions)
 

@@ -1,7 +1,7 @@
 (require 'serenade-log)
 
 (defun serenade--get-editor-state (callback limited)
-  ;; This function responds to a get-editor state command with callback-id CALLBACK. If LIMITED Is true it sends only the file name.
+  ;; This function responds to a get-editor-state command with callback-id CALLBACK. If LIMITED Is true it sends only the file name.
   (serenade--info (concat "buffer file name: "(buffer-file-name))) 
   (let* ((filename (if (buffer-file-name) 
                        (-last-item (s-split "/" (buffer-file-name))) "")) 
