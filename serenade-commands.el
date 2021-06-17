@@ -107,7 +107,7 @@
 (defun serenade--find-in-global-map (speech) 
   (ht-get* serenade-speech-maps "global" speech))
 
-(defun serenade-helm-commands () 
+(defun serenade-helm-commands ()
   ;; This function provide all current speech bindings in a helm buffer.
   (interactive) 
   (helm :sources (helm-build-sync-source "serenade" 

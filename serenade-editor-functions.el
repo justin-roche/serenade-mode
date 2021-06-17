@@ -39,7 +39,7 @@
                                     (buffer-list)))) matching-buffers))
 
 (defun serenade--open-file (fragment) 
-  (let* ((b (serenade--get-buffer-by-regex fragment)))
+  (let* ((b (serenade--get-buffer-by-regex fragment))) 
     (switch-to-buffer (first b))))
 
 (provide 'serenade-editor-functions)
