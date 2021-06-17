@@ -53,11 +53,6 @@
   serenade--helm-candidates)
 
 (defun serenade--helm-M-x-transformer (candidates &optional sort) 
-  "Transformer function to show bindings in emacs commands.
-Show global bindings and local bindings according to current `major-mode'.
-If SORT is non nil sort list with `helm-generic-sort-fn'.
-Note that SORT should not be used when fuzzy matching because
-fuzzy matching is running its own sort function with a different algorithm." 
   (with-helm-current-buffer 
     (cl-loop with local-map = (helm-M-x-current-mode-map-alist) for cand in candidates for local-key
              = (car (rassq cand local-map)) for key = (substitute-command-keys (format "\\[%s]"

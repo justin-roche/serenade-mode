@@ -83,7 +83,7 @@
 (diminish 'serenade-mode 
           '(:propertize "Ⓢ" 
                         face 
-                        '(:foreground "plum3")))
+                        '(:foreground "#0f1011")))
 
 (serenade--initialize-mode-maps)
 (provide 'serenade-mode)
