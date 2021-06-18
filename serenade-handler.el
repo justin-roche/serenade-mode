@@ -83,7 +83,7 @@
       (progn (funcall bound-fn)))))
 
 (defun serenade--send-completed (callback)
-  ;; Sends the completed message to serenade4 command having callback CALLBACK.
+  ;; Sends the completed message to serenade command having callback CALLBACK.
   (serenade--info "sending completed") 
   (if serenade--websocket (let* ((response (ht ("message" "callback") 
                                                ("data" (ht ("callback" callback) 

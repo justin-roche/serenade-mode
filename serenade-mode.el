@@ -26,7 +26,6 @@
 (require 'serenade-socket)
 (require 'serenade-commands)
 (require 'serenade-log)
-(require 'serenade-lines)
 (require 'serenade-helm)
 (require 'serenade-keys-patch)
 (require 'serenade-synchronize)
@@ -34,8 +33,11 @@
 
 (defface helm-serenade-command '((t :foreground "plum3" 
                                     :underline t)) 
-
   "Face for serenade helm.")
+
+(defcustom serenade-enable-double-line-numbers t 
+  "if t, serenade mode shows both relative and absolute line numbers")
+
 (defcustom serenade-mode-init-hook nil 
   "The list of functions to be called after `serenade-mode' has initialized all variables, before connecting fer for the first time." 
   :type 'hook 
@@ -46,7 +48,7 @@
   (run-hooks 'serenade-mode-init-hook) 
   (serenade--info "connecting to serenade") 
   (serenade--info (concat "evil mode" (prin1-to-string serenade-evil))) 
-  (if serenade-enable-double-line-numbers (serenade--double-line-numbers-on)) 
+  (if serenade-enable-double-line-numbers (run-hooks 'serenade-double-line-numbers-on-hook)) 
   (if serenade-sync-on-start (serenade-synchronize)) 
   (if serenade-helm-M-x (serenade--advise-helm-transformer)) 
   (serenade--connect))
@@ -57,7 +59,7 @@
 
 (defun serenade-mode--stop () 
   (serenade--info "disconnecting from serenade") 
-  (if serenade-enable-double-line-numbers (serenade--double-line-numbers-off)) 
+  (if serenade-enable-double-line-numbers(run-hooks 'serenade-double-line-numbers-off-hook) ) 
   (if serenade-helm-M-x (serenade--unadvise-helm-transformer)) 
   (serenade--disconnect))
 
