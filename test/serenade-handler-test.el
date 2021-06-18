@@ -107,8 +107,7 @@
               (create-test-buffer "test.xx" "") 
               (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff"))) 
                 (serenade--handle-message data)) 
-              (expect   'serenade--diff 
-
+              (expect   'serenade--diff
                         :not 
                         :to-have-been-called)))
 
@@ -159,7 +158,21 @@
 (describe "calls default commands with arguments" ;;
           (before-each (spy-on 'serenade--send-completed) 
                        (spy-on 'serenade--switch-tab) 
+                       (spy-on 'scroll-down-command) 
+                       (spy-on 'scroll-up-command) 
                        (spy-on 'serenade--open-file)) 
+          (it "calls default command handler for scroll" ;;
+              (let* ((req (load-request "scroll"))) 
+                (create-test-buffer "test.js" "abc") 
+                (serenade--handle-message req) 
+                (expect   'scroll-up-command 
+                          :to-have-been-called))) 
+          (it "calls default command handler for scroll down" ;;
+              (let* ((req (load-request "scrollDown"))) 
+                (create-test-buffer "test.js" "abc") 
+                (serenade--handle-message req) 
+                (expect   'scroll-up-command 
+                          :to-have-been-called))) 
           (it "calls default command handler for open <file>" ;;
               (let* ((req (load-request "openIndexjs"))) 
                 (create-test-buffer "test.js" "abc") 

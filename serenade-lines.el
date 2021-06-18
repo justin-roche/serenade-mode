@@ -21,6 +21,4 @@
   (interactive) 
   (serenade--double-line-numbers-off))
 
-;; #0f1011
-
 (provide 'serenade-lines)

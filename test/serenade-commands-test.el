@@ -15,7 +15,10 @@
                       :to-equal 'save-buffer )) 
           (it "adds items to helm map" ;;
               (expect (length (ht-items serenade-helm-map)) 
-                      :to-equal 12)))
+                      ;; subtract 1 for the homophone scroll/scroll down
+                      :to-equal (-  (length (-filter '(lambda (item) 
+                                                        (not (eq nil (cdr item))))
+                                                     serenade--global-defaults)) 1))))
 (describe "Global Custom Commands" ;;
           (before-each (serenade--clear-mode-maps)) 
           (it "adds to global speech map" ;;

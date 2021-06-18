@@ -34,6 +34,7 @@
 
 (defface helm-serenade-command '((t :foreground "plum3" 
                                     :underline t)) 
+
   "Face for serenade helm.")
 (defcustom serenade-mode-init-hook nil 
   "The list of functions to be called after `serenade-mode' has initialized all variables, before connecting fer for the first time." 
