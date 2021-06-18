@@ -4,9 +4,10 @@
 
 ## Installation
 
+[Serenade](http://www.serenade.ai)
 
-```bash
-pip install foobar
+```elisp
+(use-package serenade-mode)
 ```
 
 ## Usage
@@ -56,7 +57,7 @@ The filetypes that can be used as serenade buffers, which are buffers subject to
 "~/.serenade/scripts/"
 ```
 
-### serenade-sync-on-start
+#### serenade-sync-on-start
 
 #### serenade-evil
 
