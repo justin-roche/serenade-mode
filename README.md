@@ -108,26 +108,28 @@ This variable specifies filetypes that can be used as serenade buffers, which ar
 
 #### serenade-directory
 
-To manage custom commands, serenade-mode autogenerates javascript stored in the serenade scripts directory. The location of this directory is specfied by serenade directory with the default value:
+To manage custom commands, serenade-mode autogenerates javascript stored in the serenade scripts directory. The location of this directory is specfied by serenade-directory with the default value:
 ```elisp
 "~/.serenade/scripts/"
 ```
 
 #### serenade-sync-on-start
 
-This variable specifies whether the autogeneration of cutom javascript
+This variable specifies whether the autogeneration of custom javascript should happen each time the mode is started. Deault is true
 
 #### serenade-evil
 
-####  serenade-prompt-for-application-start 
+This specifies whether certain buffer editing commands integrate with evil or default Emacs editing commands. Default is nil.
 
-#### serenade-enable-double-line-numbers 
+####  serenade-prompt-for-application-start 
 
 #### serenade-helm-M-x
 
 ### Hooks
 
 #### serenade-double-line-numbers-on/serenade-double-line-numbers-on
+
+For voice coding it can be useful to display both relative and absolute line numbers simultaneously. Associated hooks are provided to allow customization of this operation. In Spacemacs with relative line numbers on it can be accomplished with:
 
 ```elisp
 (defun serenade--double-line-numbers-on () 
@@ -138,8 +140,13 @@ This variable specifies whether the autogeneration of cutom javascript
 (defun serenade--double-line-numbers-off () 
   (global-nlinum-mode -1))
 
-  ```
-  
+(add-hook 'serenade-double-line-numbers-off-hook 'serenade--double-line-numbers-off) 
+(add-hook 'serenade-double-line-numbers-on-hook 'serenade--double-line-numbers-on)
+
+```
+
+These hooks run if serenade--enable-double-line-numbers is true. 
+
 ## Other functions
 
 ### (serenade-helm-commands) 
