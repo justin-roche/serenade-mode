@@ -71,7 +71,7 @@ Default bindings are those that specify bindings for Serenade's built-in command
 
 ### Speech Bindings
 
-To add a speech binding to a voice map, call serenade-define-speech with the map, the speech patthern, and the associated command. If a map does not exist, it will be created.
+To add a speech binding to a voice map, call serenade-define-speech with the map, the speech pattern, and the associated command. If a map does not exist, it will be created.
 
 ```elisp
 
@@ -92,10 +92,10 @@ To add variables to the speech pattern, enclose them in brackets:
 
 It is possible to use an alist as the second argument to define-speech:
 
-``` elisp
+```elisp
 (serenade-define-speech 'org-mode '(("promote" . org-do-promote) 
                                     ("demote" . org-do-demote)))
-                                                         ```
+```
 ### Variables
 
 #### serenade-mode-filetypes 
@@ -108,11 +108,14 @@ This variable specifies filetypes that can be used as serenade buffers, which ar
 
 #### serenade-directory
 
+To manage custom commands, serenade-mode autogenerates javascript stored in the serenade scripts directory. The location of this directory is specfied by serenade directory with the default value:
 ```elisp
 "~/.serenade/scripts/"
 ```
 
 #### serenade-sync-on-start
+
+This variable specifies whether the autogeneration of cutom javascript
 
 #### serenade-evil
 
