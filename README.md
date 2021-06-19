@@ -8,9 +8,9 @@ Serenade mode is a minor mode allowing voice control of Emacs through integratio
 
 ## Installation
 
-First, download [Serenade](http://www.serenade.ai) and start the application.
+First, download Serenade and start the application.
 
-Download the source code here, add the directory to the load path, and call:
+Download the serenade-mode source code here, add the serenade-mode directory to your Emacs load path, and call:
 
 ```elisp
 (use-package serenade-mode)
@@ -24,7 +24,7 @@ To start the the mode call:
 (serenade-mode)
 ```
 
-If all goes well, you should see the active application change to "Emacs" in the Serenade application's overlay window.
+If all goes well, you should see the active application change to Emacs in the Serenade application's overlay window.
 
 ### Default bindings
 
@@ -66,12 +66,11 @@ Default bindings are those that specify bindings for Serenade's built-in command
     ( "continue" . nil)))
 ```
 
-
 ## Customization
 
 ### Speech Bindings
 
-To add a speech binding to a voice map, call serenade-define-speech with the map, the speech pattern, and the associated command. If a map does not exist, it will be created.
+To add a speech binding to a voice map, call serenade-define-speech with the symbol for the map, the speech pattern, and the associated command. If a map does not exist, it will be created.
 
 ```elisp
 
@@ -109,6 +108,7 @@ This variable specifies filetypes that can be used as serenade buffers, which ar
 #### serenade-directory
 
 To manage custom commands, serenade-mode autogenerates javascript stored in the serenade scripts directory. The location of this directory is specfied by serenade-directory with the default value:
+
 ```elisp
 "~/.serenade/scripts/"
 ```
@@ -120,8 +120,6 @@ This variable specifies whether the autogeneration of custom javascript should h
 #### serenade-evil
 
 This specifies whether certain buffer editing commands integrate with evil or default Emacs editing commands. Default is nil.
-
-####  serenade-prompt-for-application-start 
 
 #### serenade-helm-M-x
 
