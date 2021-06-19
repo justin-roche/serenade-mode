@@ -1,9 +1,16 @@
 # Serenade Mode
 
+Serenade mode is a minor mode allowing voice control of Emacs through integration of [Serenade](http://www.serenade.ai). It features:
+
+- Voice-command mapping using Elisp 
+- Three layers of speech maps (global, minor mode, and major mode)
+- Helm and Helm-M-x integration to aid in discoverability of commands 
 
 ## Installation
 
-[Serenade](http://www.serenade.ai)
+First, download [Serenade](http://www.serenade.ai) and start the application.
+
+Download the source code here, add the directory to the load path, and call:
 
 ```elisp
 (use-package serenade-mode)
@@ -11,11 +18,15 @@
 
 ## Usage
 
+To start the the mode call:
+
 ```elisp
 (serenade-mode)
 ```
 
 ### Default bindings
+
+Default bindings are those that specify bindings for Serenade's built-in commands. e map for these is found in serenade-commands.el.
 
 ```elisp
  '(
@@ -52,7 +63,6 @@
     ( "step over" . nil) 
     ( "continue" . nil)))
 ```
-
 
 ### (serenade-helm-commands) 
 
