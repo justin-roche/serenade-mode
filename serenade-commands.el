@@ -74,16 +74,22 @@
            (symbolp command)) 
       (serenade-define-speech 'global speech command)))
 
-(defun serenade-define-speech (mode speech command)
+(cl-defun 
+    serenade-define-speech
+    (mode speech &optional command)
   ;; this function associates speech pattern SPEECH with an 8lisp function COMMAND for the symbol MODE. If the speech-map provided by MODE does not exist a speech-map is created. If mode is the special symbol 'global then the binding is created for the global speech map. If a previous binding exists for the speech pattern it is overwritten.
-  (let* ((name (symbol-name mode)) 
-         (voice-map (ht-get serenade-speech-maps name ))) 
-    (if (string-equal name "global") 
-        (ht-set (ht-get serenade-speech-maps "global") speech (ht("command" command))  ) 
-      (if voice-map (ht-set voice-map speech (ht ("command" command))) 
-        (progn (ht-set serenade-speech-maps name (ht)) 
-               (ht-set (ht-get serenade-speech-maps name ) speech (ht ("command" command)))))) 
-    (if serenade-helm-M-x (serenade--update-helm-map speech command))))
+  (if (listp speech) 
+      (dolist (item speech ) 
+        (serenade-define-speech mode (car item) 
+                                (cdr item))) 
+    (let* ((name (symbol-name mode)) 
+           (voice-map (ht-get serenade-speech-maps name ))) 
+      (if (string-equal name "global") 
+          (ht-set (ht-get serenade-speech-maps "global") speech (ht("command" command))  ) 
+        (if voice-map (ht-set voice-map speech (ht ("command" command))) 
+          (progn (ht-set serenade-speech-maps name (ht)) 
+                 (ht-set (ht-get serenade-speech-maps name ) speech (ht ("command" command)))))) 
+      (if serenade-helm-M-x (serenade--update-helm-map speech command)))))
 
 (defun serenade--find-voice-binding (speech) 
   (or (serenade--find-in-active-minor-maps speech) 

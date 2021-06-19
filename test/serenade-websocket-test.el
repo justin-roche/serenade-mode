@@ -4,7 +4,7 @@
 (require 'test-utils)
 
 (describe "Prompts for start on error" ;;
-          (before-each (spy-on 'serenade-start-prompt))
+          (before-each (spy-on 'serenade-start-prompt)) 
           (it "calls open socket from connect" ;;
               (setq serenade-prompt-for-application-start t) 
               (setq serenade-port 000) 

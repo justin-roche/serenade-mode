@@ -1,6 +1,5 @@
 (require 'websocket)
 (require 'serenade-desktop)
-(require 'test-utils)
 (require 'serenade-log)
 (require 'serenade-globals)
 (require 'serenade-heartbeat)
@@ -13,7 +12,7 @@
 
 (defun serenade-start-prompt () 
   (if (y-or-n-p "There was a problem connecting to Serenade. Start Serenade now?") 
-      (serenade--start-application)
+      (serenade--start-application) 
     (serenade-mode -1)))
 
 (defun serenade--open-socket () 

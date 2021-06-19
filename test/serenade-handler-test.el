@@ -2,8 +2,8 @@
 (require 'ht)
 (require 'serenade-handler)
 (require 'json)
-(require 'evil)
 (require 'test-utils)
+(require 'evil)
 
 (describe "calls get editor state" ;;
           (before-each (spy-on 'serenade--get-editor-state) 

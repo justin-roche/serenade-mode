@@ -24,7 +24,7 @@ To start the the mode call:
 (serenade-mode)
 ```
 
-If all goes well, you should see the active application change to "Emacs" in the Serenade applications overlay window.
+If all goes well, you should see the active application change to "Emacs" in the Serenade application's overlay window.
 
 ### Default bindings
 
@@ -125,6 +125,8 @@ This specifies whether certain buffer editing commands integrate with evil or de
 
 #### serenade-helm-M-x
 
+If true, serenade-mode advices helm-M-x so that speech patterns appear beside the keybinding for M-x commands.
+
 ### Hooks
 
 #### serenade-double-line-numbers-on/serenade-double-line-numbers-on
@@ -151,7 +153,11 @@ These hooks run if serenade--enable-double-line-numbers is true.
 
 ### (serenade-helm-commands) 
 
+This function displays all the currently bound serenade-mode commands in a helm buffer.
+
 ### (serenade--log-open-log)
+
+This function displays the log for serenade-mode.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
@@ -160,5 +166,3 @@ Please make sure to update tests as appropriate.
 
 ## License
 GNU General Public License
-
-<!-- [MIT](https://choosealicense.com/licenses/mit/) -->

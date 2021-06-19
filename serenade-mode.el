@@ -31,7 +31,7 @@
 (require 'serenade-synchronize)
 (require 'serenade-editor-functions)
 
-(defface helm-serenade-command '((t :foreground "plum3" 
+(defface helm-serenade-command '((t :foreground "#CD009600CD00" 
                                     :underline t)) 
   "Face for serenade helm.")
 
@@ -83,9 +83,10 @@
   (serenade-mode-toggle))
 
 (diminish 'serenade-mode 
-          '(:propertize "Ⓢ" 
-                        face 
-                        '(:foreground "#0f1011")))
+          '(:propertize "Ⓢ"
+                        face
+                        ;; '(:foreground "#0f1011")))
+                        '(:foreground "#CD009600CD00")))
 
 (serenade--initialize-mode-maps)
 (provide 'serenade-mode)

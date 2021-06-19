@@ -1,6 +1,6 @@
 
-(require 'serenade-mode)
 (require 'test-utils)
+(require 'serenade-mode)
 (require 'serenade-socket)
 (setq lexical-binding t)
 

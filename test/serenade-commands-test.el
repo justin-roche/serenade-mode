@@ -14,7 +14,7 @@
               (expect (ht-get* serenade-speech-maps "global" "save" "command") 
                       :to-equal 'save-buffer )) 
           (it "adds items to helm map" ;;
-              (expect (length (ht-items serenade-helm-map)) 
+              (expect (length (ht-items serenade-helm-map))
                       ;; subtract 1 for the homophone scroll/scroll down
                       :to-equal (-  (length (-filter '(lambda (item) 
                                                         (not (eq nil (cdr item))))
@@ -54,6 +54,15 @@
                       :to-equal 1) 
               (expect (ht-get*  (serenade--get-global-map) "uncomment region"  "command") 
                       :to-equal 'uncomment-region )))
+(describe "Define-speech" ;;
+          (before-each (serenade--initialize-mode-maps)) 
+          (it "define-speech can be called with a list" ;;
+              (progn (serenade-define-speech 'org-mode '(("a" . b) 
+                                                         ("c" . d)))) 
+              (expect(ht-get* serenade-speech-maps "org-mode"  "a" "command") 
+                     :to-equal 'b) 
+              (expect(ht-get* serenade-speech-maps "org-mode"  "c" "command") 
+                     :to-equal 'd)))
 
 (describe "Mode Custom Commands" ;;
           (before-each (serenade--initialize-mode-maps)) 
