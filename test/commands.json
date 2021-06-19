@@ -2499,19 +2499,19 @@
                 "execute": {
                     "commands": [
                         {
-                            "text": "(\"snippet <name> of <args>\" or of hello )",
+                            "text": "(\"snippet <name> of <args>\" or hello )",
                             "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN"
                         }
                     ],
                     "commandsList": [
                         {
-                            "text": "(\"snippet <name> of <args>\" or of hello )",
+                            "text": "(\"snippet <name> of <args>\" or hello )",
                             "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN"
                         }
                     ]
                 }
             },
-            "callback": "178ca61d-c4cb-4c8d-86b2-1bdf0b93fd35"
+            "callback": "247b16e1-8c43-4797-b3a3-b7473f6efda9"
         },
         "message": "response"
     }

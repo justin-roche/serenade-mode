@@ -71,4 +71,3 @@
               (expect   (serenade--generate-combined-text) 
                         :to-equal
                         "let emacs = serenade.app(\"Emacs\"); let emacsCommands = {};function addEmacsCommands() { for (const [commandName, command] of Object.entries(emacsCommands)) { serenade.app(\"emacs\").command(commandName, async (api, matches) => { await api.evaluateInPlugin(emacsCommands[commandName]); }); } } addEmacsCommands();serenade.app(\"emacs\").command(`b <%z%> <%x%>`, async (api, matches) => { api.evaluateInPlugin(`(\"b <z> <x>\" ${matches.z} ${matches.x} )`) });")))
-
