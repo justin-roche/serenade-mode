@@ -27,6 +27,7 @@
 (require 'serenade-commands)
 (require 'serenade-log)
 (require 'serenade-helm)
+(require 'serenade-snippet)
 (require 'serenade-keys-patch)
 (require 'serenade-synchronize)
 (require 'serenade-editor-functions)

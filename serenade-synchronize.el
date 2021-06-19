@@ -33,15 +33,6 @@
   (format "\"%s\":\"(\\\"%s\\\")\"," (car speech-and-command) 
           (car speech-and-command)))
 
-(defun serenade--format-speech-matches (speech-and-command)
-  ;; Format the matches used in registering a custom command name for serenade.
-  (let* ((sp (s-match-strings-all "<\\(.+?\\\)>" (car speech-and-command))) 
-         (form  (s-join " "(-map '(lambda (match) 
-                                    (format "%s"(format "<%%%s%%>" (nth 1 match)))) sp)))) form))
-
-(defun serenade--format-speech (speech-and-command) 
-  (s-trim (first (s-split "<" (car speech-and-command) ))))
-
 (defun serenade--format-command-call (speech-and-command) 
   (let* ((trimmed (concat "\""(nth 0 speech-and-command) "\""))) trimmed))
 
@@ -51,14 +42,16 @@
                                               (format "${matches.%s}"  (nth 1 match))) sp) " ")))
     form))
 
+(defun serenade--format-registered-name (speech-and-command) 
+  (let* ((name (car speech-and-command)) 
+         (rr (s-replace "<" "<%"(s-replace ">" "%>" name ))))rr))
+
 (defun serenade--format-command-with-named-slots (speech-and-command) 
   (format
-   "serenade.app(\"emacs\").command(`%s %s`, async (api, matches) => { api.evaluateInPlugin(`(%s %s )`) });"
-   (serenade--format-speech speech-and-command)
-   (serenade--format-speech-matches speech-and-command) 
+   "serenade.app(\"emacs\").command(`%s`, async (api, matches) => { api.evaluateInPlugin(`(%s %s )`) });"
+   (serenade--format-registered-name speech-and-command)
    (serenade--format-command-call speech-and-command) 
    (serenade--format-call-matches speech-and-command)))
-
 (defun serenade--format-command (speech-and-command)
   ;; determine command type and add to appropriate command list
   (cond ((s-match "<.+>" (car speech-and-command )) 

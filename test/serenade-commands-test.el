@@ -8,7 +8,7 @@
 (describe "Default Global Builtin Commands" ;;
           (before-each (serenade--clear-mode-maps) 
                        (setq serenade--add-custom-global-defaults nil ) 
-                       (serenade--initialize-mode-maps))
+                       (serenade--initialize-mode-maps)) 
           (it "contains builtin commands in global speech map" ;;
               (expect (length (ht-items (serenade--get-global-map))) 
                       :to-equal (length serenade--builtin-global-defaults)) 
