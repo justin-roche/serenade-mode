@@ -115,7 +115,7 @@ To manage custom commands, serenade-mode autogenerates javascript stored in the 
 
 #### serenade-sync-on-start
 
-This variable specifies whether the autogeneration of custom javascript should happen each time the mode is started. Deault is true
+This variable specifies whether the autogeneration of custom javascript should happen each time the mode is started. Deault is true.
 
 #### serenade-evil
 

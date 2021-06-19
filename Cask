@@ -12,6 +12,7 @@
 (depends-on "evil")
 (depends-on "s")
 (depends-on "winum")
+(depends-on "yasnippet")
 (depends-on "diminish")
 
 ;; (depends-on "el-mock")

@@ -9,7 +9,7 @@
           (it "initializes maps" ;;
               ;; (serenade-mode)
               (expect (length (ht-items (serenade--get-global-map))) 
-                      :to-equal (length serenade--global-defaults))))
+                      :to-equal (+ (length serenade--custom-global-defaults)(length serenade--builtin-global-defaults)))))
 (describe "Mode initialization" ;;
           (before-each (spy-on 'serenade-mode--start) 
                        (spy-on 'serenade-mode--stop)) 
@@ -24,10 +24,10 @@
                       :to-have-been-called)))
 (describe "Start function" ;;
           (before-each (spy-on 'serenade--initialize-mode-maps) 
-                       (spy-on 'serenade-synchronize)) 
+                       (spy-on 'serenade--synchronize)) 
           (it "calls sync function" ;;
               (serenade-mode) 
-              (expect 'serenade-synchronize 
+              (expect 'serenade--synchronize 
                       :to-have-been-called)))
 (describe "Connection start" ;;
           (before-each  (spy-on 'serenade--connect) ) 
