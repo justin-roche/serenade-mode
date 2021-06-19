@@ -24,9 +24,11 @@ To start the the mode call:
 (serenade-mode)
 ```
 
+If all goes well, you should see the active application change to "Emacs" in the Serenade applications overlay window.
+
 ### Default bindings
 
-Default bindings are those that specify bindings for Serenade's built-in commands. e map for these is found in serenade-commands.el.
+Default bindings are those that specify bindings for Serenade's built-in commands. The map for these is found in serenade-commands.el.
 
 ```elisp
  '(
@@ -64,13 +66,12 @@ Default bindings are those that specify bindings for Serenade's built-in command
     ( "continue" . nil)))
 ```
 
-### (serenade-helm-commands) 
-
-### (serenade--log-open-log)
 
 ## Customization
 
 ### Speech Bindings
+
+To add a speech binding to a voice map, call serenade-define-speech with the map, the speech patthern, and the associated command. If a map does not exist, it will be created.
 
 ```elisp
 
@@ -82,20 +83,28 @@ Default bindings are those that specify bindings for Serenade's built-in command
    (serenade-define-speech 'org-mode "promote" 'org-do-promote) 
 ```
 
+To add variables to the speech pattern, enclose them in brackets: 
+
 ```elisp
 
    (serenade-define-speech 'global "open buffer <name>" 'switch-to-buffer) 
 ```
 
+It is possible to use an alist as the second argument to define-speech:
+
+``` elisp
+(serenade-define-speech 'org-mode '(("promote" . org-do-promote) 
+                                    ("demote" . org-do-demote)))
+                                                         ```
 ### Variables
 
 #### serenade-mode-filetypes 
 
+This variable specifies filetypes that can be used as serenade buffers, which are buffers subject to Serenade's editing operations. By default this includes all the filetypes Serenade handles, with the addition of Elisp files. 
+
 ```elisp
   '("js" "py" "c" "h" "cpp" "cc" "cxx" "c++" "hpp" "hh" "hxx" "h++""cs""css" "scss""dart" "go" "html" "vue" "svelte" "java" "js" "jsx" "jsx" "js""jsx" "js" "kt" "py" "rb" "rs" "scss" "sh" "bash" "ts" "tsx" "tsx" "ts""vue" "html" "el")
 ```
-  
-The filetypes that can be used as serenade buffers, which are buffers subject to the diff operation."
 
 #### serenade-directory
 
@@ -127,6 +136,12 @@ The filetypes that can be used as serenade buffers, which are buffers subject to
   (global-nlinum-mode -1))
 
   ```
+  
+## Other functions
+
+### (serenade-helm-commands) 
+
+### (serenade--log-open-log)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
