@@ -27,4 +27,8 @@
   (if serenade-evil (evil-normal-state)) 
   (goto-char cursor))
 
+(defun serenade--after-edit () 
+  (if (eq major-mode 'js2-mode) 
+      (js2-reparse)))
+
 (provide 'serenade-buffer)

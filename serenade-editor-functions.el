@@ -1,5 +1,5 @@
 
-(defvar serenade-evil nil 
+(defvar serenade-evil t 
   "If true, use evil commands where possible for default commands")
 
 (defun serenade--select-target (min max) 

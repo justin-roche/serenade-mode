@@ -14,6 +14,7 @@
     (if transcript (serenade--info (concat "received command: " transcript))) 
     (dolist (command command-list ) 
       (serenade--handle-command command message callback)) 
+    (serenade--after-edit) 
     (if serenade--websocket (serenade--send-completed callback))))
 
 (defun serenade--handle-command (command message callback)
@@ -71,16 +72,18 @@
   (let* ((command-text (ht-get* command "text")) 
          (command-as-list (eval (car (read-from-string (concat "'"command-text))))) 
          (speech-binding (car command-as-list) ) 
-         (found-command  (serenade--find-voice-binding speech-binding)) 
-         (bound-fn (ht-get* found-command "command"))) 
-    (if-let   ((args (cdr command-as-list) ) 
-               (converted-args (-map '(lambda (item)
-                                        ;; todo: handle ordinals
-                                        ;; If the argument is a symbol return the symbol, accounting for numbers. Otherwise return the name of the symbol, accounting for strings.
-                                        (if (eq 'symbol (type-of item)) 
-                                            (symbol-name item) item)) args) )) 
-        (apply bound-fn converted-args) 
-      (progn (funcall bound-fn)))))
+         (found-command  (serenade--find-voice-binding speech-binding))) 
+    (if (not found-command) 
+        (message (concat "no command found for \"" speech-binding "\"" )) 
+      (let* (( bound-fn (ht-get* found-command "command")))
+        (if-let   ((args (cdr command-as-list) ) 
+                   (converted-args (-map '(lambda (item)
+                                            ;; todo: handle ordinals
+                                            ;; If the argument is a symbol return the symbol, accounting for numbers. Otherwise return the name of the symbol, accounting for strings.
+                                            (if (eq 'symbol (type-of item)) 
+                                                (symbol-name item) item)) args) )) 
+            (apply bound-fn converted-args) 
+          (funcall bound-fn))))))
 
 (defun serenade--send-completed (callback)
   ;; Sends the completed message to serenade command having callback CALLBACK.
