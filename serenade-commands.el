@@ -79,13 +79,14 @@
       (dolist (item speech ) 
         (serenade-global-set-speech (car item) 
                                     (cdr item)))) 
-  (if (and (symbolp speech) 
-           (not command)) 
-      (let* ((split-command  (s-replace  "-" " " (symbol-name speech)))) 
-        (serenade-global-set-speech split-command speech))) 
-  (if (and (stringp speech) 
-           (symbolp command)) 
-      (serenade-define-speech 'global speech command)))
+  (serenade-define-speech 'global speech command))
+
+(defun serenade-auto-define-speech (mode command-or-list) 
+  (if (listp command-or-list) 
+      (dolist (command command-or-list ) 
+        (serenade-auto-define-speech mode command)) 
+    (let* ((split-command  (s-replace  "-" " " (symbol-name command-or-list)))) 
+      (serenade-define-speech mode split-command command-or-list))))
 
 (cl-defun 
     serenade-define-speech
@@ -135,3 +136,5 @@
         :buffer "*helm serenade*"))
 
 (provide 'serenade-commands)
+
+(serenade-auto-define-speech 'global '(uncomment-region clear-buffer))

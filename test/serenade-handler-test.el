@@ -1,4 +1,3 @@
-;; (setq lexical-binding t)
 (require 'ht)
 (require 'serenade-handler)
 (require 'json)
@@ -31,7 +30,8 @@
                 (serenade--handle-message req)) 
               (expect (point) 
                       :to-equal 11)) 
-          (it "selects lines by number" ;;
+          (it "selects lines by number in non-evil" ;;
+              (setq serenade-evil nil) 
               (create-test-buffer "test6.js" "let x = 1\n let y = 2") 
               (let* ((req (load-request "selectLine2"))) 
                 (serenade--handle-message req)) 
@@ -107,7 +107,8 @@
               (create-test-buffer "test.xx" "") 
               (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff"))) 
                 (serenade--handle-message data)) 
-              (expect   'serenade--diff
+              (expect   'serenade--diff 
+
                         :not 
                         :to-have-been-called)))
 

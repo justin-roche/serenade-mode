@@ -67,13 +67,7 @@
               (expect (ht-get*  (serenade--get-global-map) "e"  "command") 
                       :to-equal 'f ) 
               (expect (ht-get*  (serenade--get-global-map) "g"  "command") 
-                      :to-equal 'h )) 
-          (it "determines speech value when command only is provided" ;;
-              (serenade-global-set-speech 'uncomment-region) 
-              (expect (length (ht-items (serenade--get-global-map))) 
-                      :to-equal 1) 
-              (expect (ht-get*  (serenade--get-global-map) "uncomment region"  "command") 
-                      :to-equal 'uncomment-region )))
+                      :to-equal 'h )))
 (describe "Define-speech" ;;
           (before-each (serenade--initialize-mode-maps)) 
           (it "define-speech can be called with a list" ;;
@@ -83,7 +77,22 @@
                      :to-equal 'b) 
               (expect(ht-get* serenade-speech-maps "org-mode"  "c" "command") 
                      :to-equal 'd)))
-
+(describe "Auto-define-speech" ;;
+          (before-each (serenade--clear-mode-maps))
+          (it "determines speech value when one command only is provided" ;;
+              (serenade-auto-define-speech 'global 'uncomment-region)
+              (expect (length (ht-items (serenade--get-global-map)))
+                      :to-equal 1)
+              (expect (ht-get*  (serenade--get-global-map) "uncomment region"  "command")
+                      :to-equal 'uncomment-region ))
+          (it "determines speech value when multiple commands are provided" ;;
+              (serenade-auto-define-speech 'global '(uncomment-region clear-buffer)) 
+              (expect (length (ht-items (serenade--get-global-map))) 
+                      :to-equal 2) 
+              (expect (ht-get*  (serenade--get-global-map) "clear buffer"  "command") 
+                      :to-equal 'clear-buffer ) 
+              (expect (ht-get*  (serenade--get-global-map) "uncomment region"  "command") 
+                      :to-equal 'uncomment-region )))
 (describe "Mode Custom Commands" ;;
           (before-each (serenade--initialize-mode-maps)) 
           (it "adds to existing mode voice maps" ;;

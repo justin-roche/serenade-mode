@@ -43,12 +43,18 @@
   "The list of functions to be called after `serenade-mode' has initialized all variables, before connecting fer for the first time." 
   :type 'hook 
   :group 'serenade-mode)
-(setq serenade--auto-set-evil nil )
+(setq serenade--auto-set-evil t )
+
+(defun serenade--set-evil () 
+  (if (eq evil-mode t) 
+      (setq serenade-evil t) 
+    (setq serenade-evil nil ) ))
 
 (defun serenade-mode--start () 
   (run-hooks 'serenade-mode-init-hook) 
   (serenade--info "connecting to serenade") 
   (serenade--info (concat "evil mode" (prin1-to-string serenade-evil))) 
+  (if serenade--auto-set-evil (serenade--set-evil)) 
   (if serenade-enable-double-line-numbers (run-hooks 'serenade-double-line-numbers-on-hook)) 
   (if serenade-sync-on-start (serenade--synchronize)) 
   (if serenade-helm-M-x (serenade--advise-helm-transformer)) 

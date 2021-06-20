@@ -23,7 +23,7 @@
   (if serenade-evil (evil-insert-state)) 
   (delete-region (point-min) 
                  (point-max)) 
-  (insert source) 
+  (if source (insert source)) 
   (if serenade-evil (evil-normal-state)) 
   (goto-char cursor))
 

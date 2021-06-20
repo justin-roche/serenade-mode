@@ -22,7 +22,6 @@
 
 (provide 'serenade-snippet)
 
-
 ;; (defun jr/update-test ()
 ;;   (insert "let")
 ;;   (js2-reparse))
