@@ -78,13 +78,13 @@
               (expect(ht-get* serenade-speech-maps "org-mode"  "c" "command") 
                      :to-equal 'd)))
 (describe "Auto-define-speech" ;;
-          (before-each (serenade--clear-mode-maps))
+          (before-each (serenade--clear-mode-maps)) 
           (it "determines speech value when one command only is provided" ;;
-              (serenade-auto-define-speech 'global 'uncomment-region)
-              (expect (length (ht-items (serenade--get-global-map)))
-                      :to-equal 1)
-              (expect (ht-get*  (serenade--get-global-map) "uncomment region"  "command")
-                      :to-equal 'uncomment-region ))
+              (serenade-auto-define-speech 'global 'uncomment-region) 
+              (expect (length (ht-items (serenade--get-global-map))) 
+                      :to-equal 1) 
+              (expect (ht-get*  (serenade--get-global-map) "uncomment region"  "command") 
+                      :to-equal 'uncomment-region )) 
           (it "determines speech value when multiple commands are provided" ;;
               (serenade-auto-define-speech 'global '(uncomment-region clear-buffer)) 
               (expect (length (ht-items (serenade--get-global-map))) 
@@ -105,29 +105,44 @@
 
 (describe "Finding voice bindings" ;;
           (before-each 
-           (setq minor-mode-map-alist '()) 
+           (setq minor-mode-map-alist '((rjsx-mode nil) 
+                                        (edebug-mode nil))) 
+           (setq edebug-mode t) 
+           (setq rjsx-mode nil) 
+           (setq major-mode 'org-mode ) 
+           (setq org-mode t ) 
            (serenade--initialize-mode-maps) ) 
           (it "finds voice binding for minor mode" ;;
-              (progn (serenade-define-speech 'edebug-mode "a" 'b)) 
-              (setq minor-mode-map-alist '((edebug-mode nil))) 
+              (progn (serenade-define-speech 'edebug-mode "a" 'c)) 
               (expect (ht-get* (serenade--find-voice-binding "a") "command") 
-                      :to-equal 'b)) 
+                      :to-equal 'c)) 
           (it "finds voice binding for major mode" ;;
-              (progn (serenade-define-speech 'edebug-mode "a" 'b)) 
-              (setq major-mode 'edebug-mode ) 
+              (progn (serenade-define-speech 'org-mode "a" 'b)) 
               (expect (ht-get* (serenade--find-voice-binding "a") "command") 
                       :to-equal 'b)) 
           (it "finds voice binding for minor mode before major mode" ;;
-              (progn (serenade-define-speech 'edebug-mode "a" 'b) 
-                     (serenade-define-speech 'org-mode "a" 'c)) 
-              (setq minor-mode-map-alist '((org-mode nil))) 
-              (defun major-mode () 
-                'edebug-mode) 
+              (progn (serenade-define-speech 'edebug-mode "a" 'c) 
+                     (serenade-define-speech 'org-mode "a" 'b)) 
               (expect (ht-get* (serenade--find-voice-binding "a") "command") 
                       :to-equal 'c)) 
+          (it "finds voice binding for active minor mode before inactive minor mode" ;;
+              (progn (serenade-define-speech 'edebug-mode "a" 'y) 
+                     (serenade-define-speech 'rjsx-mode "a" 'z)) 
+              (expect (ht-get* (serenade--find-voice-binding "a") "command") 
+                      :to-equal 'y)) 
+          (it "finds voice binding for major mode before inactive minor mode" ;;
+              (progn  
+                (serenade-define-speech 'org-mode "a" 'p)
+                     (serenade-define-speech 'rjsx-mode "a" 'z)) 
+              (expect (ht-get* (serenade--find-voice-binding "a") "command") 
+                      :to-equal 'p))
           (it "finds voice binding for minor mode before global mode" ;;
               (progn (serenade-define-speech 'edebug-mode "a" 'b) 
                      (serenade-global-set-speech "a" 'c)) 
-              (setq minor-mode-map-alist '((edebug-mode nil))) 
               (expect (ht-get* (serenade--find-voice-binding "a") "command") 
-                      :to-equal 'b)))
+                      :to-equal 'b)) 
+          (it "finds voice binding for major mode before global mode" ;;
+              (progn (serenade-define-speech 'org-mode "a" 'd) 
+                     (serenade-global-set-speech "a" 'c)) 
+              (expect (ht-get* (serenade--find-voice-binding "a") "command") 
+                      :to-equal 'd)))

@@ -34,7 +34,7 @@
               (serenade-define-speech 'global "a" 'b) 
               ( serenade--format-commands ) 
               (expect   (length serenade--formatted-commands--no-slots) 
-                        :to-equal 1)))
+                        :to-equal 3)))
 
 (describe "formats commands with named arguments " ;;
           (before-each (reset-maps)) 

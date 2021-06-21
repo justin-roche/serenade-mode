@@ -90,9 +90,8 @@
   (serenade-mode-toggle))
 
 (diminish 'serenade-mode 
-          '(:propertize "Ⓢ"
-                        face
-                        ;; '(:foreground "#0f1011")))
+          '(:propertize "Ⓢ" 
+                        face 
                         '(:foreground "#CD009600CD00")))
 
 (serenade--initialize-mode-maps)

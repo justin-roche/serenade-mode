@@ -39,17 +39,7 @@
 
 (defun serenade--get-helm-candidates-restricted (voice-maps) 
   (setq serenade--helm-candidates '()) 
-  (ht-each '(lambda (key value) 
-              (ht-each '(lambda (speech binding) 
-                          (let* ((command (ht-get* binding "command"))) 
-                            (setq serenade--helm-candidates (append serenade--helm-candidates (list
-                                                                                               (format
-                                                                                                "%s %s"
-                                                                                                command
-                                                                                                (propertize
-                                                                                                 speech
-                                                                                                 'face
-                                                                                                 'helm-serenade-command))))))) value)) voice-maps)
+  (ht-each '(lambda (key value)) voice-maps)
   serenade--helm-candidates)
 
 (defun serenade--helm-M-x-transformer (candidates &optional sort) 
