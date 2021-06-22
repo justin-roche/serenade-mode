@@ -31,40 +31,40 @@ Default bindings are those that specify bindings for Serenade's built-in command
 
 | Voice Binding       | Description                  |
 |:--------------------|:-----------------------------|
-| ~close tab~         | delete-window                |
-| ~undo~              | serenade--undo               |
-| "copy"              | serenade--copy-selection     |
-| "cut"               | serenade--cut-selection      |
-| "select <target>"   | serenade--select-target      |
-| "undo"              | serenade--undo               |
-| "redo"              | serenade--redo               |
-| "open <file>"       | serenade--open-file          |
-| "<nth> tab"         | serenade--switch-tab         |
-| "close tab"         | delete-window                |
-| "save"              | save-buffer                  |
-| "create tab"        | split-window-right-and-focus |
-| "next tab"          | next-buffer                  |
-| "previous tab"      | previous-buffer              |
-| "scroll"            | scroll-up-command            |
-| "scroll down"       | scroll-up-command            |
-| "scroll up"         | scroll-down-command          |
-| "open file list"    | nil                          |
-| "style"             | nil                          |
-| "go to definition"  | nil                          |
-| "add breakpoint"    | nil                          |
-| "remove breakpoint" | nil                          |
-| "toggle breakpoint" | nil                          |
-| "start debug"       | nil                          |
-| "start debugging"   | nil                          |
-| "stop debug"        | nil                          |
-| "stop debugging"    | nil                          |
-| "pause debug"       | nil                          |
-| "show hover"        | nil                          |
-| "continue debug"    | nil                          |
-| "step into"         | nil                          |
-| "step out"          | nil                          |
-| "step over"         | nil                          |
-| "continue"          | nil                          |
+| close tab         | delete-window                |
+| undo              | serenade--undo               |
+| copy              | serenade--copy-selection     |
+| cut               | serenade--cut-selection      |
+| select <target>   | serenade--select-target      |
+| undo              | serenade--undo               |
+| redo              | serenade--redo               |
+| open <file>       | serenade--open-file          |
+| <nth> tab         | serenade--switch-tab         |
+| close tab         | delete-window                |
+| save              | save-buffer                  |
+| create tab        | split-window-right-and-focus |
+| next tab          | next-buffer                  |
+| previous tab      | previous-buffer              |
+| scroll            | scroll-up-command            |
+| scroll down       | scroll-up-command            |
+| scroll up         | scroll-down-command          |
+| open file list    | nil                          |
+| style             | nil                          |
+| go to definition  | nil                          |
+| add breakpoint    | nil                          |
+| remove breakpoint | nil                          |
+| toggle breakpoint | nil                          |
+| start debug       | nil                          |
+| start debugging   | nil                          |
+| stop debug        | nil                          |
+| stop debugging    | nil                          |
+| pause debug       | nil                          |
+| show hover        | nil                          |
+| continue debug    | nil                          |
+| step into         | nil                          |
+| step out          | nil                          |
+| step over         | nil                          |
+| continue          | nil                          |
 
 ## Customization
 
