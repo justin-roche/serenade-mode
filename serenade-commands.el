@@ -1,3 +1,4 @@
+(require 'helm)
 (require 'ht)
 (require 'cl)
 (require 's)

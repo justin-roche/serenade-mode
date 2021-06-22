@@ -6,7 +6,7 @@
 ;; Version: 0.0.1
 ;; Homepage: homepage
 ;; Keywords: keywords
-;; Package-Requires: ((dash "2.18.1") (winum "2.2.0")(log4e "0.3.3")(yasnippet "0.14.0") (websocket "1.13")(s "1.12.0")(ht "2.4")   )
+;; Package-Requires: ((helm "3.6.2")(dash "2.18.1") (winum "2.2.0")(log4e "0.3.3")(yasnippet "0.14.0") (websocket "1.13")(s "1.12.0")(ht "2.4")   )
 
 ;; This file is not part of GNU Emacs
 
