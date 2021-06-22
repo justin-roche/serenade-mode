@@ -9,11 +9,10 @@
 (  depends-on "log4e")
 (depends-on "ht")
 (depends-on "dash")
-(depends-on "evil")
+
 (depends-on "s")
 (depends-on "winum")
 (depends-on "yasnippet")
-(depends-on "diminish")
+;; (depends-on "diminish")
 
-;; (depends-on "el-mock")
-(development (depends-on "buttercup"))
+(development (depends-on "evil")(depends-on "buttercup"))

@@ -60,7 +60,7 @@
               (expect  (length serenade--helm-candidates) 
                        :to-equal 1)) 
           (it "excludes global bindings" ;;
-              (serenade-define-speech 'global "c" 'd)
+              (serenade-define-speech 'global "c" 'd) 
               (serenade--get-helm-candidates-restricted serenade-speech-maps) 
               (expect  (length serenade--helm-candidates) 
                        :to-equal 1)) 
