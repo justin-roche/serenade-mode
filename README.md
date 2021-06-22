@@ -31,7 +31,7 @@ If all goes well, you should see the active application change to Emacs in the S
 Default bindings are those that specify bindings for Serenade's built-in commands. The map for these is found in serenade-commands.el.
 
 | Voice Binding       | Description                  |
-|---------------------+------------------------------|
+|----------------------------------------------------|
 | ~close tab~         | delete-window                |
 | ~undo~              | serenade--undo               |
 | "copy"              | serenade--copy-selection     |
