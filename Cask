@@ -14,7 +14,6 @@
 (depends-on "s")
 (depends-on "winum")
 (depends-on "yasnippet")
-;; (depends-on "diminish")
 
-(development (depends-on "evil")
+(development (depends-on "evil") 
              (depends-on "buttercup"))
