@@ -69,7 +69,7 @@ Default bindings are those that specify bindings for Serenade's built-in command
 
 ### Additional voice bindings
 
-The "snippet <name>" command inserts a Yasnippet snippet of that name. "snippet <name> of <arg>" autofills the first field of the snippet with <arg>.
+The "snippet \<name\>" command inserts a Yasnippet snippet of that name. "snippet <name> of <arg>" autofills the first field of the snippet with <arg>.
 
 | Voice Binding       | Description                  |
 |:--------------------|:-----------------------------|
