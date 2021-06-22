@@ -5,6 +5,7 @@ Serenade mode is a minor mode allowing voice control of Emacs through integratio
 - Voice-command mapping using Elisp 
 - Three layers of speech maps (global, minor mode, and major mode)
 - Helm and Helm-M-x integration to aid in discoverability of commands 
+- Basic Yasnippet integration
 
 ## Installation
 
@@ -26,7 +27,7 @@ To start the the mode call:
 
 If all goes well, you should see the active application change to Emacs in the Serenade application's overlay window.
 
-### Default bindings
+### Default voice bindings
 Default bindings are those that specify bindings for Serenade's built-in commands. The map for these is found in serenade-commands.el.
 
 | Voice Binding       | Description                  |
@@ -65,6 +66,17 @@ Default bindings are those that specify bindings for Serenade's built-in command
 | step out          | nil                          |
 | step over         | nil                          |
 | continue          | nil                          |
+
+### Additional voice bindings
+
+The "snippet <name>" command inserts a Yasnippet snippet of that name. "snippet <name> of <arg>" autofills the first field of the snippet with <arg>.
+
+| Voice Binding       | Description                  |
+|:--------------------|:-----------------------------|
+| "show commands" | serenade-commands  | 
+| "serenade log" | serenade-commands-log-open-log  | 
+| "snippet <name> of <arg>" | serenade--insert-yasnippet-with-args  |
+| "snippet <name>" | serenade--insert-yasnippet  |
 
 ## Customization
 
