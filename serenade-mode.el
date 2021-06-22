@@ -6,7 +6,7 @@
 ;; Version: 0.0.1
 ;; Homepage: homepage
 ;; Keywords: keywords
-;; Package-Requires: ((ac-mozc "0.0.4")(dash "2.18.1") (winum "2.2.0")(log4e "0.3.3")(yasnippet "0.14.0") (websocket "1.13")(s "1.12.0")(ht "2.4")   )
+;; Package-Requires: ((dash "2.18.1") (winum "2.2.0")(log4e "0.3.3")(yasnippet "0.14.0") (websocket "1.13")(s "1.12.0")(ht "2.4")   )
 
 ;; This file is not part of GNU Emacs
 
@@ -23,7 +23,6 @@
 ;; For a full copy of the GNU General Public License
 ;; see <http://www.gnu.org/licenses/>.
 
-(require 'diminish)
 (require 'serenade-socket)
 (require 'serenade-commands)
 (require 'serenade-log)
