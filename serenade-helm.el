@@ -3,43 +3,61 @@
 (defcustom serenade-helm-M-x t 
   "if true, display speech bindings in helm M-x")
 
-(setq serenade-helm-map (ht))
+;; helm M-x
 
-(defun serenade--update-helm-map (speech command) 
-  (if command (if-let* ((current (ht-get* serenade-helm-map (symbol-name command)))) 
+(setq serenade-helm-M-x-map (ht))
+(setq serenade--add-helm-candidate '())
+
+(defun serenade--update-helm-M-x-map (speech command) 
+  (if command (if-let* ((current (ht-get* serenade-helm-M-x-map (symbol-name command)))) 
                   (progn (if  (not (member speech (s-split "|" current t))) 
-                             (ht-set serenade-helm-map (symbol-name command) 
+                             (ht-set serenade-helm-M-x-map (symbol-name command) 
                                      (concat speech " | " current)))) 
-                (progn (ht-set serenade-helm-map (symbol-name command) speech)))))
+                (progn (ht-set serenade-helm-M-x-map (symbol-name command) speech)))))
 
-(defun serenade--helm-match (cand) 
+(defun serenade--clear-helm-M-x-map () 
+  (setq serenade-helm-M-x-map (ht)))
+
+(defun serenade--helm-M-x-match (cand) 
   (message "matching..") 
-  (if-let* ((cand  (ht-get* serenade-helm-map cand))) 
+  (if-let* ((cand  (ht-get* serenade-helm-M-x-map cand))) 
       (serenade--info (concat "matched: " cand))) 
-  (or (ht-get* serenade-helm-map cand) 
+  (or (ht-get* serenade-helm-M-x-map cand) 
       nil))
 
-(defun serenade--clear-helm-map () 
-  (setq serenade-helm-map (ht)))
+(defun serenade--add-helm-candidate (command speech)
+  ;; add a single helm candidate to the helm source
+  (setq serenade--helm-candidates (append serenade--helm-candidates (list (format "%s %s" command
+                                                                                  (propertize speech
+                                                                                              'face
+                                                                                              'helm-serenade-command))))))
 
 (defun serenade--get-helm-candidates (voice-maps) 
-  (setq serenade--helm-candidates '()) 
-  (ht-each '(lambda (key value) 
+  (setq serenade--helm-candidates '())
+
+  ;; loop over speech maps
+  (ht-each '(lambda (key value)
+              ;; loop over bindings in speech map
               (ht-each '(lambda (speech binding) 
                           (let* ((command (ht-get* binding "command"))) 
-                            (setq serenade--helm-candidates (append serenade--helm-candidates (list
-                                                                                               (format
-                                                                                                "%s %s"
-                                                                                                command
-                                                                                                (propertize
-                                                                                                 speech
-                                                                                                 'face
-                                                                                                 'helm-serenade-command))))))) value)) voice-maps)
+                            (serenade--add-helm-candidate command speech))) value)) voice-maps)
   serenade--helm-candidates)
 
-(defun serenade--get-helm-candidates-restricted (voice-maps) 
-  (setq serenade--helm-candidates '()) 
-  (ht-each '(lambda (key value)) voice-maps)
+(defun serenade--get-helm-candidates-restricted (voice-maps)
+  ;; like serenade--get-helm-candidates, except return only candidates for active maps
+  (setq serenade--helm-candidates '())
+  ;; loop over speech maps
+  (ht-each '(lambda (speech-map-name speech-map) 
+              (let* ((mode-symbol (intern-soft speech-map-name))) 
+                (if (or (string-equal speech-map-name "global")
+                        (and (boundp mode-symbol) 
+                             (symbol-value mode-symbol)))
+                    ;; loop over bindings in speech map
+                    (ht-each '(lambda (speech binding) 
+                                (let* ((command (ht-get* binding "command"))) 
+                                  (serenade--add-helm-candidate command speech))) ;;
+                             speech-map))) ) ;;
+           voice-maps)
   serenade--helm-candidates)
 
 (defun serenade--helm-M-x-transformer (candidates &optional sort) 
@@ -49,7 +67,7 @@
                                                                                        cand)) for
                                                                                        voice-command
                                                                                        =
-                                                                                       (serenade--helm-match
+                                                                                       (serenade--helm-M-x-match
                                                                                         cand) unless
                                                                                         (get (intern
                                                                                               (if
@@ -75,7 +93,7 @@
                                                                                                   'face
                                                                                                   'helm-M-x-key)
                                                                                                  (propertize
-                                                                                                  (serenade--helm-match
+                                                                                                  (serenade--helm-M-x-match
                                                                                                    cand)
                                                                                                   'face
                                                                                                   'helm-serenade-command)))
@@ -100,7 +118,7 @@
                                                                                                  "%s (%s)"
                                                                                                  cand
                                                                                                  (propertize
-                                                                                                  (serenade--helm-match
+                                                                                                  (serenade--helm-M-x-match
                                                                                                    cand)
                                                                                                   'face
                                                                                                   'helm-serenade-command)))
@@ -117,7 +135,7 @@
                                                                                                   'face
                                                                                                   'helm-M-x-key)
                                                                                                  (propertize
-                                                                                                  (serenade--helm-match
+                                                                                                  (serenade--helm-M-x-match
                                                                                                    cand)
                                                                                                   'face
                                                                                                   'helm-serenade-command)))

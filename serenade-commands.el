@@ -62,7 +62,7 @@
 
 (defun serenade--clear-mode-maps () 
   (setq serenade-speech-maps (ht("global" (ht)) ) ) 
-  (serenade--clear-helm-map))
+  (serenade--clear-helm-M-x-map))
 
 (defun serenade--get-global-map () 
   (ht-get serenade-speech-maps "global"))
@@ -105,7 +105,7 @@
         (if voice-map (ht-set voice-map speech (ht ("command" command))) 
           (progn (ht-set serenade-speech-maps name (ht)) 
                  (ht-set (ht-get serenade-speech-maps name ) speech (ht ("command" command)))))) 
-      (if serenade-helm-M-x (serenade--update-helm-map speech command)))))
+      (if serenade-helm-M-x (serenade--update-helm-M-x-map speech command)))))
 
 (defun serenade--find-voice-binding (speech) 
   (or (serenade--find-in-active-minor-maps speech) 

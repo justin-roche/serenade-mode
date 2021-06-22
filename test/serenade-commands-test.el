@@ -15,7 +15,7 @@
               (expect (ht-get* serenade-speech-maps "global" "save" "command") 
                       :to-equal 'save-buffer )) 
           (it "adds builtin items to helm map" ;;
-              (expect (length (ht-items serenade-helm-map))
+              (expect (length (ht-items serenade-helm-M-x-map))
                       ;; subtract 1 for the homophone scroll/scroll down
                       :to-equal (-  (length (-filter '(lambda (item) 
                                                         (not (eq nil (cdr item))))
@@ -35,7 +35,7 @@
               (expect (ht-get* serenade-speech-maps "global" "snippet <name>" "command") 
                       :to-equal 'serenade--insert-yasnippet )) 
           (it "adds default custom items to helm map" ;;
-              (expect (length (ht-items serenade-helm-map)) 
+              (expect (length (ht-items serenade-helm-M-x-map)) 
                       :to-equal (length (-filter '(lambda (item) 
                                                     (not (eq nil (cdr item))))
                                                  serenade--custom-global-defaults)))))
@@ -131,11 +131,10 @@
               (expect (ht-get* (serenade--find-voice-binding "a") "command") 
                       :to-equal 'y)) 
           (it "finds voice binding for major mode before inactive minor mode" ;;
-              (progn  
-                (serenade-define-speech 'org-mode "a" 'p)
+              (progn (serenade-define-speech 'org-mode "a" 'p) 
                      (serenade-define-speech 'rjsx-mode "a" 'z)) 
               (expect (ht-get* (serenade--find-voice-binding "a") "command") 
-                      :to-equal 'p))
+                      :to-equal 'p)) 
           (it "finds voice binding for minor mode before global mode" ;;
               (progn (serenade-define-speech 'edebug-mode "a" 'b) 
                      (serenade-global-set-speech "a" 'c)) 
