@@ -28,7 +28,9 @@
   (goto-char cursor))
 
 (defun serenade--after-edit () 
-  (if (or(eq major-mode 'rjsx-mode)(eq major-mode 'js2-mode)) 
+  (if (or(eq major-mode 
+             'rjsx-mode)
+         (eq major-mode 'js2-mode)) 
       (js2-reparse)))
 
 (provide 'serenade-buffer)
