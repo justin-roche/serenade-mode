@@ -82,7 +82,7 @@ The "snippet \<name\>" command inserts a Yasnippet snippet of that name. "snippe
 
 ### Speech Bindings
 
-To add a speech binding to a voice map, call serenade-define-speech with the symbol for the map, the speech pattern, and the associated command. If a map does not exist, it will be created.
+To add a speech binding to a voice map, call serenade-define-speech with the symbol for the map, the speech pattern, and the associated command. If a map does not exist, it will be created. Serenade mode must be restarted for these customizations to take effect.
 
 ```elisp
 
@@ -94,7 +94,7 @@ To add a speech binding to a voice map, call serenade-define-speech with the sym
    (serenade-define-speech 'org-mode "promote" 'org-do-promote) 
 ```
 
-To add variables to the speech pattern, enclose them in brackets: 
+To add variables to the speech pattern, enclose them in brackets. Arguments are passed in the order specified in the speech pattern. 
 
 ```elisp
 
@@ -127,7 +127,7 @@ To manage custom commands, serenade-mode autogenerates javascript stored in the 
 
 #### serenade-sync-on-start
 
-This variable specifies whether the autogeneration of custom javascript should happen each time the mode is started. Deault is true.
+This variable specifies whether the autogeneration of custom javascript should happen each time the mode is started. Default is true.
 
 #### serenade-evil
 

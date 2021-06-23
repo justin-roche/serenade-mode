@@ -21,13 +21,3 @@
       (message (concat "no snippet found for \"" name "\"" )))))
 
 (provide 'serenade-snippet)
-
-;; (defun jr/update-test ()
-;;   (insert "let")
-;;   (js2-reparse))
-
-;; (setq lsp-log-io t )
-
-;; (defun jr/test-update-timer ()
-;;   (interactive)
-;;   (run-at-time "1 sec" nil 'jr/update-test))
