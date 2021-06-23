@@ -69,14 +69,14 @@ Default bindings are those that specify bindings for Serenade's built-in command
 
 ### Additional voice bindings
 
-The "snippet \<name\>" command inserts a Yasnippet snippet of that name. "snippet <name> of <arg>" autofills the first field of the snippet with <arg>.
+The "snippet \<name\>" command inserts a Yasnippet snippet of that name. "snippet \<name\> of \<arg\>" autofills the first field of the snippet with \<arg\>.
 
 | Voice Binding       | Description                  |
 |:--------------------|:-----------------------------|
-| "show commands" | serenade-commands  | 
-| "serenade log" | serenade-commands-log-open-log  | 
-| "snippet <name> of <arg>" | serenade--insert-yasnippet-with-args  |
-| "snippet <name>" | serenade--insert-yasnippet  |
+| show commands | serenade-commands  | 
+| serenade log | serenade-commands-log-open-log  | 
+| snippet <name> of <arg> | serenade--insert-yasnippet-with-args  |
+| snippet <name> | serenade--insert-yasnippet  |
 
 ## Customization
 
@@ -141,23 +141,7 @@ If true, serenade-mode advices helm-M-x so that speech patterns appear beside th
 
 #### serenade-double-line-numbers-on/serenade-double-line-numbers-on
 
-For voice coding it can be useful to display both relative and absolute line numbers simultaneously. Associated hooks are provided to allow customization of this operation. In Spacemacs with relative line numbers on it can be accomplished with:
-
-```elisp
-(defun serenade--double-line-numbers-on () 
-  (global-display-line-numbers-mode +1) 
-  (global-nlinum-mode +1) 
-  (global-nlinum-relative-mode -1))
-  
-(defun serenade--double-line-numbers-off () 
-  (global-nlinum-mode -1))
-
-(add-hook 'serenade-double-line-numbers-off-hook 'serenade--double-line-numbers-off) 
-(add-hook 'serenade-double-line-numbers-on-hook 'serenade--double-line-numbers-on)
-
-```
-
-These hooks run if serenade--enable-double-line-numbers is true. 
+For voice coding it can be useful to display both relative and absolute line numbers simultaneously. Associated hooks are provided to allow customization of this operation. These hooks run if serenade--enable-double-line-numbers is true. 
 
 ## Other functions
 
