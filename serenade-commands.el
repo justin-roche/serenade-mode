@@ -1,6 +1,7 @@
 (require 'helm)
 (require 'ht)
 (require 'cl)
+(require 'dash)
 (require 's)
 (require 'serenade-helm)
 
@@ -142,28 +143,21 @@
         :buffer "*helm serenade*"))
 
 (defmacro serc (fn &rest args) 
-  (let* ((curried-name (intern (concat "serenade-curried->" (symbol-name fn) "->"(mapconcat '(lambda
-                                                                                               (item)
-                                                                                               ;; (debug)
-                                                                                               (cond
-                                                                                                ((eq
-                                                                                                  (type-of
-                                                                                                   item)
-                                                                                                  'string)
-                                                                                                 item)
-                                                                                                ((eq
-                                                                                                  (type-of
-                                                                                                   item)
-                                                                                                  'symbol)
-                                                                                                 (symbol-name
-                                                                                                  item))))
-                                                                                            args
-                                                                                            "--")))))
+  (let* ((formatted-args (-map '(lambda (item) 
+                                  (cond ((eq (type-of item) 'string) item) 
+                                        ((eq (type-of item) 'number) 
+                                         (number-to-string item))
+                                        ((eq (type-of item) 'symbol) 
+                                         (symbol-name item)))) args )) 
+         (curried-name (intern (concat "serenade-curried->" (symbol-name fn) "->"(mapconcat
+                                                                                  'identity
+                                                                                  formatted-args
+                                                                                  "--")))))
     (defalias  curried-name 
       `(lambda 
          (&rest 
           speech-args) 
-         ,(format "Run %s with arguments: %s" fn (mapconcat 'identity args ", ")) 
+         ,(format "Run %s with arguments: %s" fn (mapconcat 'identity formatted-args ", ")) 
          (interactive) 
          (apply ',fn (append ',args speech-args)))) 
     `(intern-soft ',curried-name )))
@@ -178,7 +172,8 @@
 ;; (defun curry-test (a b )
 ;;   (message (concat " 1"  a  "2"  b  )))
 
-;; (setq ser-xxx `(("a" . ,(serc curry-test "testing" "e"))))
+;; (setq ser-xxx `(("a" . ,(intern-soft 'serenade-curried->curry-test->message--e))))
+
 ;; ;; (message(type-of(cdr (car ser-xxx))))
 
 ;; (dolist (item ser-xxx )
