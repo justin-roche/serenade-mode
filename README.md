@@ -82,7 +82,7 @@ The "snippet \<name\>" command inserts a Yasnippet snippet of that name. "snippe
 
 ### Speech Bindings
 
-To add a speech binding to a voice map, call serenade-define-speech with the symbol for the map, the speech pattern, and the associated command. If a map does not exist, it will be created. Serenade mode must be restarted for these customizations to take effect.
+To add a speech binding to a voice map, call **serenade-define-speech** with the symbol for the map, the speech pattern, and the associated command. If a map does not exist, it will be created. Serenade mode must be restarted for these customizations to take effect.
 
 ```elisp
 
@@ -108,7 +108,7 @@ It is possible to use an alist as the second argument to define-speech:
                                     ("demote" . org-do-demote)))
 ```
 
-To aid in discoverability, lambdas are not bound in speech maps. You can instead use the provided currying macro serc within a backquoted list:
+To aid in discoverability, lambdas are not bound in speech maps. You can instead use the provided currying macro __serc__ within a backquoted list:
 
 
 ```elisp
