@@ -6,7 +6,7 @@
 
 (defun serenade--handle-message (message)
   ;; Handle a serenade MESSAGE. Iterate through the messages command list calling handle command.
-  (serenade--info (extract-json message )) 
+  (serenade--info (concat "\n" (extract-json message ))) 
   (let* ((callback (ht-get* message "data" "callback")) 
          (command-vector (ht-get* message "data" "response" "execute" "commandsList")) 
          (transcript (ht-get* message "transcript")) 
@@ -76,14 +76,19 @@
     (if (not found-command) 
         (message (concat "no command found for \"" speech-binding "\"" )) 
       (let* (( bound-fn (ht-get* found-command "command"))) 
-        (serenade--call-function-with-args bound-fn (cdr command-as-list))))))
+        (serenade--call-function-with-args bound-fn (car (cdr command-as-list)))))))
 
-(defun serenade--call-function-with-args (bound-fn args) 
-  (if args (let* ((converted-args (-map '(lambda (item)
-                                           ;; todo: handle ordinals
-                                           ;; If the argument is a symbol return the symbol, accounting for numbers. Otherwise return the name of the symbol, accounting for strings.
-                                           (if (eq 'symbol (type-of item)) 
-                                               (symbol-name item) item)) args) )) 
+(defun serenade--call-function-with-args (bound-fn args)
+  ;; parses the args which are received as alist
+  (if args (let* ((converted-args (-map '(lambda (arg ) 
+                                           (let* ((key (car arg)) 
+                                                  (value (cdr arg)))
+                                             ;; todo: handle ordinals
+                                             ;; If the argument is a symbol return the symbol, accounting for numbers. Otherwise return the name of the symbol, accounting for strings.
+                                             ;; (debug)
+                                             (if (eq 'integer (type-of value)) value (symbol-name
+                                                                                      value))) )
+                                        args)))
              (apply bound-fn converted-args)) 
     (funcall bound-fn)))
 

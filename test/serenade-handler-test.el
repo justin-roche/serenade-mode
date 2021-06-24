@@ -193,10 +193,10 @@
                        (spy-on 'switch-to-buffer)) 
           (it "calls the function assigned to the custom speech binding with single text argument" ;;
               (serenade-define-speech 'global "open buffer <name>" 'switch-to-buffer) 
-              (let* ((data (ht-get* (json-parse-string (load-json-commands)) "openBufferHello2"))) 
+              (let* ((data (ht-get* (json-parse-string (load-json-commands)) "openBufferIndex2"))) 
                 (serenade--handle-message data)) 
               (expect   'switch-to-buffer 
-                        :to-have-been-called-with "hello")) 
+                        :to-have-been-called-with "index")) 
           (it
            "calls the function assigned to the custom speech binding with multiple text arguments"
            ;;
@@ -208,7 +208,8 @@
           (it
            "calls the function assigned to the custom speech binding with text argument and number argument" ;;
            (serenade-define-speech 'global "open buffer <name> <n>" 'test-fn-2) 
-           (let* ((data (ht-get* (json-parse-string (load-json-commands)) "openBufferHello3"))) 
+           (let* ((data (ht-get* (json-parse-string (load-json-commands))
+                                 "openBufferTextAndNumber")))
              (serenade--handle-message data)) 
            (expect   'test-fn-2 
-                     :to-have-been-called-with "hello" 2)) )
+                     :to-have-been-called-with "index" 3)) )

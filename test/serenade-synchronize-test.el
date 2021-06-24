@@ -45,7 +45,7 @@
                         :to-equal 1) 
               (expect   (serenade-list-to-string serenade--formatted-commands--named-slots) 
                         :to-equal
-                        "serenade.app(\"emacs\").command(`a <%z%>`, async (api, matches) => { api.evaluateInPlugin(`(\"a <z>\" ${matches.z} )`) });"))
+                        "serenade.app(\"emacs\").command(`a <%z%>`, async (api, matches) => { api.evaluateInPlugin(`(\"a <z>\" ( (\"z\" . ${matches.z})) )`) });"))
           (it "formats a single command with multiple named arguments" ;;
               (serenade-define-speech 'global "a <z> <x>" 'b) 
               ( serenade--format-commands ) 
@@ -53,7 +53,7 @@
                         :to-equal 1) 
               (expect   (serenade-list-to-string serenade--formatted-commands--named-slots) 
                         :to-equal
-                        "serenade.app(\"emacs\").command(`a <%z%> <%x%>`, async (api, matches) => { api.evaluateInPlugin(`(\"a <z> <x>\" ${matches.z} ${matches.x} )`) });" ))
+                        "serenade.app(\"emacs\").command(`a <%z%> <%x%>`, async (api, matches) => { api.evaluateInPlugin(`(\"a <z> <x>\" ( (\"z\" . ${matches.z}) (\"x\" . ${matches.x})) )`) });"))
           (it "formats a single command with multiple noncontingous named arguments" ;;
               (serenade-define-speech 'global "a <z> of <x>" 'b) 
               ( serenade--format-commands ) 
@@ -61,7 +61,7 @@
                         :to-equal 1) 
               (expect   (serenade-list-to-string serenade--formatted-commands--named-slots) 
                         :to-equal
-                        "serenade.app(\"emacs\").command(`a <%z%> of <%x%>`, async (api, matches) => { api.evaluateInPlugin(`(\"a <z> of <x>\" ${matches.z} ${matches.x} )`) });" )))
+                        "serenade.app(\"emacs\").command(`a <%z%> of <%x%>`, async (api, matches) => { api.evaluateInPlugin(`(\"a <z> of <x>\" ( (\"z\" . ${matches.z}) (\"x\" . ${matches.x})) )`) });")))
 
 (describe "formats combined form" ;;
           (before-each (reset-maps)) 
@@ -70,4 +70,4 @@
               (serenade--format-commands) 
               (expect   (serenade--generate-combined-text) 
                         :to-equal
-                        "let emacs = serenade.app(\"Emacs\"); let emacsCommands = {};function addEmacsCommands() { for (const [commandName, command] of Object.entries(emacsCommands)) { serenade.app(\"emacs\").command(commandName, async (api, matches) => { await api.evaluateInPlugin(emacsCommands[commandName]); }); } } addEmacsCommands();serenade.app(\"emacs\").command(`b <%z%> <%x%>`, async (api, matches) => { api.evaluateInPlugin(`(\"b <z> <x>\" ${matches.z} ${matches.x} )`) });")))
+                        "let emacs = serenade.app(\"Emacs\"); let emacsCommands = {};function addEmacsCommands() { for (const [commandName, command] of Object.entries(emacsCommands)) { serenade.app(\"emacs\").command(commandName, async (api, matches) => { await api.evaluateInPlugin(emacsCommands[commandName]); }); } } addEmacsCommands();serenade.app(\"emacs\").command(`b <%z%> <%x%>`, async (api, matches) => { api.evaluateInPlugin(`(\"b <z> <x>\" ( (\"z\" . ${matches.z}) (\"x\" . ${matches.x})) )`) });")))

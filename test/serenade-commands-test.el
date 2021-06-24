@@ -172,16 +172,17 @@
               (expect(ht-get* serenade-speech-maps "global"  "a" "command") 
                      :to-equal 'serenade-curried->curry-spy-2->a--b)) 
           (it "calls functions with arguments from speech" ;;
-              (serenade-define-speech 'global `(("a" . ,(serc curry-spy-3 "a" )))) 
-              (serenade--call-function-with-args (ht-get* (serenade--find-voice-binding "a")
+              (serenade-define-speech 'global `(("a <x>" . ,(serc curry-spy-3 "p" )))) 
+              (serenade--call-function-with-args (ht-get* (serenade--find-voice-binding "a <x>")
                                                           "command")
-                                                 '( "b" ) ) 
+                                                 '( ("x" . q ) ) ) 
               (expect curry-result 
-                      :to-equal "ab")) 
+                      :to-equal "pq")) 
           (it "calls functions with multiple arguments from bindings and speech" ;;
-              (serenade-define-speech 'global `(("a" . ,(serc curry-spy-4 "a" "b" )))) 
-              (serenade--call-function-with-args (ht-get* (serenade--find-voice-binding "a")
+              (serenade-define-speech 'global `(("a <x> <y>" . ,(serc curry-spy-4 "a" "b" )))) 
+              (serenade--call-function-with-args (ht-get* (serenade--find-voice-binding "a <x> <y>")
                                                           "command") 
-                                                 '( "c" "d" ) ) 
+                                                 '(( "x" . c ) 
+                                                   ( "y" . d )) ) 
               (expect curry-result 
                       :to-equal "abcd")))

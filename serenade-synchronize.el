@@ -36,11 +36,16 @@
 (defun serenade--format-command-call (speech-and-command) 
   (let* ((trimmed (concat "\""(nth 0 speech-and-command) "\""))) trimmed))
 
-(defun serenade--format-call-matches (speech-and-command) 
+(defun serenade--format-call-matches (speech-and-command)
+  ;; generate the alist of match name to match value, by first extracting the match names, then formatting them with their substitutions
   (let* ((sp (s-match-strings-all "<\\(.+?\\\)>" (car speech-and-command))) 
          (form  (mapconcat 'identity (-map '(lambda (match) 
-                                              (format "${matches.%s}"  (nth 1 match))) sp) " ")))
-    form))
+                                              (format "(%s)"                 ;;
+                                                      (format  "\"%s\" . %s" ;;
+                                                               (nth 1 match) 
+                                                               (format "${matches.%s}" ;;
+                                                                       (nth 1 match))))) sp) " "))) 
+    (format "( %s)" form )))
 
 (defun serenade--format-registered-name (speech-and-command) 
   (let* ((name (car speech-and-command)) 
@@ -52,6 +57,7 @@
    (serenade--format-registered-name speech-and-command)
    (serenade--format-command-call speech-and-command) 
    (serenade--format-call-matches speech-and-command)))
+
 (defun serenade--format-command (speech-and-command)
   ;; determine command type and add to appropriate command list
   (cond ((s-match "<.+>" (car speech-and-command )) 
