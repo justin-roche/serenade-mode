@@ -15,22 +15,18 @@
           (setq serenade-buffer nil ))) 
     (setq serenade-buffer nil )))
 
-(defun serenade--update-buffer (source cursor)
-  ;; This function replaces the current buffer contents and cursor with the provided SOURCE and CURSOR position from the diff command.
-  (if (not serenade-evil) 
-      (undo-boundary)) 
-  (setq serenade--undo-position (point)) 
-  (if serenade-evil (evil-insert-state)) 
-  (delete-region (point-min) 
-                 (point-max)) 
-  (if source (insert source)) 
-  (if serenade-evil (evil-normal-state)) 
-  (goto-char cursor))
-
 (defun serenade--after-edit () 
   (if (or(eq major-mode 
-             'rjsx-mode)
+             'rjsx-mode) 
          (eq major-mode 'js2-mode)) 
       (js2-reparse)))
+
+(defun serenade--update-buffer (source cursor)
+  ;; This function replaces the current buffer contents and cursor with the provided SOURCE and CURSOR position from the diff command.
+  (let ((tmp-buf (generate-new-buffer " *serenade-temp*"))) 
+    (with-current-buffer tmp-buf (insert source)) 
+    (replace-buffer-contents tmp-buf) 
+    (kill-buffer tmp-buf)) 
+  (goto-char cursor))
 
 (provide 'serenade-buffer)

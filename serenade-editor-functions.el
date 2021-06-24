@@ -23,11 +23,12 @@
 
 (defun serenade--undo () 
   (if serenade-evil (evil-undo 1) 
-    (undo)) 
-  (goto-char serenade--undo-position))
+    (undo)))
 
-(defun serenade--redo () 
-  (undo-tree-redo))
+(defun serenade--redo ()
+  ;;TODO: does not return cursor position precisely
+  (if serenade-evil (evil-redo 1) 
+    (redo)))
 
 (defun serenade--switch-tab (index) 
   (winum-select-window-by-number index))
