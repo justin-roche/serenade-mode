@@ -82,6 +82,10 @@
   (with-temp-buffer (insert-file-contents "test/commands.json") 
                     (buffer-string)))
 
+(defun load-json-custom-commands () 
+  (with-temp-buffer (insert-file-contents "test/custom-commands.json") 
+                    (buffer-string)))
+
 (defun load-json-responses () 
   (with-temp-buffer (insert-file-contents "test/responses.json") 
                     (buffer-string)))

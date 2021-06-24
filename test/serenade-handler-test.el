@@ -118,7 +118,8 @@
                        (spy-on 'switch-to-buffer) 
                        (spy-on 'serenade--evaluate-in-plugin)) 
           (it "calls evaluateInPlugin if there is no valid buffer" ;;
-              (let* ((data (ht-get* (json-parse-string (load-json-commands)) "evaluateInPlugin"))) 
+              (let* ((data (ht-get* (json-parse-string (load-json-custom-commands))
+                                    "evaluateInPlugin")))
                 (create-test-buffer "test.xx" "") 
                 (serenade--handle-message data)) 
               (expect   'serenade--evaluate-in-plugin 
@@ -193,7 +194,8 @@
                        (spy-on 'switch-to-buffer)) 
           (it "calls the function assigned to the custom speech binding with single text argument" ;;
               (serenade-define-speech 'global "open buffer <name>" 'switch-to-buffer) 
-              (let* ((data (ht-get* (json-parse-string (load-json-commands)) "openBufferIndex2"))) 
+              (let* ((data (ht-get* (json-parse-string (load-json-custom-commands))
+                                    "openBufferText")))
                 (serenade--handle-message data)) 
               (expect   'switch-to-buffer 
                         :to-have-been-called-with "index")) 
@@ -201,14 +203,15 @@
            "calls the function assigned to the custom speech binding with multiple text arguments"
            ;;
            (serenade-define-speech 'global "open buffer <name> <direction>" 'test-fn-2) 
-           (let* ((data (ht-get* (json-parse-string (load-json-commands)) "openBufferIndexLeft"))) 
+           (let* ((data (ht-get* (json-parse-string (load-json-custom-commands))
+                                 "openBufferTextText")))
              (serenade--handle-message data)) 
            (expect   'test-fn-2 
                      :to-have-been-called-with "index" "left")) 
           (it
            "calls the function assigned to the custom speech binding with text argument and number argument" ;;
            (serenade-define-speech 'global "open buffer <name> <n>" 'test-fn-2) 
-           (let* ((data (ht-get* (json-parse-string (load-json-commands))
+           (let* ((data (ht-get* (json-parse-string (load-json-custom-commands))
                                  "openBufferTextAndNumber")))
              (serenade--handle-message data)) 
            (expect   'test-fn-2 

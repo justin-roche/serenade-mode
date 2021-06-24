@@ -1,0 +1,83 @@
+{
+    "openBufferText": {
+        "message": "response",
+        "data": {
+            "callback": "2c3b74c7-2691-48ad-8d6a-f354c5044551",
+            "response": {
+                "execute": {
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN",
+                            "text": "(\"open buffer <name>\" ( (\"name\" . index)) )"
+                        }
+                    ],
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN",
+                            "text": "(\"open buffer <name>\" ( (\"name\" . index)) )"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "openBufferTextAndNumber": {
+        "data": {
+            "response": {
+                "execute": {
+                    "commands": [
+                        {
+                            "text": "(\"open buffer <name> <n>\" ( (\"name\" . index) (\"n\" . 3)) )",
+                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN"
+                        }
+                    ],
+                    "commandsList": [
+                        {
+                            "text": "(\"open buffer <name> <n>\" ( (\"name\" . index) (\"n\" . 3)) )",
+                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN"
+                        }
+                    ]
+                }
+            },
+            "callback": "7a5cb05e-f41e-46f8-8a14-69b762d3f8d5"
+        },
+        "message": "response"
+    },
+    "openBufferTextText": {
+        "data": {
+            "response": {
+                "execute": {
+                    "commands": [
+                        {
+                            "text": "(\"open buffer <name> <direction>\" ( (\"name\" . \"index\") (\"direction\" . \"left\")) )",
+                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN"
+                        }
+                    ],
+                    "commandsList": [
+                        {
+                            "text": "(\"open buffer <name> <direction>\" ( (\"name\" . index) (\"direction\" . left)) )",
+                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN"
+                        }
+                    ]
+                }
+            },
+            "callback": "4b472afe-e6d0-402c-bdca-d58a84a846ff"
+        },
+        "message": "response"
+    },
+    "evaluateInPlugin": {
+        "data": {
+            "callback": "956e2039-88fd-4d35-9e71-ba42abdde6bb",
+            "response": {
+                "execute": {
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN",
+                            "limited": false
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
