@@ -132,24 +132,40 @@
 (defun serenade--find-in-global-map (speech) 
   (ht-get* serenade-speech-maps "global" speech))
 
-(defun serenade-helm-commands ()
+(cl-defun 
+    serenade-helm-commands
+    ()
   ;; This function provide all current speech bindings in a helm buffer.
   (interactive) 
   (helm :sources (helm-build-sync-source "serenade" 
                    :candidates (serenade--get-helm-candidates serenade-speech-maps)) 
         :buffer "*helm serenade*"))
 
-(defmacro serc (fn &rest arg) 
-  (let* ((curried-name (intern (concat "serenade-curried->" (symbol-name fn) "->"(mapconcat
-                                                                                  'identity arg
-                                                                                  "--")))))
+(defmacro serc (fn &rest args) 
+  (let* ((curried-name (intern (concat "serenade-curried->" (symbol-name fn) "->"(mapconcat '(lambda
+                                                                                               (item)
+                                                                                               ;; (debug)
+                                                                                               (cond
+                                                                                                ((eq
+                                                                                                  (type-of
+                                                                                                   item)
+                                                                                                  'string)
+                                                                                                 item)
+                                                                                                ((eq
+                                                                                                  (type-of
+                                                                                                   item)
+                                                                                                  'symbol)
+                                                                                                 (symbol-name
+                                                                                                  item))))
+                                                                                            args
+                                                                                            "--")))))
     (defalias  curried-name 
       `(lambda 
          (&rest 
           speech-args) 
-         ,(format "Run %s with arguments: %s" fn (mapconcat 'identity arg ", ")) 
+         ,(format "Run %s with arguments: %s" fn (mapconcat 'identity args ", ")) 
          (interactive) 
-         (apply ',fn (append ',arg speech-args)))) 
+         (apply ',fn (append ',args speech-args)))) 
     `(intern-soft ',curried-name )))
 
 (provide 'serenade-commands)
@@ -162,7 +178,7 @@
 ;; (defun curry-test (a b )
 ;;   (message (concat " 1"  a  "2"  b  )))
 
-;; (setq ser-xxx `(("a" . ,(serenade-curry curry-test "testing" "e"))))
+;; (setq ser-xxx `(("a" . ,(serc curry-test "testing" "e"))))
 ;; ;; (message(type-of(cdr (car ser-xxx))))
 
 ;; (dolist (item ser-xxx )
