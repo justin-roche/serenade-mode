@@ -69,7 +69,7 @@ Default bindings are those that specify bindings for Serenade's built-in command
 
 ### Additional voice bindings
 
-The "snippet \<name\>" command inserts a Yasnippet snippet of that name. "snippet \<name\> of \<arg\>" autofills the first field of the snippet with \<arg\>.
+The __snippet \<name\>__ command inserts a Yasnippet snippet of that name. __snippet \<name\> of \<arg\>__ autofills the first field of the snippet with \<arg\>.
 
 | Voice Binding       | Description                  |
 |:--------------------|:-----------------------------|
@@ -82,7 +82,7 @@ The "snippet \<name\>" command inserts a Yasnippet snippet of that name. "snippe
 
 ### Speech Bindings
 
-To add a speech binding to a voice map, call **serenade-define-speech** with the symbol for the map, the speech pattern, and the associated command. If a map does not exist, it will be created. Serenade mode must be restarted for these customizations to take effect.
+To add a speech binding to a voice map, call __serenade-define-speech__ with the symbol for the map, the speech pattern, and the associated command. If a map does not exist, it will be created. Serenade mode must be restarted for these customizations to take effect.
 
 ```elisp
 
