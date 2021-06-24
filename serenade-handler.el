@@ -70,22 +70,19 @@
 (defun serenade--evaluate-in-plugin (command)
   ;; This function is responsible for calling the associated function for custom commands the input text is parsed as a list and evaluated.
   (let* ((command-text (ht-get* command "text")) 
-         (command-as-list (eval (car (read-from-string (concat "'"command-text))))) 
-         (speech-binding (car command-as-list) ) 
+         (input-list (eval (car (read-from-string (concat "'"command-text))))) 
+         (speech-binding (car input-list) ) 
          (found-command  (serenade--find-voice-binding speech-binding))) 
     (if (not found-command) 
         (message (concat "no command found for \"" speech-binding "\"" )) 
-      (let* (( bound-fn (ht-get* found-command "command"))) 
-        (serenade--call-function-with-args bound-fn (car (cdr command-as-list)))))))
+      (serenade--call-function-with-args  (ht-get* found-command "command") 
+                                          (car (cdr input-list))))))
 
 (defun serenade--call-function-with-args (bound-fn args)
-  ;; parses the args which are received as alist
+  ;; parses the args which are received as alist. If the argument is a symbol return the symbol, accounting for numbers. Otherwise return the name of the symbol, accounting for strings.
   (if args (let* ((converted-args (-map '(lambda (arg ) 
                                            (let* ((key (car arg)) 
-                                                  (value (cdr arg)))
-                                             ;; todo: handle ordinals
-                                             ;; If the argument is a symbol return the symbol, accounting for numbers. Otherwise return the name of the symbol, accounting for strings.
-                                             ;; (debug)
+                                                  (value (cdr arg))) 
                                              (if (eq 'integer (type-of value)) value (symbol-name
                                                                                       value))) )
                                         args)))
