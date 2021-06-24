@@ -28,7 +28,7 @@
                                           ( "scroll" . scroll-up-command  ) 
                                           ( "scroll down" . scroll-up-command  ) 
                                           ( "scroll up" . scroll-down-command  ) 
-                                          ( "open file list" . nil) 
+                                          ( "open file list" . list-buffers) 
                                           ( "style" . nil) 
                                           ( "go to definition" . nil) 
                                           ( "add breakpoint" . nil) 
