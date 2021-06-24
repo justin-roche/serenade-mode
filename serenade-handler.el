@@ -75,15 +75,17 @@
          (found-command  (serenade--find-voice-binding speech-binding))) 
     (if (not found-command) 
         (message (concat "no command found for \"" speech-binding "\"" )) 
-      (let* (( bound-fn (ht-get* found-command "command")))
-        (if-let   ((args (cdr command-as-list) ) 
-                   (converted-args (-map '(lambda (item)
-                                            ;; todo: handle ordinals
-                                            ;; If the argument is a symbol return the symbol, accounting for numbers. Otherwise return the name of the symbol, accounting for strings.
-                                            (if (eq 'symbol (type-of item)) 
-                                                (symbol-name item) item)) args) )) 
-            (apply bound-fn converted-args) 
-          (funcall bound-fn))))))
+      (let* (( bound-fn (ht-get* found-command "command"))) 
+        (serenade--call-function-with-args bound-fn (cdr command-as-list))))))
+
+(defun serenade--call-function-with-args (bound-fn args) 
+  (if args (let* ((converted-args (-map '(lambda (item)
+                                           ;; todo: handle ordinals
+                                           ;; If the argument is a symbol return the symbol, accounting for numbers. Otherwise return the name of the symbol, accounting for strings.
+                                           (if (eq 'symbol (type-of item)) 
+                                               (symbol-name item) item)) args) )) 
+             (apply bound-fn converted-args)) 
+    (funcall bound-fn)))
 
 (defun serenade--send-completed (callback)
   ;; Sends the completed message to serenade command having callback CALLBACK.

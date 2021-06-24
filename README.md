@@ -75,8 +75,8 @@ The "snippet \<name\>" command inserts a Yasnippet snippet of that name. "snippe
 |:--------------------|:-----------------------------|
 | show commands | serenade-commands  | 
 | serenade log | serenade-commands-log-open-log  | 
-| snippet <name> of <arg> | serenade--insert-yasnippet-with-args  |
-| snippet <name> | serenade--insert-yasnippet  |
+| snippet \<name\> of <arg> | serenade--insert-yasnippet-with-args  |
+| snippet <\name\> | serenade--insert-yasnippet  |
 
 ## Customization
 

@@ -139,6 +139,31 @@
                    :candidates (serenade--get-helm-candidates serenade-speech-maps)) 
         :buffer "*helm serenade*"))
 
+(defmacro serc (fn &rest arg) 
+  (let* ((curried-name (intern (concat "serenade-curried->" (symbol-name fn) "->"(mapconcat
+                                                                                  'identity arg
+                                                                                  "--")))))
+    (defalias  curried-name 
+      `(lambda 
+         (&rest 
+          speech-args) 
+         ,(format "Run %s with arguments: %s" fn (mapconcat 'identity arg ", ")) 
+         (interactive) 
+         (apply ',fn (append ',arg speech-args)))) 
+    `(intern-soft ',curried-name )))
+
 (provide 'serenade-commands)
 
-(serenade-auto-define-speech 'global '(uncomment-region clear-buffer))
+;; (serenade-auto-define-speech 'global '(uncomment-region clear-buffer))
+;; (defun curry-test (a b c)
+
+;;   (message (concat " 1"  a  "2"  b "3" c)))
+
+;; (defun curry-test (a b )
+;;   (message (concat " 1"  a  "2"  b  )))
+
+;; (setq ser-xxx `(("a" . ,(serenade-curry curry-test "testing" "e"))))
+;; ;; (message(type-of(cdr (car ser-xxx))))
+
+;; (dolist (item ser-xxx )
+;;   (funcall (cdr item) ))
