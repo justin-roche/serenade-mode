@@ -107,6 +107,20 @@ It is possible to use an alist as the second argument to define-speech:
 (serenade-define-speech 'org-mode '(("promote" . org-do-promote) 
                                     ("demote" . org-do-demote)))
 ```
+
+To aid in discoverability, lambdas are not bound in speech maps. You can instead use the provided currying macro serc within a backquoted list:
+
+
+```elisp
+(serenade-define-speech 'org-mode `(("switch to special buffer" . ,(serc switch-to-buffer "special"))))
+                                    
+=>
+
+(serenade-define-speech 'org-mode `(("switch to special buffer" . 'serenade-curried->switch-to-buffer->special)))
+
+                                    
+```
+
 ### Variables
 
 #### serenade-mode-filetypes 
