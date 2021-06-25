@@ -1,7 +1,6 @@
-https://upload.wikimedia.org/wikipedia/commons/f/f9/Faravahar-Gold.svg
 # Serenade Mode
 
-Serenade mode is a minor mode allowing voice control of Emacs through integration of [Serenade](http://www.serenade.ai). It features:
+Serenade mode is a minor mode allowing voice control of Emacs through integration of [Serenade](http://www.serenade.ai), a tool for voice based structural code editing. Serenade-mode features:
 
 - Voice-command mapping using Elisp 
 - Configurable speech maps for global, major, an minor modes  
@@ -125,7 +124,9 @@ It is possible to use an alist as the second argument to define-speech:
                                     ("demote" . org-do-demote)))
 ```
 
-To help ensure discoverability, speech maps do not allow lambdas as bound commands. You can instead use the provided currying macro __serc__ within a backquoted list:
+### Macros
+
+To help ensure discoverability, speech maps do not allow lambdas as bound commands. You can instead use the provided currying macro __serc__ within a backquoted list, shown here with its macro expansion:
 
 
 ```elisp
@@ -139,6 +140,24 @@ To help ensure discoverability, speech maps do not allow lambdas as bound comman
 ```
 
 The currying macro is compatabile with speech pattern variables, which are applied as the final arguments to the curried function.
+
+There is also the provided __serd__ macro, which acts like a defun call but returns the symbol of the new function, allowing you to inline function definitions in the speech map.
+
+
+```elisp
+
+(serenade-define-speech 'global `(("a <n>" . ,(serd custom-fn(a) 
+                                                    (setq test-val a) )))) 
+
+=>
+
+(serenade-define-speech 'global `(("a <n>" . ,(defun custom-fn
+                                                  (a)
+                                                (interactive)
+                                                (setq test-val a)
+                                                (intern-soft 'custom-fn))))) 
+                                    
+```
 
 ### Variables
 

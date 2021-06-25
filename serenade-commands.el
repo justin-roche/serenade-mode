@@ -143,7 +143,8 @@
                    :candidates (serenade--get-helm-candidates serenade-speech-maps)) 
         :buffer "*helm serenade*"))
 
-(defmacro serc (fn &rest args) 
+(defmacro serc (fn &rest args)
+  ;; Curry the function FN with ARGS, and add the resulting function to the global namespace with a descriptive name and docstring
   (let* ((formatted-args (-map '(lambda (item) 
                                   (cond ((eq (type-of item) 'string) item) 
                                         ((eq (type-of item) 'number) 
@@ -163,19 +164,11 @@
          (apply ',fn (append ',args speech-args)))) 
     `(intern-soft ',curried-name )))
 
+(defmacro serd (name args   body )
+  ;; Define the function NAME which executes, and add the resulting function to the global namespace.
+  `(defun ,(intern-soft (symbol-name name))  ,args 
+     (interactive)
+     ,body
+     (intern-soft ',name )))
+
 (provide 'serenade-commands)
-
-;; (serenade-auto-define-speech 'global '(uncomment-region clear-buffer))
-;; (defun curry-test (a b c)
-
-;;   (message (concat " 1"  a  "2"  b "3" c)))
-
-;; (defun curry-test (a b )
-;;   (message (concat " 1"  a  "2"  b  )))
-
-;; (setq ser-xxx `(("a" . ,(intern-soft 'serenade-curried->curry-test->message--e))))
-
-;; ;; (message(type-of(cdr (car ser-xxx))))
-
-;; (dolist (item ser-xxx )
-;;   (funcall (cdr item) ))

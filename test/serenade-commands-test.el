@@ -181,8 +181,31 @@
           (it "calls functions with multiple arguments from bindings and speech" ;;
               (serenade-define-speech 'global `(("a <x> <y>" . ,(serc curry-spy-4 "a" "b" )))) 
               (serenade--call-function-with-args (ht-get* (serenade--find-voice-binding "a <x> <y>")
-                                                          "command") 
+                                                          "command")
                                                  '(( "x" . c ) 
                                                    ( "y" . d )) ) 
               (expect curry-result 
                       :to-equal "abcd")))
+(describe "Serd macro" ;;
+          (before-each (serenade--initialize-mode-maps)) 
+          (it "calls new function by provided name" ;;
+              (serenade-define-speech 'global `(("a <x> <y>" . ,(serd custom-lambda() 
+                                                                      (setq test-val 1) )))) 
+              (custom-lambda) 
+              (expect test-val 
+                      :to-equal 1)) 
+          (it "calls new function through speech map" ;;
+              (serenade-define-speech 'global `(("a" . ,(serd custom-lambda() 
+                                                              (setq test-val 1) )))) 
+              (serenade--call-function-with-args (ht-get* (serenade--find-voice-binding "a")
+                                                          "command" )nil)
+              (expect test-val 
+                      :to-equal 1)) 
+          (it "calls new function with args" ;;
+              (serenade-define-speech 'global `(("a <n>" . ,(serd custom-lambda(a) 
+                                                                  (setq test-val a) )))) 
+              (serenade--call-function-with-args (ht-get* (serenade--find-voice-binding "a <n>")
+                                                          "command" ) 
+                                                 '(( "n" . 4 ))) 
+              (expect test-val 
+                      :to-equal 4)))
