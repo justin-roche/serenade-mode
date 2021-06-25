@@ -43,13 +43,13 @@
                             (serenade--add-helm-candidate command speech))) value)) voice-maps)
   serenade--helm-candidates)
 
-(defun serenade--get-helm-candidates-restricted (voice-maps)
+(defun serenade--get-helm-active-candidates (voice-maps)
   ;; like serenade--get-helm-candidates, except return only candidates for active maps
   (setq serenade--helm-candidates '())
   ;; loop over speech maps
   (ht-each '(lambda (speech-map-name speech-map) 
               (let* ((mode-symbol (intern-soft speech-map-name))) 
-                (if (or (string-equal speech-map-name "global")
+                (if (or (string-equal speech-map-name "global") 
                         (and (boundp mode-symbol) 
                              (symbol-value mode-symbol)))
                     ;; loop over bindings in speech map

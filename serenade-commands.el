@@ -137,10 +137,19 @@
 (cl-defun 
     serenade-helm-commands
     ()
-  ;; This function provide all current speech bindings in a helm buffer.
+  ;; This function provides all current speech bindings in a helm buffer.
   (interactive) 
   (helm :sources (helm-build-sync-source "serenade" 
                    :candidates (serenade--get-helm-candidates serenade-speech-maps)) 
+        :buffer "*helm serenade*"))
+
+(cl-defun 
+    serenade-helm-active-commands
+    ()
+  ;; This function provides all current active speech bindings in a helm buffer.
+  (interactive) 
+  (helm :sources (helm-build-sync-source "serenade" 
+                   :candidates (serenade--get-helm-active-candidates serenade-speech-maps)) 
         :buffer "*helm serenade*"))
 
 (defmacro serc (fn &rest args)

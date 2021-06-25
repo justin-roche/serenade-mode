@@ -175,15 +175,15 @@
               (serenade-define-speech 'global `(("a <x>" . ,(serc curry-spy-3 "p" )))) 
               (serenade--call-function-with-args (ht-get* (serenade--find-voice-binding "a <x>")
                                                           "command")
-                                                 '( ("x" . q ) ) ) 
+                                                 '( ("x" . "q" ) ) ) 
               (expect curry-result 
                       :to-equal "pq")) 
           (it "calls functions with multiple arguments from bindings and speech" ;;
               (serenade-define-speech 'global `(("a <x> <y>" . ,(serc curry-spy-4 "a" "b" )))) 
               (serenade--call-function-with-args (ht-get* (serenade--find-voice-binding "a <x> <y>")
                                                           "command")
-                                                 '(( "x" . c ) 
-                                                   ( "y" . d )) ) 
+                                                 '(( "x" . "c" ) 
+                                                   ( "y" . "d" )) ) 
               (expect curry-result 
                       :to-equal "abcd")))
 (describe "Serd macro" ;;
@@ -206,6 +206,6 @@
                                                                   (setq test-val a) )))) 
               (serenade--call-function-with-args (ht-get* (serenade--find-voice-binding "a <n>")
                                                           "command" ) 
-                                                 '(( "n" . 4 ))) 
+                                                 '(( "n" . "4" ))) 
               (expect test-val 
                       :to-equal 4)))

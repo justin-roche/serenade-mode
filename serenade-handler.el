@@ -83,9 +83,8 @@
   (if args (let* ((converted-args (-map '(lambda (arg ) 
                                            (let* ((key (car arg)) 
                                                   (value (cdr arg))) 
-                                             (if (eq 'integer (type-of value)) value (symbol-name
-                                                                                      value))) )
-                                        args)))
+                                             (if  (s-matches? "[0-9]+" value) 
+                                                 (cl-parse-integer value) value)) ) args))) 
              (apply bound-fn converted-args)) 
     (funcall bound-fn)))
 

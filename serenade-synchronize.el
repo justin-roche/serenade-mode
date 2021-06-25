@@ -40,8 +40,8 @@
   ;; generate the alist of match name to match value, by first extracting the match names, then formatting them with their substitutions
   (let* ((sp (s-match-strings-all "<\\(.+?\\\)>" (car speech-and-command))) 
          (form  (mapconcat 'identity (-map '(lambda (match) 
-                                              (format "(%s)"                 ;;
-                                                      (format  "\"%s\" . %s" ;;
+                                              (format "(%s)" ;;
+                                                      (format  "\"%s\" . \"%s\"" ;;
                                                                (nth 1 match) 
                                                                (format "${matches.%s}" ;;
                                                                        (nth 1 match))))) sp) " "))) 

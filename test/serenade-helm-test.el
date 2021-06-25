@@ -42,13 +42,13 @@
               (serenade--get-helm-candidates serenade-speech-maps) 
               (expect  (length serenade--helm-candidates) 
                        :to-equal 1)))
-(describe "gets restricted serenade-commands list" ;;
+(describe "gets active serenade-commands list" ;;
           (before-each (setf serenade-helm-M-x-map (ht)) 
                        (serenade--clear-mode-maps))
           ;;
           (it "excludes inactive modes" ;;
               (serenade-define-speech 'a-mode "a" 'b) 
-              (serenade--get-helm-candidates-restricted serenade-speech-maps) 
+              (serenade--get-helm-active-candidates serenade-speech-maps) 
               (expect  (length serenade--helm-candidates) 
                        :to-equal 0)) 
           (it "excludes inactive modes and includes active modes" ;;
@@ -56,17 +56,17 @@
               (serenade-define-speech 'b-mode "c" 'd) 
               (setq a-mode t ) 
               (setq b-mode nil ) 
-              (serenade--get-helm-candidates-restricted serenade-speech-maps) 
+              (serenade--get-helm-active-candidates serenade-speech-maps) 
               (expect  (length serenade--helm-candidates) 
                        :to-equal 1)) 
           (it "excludes global bindings" ;;
               (serenade-define-speech 'global "c" 'd) 
-              (serenade--get-helm-candidates-restricted serenade-speech-maps) 
+              (serenade--get-helm-active-candidates serenade-speech-maps) 
               (expect  (length serenade--helm-candidates) 
                        :to-equal 1)) 
           (it "excludes current major mode bindings" ;;
               (serenade-define-speech 'z-mode "c" 'd) 
               (setq z-mode t ) 
-              (serenade--get-helm-candidates-restricted serenade-speech-maps) 
+              (serenade--get-helm-active-candidates serenade-speech-maps) 
               (expect  (length serenade--helm-candidates) 
                        :to-equal 1)))
