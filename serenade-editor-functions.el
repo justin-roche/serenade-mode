@@ -43,4 +43,33 @@
   (let* ((b (serenade--get-buffer-by-regex fragment))) 
     (switch-to-buffer (first b))))
 
+(defun serenade--update-buffer (source cursor)
+  ;; This function replaces the current buffer contents and cursor with the provided SOURCE and CURSOR position from the diff command.
+  (let ((tmp-buf (generate-new-buffer " *serenade-temp*"))) 
+    (with-current-buffer tmp-buf (insert source)) 
+    (replace-buffer-contents tmp-buf) 
+    (kill-buffer tmp-buf)) 
+  (goto-char cursor))
+
 (provide 'serenade-editor-functions)
+
+;; (defun serenade--jump-to-nearest-match (str)
+;;   (interactive)
+;;   (let* ((matchposforward(or (re-search-forward "a" nil t)
+;;                              (point-max)))
+;;          (matchposback(result-search-backward "a" nil t))
+;;          (distance-forward (- matchposforward (point)))
+;;          (distance-back (- (point) matchposback)))
+;;     (debug)
+;;     (if (and (not (eq 0 distance-back))
+;;              (not (eq 0 distance-forward)))
+;;         (goto-char (if (< distance-forward distance-back) matchposforward matchposback))
+;;       (if (and (not (eq 0 distance-back)))
+;;           (goto-char matchposback)
+;;         (if (and (not (eq 0 distance-forward)))
+;;             (goto-char matchposforward))))
+                                        ;(defun jr/ser-t ()
+;; (interactive)
+;; [[(if (and (not (eq 0 distance-back)))
+;;       (goto-char (distance-back)))]]
+;; (serenade--jump-to-nearest-match "a"));     ))

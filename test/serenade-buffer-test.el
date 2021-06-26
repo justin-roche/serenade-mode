@@ -1,4 +1,6 @@
 (require 'serenade-buffer)
+(require 'serenade-handler)
+(require 'test-utils)
 
 (describe "determines serenade buffer"     ;;
           (it "returns nil if no filetype" ;;
@@ -12,7 +14,7 @@
               (expect  serenade-buffer 
                        :to-equal nil)) 
           (it "sets if valid filetype" ;;
-              (let* ((buff  (get-buffer-create "test.js")))
+              (let* ((buff  (get-buffer-create "test.js"))) 
                 (switch-to-buffer buff) 
                 (setq buffer-file-name "test.js") 
                 (serenade--set-serenade-buffer) 

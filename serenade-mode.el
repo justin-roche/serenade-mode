@@ -29,7 +29,7 @@
 (require 'serenade-helm)
 (require 'serenade-snippet)
 (require 'serenade-keys-patch)
-(require 'serenade-synchronize)
+(require 'serenade-generate)
 (require 'serenade-editor-functions)
 
 (defface helm-serenade-command '((t :foreground "#CD009600CD00" 
@@ -56,7 +56,7 @@
   (serenade--info (concat "evil mode" (prin1-to-string serenade-evil))) 
   (if serenade--auto-set-evil (serenade--set-evil)) 
   (if serenade-enable-double-line-numbers (run-hooks 'serenade-double-line-numbers-on-hook)) 
-  (if serenade-sync-on-start (serenade--synchronize)) 
+  (if serenade-sync-on-start (serenade--generate)) 
   (if serenade-helm-M-x (serenade--advise-helm-transformer)) 
   (serenade--connect))
 

@@ -3,7 +3,39 @@
 (require 'json)
 (require 'test-utils)
 (require 'evil)
-
+(describe "gives correct result using target functions" ;;
+          (before-each 
+           (setq serenade-evil nil) 
+           (spy-on 'websocket-send-text)) 
+          (it "selects lines by number in non-evil" ;;
+              (create-test-buffer "test6.js" "let x = 1\n let y = 2") 
+              (let* ((req (load-request "selectLine2"))) 
+                (serenade--handle-message req)) 
+              (expect (region-beginning) 
+                      :to-equal 11) 
+              (expect (region-end) 
+                      :to-equal 20)) 
+          (it "goes to lines by number" ;;
+              (create-test-buffer "test2.js" "let x = 1\n let y = 2") 
+              (let* ((req (load-request "goLine2"))) 
+                (serenade--handle-message req)) 
+              (expect (point) 
+                      :to-equal 11)) 
+          (it "selects lines by number in evil-mode" ;;
+              (create-test-buffer "test9.js" "let x = 1\n let y = 2") 
+              (setq serenade-evil t ) 
+              (let* ((req (load-request "selectLine2"))) 
+                (serenade--handle-message req)) 
+              (expect (region-beginning) 
+                      :to-equal 11) 
+              (expect (region-end) 
+                      :to-equal 19)) 
+          (it "cuts lines by number" ;;
+              (create-test-buffer "test5.js" "let x = 1\n let y = 2") 
+              (let* ((req (load-request "cutLine2"))) 
+                (serenade--handle-message req)) 
+              (expect   (buffer-string) 
+                        :to-equal "let x = 1\n")))
 (describe "calls get editor state" ;;
           (before-each (spy-on 'serenade--get-editor-state) 
                        (spy-on 'serenade--diff) 
@@ -21,46 +53,6 @@
                 (serenade--handle-message data)) 
               (expect   'serenade--get-editor-state 
                         :to-have-been-called)))
-
-(describe "gives correct result using target functions" ;;
-          (before-each (spy-on 'websocket-send-text)) 
-          (it "goes to lines by number" ;;
-              (create-test-buffer "test2.js" "let x = 1\n let y = 2") 
-              (let* ((req (load-request "goLine2"))) 
-                (serenade--handle-message req)) 
-              (expect (point) 
-                      :to-equal 11)) 
-          (it "selects lines by number in non-evil" ;;
-              (setq serenade-evil nil) 
-              (create-test-buffer "test6.js" "let x = 1\n let y = 2") 
-              (let* ((req (load-request "selectLine2"))) 
-                (serenade--handle-message req)) 
-              (expect (region-beginning) 
-                      :to-equal 11) 
-              (expect (region-end) 
-                      :to-equal 20)) 
-          (it "selects lines by number in evil-mode" ;;
-              (create-test-buffer "test9.js" "let x = 1\n let y = 2") 
-              (setq serenade-evil t ) 
-              (let* ((req (load-request "selectLine2"))) 
-                (serenade--handle-message req)) 
-              (expect (region-beginning) 
-                      :to-equal 11) 
-              (expect (region-end) 
-                      :to-equal 19)) 
-          (it "cuts lines by number" ;;
-              (create-test-buffer "test5.js" "let x = 1\n let y = 2") 
-              (let* ((req (load-request "cutLine2"))) 
-                (serenade--handle-message req)) 
-              (expect   (buffer-string) 
-                        :to-equal "let x = 1\n"))
-          ;; (it "copies lines by number" ;;
-          ;;     (create-test-buffer "test4.js" "let x = 1\n let y = 2")
-          ;;     (let* ((req (load-request "copyLine1")))
-          ;;       (serenade--handle-message req))
-          ;;     (expect (car kill-ring-yank-pointer)
-          ;;             :to-equal "let x = 1"))
-          )
 
 (describe "gives correct result using undo" ;;
           ;; (before-each (spy-on 'websocket-send-text))
@@ -107,8 +99,7 @@
               (create-test-buffer "test.xx" "") 
               (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff"))) 
                 (serenade--handle-message data)) 
-              (expect   'serenade--diff 
-
+              (expect   'serenade--diff
                         :not 
                         :to-have-been-called)))
 

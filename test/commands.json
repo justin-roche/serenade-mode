@@ -1,391 +1,1851 @@
 {
-    "firstTab": {
+    "scroll": {
         "message": "response",
         "data": {
-            "callback": "c73dbfc8-5da1-4931-b24a-8d39efaadce4",
+            "callback": "f7c00bfd-624f-44db-ad04-5d9129cbb403",
             "response": {
-                "alternatives": [
-                    {
-                        "description": "first tab",
-                        "transcript": "first tab",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_SWITCH_TAB",
-                                "index": 1
-                            }
-                        ],
-                        "alternativeId": "d6006c38-a4ce-4366-81e2-e4b6db325968"
-                    }
-                ],
                 "execute": {
-                    "description": "first tab",
-                    "transcript": "first tab",
+                    "description": "scroll",
+                    "transcript": "scroll",
                     "commands": [
                         {
-                            "type": "COMMAND_TYPE_SWITCH_TAB",
-                            "index": 1
+                            "type": "COMMAND_TYPE_PRESS",
+                            "text": "pagedown"
                         }
                     ],
-                    "alternativeId": "d6006c38-a4ce-4366-81e2-e4b6db325968",
+                    "alternativeId": "d7f88d85-51be-426e-b5ba-723d4dab9304",
                     "commandsList": [
                         {
-                            "type": "COMMAND_TYPE_SWITCH_TAB",
-                            "index": 1
+                            "type": "COMMAND_TYPE_PRESS",
+                            "text": "pagedown"
                         }
                     ]
                 },
-                "chunkId": "c9bc7ef4-5b3e-4397-9741-5e404604fdc3",
+                "chunkId": "b0a8cb5a-450e-4bc1-bdf4-b16f6bbfe7f4",
                 "final": true,
-                "endpointId": "ac2c1476-118d-483c-92c1-006417812822",
+                "endpointId": "3c440602-6018-4eb1-85eb-c8dbd8015e5f",
                 "chunkIds": [
-                    "c9bc7ef4-5b3e-4397-9741-5e404604fdc3"
+                    "84e90747-e8b2-44ac-972d-d78c5ee25482",
+                    "b0a8cb5a-450e-4bc1-bdf4-b16f6bbfe7f4"
+                ],
+                "silenceThreshold": 500
+            }
+        }
+    },
+    "scrollDown": {
+        "message": "response",
+        "data": {
+            "callback": "0e7fe7ce-af75-4d5a-a74c-3b9633a0db26",
+            "response": {
+                "alternatives": [
+                    {
+                        "description": "scroll down",
+                        "transcript": "scroll down",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_PRESS",
+                                "text": "pagedown"
+                            }
+                        ],
+                        "alternativeId": "d62abc3f-1ada-415a-92f3-8cfd58ee94e4"
+                    }
+                ],
+                "execute": {
+                    "description": "scroll down",
+                    "transcript": "scroll down",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_PRESS",
+                            "text": "pagedown"
+                        }
+                    ],
+                    "alternativeId": "d62abc3f-1ada-415a-92f3-8cfd58ee94e4",
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_PRESS",
+                            "text": "pagedown"
+                        }
+                    ]
+                },
+                "chunkId": "519038ec-1029-407c-aa0e-47e330fff476",
+                "final": true,
+                "endpointId": "51c3bd79-ae98-4bc4-b545-a2b91dad852f",
+                "chunkIds": [
+                    "519038ec-1029-407c-aa0e-47e330fff476"
                 ],
                 "silenceThreshold": 500,
                 "alternativesList": [
                     {
-                        "description": "first tab",
-                        "transcript": "first tab",
+                        "description": "scroll down",
+                        "transcript": "scroll down",
                         "commands": [
                             {
-                                "type": "COMMAND_TYPE_SWITCH_TAB",
-                                "index": 1
+                                "type": "COMMAND_TYPE_PRESS",
+                                "text": "pagedown"
                             }
                         ],
-                        "alternativeId": "d6006c38-a4ce-4366-81e2-e4b6db325968"
+                        "alternativeId": "d62abc3f-1ada-415a-92f3-8cfd58ee94e4"
                     }
                 ]
             }
         }
     },
-    "startDebug": {
+    "openIndexjs": {
         "message": "response",
         "data": {
-            "callback": "176640ce-0cad-4fb5-99d9-c5759469ba28",
+            "callback": "827c707d-ac27-4f99-bca6-8c27f82db96f",
             "response": {
                 "alternatives": [
                     {
-                        "description": "start debug",
-                        "transcript": "start debug",
+                        "description": "open <code>index.js</code>",
+                        "transcript": "open index dot js",
                         "commands": [
                             {
-                                "type": "COMMAND_TYPE_DEBUGGER_START"
+                                "type": "COMMAND_TYPE_OPEN_FILE_LIST",
+                                "path": "index.js"
                             }
                         ],
-                        "alternativeId": "2c8a035c-cbaa-4001-b5f7-7cbc64ee0c90"
+                        "alternativeId": "8dfd6cc5-5f99-46b3-9c8a-e2a00c68fb04"
                     }
                 ],
                 "execute": {
-                    "description": "start debug",
-                    "transcript": "start debug",
+                    "description": "open <code>index.js</code>",
+                    "transcript": "open index dot js",
                     "commands": [
                         {
-                            "type": "COMMAND_TYPE_DEBUGGER_START"
+                            "type": "COMMAND_TYPE_OPEN_FILE_LIST",
+                            "path": "index.js"
                         }
                     ],
-                    "alternativeId": "2c8a035c-cbaa-4001-b5f7-7cbc64ee0c90",
+                    "alternativeId": "8dfd6cc5-5f99-46b3-9c8a-e2a00c68fb04",
                     "commandsList": [
                         {
-                            "type": "COMMAND_TYPE_DEBUGGER_START"
+                            "type": "COMMAND_TYPE_OPEN_FILE_LIST",
+                            "path": "index.js"
                         }
                     ]
                 },
-                "chunkId": "2ed6ebc7-9fca-411f-89a4-a8d264905885",
+                "chunkId": "b2431192-5149-4e78-be52-30dc64c7a8c8",
                 "final": true,
-                "endpointId": "576ee9f5-9a9f-42ad-a354-57acb86f1305",
+                "endpointId": "4daa8d6c-7c8a-443e-bc50-dafeb068766e",
                 "chunkIds": [
-                    "2ed6ebc7-9fca-411f-89a4-a8d264905885"
+                    "b2431192-5149-4e78-be52-30dc64c7a8c8"
                 ],
                 "silenceThreshold": 500,
                 "alternativesList": [
                     {
-                        "description": "start debug",
-                        "transcript": "start debug",
+                        "description": "open <code>index.js</code>",
+                        "transcript": "open index dot js",
                         "commands": [
                             {
-                                "type": "COMMAND_TYPE_DEBUGGER_START"
+                                "type": "COMMAND_TYPE_OPEN_FILE_LIST",
+                                "path": "index.js"
                             }
                         ],
-                        "alternativeId": "2c8a035c-cbaa-4001-b5f7-7cbc64ee0c90"
+                        "alternativeId": "8dfd6cc5-5f99-46b3-9c8a-e2a00c68fb04"
                     }
                 ]
             }
         }
     },
-    "deletePhraseX": {
+    "openFileHello": {
         "message": "response",
         "data": {
-            "callback": "1d2b162b-2559-4b5a-b881-d6ca9f6da86b",
+            "callback": "991cfacc-956e-4cd1-b865-29d55b150001",
+            "response": {
+                "execute": {
+                    "description": "open file <code>hello</code>",
+                    "transcript": "open file hello",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_OPEN_FILE_LIST",
+                            "path": "hello"
+                        }
+                    ],
+                    "alternativeId": "fef9f7e8-8fbd-46d3-8c83-0aa16de00b6e",
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_OPEN_FILE_LIST",
+                            "path": "hello"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "addParameterHello": {
+        "message": "response",
+        "data": {
+            "callback": "5901155e-f7ce-4138-8a4c-0d8e04c63794",
             "response": {
                 "alternatives": [
                     {
-                        "description": "delete phrase <code>x</code>",
-                        "transcript": "delete phrase x",
+                        "description": "add parameter <code>hello</code>",
+                        "transcript": "add parameter hello",
                         "commands": [
                             {
                                 "type": "COMMAND_TYPE_DIFF",
-                                "source": "let  = 1;",
-                                "cursor": 4,
+                                "source": "let x = 1;function helloWorld(hello) {}",
+                                "cursor": 37,
                                 "changes": [
                                     {
-                                        "start": 4,
-                                        "stop": 5
+                                        "stop": 38,
+                                        "substitution": "let x = 1;function helloWorld(hello) {}"
                                     }
                                 ]
                             }
                         ],
-                        "alternativeId": "25231510-3fe9-4a9a-8566-c1d506ebf6d8"
+                        "alternativeId": "f6f3ded5-00c4-4449-ab40-51c644ad0b0d"
                     },
                     {
-                        "description": "Object not found: delete phrase ex",
-                        "transcript": "delete phrase ex",
+                        "description": "add parameter <code>halo</code>",
+                        "transcript": "add parameter halo",
                         "commands": [
                             {
-                                "type": "COMMAND_TYPE_INVALID"
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1;function helloWorld(halo) {}",
+                                "cursor": 36,
+                                "changes": [
+                                    {
+                                        "stop": 38,
+                                        "substitution": "let x = 1;function helloWorld(halo) {}"
+                                    }
+                                ]
                             }
                         ],
-                        "alternativeId": "69328b80-8308-436d-b460-6b029632e82b"
+                        "alternativeId": "e47ece94-6fa0-493f-a10e-b9d1aac20294"
                     },
                     {
-                        "description": "Object not found: delete phrase ex",
-                        "transcript": "delete phrase ex",
+                        "description": "add parameter <code>hallow</code>",
+                        "transcript": "add parameter hallow",
                         "commands": [
                             {
-                                "type": "COMMAND_TYPE_INVALID"
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1;function helloWorld(hallow) {}",
+                                "cursor": 38,
+                                "changes": [
+                                    {
+                                        "stop": 38,
+                                        "substitution": "let x = 1;function helloWorld(hallow) {}"
+                                    }
+                                ]
                             }
                         ],
-                        "alternativeId": "dc216f80-5363-4d5b-ad5b-d029400bf7d5"
+                        "alternativeId": "156b30e5-9023-4ead-98d5-76209908dc09"
                     },
                     {
-                        "description": "Object not found: delete phrase x",
-                        "transcript": "delete phrase x",
+                        "description": "add parameter <code>hollow</code>",
+                        "transcript": "add parameter hollow",
                         "commands": [
                             {
-                                "type": "COMMAND_TYPE_INVALID"
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1;function helloWorld(hollow) {}",
+                                "cursor": 38,
+                                "changes": [
+                                    {
+                                        "stop": 38,
+                                        "substitution": "let x = 1;function helloWorld(hollow) {}"
+                                    }
+                                ]
                             }
                         ],
-                        "alternativeId": "56a0b225-e770-4d82-a53e-0cfb15227834"
-                    },
-                    {
-                        "description": "Object not found: delete phrase ax",
-                        "transcript": "delete phrase ax",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "dd033912-d8d5-49fa-aed5-6e3f3428e18e"
-                    },
-                    {
-                        "description": "Object not found: delete phrase ax",
-                        "transcript": "delete phrase ax",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "9d5ef9cf-0d49-45a5-b246-cc161b6faa56"
-                    },
-                    {
-                        "description": "Object not found: delete phrase acts",
-                        "transcript": "delete phrase acts",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "0cc47122-6cc1-4fd0-8a3f-9bf13a355c49"
-                    },
-                    {
-                        "description": "Object not found: delete phrase acts",
-                        "transcript": "delete phrase acts",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "d8434b68-3272-4bbc-9678-2e1dcda324cc"
-                    },
-                    {
-                        "description": "Object not found: delete phrase aix",
-                        "transcript": "delete phrase aix",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "14e7c129-8e28-45e0-b745-10a7eed4aea7"
-                    },
-                    {
-                        "description": "Object not found: delete phrase aix",
-                        "transcript": "delete phrase aix",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "f7f11ef8-5a1b-46d0-ac58-a18db69e5cf9"
+                        "alternativeId": "7017536b-1252-44e7-9970-4dd839f6d1ee"
                     }
                 ],
                 "execute": {
-                    "description": "delete phrase <code>x</code>",
-                    "transcript": "delete phrase x",
+                    "description": "add parameter <code>hello</code>",
+                    "transcript": "add parameter hello",
                     "commands": [
                         {
                             "type": "COMMAND_TYPE_DIFF",
-                            "source": "let  = 1;",
-                            "cursor": 4,
+                            "source": "let x = 1;function helloWorld(hello) {}",
+                            "cursor": 37,
                             "changes": [
                                 {
-                                    "start": 4,
-                                    "stop": 5
+                                    "stop": 38,
+                                    "substitution": "let x = 1;function helloWorld(hello) {}"
                                 }
                             ]
                         }
                     ],
-                    "alternativeId": "25231510-3fe9-4a9a-8566-c1d506ebf6d8",
+                    "alternativeId": "f6f3ded5-00c4-4449-ab40-51c644ad0b0d",
                     "commandsList": [
                         {
                             "type": "COMMAND_TYPE_DIFF",
-                            "source": "let  = 1;",
-                            "cursor": 4,
+                            "source": "let x = 1;function helloWorld(hello) {}",
+                            "cursor": 37,
                             "changes": [
                                 {
-                                    "start": 4,
-                                    "stop": 5
+                                    "stop": 38,
+                                    "substitution": "let x = 1;function helloWorld(hello) {}"
                                 }
                             ]
                         }
                     ]
                 },
-                "chunkId": "89d1de9e-e34c-4a28-9666-8ac9428df1c5",
+                "chunkId": "0da0837b-f3c6-40b6-88e5-ab570927f4f2",
+                "requiresLongSilence": true,
                 "final": true,
-                "endpointId": "4a42759f-cfba-433d-9e5e-6fb14aa75d73",
+                "endpointId": "1ae178ac-8eb4-4804-b62a-35f1651fad92",
                 "chunkIds": [
-                    "89d1de9e-e34c-4a28-9666-8ac9428df1c5"
+                    "0da0837b-f3c6-40b6-88e5-ab570927f4f2"
                 ],
-                "silenceThreshold": 500,
+                "silenceThreshold": 1000,
                 "alternativesList": [
                     {
-                        "description": "delete phrase <code>x</code>",
-                        "transcript": "delete phrase x",
+                        "description": "add parameter <code>hello</code>",
+                        "transcript": "add parameter hello",
                         "commands": [
                             {
                                 "type": "COMMAND_TYPE_DIFF",
-                                "source": "let  = 1;",
-                                "cursor": 4,
+                                "source": "let x = 1;function helloWorld(hello) {}",
+                                "cursor": 37,
                                 "changes": [
                                     {
-                                        "start": 4,
-                                        "stop": 5
+                                        "stop": 38,
+                                        "substitution": "let x = 1;function helloWorld(hello) {}"
                                     }
                                 ]
                             }
                         ],
-                        "alternativeId": "25231510-3fe9-4a9a-8566-c1d506ebf6d8"
+                        "alternativeId": "f6f3ded5-00c4-4449-ab40-51c644ad0b0d"
                     },
                     {
-                        "description": "Object not found: delete phrase ex",
-                        "transcript": "delete phrase ex",
+                        "description": "add parameter <code>halo</code>",
+                        "transcript": "add parameter halo",
                         "commands": [
                             {
-                                "type": "COMMAND_TYPE_INVALID"
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1;function helloWorld(halo) {}",
+                                "cursor": 36,
+                                "changes": [
+                                    {
+                                        "stop": 38,
+                                        "substitution": "let x = 1;function helloWorld(halo) {}"
+                                    }
+                                ]
                             }
                         ],
-                        "alternativeId": "69328b80-8308-436d-b460-6b029632e82b"
+                        "alternativeId": "e47ece94-6fa0-493f-a10e-b9d1aac20294"
                     },
                     {
-                        "description": "Object not found: delete phrase ex",
-                        "transcript": "delete phrase ex",
+                        "description": "add parameter <code>hallow</code>",
+                        "transcript": "add parameter hallow",
                         "commands": [
                             {
-                                "type": "COMMAND_TYPE_INVALID"
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1;function helloWorld(hallow) {}",
+                                "cursor": 38,
+                                "changes": [
+                                    {
+                                        "stop": 38,
+                                        "substitution": "let x = 1;function helloWorld(hallow) {}"
+                                    }
+                                ]
                             }
                         ],
-                        "alternativeId": "dc216f80-5363-4d5b-ad5b-d029400bf7d5"
+                        "alternativeId": "156b30e5-9023-4ead-98d5-76209908dc09"
                     },
                     {
-                        "description": "Object not found: delete phrase x",
-                        "transcript": "delete phrase x",
+                        "description": "add parameter <code>hollow</code>",
+                        "transcript": "add parameter hollow",
                         "commands": [
                             {
-                                "type": "COMMAND_TYPE_INVALID"
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1;function helloWorld(hollow) {}",
+                                "cursor": 38,
+                                "changes": [
+                                    {
+                                        "stop": 38,
+                                        "substitution": "let x = 1;function helloWorld(hollow) {}"
+                                    }
+                                ]
                             }
                         ],
-                        "alternativeId": "56a0b225-e770-4d82-a53e-0cfb15227834"
-                    },
-                    {
-                        "description": "Object not found: delete phrase ax",
-                        "transcript": "delete phrase ax",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "dd033912-d8d5-49fa-aed5-6e3f3428e18e"
-                    },
-                    {
-                        "description": "Object not found: delete phrase ax",
-                        "transcript": "delete phrase ax",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "9d5ef9cf-0d49-45a5-b246-cc161b6faa56"
-                    },
-                    {
-                        "description": "Object not found: delete phrase acts",
-                        "transcript": "delete phrase acts",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "0cc47122-6cc1-4fd0-8a3f-9bf13a355c49"
-                    },
-                    {
-                        "description": "Object not found: delete phrase acts",
-                        "transcript": "delete phrase acts",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "d8434b68-3272-4bbc-9678-2e1dcda324cc"
-                    },
-                    {
-                        "description": "Object not found: delete phrase aix",
-                        "transcript": "delete phrase aix",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "14e7c129-8e28-45e0-b745-10a7eed4aea7"
-                    },
-                    {
-                        "description": "Object not found: delete phrase aix",
-                        "transcript": "delete phrase aix",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "f7f11ef8-5a1b-46d0-ac58-a18db69e5cf9"
+                        "alternativeId": "7017536b-1252-44e7-9970-4dd839f6d1ee"
                     }
                 ]
             }
         }
+    },
+    "deleteLine3": {
+        "message": "response",
+        "data": {
+            "callback": "df509170-856c-47f3-82ea-a95ffbfe70e2",
+            "response": {
+                "alternatives": [
+                    {
+                        "description": "delete line 3",
+                        "transcript": "delete line three",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1;let x = 1;",
+                                "cursor": 12,
+                                "changes": [
+                                    {
+                                        "start": 12,
+                                        "stop": 23
+                                    }
+                                ]
+                            }
+                        ],
+                        "alternativeId": "e57a2ee1-71a2-41d3-83a2-91d4fd1104b5"
+                    },
+                    {
+                        "description": "Object not found: delete line three",
+                        "transcript": "delete line three",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "eece2775-a1c8-45f9-9fda-78d366f000a6"
+                    }
+                ],
+                "execute": {
+                    "description": "delete line 3",
+                    "transcript": "delete line three",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_DIFF",
+                            "source": "let x = 1;let x = 1;",
+                            "cursor": 12,
+                            "changes": [
+                                {
+                                    "start": 12,
+                                    "stop": 23
+                                }
+                            ]
+                        }
+                    ],
+                    "alternativeId": "e57a2ee1-71a2-41d3-83a2-91d4fd1104b5",
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_DIFF",
+                            "source": "let x = 1;let x = 1;",
+                            "cursor": 12,
+                            "changes": [
+                                {
+                                    "start": 12,
+                                    "stop": 23
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "chunkId": "a42e79be-825d-4ecd-b05f-baa6fc281428",
+                "final": true,
+                "endpointId": "13a46a31-39a3-457f-97ce-c38df9867fd3",
+                "chunkIds": [
+                    "a42e79be-825d-4ecd-b05f-baa6fc281428"
+                ],
+                "silenceThreshold": 500,
+                "alternativesList": [
+                    {
+                        "description": "delete line 3",
+                        "transcript": "delete line three",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1;let x = 1;",
+                                "cursor": 12,
+                                "changes": [
+                                    {
+                                        "start": 12,
+                                        "stop": 23
+                                    }
+                                ]
+                            }
+                        ],
+                        "alternativeId": "e57a2ee1-71a2-41d3-83a2-91d4fd1104b5"
+                    },
+                    {
+                        "description": "Object not found: delete line three",
+                        "transcript": "delete line three",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "eece2775-a1c8-45f9-9fda-78d366f000a6"
+                    }
+                ]
+            }
+        }
+    },
+    "goToBegginingOfFile": {
+        "message": "response",
+        "data": {
+            "callback": "3f1cb86a-d716-445a-ba4a-d425811c7471",
+            "response": {
+                "alternatives": [
+                    {
+                        "description": "go to beginning of file",
+                        "transcript": "go to beginning of file",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n"
+                            }
+                        ],
+                        "alternativeId": "d763bb14-a7b0-4031-b387-259b05578db7"
+                    },
+                    {
+                        "description": "cut to beginning of file",
+                        "transcript": "cut to beginning of file",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_COPY",
+                                "text": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n"
+                            },
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "changes": [
+                                    {
+                                        "stop": 55
+                                    }
+                                ]
+                            }
+                        ],
+                        "alternativeId": "de4bcc69-e7b6-4ccf-854c-3badda1360e7"
+                    },
+                    {
+                        "description": "Object not found: go to beginning of file",
+                        "transcript": "go to beginning of file",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "1d889a1c-958e-4c9a-b6f8-bfef10bea341"
+                    },
+                    {
+                        "description": "Object not found: cut to beginning of file",
+                        "transcript": "cut to beginning of file",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "a27f0670-863c-4c07-bd74-dac15970a53e"
+                    }
+                ],
+                "execute": {
+                    "description": "go to beginning of file",
+                    "transcript": "go to beginning of file",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_DIFF",
+                            "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n"
+                        }
+                    ],
+                    "alternativeId": "d763bb14-a7b0-4031-b387-259b05578db7",
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_DIFF",
+                            "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n"
+                        }
+                    ]
+                },
+                "chunkId": "f18a5c14-00f2-43a8-8e66-531203522253",
+                "requiresLongSilence": true,
+                "final": true,
+                "endpointId": "8550fd0e-035d-4d1c-957b-e1d602af8206",
+                "chunkIds": [
+                    "f18a5c14-00f2-43a8-8e66-531203522253"
+                ],
+                "silenceThreshold": 1000,
+                "alternativesList": [
+                    {
+                        "description": "go to beginning of file",
+                        "transcript": "go to beginning of file",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n"
+                            }
+                        ],
+                        "alternativeId": "d763bb14-a7b0-4031-b387-259b05578db7"
+                    },
+                    {
+                        "description": "cut to beginning of file",
+                        "transcript": "cut to beginning of file",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_COPY",
+                                "text": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n"
+                            },
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "changes": [
+                                    {
+                                        "stop": 55
+                                    }
+                                ]
+                            }
+                        ],
+                        "alternativeId": "de4bcc69-e7b6-4ccf-854c-3badda1360e7"
+                    },
+                    {
+                        "description": "Object not found: go to beginning of file",
+                        "transcript": "go to beginning of file",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "1d889a1c-958e-4c9a-b6f8-bfef10bea341"
+                    },
+                    {
+                        "description": "Object not found: cut to beginning of file",
+                        "transcript": "cut to beginning of file",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "a27f0670-863c-4c07-bd74-dac15970a53e"
+                    }
+                ]
+            }
+        }
+    },
+    "selectLine1": {
+        "message": "response",
+        "data": {
+            "callback": "1df2e018-9747-42ec-b87e-a51376a2489d",
+            "response": {
+                "alternatives": [
+                    {
+                        "description": "select line 1",
+                        "transcript": "select line one",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_SELECT",
+                                "source": "let x = 1;nlet x = 1;nlet y = 2;n",
+                                "cursorEnd": 10
+                            }
+                        ],
+                        "alternativeId": "2d6a14bb-c1bc-4654-9ebf-45ef73369702"
+                    },
+                    {
+                        "description": "Object not found: select line one",
+                        "transcript": "select line one",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "55c55a75-ddf2-4a8b-b137-62ba64dcace5"
+                    }
+                ],
+                "execute": {
+                    "description": "select line 1",
+                    "transcript": "select line one",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_SELECT",
+                            "source": "let x = 1;nlet x = 1;nlet y = 2;n",
+                            "cursorEnd": 10
+                        }
+                    ],
+                    "alternativeId": "2d6a14bb-c1bc-4654-9ebf-45ef73369702",
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_SELECT",
+                            "source": "let x = 1;nlet x = 1;nlet y = 2;n",
+                            "cursorEnd": 10
+                        }
+                    ]
+                },
+                "chunkId": "d3c8ba3e-329d-41d8-94ee-2f9e506898fe",
+                "final": true,
+                "endpointId": "a09d4968-ddf1-4c70-85b8-346793a4fb77",
+                "chunkIds": [
+                    "d3c8ba3e-329d-41d8-94ee-2f9e506898fe"
+                ],
+                "silenceThreshold": 500,
+                "alternativesList": [
+                    {
+                        "description": "select line 1",
+                        "transcript": "select line one",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_SELECT",
+                                "source": "let x = 1;nlet x = 1;nlet y = 2;n",
+                                "cursorEnd": 10
+                            }
+                        ],
+                        "alternativeId": "2d6a14bb-c1bc-4654-9ebf-45ef73369702"
+                    },
+                    {
+                        "description": "Object not found: select line one",
+                        "transcript": "select line one",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "55c55a75-ddf2-4a8b-b137-62ba64dcace5"
+                    }
+                ]
+            }
+        }
+    },
+    "addLetY": {
+        "message": "response",
+        "data": {
+            "callback": "fd52fc3d-5cf6-4bc6-b245-b38177c468f5",
+            "response": {
+                "alternatives": [
+                    {
+                        "description": "add <code>let y = 2;</code>",
+                        "transcript": "add let y equal two",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1;nlet y = 2;n",
+                                "cursor": 20,
+                                "changes": [
+                                    {
+                                        "stop": 11,
+                                        "substitution": "let x = 1;nlet y = 2;n"
+                                    }
+                                ]
+                            }
+                        ],
+                        "alternativeId": "b0b16791-d2f9-47fd-9a5f-fd3f536c6201"
+                    },
+                    {
+                        "description": "add <code>let y = to;</code>",
+                        "transcript": "add let y equal to",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1;nlet y = to;n",
+                                "cursor": 21,
+                                "changes": [
+                                    {
+                                        "stop": 11,
+                                        "substitution": "let x = 1;nlet y = to;n"
+                                    }
+                                ]
+                            }
+                        ],
+                        "alternativeId": "5b01dae3-5bf5-4cc4-b4de-9bdd95d9b4d4"
+                    },
+                    {
+                        "description": "add <code>let y = too;</code>",
+                        "transcript": "add let y equal too",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1;nlet y = too;n",
+                                "cursor": 22,
+                                "changes": [
+                                    {
+                                        "stop": 11,
+                                        "substitution": "let x = 1;nlet y = too;n"
+                                    }
+                                ]
+                            }
+                        ],
+                        "alternativeId": "008ae482-c31b-4dd3-be2d-c35c20372e0c"
+                    }
+                ],
+                "execute": {
+                    "description": "add <code>let y = 2;</code>",
+                    "transcript": "add let y equal two",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_DIFF",
+                            "source": "let x = 1;nlet y = 2;n",
+                            "cursor": 20,
+                            "changes": [
+                                {
+                                    "stop": 11,
+                                    "substitution": "let x = 1;nlet y = 2;n"
+                                }
+                            ]
+                        }
+                    ],
+                    "alternativeId": "b0b16791-d2f9-47fd-9a5f-fd3f536c6201",
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_DIFF",
+                            "source": "let x = 1;nlet y = 2;n",
+                            "cursor": 20,
+                            "changes": [
+                                {
+                                    "stop": 11,
+                                    "substitution": "let x = 1;nlet y = 2;n"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "chunkId": "e87bb774-966b-4dc8-8ef9-11bf6c27fa85",
+                "requiresLongSilence": true,
+                "final": true,
+                "endpointId": "baabe76e-a09c-4149-bea2-6d084ac2ada6",
+                "chunkIds": [
+                    "e87bb774-966b-4dc8-8ef9-11bf6c27fa85"
+                ],
+                "silenceThreshold": 1000,
+                "alternativesList": [
+                    {
+                        "description": "add <code>let y = 2;</code>",
+                        "transcript": "add let y equal two",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1;nlet y = 2;n",
+                                "cursor": 20,
+                                "changes": [
+                                    {
+                                        "stop": 11,
+                                        "substitution": "let x = 1;nlet y = 2;n"
+                                    }
+                                ]
+                            }
+                        ],
+                        "alternativeId": "b0b16791-d2f9-47fd-9a5f-fd3f536c6201"
+                    },
+                    {
+                        "description": "add <code>let y = to;</code>",
+                        "transcript": "add let y equal to",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1;nlet y = to;n",
+                                "cursor": 21,
+                                "changes": [
+                                    {
+                                        "stop": 11,
+                                        "substitution": "let x = 1;nlet y = to;n"
+                                    }
+                                ]
+                            }
+                        ],
+                        "alternativeId": "5b01dae3-5bf5-4cc4-b4de-9bdd95d9b4d4"
+                    },
+                    {
+                        "description": "add <code>let y = too;</code>",
+                        "transcript": "add let y equal too",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1;nlet y = too;n",
+                                "cursor": 22,
+                                "changes": [
+                                    {
+                                        "stop": 11,
+                                        "substitution": "let x = 1;nlet y = too;n"
+                                    }
+                                ]
+                            }
+                        ],
+                        "alternativeId": "008ae482-c31b-4dd3-be2d-c35c20372e0c"
+                    }
+                ]
+            }
+        }
+    },
+    "addLetX": {
+        "message": "response",
+        "data": {
+            "callback": "b5a4f08a-8140-4c52-bc7a-d3492114c8e4",
+            "response": {
+                "alternatives": [
+                    {
+                        "description": "add <code>let x = 1;</code>",
+                        "transcript": "add let x equal one",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1;\n",
+                                "cursor": 9,
+                                "changes": [
+                                    {
+                                        "substitution": "let x = 1;\n"
+                                    }
+                                ]
+                            }
+                        ],
+                        "alternativeId": "d991e1ac-f67c-48e2-a01d-5cc7ee533852"
+                    },
+                    {
+                        "description": "add <code>let ex = 1;</code>",
+                        "transcript": "add let ex equal one",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let ex = 1;n",
+                                "cursor": 10,
+                                "changes": [
+                                    {
+                                        "substitution": "let ex = 1;n"
+                                    }
+                                ]
+                            }
+                        ],
+                        "alternativeId": "a5d67e1c-2482-46ae-b210-9a81a2e712bf"
+                    }
+                ],
+                "execute": {
+                    "description": "add <code>let x = 1;</code>",
+                    "transcript": "add let x equal one",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_DIFF",
+                            "source": "let x = 1;\n",
+                            "cursor": 9,
+                            "changes": [
+                                {
+                                    "substitution": "let x = 1;\n"
+                                }
+                            ]
+                        }
+                    ],
+                    "alternativeId": "d991e1ac-f67c-48e2-a01d-5cc7ee533852",
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_DIFF",
+                            "source": "let x = 1;\n",
+                            "cursor": 9,
+                            "changes": [
+                                {
+                                    "substitution": "let x = 1;\n"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "chunkId": "81f36ad1-ff46-49cd-9581-9dd70dc1dfd5",
+                "requiresLongSilence": true,
+                "final": true,
+                "endpointId": "a94ff1fd-68fd-4ea7-b6a0-0557f905fa3a",
+                "chunkIds": [
+                    "81f36ad1-ff46-49cd-9581-9dd70dc1dfd5"
+                ],
+                "silenceThreshold": 1000,
+                "alternativesList": [
+                    {
+                        "description": "add <code>let x = 1;</code>",
+                        "transcript": "add let x equal one",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let x = 1;n",
+                                "cursor": 9,
+                                "changes": [
+                                    {
+                                        "substitution": "let x = 1;n"
+                                    }
+                                ]
+                            }
+                        ],
+                        "alternativeId": "d991e1ac-f67c-48e2-a01d-5cc7ee533852"
+                    },
+                    {
+                        "description": "add <code>let ex = 1;</code>",
+                        "transcript": "add let ex equal one",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF",
+                                "source": "let ex = 1;n",
+                                "cursor": 10,
+                                "changes": [
+                                    {
+                                        "substitution": "let ex = 1;n"
+                                    }
+                                ]
+                            }
+                        ],
+                        "alternativeId": "a5d67e1c-2482-46ae-b210-9a81a2e712bf"
+                    }
+                ]
+            }
+        }
+    },
+    "paste": {
+        "message": "response",
+        "data": {
+            "callback": "e117a6f4-620f-4a99-95e2-088d9b801535",
+            "response": {
+                "execute": {
+                    "description": "paste",
+                    "transcript": "paste",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_DIFF",
+                            "source": "let x = 1\nlet y = 2\n\nlet x = 1",
+                            "cursor": 30,
+                            "changes": [
+                                {
+                                    "start": 20,
+                                    "stop": 20,
+                                    "substitution": "\nlet x = 1"
+                                }
+                            ]
+                        }
+                    ],
+                    "alternativeId": "aa7e3274-a65e-4388-80a0-93c19bd78fc9",
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_DIFF",
+                            "source": "let x = 1\nlet y = 2\n\nlet x = 1",
+                            "cursor": 30,
+                            "changes": [
+                                {
+                                    "start": 20,
+                                    "stop": 20,
+                                    "substitution": "\nlet x = 1"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "textResponse": true
+            }
+        }
+    },
+    "selectLine2": {
+        "message": "response",
+        "data": {
+            "callback": "4b0c28b0-b3d7-4e90-be43-2fba47972633",
+            "response": {
+                "alternatives": [
+                    {
+                        "description": "select line 2",
+                        "transcript": "select line two",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_SELECT",
+                                "source": "let x = 1let y = 2",
+                                "cursor": 10,
+                                "cursorEnd": 19
+                            }
+                        ],
+                        "alternativeId": "15d8388c-6a96-44da-ac91-803cdc998050"
+                    },
+                    {
+                        "description": "Object not found: select line two",
+                        "transcript": "select line two",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "be0c1a74-5a51-43c8-bd4c-bc0f06aa6a0c"
+                    },
+                    {
+                        "description": "Object not found: select line to",
+                        "transcript": "select line to",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "60bc51c6-07fe-428d-ae2d-f181806691ca"
+                    }
+                ],
+                "execute": {
+                    "description": "select line 2",
+                    "transcript": "select line two",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_SELECT",
+                            "source": "let x = 1let y = 2",
+                            "cursor": 10,
+                            "cursorEnd": 19
+                        }
+                    ],
+                    "alternativeId": "15d8388c-6a96-44da-ac91-803cdc998050",
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_SELECT",
+                            "source": "let x = 1let y = 2",
+                            "cursor": 10,
+                            "cursorEnd": 19
+                        }
+                    ]
+                },
+                "chunkId": "c279775d-b10f-4e67-8dcd-a03597fff8f6",
+                "final": true,
+                "endpointId": "e42ca4bd-4cf8-45f4-af48-42cd84a4096f",
+                "chunkIds": [
+                    "c279775d-b10f-4e67-8dcd-a03597fff8f6"
+                ],
+                "silenceThreshold": 500,
+                "alternativesList": [
+                    {
+                        "description": "select line 2",
+                        "transcript": "select line two",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_SELECT",
+                                "source": "let x = 1let y = 2",
+                                "cursor": 10,
+                                "cursorEnd": 19
+                            }
+                        ],
+                        "alternativeId": "15d8388c-6a96-44da-ac91-803cdc998050"
+                    },
+                    {
+                        "description": "Object not found: select line two",
+                        "transcript": "select line two",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "be0c1a74-5a51-43c8-bd4c-bc0f06aa6a0c"
+                    },
+                    {
+                        "description": "Object not found: select line to",
+                        "transcript": "select line to",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "alternativeId": "60bc51c6-07fe-428d-ae2d-f181806691ca"
+                    }
+                ]
+            }
+        }
+    },
+    "save2": {
+        "data": {
+            "response": {
+                "execute": {
+                    "commandsList": [
+                        {
+                            "limited": false,
+                            "type": "COMMAND_TYPE_SAVE"
+                        }
+                    ]
+                }
+            },
+            "callback": "956e2039-88fd-4d35-9e71-ba42abdde6bb"
+        }
+    },
+    "save": {
+        "data": {
+            "response": {
+                "execute": {
+                    "commandsList": [
+                        {
+                            "limited": false,
+                            "type": "COMMAND_TYPE_SAVE"
+                        }
+                    ]
+                }
+            },
+            "callback": "956e2039-88fd-4d35-9e71-ba42abdde6bb"
+        }
+    },
+    "getEditorState": {
+        "data": {
+            "response": {
+                "execute": {
+                    "commandsList": [
+                        {
+                            "limited": false,
+                            "type": "COMMAND_TYPE_GET_EDITOR_STATE"
+                        }
+                    ]
+                }
+            },
+            "callback": "956e2039-88fd-4d35-9e71-ba42abdde6bb"
+        }
+    },
+    "diff": {
+        "data": {
+            "response": {
+                "execute": {
+                    "commandsList": [
+                        {
+                            "limited": false,
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ]
+                }
+            },
+            "callback": "956e2039-88fd-4d35-9e71-ba42abdde6bb"
+        }
+    },
+    "cut": {
+        "data": {
+            "response": {
+                "silenceThreshold": 500,
+                "chunkIds": [
+                    "1ba6ce79-1a57-4ab3-8a93-de0c59585b82"
+                ],
+                "endpointId": "4393482d-46f6-410c-9240-5fa4cc204c4a",
+                "final": true,
+                "chunkId": "1ba6ce79-1a57-4ab3-8a93-de0c59585b82",
+                "execute": {
+                    "commandsList": [
+                        {
+                            "modifiers": [
+                                "command"
+                            ],
+                            "text": "x",
+                            "type": "COMMAND_TYPE_PRESS"
+                        }
+                    ],
+                    "alternativeId": "18a60887-c31b-4236-8e37-35c4b407686a",
+                    "commands": [
+                        {
+                            "modifiers": [
+                                "command"
+                            ],
+                            "text": "x",
+                            "type": "COMMAND_TYPE_PRESS"
+                        }
+                    ],
+                    "transcript": "cut",
+                    "description": "cut"
+                },
+                "alternatives": [
+                    {
+                        "alternativeId": "18a60887-c31b-4236-8e37-35c4b407686a",
+                        "commands": [
+                            {
+                                "modifiers": [
+                                    "command"
+                                ],
+                                "text": "x",
+                                "type": "COMMAND_TYPE_PRESS"
+                            }
+                        ],
+                        "transcript": "cut",
+                        "description": "cut"
+                    }
+                ]
+            },
+            "callback": "4892e5c8-a148-44dc-8f6a-181da9341cfe"
+        },
+        "message": "response"
+    },
+    "goLine2": {
+        "data": {
+            "response": {
+                "alternativesList": [
+                    {
+                        "alternativeId": "d93e2d99-c690-467f-9dee-b735a4343ca6",
+                        "commands": [
+                            {
+                                "cursor": 10,
+                                "source": "let x = 1let y = 2",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "go to line two",
+                        "description": "go to line 2"
+                    },
+                    {
+                        "alternativeId": "69c3a63b-7afb-4467-bba2-7b8d6be66f46",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "go to line two",
+                        "description": "Object not found: go to line two"
+                    },
+                    {
+                        "alternativeId": "47bee658-2782-4847-8bae-1f3d74bb35f2",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "go to line to",
+                        "description": "Object not found: go to line to"
+                    }
+                ],
+                "silenceThreshold": 1000,
+                "chunkIds": [
+                    "47a0267e-c613-4cd4-82e7-343976c7a1d1"
+                ],
+                "endpointId": "3e31716f-d3d9-4e91-b4be-bdd2f6616d1c",
+                "final": true,
+                "requiresLongSilence": true,
+                "chunkId": "47a0267e-c613-4cd4-82e7-343976c7a1d1",
+                "execute": {
+                    "commandsList": [
+                        {
+                            "cursor": 10,
+                            "source": "let x = 1let y = 2",
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "alternativeId": "d93e2d99-c690-467f-9dee-b735a4343ca6",
+                    "commands": [
+                        {
+                            "cursor": 10,
+                            "source": "let x = 1let y = 2",
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "transcript": "go to line two",
+                    "description": "go to line 2"
+                },
+                "alternatives": [
+                    {
+                        "alternativeId": "d93e2d99-c690-467f-9dee-b735a4343ca6",
+                        "commands": [
+                            {
+                                "cursor": 10,
+                                "source": "let x = 1let y = 2",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "go to line two",
+                        "description": "go to line 2"
+                    },
+                    {
+                        "alternativeId": "69c3a63b-7afb-4467-bba2-7b8d6be66f46",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "go to line two",
+                        "description": "Object not found: go to line two"
+                    },
+                    {
+                        "alternativeId": "47bee658-2782-4847-8bae-1f3d74bb35f2",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "go to line to",
+                        "description": "Object not found: go to line to"
+                    }
+                ]
+            },
+            "callback": "3dc37ad9-7887-4072-afc1-e679bca47c7c"
+        },
+        "message": "response"
+    },
+    "copyLine1": {
+        "data": {
+            "response": {
+                "alternativesList": [
+                    {
+                        "alternativeId": "6215671d-bf0d-4867-973e-e5edcb0d246a",
+                        "commands": [
+                            {
+                                "text": "let x = 1",
+                                "type": "COMMAND_TYPE_COPY"
+                            }
+                        ],
+                        "transcript": "copy line one",
+                        "description": "copy line 1"
+                    },
+                    {
+                        "alternativeId": "06389339-a516-408a-8664-5fe22159568e",
+                        "commands": [
+                            {
+                                "modifiers": [
+                                    "command"
+                                ],
+                                "text": "c",
+                                "type": "COMMAND_TYPE_PRESS"
+                            }
+                        ],
+                        "transcript": "copy line one",
+                        "description": "copy, line one",
+                        "remaining": "line one"
+                    }
+                ],
+                "silenceThreshold": 500,
+                "chunkIds": [
+                    "83e069d8-de5b-451c-b3ba-524d9f40e300"
+                ],
+                "endpointId": "3cb50d29-290c-4f7f-8587-de22180adcf6",
+                "final": true,
+                "chunkId": "83e069d8-de5b-451c-b3ba-524d9f40e300",
+                "execute": {
+                    "commandsList": [
+                        {
+                            "text": "let x = 1",
+                            "type": "COMMAND_TYPE_COPY"
+                        }
+                    ],
+                    "alternativeId": "6215671d-bf0d-4867-973e-e5edcb0d246a",
+                    "commands": [
+                        {
+                            "text": "let x = 1",
+                            "type": "COMMAND_TYPE_COPY"
+                        }
+                    ],
+                    "transcript": "copy line one",
+                    "description": "copy line 1"
+                },
+                "alternatives": [
+                    {
+                        "alternativeId": "6215671d-bf0d-4867-973e-e5edcb0d246a",
+                        "commands": [
+                            {
+                                "text": "let x = 1",
+                                "type": "COMMAND_TYPE_COPY"
+                            }
+                        ],
+                        "transcript": "copy line one",
+                        "description": "copy line 1"
+                    },
+                    {
+                        "alternativeId": "06389339-a516-408a-8664-5fe22159568e",
+                        "commands": [
+                            {
+                                "modifiers": [
+                                    "command"
+                                ],
+                                "text": "c",
+                                "type": "COMMAND_TYPE_PRESS"
+                            }
+                        ],
+                        "transcript": "copy line one",
+                        "description": "copy, line one",
+                        "remaining": "line one"
+                    }
+                ]
+            },
+            "callback": "2ebe19b9-cc57-4104-be50-3cbf44a21bfa"
+        },
+        "message": "response"
+    },
+    "copy": {
+        "data": {
+            "response": {
+                "alternativesList": [
+                    {
+                        "alternativeId": "93f2712a-cffb-4859-859d-40e9346b41e7",
+                        "commands": [
+                            {
+                                "modifiers": [
+                                    "command"
+                                ],
+                                "text": "c",
+                                "type": "COMMAND_TYPE_PRESS"
+                            }
+                        ],
+                        "transcript": "copy",
+                        "description": "copy"
+                    }
+                ],
+                "silenceThreshold": 500,
+                "chunkIds": [
+                    "9d0019b6-94dd-4edb-a216-289f5529145d"
+                ],
+                "endpointId": "a98f390c-a1e2-46cc-b646-5e96293a78a1",
+                "final": true,
+                "chunkId": "9d0019b6-94dd-4edb-a216-289f5529145d",
+                "execute": {
+                    "commandsList": [
+                        {
+                            "modifiers": [
+                                "command"
+                            ],
+                            "text": "c",
+                            "type": "COMMAND_TYPE_PRESS"
+                        }
+                    ],
+                    "alternativeId": "93f2712a-cffb-4859-859d-40e9346b41e7",
+                    "commands": [
+                        {
+                            "modifiers": [
+                                "command"
+                            ],
+                            "text": "c",
+                            "type": "COMMAND_TYPE_PRESS"
+                        }
+                    ],
+                    "transcript": "copy",
+                    "description": "copy"
+                },
+                "alternatives": [
+                    {
+                        "alternativeId": "93f2712a-cffb-4859-859d-40e9346b41e7",
+                        "commands": [
+                            {
+                                "modifiers": [
+                                    "command"
+                                ],
+                                "text": "c",
+                                "type": "COMMAND_TYPE_PRESS"
+                            }
+                        ],
+                        "transcript": "copy",
+                        "description": "copy"
+                    }
+                ]
+            },
+            "callback": "de157f83-29ae-4d3e-a5c3-4da03fb58ac1"
+        },
+        "message": "response"
+    },
+    "cutLine2": {
+        "data": {
+            "response": {
+                "alternativesList": [
+                    {
+                        "alternativeId": "c7b89d05-d385-4a97-b3d3-e2adce39f459",
+                        "commands": [
+                            {
+                                "text": "let y = 2\n",
+                                "type": "COMMAND_TYPE_COPY"
+                            },
+                            {
+                                "changes": [
+                                    {
+                                        "stop": 20,
+                                        "start": 10
+                                    }
+                                ],
+                                "cursor": 10,
+                                "source": "let x = 1\n",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "cut line two",
+                        "description": "cut line 2"
+                    },
+                    {
+                        "alternativeId": "5e8785d5-e960-4ee9-88f9-5f50d3d7aba3",
+                        "commands": [
+                            {
+                                "modifiers": [
+                                    "command"
+                                ],
+                                "text": "x",
+                                "type": "COMMAND_TYPE_PRESS"
+                            }
+                        ],
+                        "transcript": "cut line two",
+                        "description": "cut, line two",
+                        "remaining": "line two"
+                    },
+                    {
+                        "alternativeId": "d1100d70-d41b-4626-9cb9-53bb69b2cdff",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "cut line to",
+                        "description": "Object not found: cut line to"
+                    }
+                ],
+                "silenceThreshold": 500,
+                "chunkIds": [
+                    "ba2ef7c3-142f-40dd-adf9-122e7c627cab",
+                    "5b05e0d8-2c29-428d-b29f-a185fe8efa9e"
+                ],
+                "endpointId": "905ae0de-4aa3-4385-a24e-af4a0ef737b7",
+                "final": true,
+                "chunkId": "5b05e0d8-2c29-428d-b29f-a185fe8efa9e",
+                "execute": {
+                    "commandsList": [
+                        {
+                            "text": "let y = 2\n",
+                            "type": "COMMAND_TYPE_COPY"
+                        },
+                        {
+                            "changes": [
+                                {
+                                    "stop": 20,
+                                    "start": 10
+                                }
+                            ],
+                            "cursor": 10,
+                            "source": "let x = 1\n",
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "alternativeId": "c7b89d05-d385-4a97-b3d3-e2adce39f459",
+                    "commands": [
+                        {
+                            "text": "let y = 2\n",
+                            "type": "COMMAND_TYPE_COPY"
+                        },
+                        {
+                            "changes": [
+                                {
+                                    "stop": 20,
+                                    "start": 10
+                                }
+                            ],
+                            "cursor": 10,
+                            "source": "let x = 1\n",
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "transcript": "cut line two",
+                    "description": "cut line 2"
+                },
+                "alternatives": [
+                    {
+                        "alternativeId": "c7b89d05-d385-4a97-b3d3-e2adce39f459",
+                        "commands": [
+                            {
+                                "text": "let y = 2\n",
+                                "type": "COMMAND_TYPE_COPY"
+                            },
+                            {
+                                "changes": [
+                                    {
+                                        "stop": 20,
+                                        "start": 10
+                                    }
+                                ],
+                                "cursor": 10,
+                                "source": "let x = 1\n",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "cut line two",
+                        "description": "cut line 2"
+                    },
+                    {
+                        "alternativeId": "5e8785d5-e960-4ee9-88f9-5f50d3d7aba3",
+                        "commands": [
+                            {
+                                "modifiers": [
+                                    "command"
+                                ],
+                                "text": "x",
+                                "type": "COMMAND_TYPE_PRESS"
+                            }
+                        ],
+                        "transcript": "cut line two",
+                        "description": "cut, line two",
+                        "remaining": "line two"
+                    },
+                    {
+                        "alternativeId": "d1100d70-d41b-4626-9cb9-53bb69b2cdff",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "cut line to",
+                        "description": "Object not found: cut line to"
+                    }
+                ]
+            },
+            "callback": "bad6382d-a47b-46d7-b1f9-006aacd2668d"
+        },
+        "message": "response"
+    },
+    "undo": {
+        "data": {
+            "response": {
+                "alternativesList": [
+                    {
+                        "alternativeId": "03eb940b-1286-4744-b7a4-9b6ce3843ce0",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_UNDO"
+                            }
+                        ],
+                        "transcript": "undo",
+                        "description": "undo"
+                    }
+                ],
+                "silenceThreshold": 500,
+                "chunkIds": [
+                    "92150ba3-35e3-4c0a-9c52-1156c96e4d62"
+                ],
+                "endpointId": "a93f0d59-4966-40f7-873b-1732b837bbbb",
+                "final": true,
+                "chunkId": "92150ba3-35e3-4c0a-9c52-1156c96e4d62",
+                "execute": {
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_UNDO"
+                        }
+                    ],
+                    "alternativeId": "03eb940b-1286-4744-b7a4-9b6ce3843ce0",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_UNDO"
+                        }
+                    ],
+                    "transcript": "undo",
+                    "description": "undo"
+                },
+                "alternatives": [
+                    {
+                        "alternativeId": "03eb940b-1286-4744-b7a4-9b6ce3843ce0",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_UNDO"
+                            }
+                        ],
+                        "transcript": "undo",
+                        "description": "undo"
+                    }
+                ]
+            },
+            "callback": "777a672c-76d7-45a7-be4e-fa86dbfe3376"
+        },
+        "message": "response"
+    },
+    "goToEndOfFile": {
+        "data": {
+            "response": {
+                "alternativesList": [
+                    {
+                        "alternativeId": "ec7d72ba-f11a-4102-8ae3-14d2e404d226",
+                        "commands": [
+                            {
+                                "cursor": 55,
+                                "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "go to end of file",
+                        "description": "go to end of file"
+                    },
+                    {
+                        "alternativeId": "209db907-ca8d-4309-b37c-a2b01d6804da",
+                        "commands": [
+                            {
+                                "text": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
+                                "type": "COMMAND_TYPE_COPY"
+                            },
+                            {
+                                "changes": [
+                                    {
+                                        "stop": 55
+                                    }
+                                ],
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "cut to end of file",
+                        "description": "cut to end of file"
+                    },
+                    {
+                        "alternativeId": "7747f554-9e45-4b2d-9e7d-2516cbefb3cd",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "go to end of file",
+                        "description": "Object not found: go to end of file"
+                    },
+                    {
+                        "alternativeId": "6e93beb8-08f6-4060-8547-895a1f988a83",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "cut to end of file",
+                        "description": "Object not found: cut to end of file"
+                    }
+                ],
+                "silenceThreshold": 1000,
+                "chunkIds": [
+                    "25493f2b-6d1a-4996-83c6-d53b14214af5"
+                ],
+                "endpointId": "c5bd2a91-5ad5-4bf4-8f50-f6f6c74c3ad5",
+                "final": true,
+                "requiresLongSilence": true,
+                "chunkId": "25493f2b-6d1a-4996-83c6-d53b14214af5",
+                "execute": {
+                    "commandsList": [
+                        {
+                            "cursor": 55,
+                            "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "alternativeId": "ec7d72ba-f11a-4102-8ae3-14d2e404d226",
+                    "commands": [
+                        {
+                            "cursor": 55,
+                            "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "transcript": "go to end of file",
+                    "description": "go to end of file"
+                },
+                "alternatives": [
+                    {
+                        "alternativeId": "ec7d72ba-f11a-4102-8ae3-14d2e404d226",
+                        "commands": [
+                            {
+                                "cursor": 55,
+                                "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "go to end of file",
+                        "description": "go to end of file"
+                    },
+                    {
+                        "alternativeId": "209db907-ca8d-4309-b37c-a2b01d6804da",
+                        "commands": [
+                            {
+                                "text": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
+                                "type": "COMMAND_TYPE_COPY"
+                            },
+                            {
+                                "changes": [
+                                    {
+                                        "stop": 55
+                                    }
+                                ],
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "cut to end of file",
+                        "description": "cut to end of file"
+                    },
+                    {
+                        "alternativeId": "7747f554-9e45-4b2d-9e7d-2516cbefb3cd",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "go to end of file",
+                        "description": "Object not found: go to end of file"
+                    },
+                    {
+                        "alternativeId": "6e93beb8-08f6-4060-8547-895a1f988a83",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "cut to end of file",
+                        "description": "Object not found: cut to end of file"
+                    }
+                ]
+            },
+            "callback": "eddeb1dc-64d9-4437-ac69-f485a59870d5"
+        },
+        "message": "response"
     },
     "undo2Times": {
-        "message": "response",
         "data": {
-            "callback": "010c9926-ced0-4d70-a93c-be1fe2cc5612",
             "response": {
-                "alternatives": [
+                "alternativesList": [
                     {
-                        "description": "undo 2 times",
-                        "transcript": "undo two times",
+                        "alternativeId": "f34017e1-80a6-4526-9796-047db07df858",
                         "commands": [
                             {
                                 "type": "COMMAND_TYPE_UNDO"
@@ -394,23 +1854,29 @@
                                 "type": "COMMAND_TYPE_UNDO"
                             }
                         ],
-                        "alternativeId": "f34017e1-80a6-4526-9796-047db07df858"
+                        "transcript": "undo two times",
+                        "description": "undo 2 times"
                     },
                     {
-                        "description": "undo to times",
-                        "transcript": "undo to times",
+                        "alternativeId": "b658321f-643e-4f00-a4c9-d0a0cbaec32a",
                         "commands": [
                             {
                                 "type": "COMMAND_TYPE_INVALID"
                             }
                         ],
-                        "alternativeId": "b658321f-643e-4f00-a4c9-d0a0cbaec32a"
+                        "transcript": "undo to times",
+                        "description": "undo to times"
                     }
                 ],
+                "silenceThreshold": 500,
+                "chunkIds": [
+                    "e5daa5e5-986d-436b-b486-b6b71ee8d18f"
+                ],
+                "endpointId": "e9bdc527-09ca-4122-9921-f77bbaad458f",
+                "final": true,
+                "chunkId": "e5daa5e5-986d-436b-b486-b6b71ee8d18f",
                 "execute": {
-                    "description": "undo 2 times",
-                    "transcript": "undo two times",
-                    "commands": [
+                    "commandsList": [
                         {
                             "type": "COMMAND_TYPE_UNDO"
                         },
@@ -419,1904 +1885,422 @@
                         }
                     ],
                     "alternativeId": "f34017e1-80a6-4526-9796-047db07df858",
-                    "commandsList": [
+                    "commands": [
                         {
                             "type": "COMMAND_TYPE_UNDO"
                         },
                         {
                             "type": "COMMAND_TYPE_UNDO"
                         }
-                    ]
+                    ],
+                    "transcript": "undo two times",
+                    "description": "undo 2 times"
                 },
-                "chunkId": "e5daa5e5-986d-436b-b486-b6b71ee8d18f",
-                "final": true,
-                "endpointId": "e9bdc527-09ca-4122-9921-f77bbaad458f",
-                "chunkIds": [
-                    "e5daa5e5-986d-436b-b486-b6b71ee8d18f"
-                ],
-                "silenceThreshold": 500,
-                "alternativesList": [
+                "alternatives": [
                     {
-                        "description": "undo 2 times",
+                        "alternativeId": "f34017e1-80a6-4526-9796-047db07df858",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_UNDO"
+                            },
+                            {
+                                "type": "COMMAND_TYPE_UNDO"
+                            }
+                        ],
                         "transcript": "undo two times",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_UNDO"
-                            },
-                            {
-                                "type": "COMMAND_TYPE_UNDO"
-                            }
-                        ],
-                        "alternativeId": "f34017e1-80a6-4526-9796-047db07df858"
+                        "description": "undo 2 times"
                     },
                     {
-                        "description": "undo to times",
+                        "alternativeId": "b658321f-643e-4f00-a4c9-d0a0cbaec32a",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
                         "transcript": "undo to times",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "b658321f-643e-4f00-a4c9-d0a0cbaec32a"
-                    }
-                ]
-            }
-        }
-    },
-    "goToEndOfFile": {
-        "message": "response",
-        "data": {
-            "callback": "eddeb1dc-64d9-4437-ac69-f485a59870d5",
-            "response": {
-                "alternatives": [
-                    {
-                        "description": "go to end of file",
-                        "transcript": "go to end of file",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_DIFF",
-                                "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
-                                "cursor": 55
-                            }
-                        ],
-                        "alternativeId": "ec7d72ba-f11a-4102-8ae3-14d2e404d226"
-                    },
-                    {
-                        "description": "cut to end of file",
-                        "transcript": "cut to end of file",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_COPY",
-                                "text": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n"
-                            },
-                            {
-                                "type": "COMMAND_TYPE_DIFF",
-                                "changes": [
-                                    {
-                                        "stop": 55
-                                    }
-                                ]
-                            }
-                        ],
-                        "alternativeId": "209db907-ca8d-4309-b37c-a2b01d6804da"
-                    },
-                    {
-                        "description": "Object not found: go to end of file",
-                        "transcript": "go to end of file",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "7747f554-9e45-4b2d-9e7d-2516cbefb3cd"
-                    },
-                    {
-                        "description": "Object not found: cut to end of file",
-                        "transcript": "cut to end of file",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "6e93beb8-08f6-4060-8547-895a1f988a83"
-                    }
-                ],
-                "execute": {
-                    "description": "go to end of file",
-                    "transcript": "go to end of file",
-                    "commands": [
-                        {
-                            "type": "COMMAND_TYPE_DIFF",
-                            "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
-                            "cursor": 55
-                        }
-                    ],
-                    "alternativeId": "ec7d72ba-f11a-4102-8ae3-14d2e404d226",
-                    "commandsList": [
-                        {
-                            "type": "COMMAND_TYPE_DIFF",
-                            "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
-                            "cursor": 55
-                        }
-                    ]
-                },
-                "chunkId": "25493f2b-6d1a-4996-83c6-d53b14214af5",
-                "requiresLongSilence": true,
-                "final": true,
-                "endpointId": "c5bd2a91-5ad5-4bf4-8f50-f6f6c74c3ad5",
-                "chunkIds": [
-                    "25493f2b-6d1a-4996-83c6-d53b14214af5"
-                ],
-                "silenceThreshold": 1000,
-                "alternativesList": [
-                    {
-                        "description": "go to end of file",
-                        "transcript": "go to end of file",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_DIFF",
-                                "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
-                                "cursor": 55
-                            }
-                        ],
-                        "alternativeId": "ec7d72ba-f11a-4102-8ae3-14d2e404d226"
-                    },
-                    {
-                        "description": "cut to end of file",
-                        "transcript": "cut to end of file",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_COPY",
-                                "text": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n"
-                            },
-                            {
-                                "type": "COMMAND_TYPE_DIFF",
-                                "changes": [
-                                    {
-                                        "stop": 55
-                                    }
-                                ]
-                            }
-                        ],
-                        "alternativeId": "209db907-ca8d-4309-b37c-a2b01d6804da"
-                    },
-                    {
-                        "description": "Object not found: go to end of file",
-                        "transcript": "go to end of file",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "7747f554-9e45-4b2d-9e7d-2516cbefb3cd"
-                    },
-                    {
-                        "description": "Object not found: cut to end of file",
-                        "transcript": "cut to end of file",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "6e93beb8-08f6-4060-8547-895a1f988a83"
-                    }
-                ]
-            }
-        }
-    },
-    "undo": {
-        "message": "response",
-        "data": {
-            "callback": "777a672c-76d7-45a7-be4e-fa86dbfe3376",
-            "response": {
-                "alternatives": [
-                    {
-                        "description": "undo",
-                        "transcript": "undo",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_UNDO"
-                            }
-                        ],
-                        "alternativeId": "03eb940b-1286-4744-b7a4-9b6ce3843ce0"
-                    }
-                ],
-                "execute": {
-                    "description": "undo",
-                    "transcript": "undo",
-                    "commands": [
-                        {
-                            "type": "COMMAND_TYPE_UNDO"
-                        }
-                    ],
-                    "alternativeId": "03eb940b-1286-4744-b7a4-9b6ce3843ce0",
-                    "commandsList": [
-                        {
-                            "type": "COMMAND_TYPE_UNDO"
-                        }
-                    ]
-                },
-                "chunkId": "92150ba3-35e3-4c0a-9c52-1156c96e4d62",
-                "final": true,
-                "endpointId": "a93f0d59-4966-40f7-873b-1732b837bbbb",
-                "chunkIds": [
-                    "92150ba3-35e3-4c0a-9c52-1156c96e4d62"
-                ],
-                "silenceThreshold": 500,
-                "alternativesList": [
-                    {
-                        "description": "undo",
-                        "transcript": "undo",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_UNDO"
-                            }
-                        ],
-                        "alternativeId": "03eb940b-1286-4744-b7a4-9b6ce3843ce0"
-                    }
-                ]
-            }
-        }
-    },
-    "cutLine2": {
-        "message": "response",
-        "data": {
-            "callback": "bad6382d-a47b-46d7-b1f9-006aacd2668d",
-            "response": {
-                "alternatives": [
-                    {
-                        "description": "cut line 2",
-                        "transcript": "cut line two",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_COPY",
-                                "text": "let y = 2\n"
-                            },
-                            {
-                                "type": "COMMAND_TYPE_DIFF",
-                                "source": "let x = 1\n",
-                                "cursor": 10,
-                                "changes": [
-                                    {
-                                        "start": 10,
-                                        "stop": 20
-                                    }
-                                ]
-                            }
-                        ],
-                        "alternativeId": "c7b89d05-d385-4a97-b3d3-e2adce39f459"
-                    },
-                    {
-                        "remaining": "line two",
-                        "description": "cut, line two",
-                        "transcript": "cut line two",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_PRESS",
-                                "text": "x",
-                                "modifiers": [
-                                    "command"
-                                ]
-                            }
-                        ],
-                        "alternativeId": "5e8785d5-e960-4ee9-88f9-5f50d3d7aba3"
-                    },
-                    {
-                        "description": "Object not found: cut line to",
-                        "transcript": "cut line to",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "d1100d70-d41b-4626-9cb9-53bb69b2cdff"
-                    }
-                ],
-                "execute": {
-                    "description": "cut line 2",
-                    "transcript": "cut line two",
-                    "commands": [
-                        {
-                            "type": "COMMAND_TYPE_COPY",
-                            "text": "let y = 2\n"
-                        },
-                        {
-                            "type": "COMMAND_TYPE_DIFF",
-                            "source": "let x = 1\n",
-                            "cursor": 10,
-                            "changes": [
-                                {
-                                    "start": 10,
-                                    "stop": 20
-                                }
-                            ]
-                        }
-                    ],
-                    "alternativeId": "c7b89d05-d385-4a97-b3d3-e2adce39f459",
-                    "commandsList": [
-                        {
-                            "type": "COMMAND_TYPE_COPY",
-                            "text": "let y = 2\n"
-                        },
-                        {
-                            "type": "COMMAND_TYPE_DIFF",
-                            "source": "let x = 1\n",
-                            "cursor": 10,
-                            "changes": [
-                                {
-                                    "start": 10,
-                                    "stop": 20
-                                }
-                            ]
-                        }
-                    ]
-                },
-                "chunkId": "5b05e0d8-2c29-428d-b29f-a185fe8efa9e",
-                "final": true,
-                "endpointId": "905ae0de-4aa3-4385-a24e-af4a0ef737b7",
-                "chunkIds": [
-                    "ba2ef7c3-142f-40dd-adf9-122e7c627cab",
-                    "5b05e0d8-2c29-428d-b29f-a185fe8efa9e"
-                ],
-                "silenceThreshold": 500,
-                "alternativesList": [
-                    {
-                        "description": "cut line 2",
-                        "transcript": "cut line two",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_COPY",
-                                "text": "let y = 2\n"
-                            },
-                            {
-                                "type": "COMMAND_TYPE_DIFF",
-                                "source": "let x = 1\n",
-                                "cursor": 10,
-                                "changes": [
-                                    {
-                                        "start": 10,
-                                        "stop": 20
-                                    }
-                                ]
-                            }
-                        ],
-                        "alternativeId": "c7b89d05-d385-4a97-b3d3-e2adce39f459"
-                    },
-                    {
-                        "remaining": "line two",
-                        "description": "cut, line two",
-                        "transcript": "cut line two",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_PRESS",
-                                "text": "x",
-                                "modifiers": [
-                                    "command"
-                                ]
-                            }
-                        ],
-                        "alternativeId": "5e8785d5-e960-4ee9-88f9-5f50d3d7aba3"
-                    },
-                    {
-                        "description": "Object not found: cut line to",
-                        "transcript": "cut line to",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "d1100d70-d41b-4626-9cb9-53bb69b2cdff"
-                    }
-                ]
-            }
-        }
-    },
-    "copy": {
-        "message": "response",
-        "data": {
-            "callback": "de157f83-29ae-4d3e-a5c3-4da03fb58ac1",
-            "response": {
-                "alternatives": [
-                    {
-                        "description": "copy",
-                        "transcript": "copy",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_PRESS",
-                                "text": "c",
-                                "modifiers": [
-                                    "command"
-                                ]
-                            }
-                        ],
-                        "alternativeId": "93f2712a-cffb-4859-859d-40e9346b41e7"
-                    }
-                ],
-                "execute": {
-                    "description": "copy",
-                    "transcript": "copy",
-                    "commands": [
-                        {
-                            "type": "COMMAND_TYPE_PRESS",
-                            "text": "c",
-                            "modifiers": [
-                                "command"
-                            ]
-                        }
-                    ],
-                    "alternativeId": "93f2712a-cffb-4859-859d-40e9346b41e7",
-                    "commandsList": [
-                        {
-                            "type": "COMMAND_TYPE_PRESS",
-                            "text": "c",
-                            "modifiers": [
-                                "command"
-                            ]
-                        }
-                    ]
-                },
-                "chunkId": "9d0019b6-94dd-4edb-a216-289f5529145d",
-                "final": true,
-                "endpointId": "a98f390c-a1e2-46cc-b646-5e96293a78a1",
-                "chunkIds": [
-                    "9d0019b6-94dd-4edb-a216-289f5529145d"
-                ],
-                "silenceThreshold": 500,
-                "alternativesList": [
-                    {
-                        "description": "copy",
-                        "transcript": "copy",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_PRESS",
-                                "text": "c",
-                                "modifiers": [
-                                    "command"
-                                ]
-                            }
-                        ],
-                        "alternativeId": "93f2712a-cffb-4859-859d-40e9346b41e7"
-                    }
-                ]
-            }
-        }
-    },
-    "copyLine1": {
-        "message": "response",
-        "data": {
-            "callback": "2ebe19b9-cc57-4104-be50-3cbf44a21bfa",
-            "response": {
-                "alternatives": [
-                    {
-                        "description": "copy line 1",
-                        "transcript": "copy line one",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_COPY",
-                                "text": "let x = 1"
-                            }
-                        ],
-                        "alternativeId": "6215671d-bf0d-4867-973e-e5edcb0d246a"
-                    },
-                    {
-                        "remaining": "line one",
-                        "description": "copy, line one",
-                        "transcript": "copy line one",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_PRESS",
-                                "text": "c",
-                                "modifiers": [
-                                    "command"
-                                ]
-                            }
-                        ],
-                        "alternativeId": "06389339-a516-408a-8664-5fe22159568e"
-                    }
-                ],
-                "execute": {
-                    "description": "copy line 1",
-                    "transcript": "copy line one",
-                    "commands": [
-                        {
-                            "type": "COMMAND_TYPE_COPY",
-                            "text": "let x = 1"
-                        }
-                    ],
-                    "alternativeId": "6215671d-bf0d-4867-973e-e5edcb0d246a",
-                    "commandsList": [
-                        {
-                            "type": "COMMAND_TYPE_COPY",
-                            "text": "let x = 1"
-                        }
-                    ]
-                },
-                "chunkId": "83e069d8-de5b-451c-b3ba-524d9f40e300",
-                "final": true,
-                "endpointId": "3cb50d29-290c-4f7f-8587-de22180adcf6",
-                "chunkIds": [
-                    "83e069d8-de5b-451c-b3ba-524d9f40e300"
-                ],
-                "silenceThreshold": 500,
-                "alternativesList": [
-                    {
-                        "description": "copy line 1",
-                        "transcript": "copy line one",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_COPY",
-                                "text": "let x = 1"
-                            }
-                        ],
-                        "alternativeId": "6215671d-bf0d-4867-973e-e5edcb0d246a"
-                    },
-                    {
-                        "remaining": "line one",
-                        "description": "copy, line one",
-                        "transcript": "copy line one",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_PRESS",
-                                "text": "c",
-                                "modifiers": [
-                                    "command"
-                                ]
-                            }
-                        ],
-                        "alternativeId": "06389339-a516-408a-8664-5fe22159568e"
-                    }
-                ]
-            }
-        }
-    },
-    "goLine2": {
-        "message": "response",
-        "data": {
-            "callback": "3dc37ad9-7887-4072-afc1-e679bca47c7c",
-            "response": {
-                "alternatives": [
-                    {
-                        "description": "go to line 2",
-                        "transcript": "go to line two",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_DIFF",
-                                "source": "let x = 1let y = 2",
-                                "cursor": 10
-                            }
-                        ],
-                        "alternativeId": "d93e2d99-c690-467f-9dee-b735a4343ca6"
-                    },
-                    {
-                        "description": "Object not found: go to line two",
-                        "transcript": "go to line two",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "69c3a63b-7afb-4467-bba2-7b8d6be66f46"
-                    },
-                    {
-                        "description": "Object not found: go to line to",
-                        "transcript": "go to line to",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "47bee658-2782-4847-8bae-1f3d74bb35f2"
-                    }
-                ],
-                "execute": {
-                    "description": "go to line 2",
-                    "transcript": "go to line two",
-                    "commands": [
-                        {
-                            "type": "COMMAND_TYPE_DIFF",
-                            "source": "let x = 1let y = 2",
-                            "cursor": 10
-                        }
-                    ],
-                    "alternativeId": "d93e2d99-c690-467f-9dee-b735a4343ca6",
-                    "commandsList": [
-                        {
-                            "type": "COMMAND_TYPE_DIFF",
-                            "source": "let x = 1let y = 2",
-                            "cursor": 10
-                        }
-                    ]
-                },
-                "chunkId": "47a0267e-c613-4cd4-82e7-343976c7a1d1",
-                "requiresLongSilence": true,
-                "final": true,
-                "endpointId": "3e31716f-d3d9-4e91-b4be-bdd2f6616d1c",
-                "chunkIds": [
-                    "47a0267e-c613-4cd4-82e7-343976c7a1d1"
-                ],
-                "silenceThreshold": 1000,
-                "alternativesList": [
-                    {
-                        "description": "go to line 2",
-                        "transcript": "go to line two",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_DIFF",
-                                "source": "let x = 1let y = 2",
-                                "cursor": 10
-                            }
-                        ],
-                        "alternativeId": "d93e2d99-c690-467f-9dee-b735a4343ca6"
-                    },
-                    {
-                        "description": "Object not found: go to line two",
-                        "transcript": "go to line two",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "69c3a63b-7afb-4467-bba2-7b8d6be66f46"
-                    },
-                    {
-                        "description": "Object not found: go to line to",
-                        "transcript": "go to line to",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "alternativeId": "47bee658-2782-4847-8bae-1f3d74bb35f2"
-                    }
-                ]
-            }
-        }
-    },
-    "cut": {
-        "message": "response",
-        "data": {
-            "callback": "4892e5c8-a148-44dc-8f6a-181da9341cfe",
-            "response": {
-                "alternatives": [
-                    {
-                        "description": "cut",
-                        "transcript": "cut",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_PRESS",
-                                "text": "x",
-                                "modifiers": [
-                                    "command"
-                                ]
-                            }
-                        ],
-                        "alternativeId": "18a60887-c31b-4236-8e37-35c4b407686a"
-                    }
-                ],
-                "execute": {
-                    "description": "cut",
-                    "transcript": "cut",
-                    "commands": [
-                        {
-                            "type": "COMMAND_TYPE_PRESS",
-                            "text": "x",
-                            "modifiers": [
-                                "command"
-                            ]
-                        }
-                    ],
-                    "alternativeId": "18a60887-c31b-4236-8e37-35c4b407686a",
-                    "commandsList": [
-                        {
-                            "type": "COMMAND_TYPE_PRESS",
-                            "text": "x",
-                            "modifiers": [
-                                "command"
-                            ]
-                        }
-                    ]
-                },
-                "chunkId": "1ba6ce79-1a57-4ab3-8a93-de0c59585b82",
-                "final": true,
-                "endpointId": "4393482d-46f6-410c-9240-5fa4cc204c4a",
-                "chunkIds": [
-                    "1ba6ce79-1a57-4ab3-8a93-de0c59585b82"
-                ],
-                "silenceThreshold": 500,
-                "alternativesList": [
-                    {
-                        "description": "cut",
-                        "transcript": "cut",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_PRESS",
-                                "text": "x",
-                                "modifiers": [
-                                    "command"
-                                ]
-                            }
-                        ],
-                        "alternativeId": "18a60887-c31b-4236-8e37-35c4b407686a"
-                    }
-                ]
-            }
-        }
-    },
-    "diff": {
-        "data": {
-            "callback": "956e2039-88fd-4d35-9e71-ba42abdde6bb",
-            "response": {
-                "execute": {
-                    "commandsList": [
-                        {
-                            "type": "COMMAND_TYPE_DIFF",
-                            "limited": false
-                        }
-                    ]
-                }
-            }
-        }
-    },
-    "getEditorState": {
-        "data": {
-            "callback": "956e2039-88fd-4d35-9e71-ba42abdde6bb",
-            "response": {
-                "execute": {
-                    "commandsList": [
-                        {
-                            "type": "COMMAND_TYPE_GET_EDITOR_STATE",
-                            "limited": false
-                        }
-                    ]
-                }
-            }
-        }
-    },
-    "save": {
-        "data": {
-            "callback": "956e2039-88fd-4d35-9e71-ba42abdde6bb",
-            "response": {
-                "execute": {
-                    "commandsList": [
-                        {
-                            "type": "COMMAND_TYPE_SAVE",
-                            "limited": false
-                        }
-                    ]
-                }
-            }
-        }
-    },
-    "save2": {
-        "data": {
-            "callback": "956e2039-88fd-4d35-9e71-ba42abdde6bb",
-            "response": {
-                "execute": {
-                    "commandsList": [
-                        {
-                            "type": "COMMAND_TYPE_SAVE",
-                            "limited": false
-                        }
-                    ]
-                }
-            }
-        }
-    },
-    "selectLine2": {
-        "data": {
-            "response": {
-                "alternativesList": [
-                    {
-                        "alternativeId": "15d8388c-6a96-44da-ac91-803cdc998050",
-                        "commands": [
-                            {
-                                "cursorEnd": 19,
-                                "cursor": 10,
-                                "source": "let x = 1let y = 2",
-                                "type": "COMMAND_TYPE_SELECT"
-                            }
-                        ],
-                        "transcript": "select line two",
-                        "description": "select line 2"
-                    },
-                    {
-                        "alternativeId": "be0c1a74-5a51-43c8-bd4c-bc0f06aa6a0c",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "transcript": "select line two",
-                        "description": "Object not found: select line two"
-                    },
-                    {
-                        "alternativeId": "60bc51c6-07fe-428d-ae2d-f181806691ca",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "transcript": "select line to",
-                        "description": "Object not found: select line to"
-                    }
-                ],
-                "silenceThreshold": 500,
-                "chunkIds": [
-                    "c279775d-b10f-4e67-8dcd-a03597fff8f6"
-                ],
-                "endpointId": "e42ca4bd-4cf8-45f4-af48-42cd84a4096f",
-                "final": true,
-                "chunkId": "c279775d-b10f-4e67-8dcd-a03597fff8f6",
-                "execute": {
-                    "commandsList": [
-                        {
-                            "cursorEnd": 19,
-                            "cursor": 10,
-                            "source": "let x = 1let y = 2",
-                            "type": "COMMAND_TYPE_SELECT"
-                        }
-                    ],
-                    "alternativeId": "15d8388c-6a96-44da-ac91-803cdc998050",
-                    "commands": [
-                        {
-                            "cursorEnd": 19,
-                            "cursor": 10,
-                            "source": "let x = 1let y = 2",
-                            "type": "COMMAND_TYPE_SELECT"
-                        }
-                    ],
-                    "transcript": "select line two",
-                    "description": "select line 2"
-                },
-                "alternatives": [
-                    {
-                        "alternativeId": "15d8388c-6a96-44da-ac91-803cdc998050",
-                        "commands": [
-                            {
-                                "cursorEnd": 19,
-                                "cursor": 10,
-                                "source": "let x = 1let y = 2",
-                                "type": "COMMAND_TYPE_SELECT"
-                            }
-                        ],
-                        "transcript": "select line two",
-                        "description": "select line 2"
-                    },
-                    {
-                        "alternativeId": "be0c1a74-5a51-43c8-bd4c-bc0f06aa6a0c",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "transcript": "select line two",
-                        "description": "Object not found: select line two"
-                    },
-                    {
-                        "alternativeId": "60bc51c6-07fe-428d-ae2d-f181806691ca",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "transcript": "select line to",
-                        "description": "Object not found: select line to"
+                        "description": "undo to times"
                     }
                 ]
             },
-            "callback": "4b0c28b0-b3d7-4e90-be43-2fba47972633"
+            "callback": "010c9926-ced0-4d70-a93c-be1fe2cc5612"
         },
         "message": "response"
     },
-    "paste": {
+    "deletePhraseX": {
         "data": {
             "response": {
-                "textResponse": true,
+                "alternativesList": [
+                    {
+                        "alternativeId": "25231510-3fe9-4a9a-8566-c1d506ebf6d8",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "stop": 5,
+                                        "start": 4
+                                    }
+                                ],
+                                "cursor": 4,
+                                "source": "let  = 1;",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "delete phrase x",
+                        "description": "delete phrase <code>x</code>"
+                    },
+                    {
+                        "alternativeId": "69328b80-8308-436d-b460-6b029632e82b",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "delete phrase ex",
+                        "description": "Object not found: delete phrase ex"
+                    },
+                    {
+                        "alternativeId": "dc216f80-5363-4d5b-ad5b-d029400bf7d5",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "delete phrase ex",
+                        "description": "Object not found: delete phrase ex"
+                    },
+                    {
+                        "alternativeId": "56a0b225-e770-4d82-a53e-0cfb15227834",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "delete phrase x",
+                        "description": "Object not found: delete phrase x"
+                    },
+                    {
+                        "alternativeId": "dd033912-d8d5-49fa-aed5-6e3f3428e18e",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "delete phrase ax",
+                        "description": "Object not found: delete phrase ax"
+                    },
+                    {
+                        "alternativeId": "9d5ef9cf-0d49-45a5-b246-cc161b6faa56",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "delete phrase ax",
+                        "description": "Object not found: delete phrase ax"
+                    },
+                    {
+                        "alternativeId": "0cc47122-6cc1-4fd0-8a3f-9bf13a355c49",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "delete phrase acts",
+                        "description": "Object not found: delete phrase acts"
+                    },
+                    {
+                        "alternativeId": "d8434b68-3272-4bbc-9678-2e1dcda324cc",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "delete phrase acts",
+                        "description": "Object not found: delete phrase acts"
+                    },
+                    {
+                        "alternativeId": "14e7c129-8e28-45e0-b745-10a7eed4aea7",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "delete phrase aix",
+                        "description": "Object not found: delete phrase aix"
+                    },
+                    {
+                        "alternativeId": "f7f11ef8-5a1b-46d0-ac58-a18db69e5cf9",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "delete phrase aix",
+                        "description": "Object not found: delete phrase aix"
+                    }
+                ],
+                "silenceThreshold": 500,
+                "chunkIds": [
+                    "89d1de9e-e34c-4a28-9666-8ac9428df1c5"
+                ],
+                "endpointId": "4a42759f-cfba-433d-9e5e-6fb14aa75d73",
+                "final": true,
+                "chunkId": "89d1de9e-e34c-4a28-9666-8ac9428df1c5",
                 "execute": {
                     "commandsList": [
                         {
                             "changes": [
                                 {
-                                    "substitution": "\nlet x = 1",
-                                    "stop": 20,
-                                    "start": 20
+                                    "stop": 5,
+                                    "start": 4
                                 }
                             ],
-                            "cursor": 30,
-                            "source": "let x = 1\nlet y = 2\n\nlet x = 1",
+                            "cursor": 4,
+                            "source": "let  = 1;",
                             "type": "COMMAND_TYPE_DIFF"
                         }
                     ],
-                    "alternativeId": "aa7e3274-a65e-4388-80a0-93c19bd78fc9",
+                    "alternativeId": "25231510-3fe9-4a9a-8566-c1d506ebf6d8",
                     "commands": [
                         {
                             "changes": [
                                 {
-                                    "substitution": "\nlet x = 1",
-                                    "stop": 20,
-                                    "start": 20
+                                    "stop": 5,
+                                    "start": 4
                                 }
                             ],
-                            "cursor": 30,
-                            "source": "let x = 1\nlet y = 2\n\nlet x = 1",
+                            "cursor": 4,
+                            "source": "let  = 1;",
                             "type": "COMMAND_TYPE_DIFF"
                         }
                     ],
-                    "transcript": "paste",
-                    "description": "paste"
-                }
-            },
-            "callback": "e117a6f4-620f-4a99-95e2-088d9b801535"
-        },
-        "message": "response"
-    },
-    "addLetX": {
-        "data": {
-            "response": {
-                "alternativesList": [
-                    {
-                        "alternativeId": "d991e1ac-f67c-48e2-a01d-5cc7ee533852",
-                        "commands": [
-                            {
-                                "changes": [
-                                    {
-                                        "substitution": "let x = 1;n"
-                                    }
-                                ],
-                                "cursor": 9,
-                                "source": "let x = 1;n",
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "add let x equal one",
-                        "description": "add <code>let x = 1;</code>"
-                    },
-                    {
-                        "alternativeId": "a5d67e1c-2482-46ae-b210-9a81a2e712bf",
-                        "commands": [
-                            {
-                                "changes": [
-                                    {
-                                        "substitution": "let ex = 1;n"
-                                    }
-                                ],
-                                "cursor": 10,
-                                "source": "let ex = 1;n",
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "add let ex equal one",
-                        "description": "add <code>let ex = 1;</code>"
-                    }
-                ],
-                "silenceThreshold": 1000,
-                "chunkIds": [
-                    "81f36ad1-ff46-49cd-9581-9dd70dc1dfd5"
-                ],
-                "endpointId": "a94ff1fd-68fd-4ea7-b6a0-0557f905fa3a",
-                "final": true,
-                "requiresLongSilence": true,
-                "chunkId": "81f36ad1-ff46-49cd-9581-9dd70dc1dfd5",
-                "execute": {
-                    "commandsList": [
-                        {
-                            "changes": [
-                                {
-                                    "substitution": "let x = 1;\n"
-                                }
-                            ],
-                            "cursor": 9,
-                            "source": "let x = 1;\n",
-                            "type": "COMMAND_TYPE_DIFF"
-                        }
-                    ],
-                    "alternativeId": "d991e1ac-f67c-48e2-a01d-5cc7ee533852",
-                    "commands": [
-                        {
-                            "changes": [
-                                {
-                                    "substitution": "let x = 1;\n"
-                                }
-                            ],
-                            "cursor": 9,
-                            "source": "let x = 1;\n",
-                            "type": "COMMAND_TYPE_DIFF"
-                        }
-                    ],
-                    "transcript": "add let x equal one",
-                    "description": "add <code>let x = 1;</code>"
+                    "transcript": "delete phrase x",
+                    "description": "delete phrase <code>x</code>"
                 },
                 "alternatives": [
                     {
-                        "alternativeId": "d991e1ac-f67c-48e2-a01d-5cc7ee533852",
+                        "alternativeId": "25231510-3fe9-4a9a-8566-c1d506ebf6d8",
                         "commands": [
                             {
                                 "changes": [
                                     {
-                                        "substitution": "let x = 1;\n"
+                                        "stop": 5,
+                                        "start": 4
                                     }
                                 ],
-                                "cursor": 9,
-                                "source": "let x = 1;\n",
+                                "cursor": 4,
+                                "source": "let  = 1;",
                                 "type": "COMMAND_TYPE_DIFF"
                             }
                         ],
-                        "transcript": "add let x equal one",
-                        "description": "add <code>let x = 1;</code>"
+                        "transcript": "delete phrase x",
+                        "description": "delete phrase <code>x</code>"
                     },
                     {
-                        "alternativeId": "a5d67e1c-2482-46ae-b210-9a81a2e712bf",
-                        "commands": [
-                            {
-                                "changes": [
-                                    {
-                                        "substitution": "let ex = 1;n"
-                                    }
-                                ],
-                                "cursor": 10,
-                                "source": "let ex = 1;n",
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "add let ex equal one",
-                        "description": "add <code>let ex = 1;</code>"
-                    }
-                ]
-            },
-            "callback": "b5a4f08a-8140-4c52-bc7a-d3492114c8e4"
-        },
-        "message": "response"
-    },
-    "addLetY": {
-        "data": {
-            "response": {
-                "alternativesList": [
-                    {
-                        "alternativeId": "b0b16791-d2f9-47fd-9a5f-fd3f536c6201",
-                        "commands": [
-                            {
-                                "changes": [
-                                    {
-                                        "substitution": "let x = 1;nlet y = 2;n",
-                                        "stop": 11
-                                    }
-                                ],
-                                "cursor": 20,
-                                "source": "let x = 1;nlet y = 2;n",
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "add let y equal two",
-                        "description": "add <code>let y = 2;</code>"
-                    },
-                    {
-                        "alternativeId": "5b01dae3-5bf5-4cc4-b4de-9bdd95d9b4d4",
-                        "commands": [
-                            {
-                                "changes": [
-                                    {
-                                        "substitution": "let x = 1;nlet y = to;n",
-                                        "stop": 11
-                                    }
-                                ],
-                                "cursor": 21,
-                                "source": "let x = 1;nlet y = to;n",
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "add let y equal to",
-                        "description": "add <code>let y = to;</code>"
-                    },
-                    {
-                        "alternativeId": "008ae482-c31b-4dd3-be2d-c35c20372e0c",
-                        "commands": [
-                            {
-                                "changes": [
-                                    {
-                                        "substitution": "let x = 1;nlet y = too;n",
-                                        "stop": 11
-                                    }
-                                ],
-                                "cursor": 22,
-                                "source": "let x = 1;nlet y = too;n",
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "add let y equal too",
-                        "description": "add <code>let y = too;</code>"
-                    }
-                ],
-                "silenceThreshold": 1000,
-                "chunkIds": [
-                    "e87bb774-966b-4dc8-8ef9-11bf6c27fa85"
-                ],
-                "endpointId": "baabe76e-a09c-4149-bea2-6d084ac2ada6",
-                "final": true,
-                "requiresLongSilence": true,
-                "chunkId": "e87bb774-966b-4dc8-8ef9-11bf6c27fa85",
-                "execute": {
-                    "commandsList": [
-                        {
-                            "changes": [
-                                {
-                                    "substitution": "let x = 1;nlet y = 2;n",
-                                    "stop": 11
-                                }
-                            ],
-                            "cursor": 20,
-                            "source": "let x = 1;nlet y = 2;n",
-                            "type": "COMMAND_TYPE_DIFF"
-                        }
-                    ],
-                    "alternativeId": "b0b16791-d2f9-47fd-9a5f-fd3f536c6201",
-                    "commands": [
-                        {
-                            "changes": [
-                                {
-                                    "substitution": "let x = 1;nlet y = 2;n",
-                                    "stop": 11
-                                }
-                            ],
-                            "cursor": 20,
-                            "source": "let x = 1;nlet y = 2;n",
-                            "type": "COMMAND_TYPE_DIFF"
-                        }
-                    ],
-                    "transcript": "add let y equal two",
-                    "description": "add <code>let y = 2;</code>"
-                },
-                "alternatives": [
-                    {
-                        "alternativeId": "b0b16791-d2f9-47fd-9a5f-fd3f536c6201",
-                        "commands": [
-                            {
-                                "changes": [
-                                    {
-                                        "substitution": "let x = 1;nlet y = 2;n",
-                                        "stop": 11
-                                    }
-                                ],
-                                "cursor": 20,
-                                "source": "let x = 1;nlet y = 2;n",
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "add let y equal two",
-                        "description": "add <code>let y = 2;</code>"
-                    },
-                    {
-                        "alternativeId": "5b01dae3-5bf5-4cc4-b4de-9bdd95d9b4d4",
-                        "commands": [
-                            {
-                                "changes": [
-                                    {
-                                        "substitution": "let x = 1;nlet y = to;n",
-                                        "stop": 11
-                                    }
-                                ],
-                                "cursor": 21,
-                                "source": "let x = 1;nlet y = to;n",
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "add let y equal to",
-                        "description": "add <code>let y = to;</code>"
-                    },
-                    {
-                        "alternativeId": "008ae482-c31b-4dd3-be2d-c35c20372e0c",
-                        "commands": [
-                            {
-                                "changes": [
-                                    {
-                                        "substitution": "let x = 1;nlet y = too;n",
-                                        "stop": 11
-                                    }
-                                ],
-                                "cursor": 22,
-                                "source": "let x = 1;nlet y = too;n",
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "add let y equal too",
-                        "description": "add <code>let y = too;</code>"
-                    }
-                ]
-            },
-            "callback": "fd52fc3d-5cf6-4bc6-b245-b38177c468f5"
-        },
-        "message": "response"
-    },
-    "selectLine1": {
-        "data": {
-            "response": {
-                "alternativesList": [
-                    {
-                        "alternativeId": "2d6a14bb-c1bc-4654-9ebf-45ef73369702",
-                        "commands": [
-                            {
-                                "cursorEnd": 10,
-                                "source": "let x = 1;nlet x = 1;nlet y = 2;n",
-                                "type": "COMMAND_TYPE_SELECT"
-                            }
-                        ],
-                        "transcript": "select line one",
-                        "description": "select line 1"
-                    },
-                    {
-                        "alternativeId": "55c55a75-ddf2-4a8b-b137-62ba64dcace5",
+                        "alternativeId": "69328b80-8308-436d-b460-6b029632e82b",
                         "commands": [
                             {
                                 "type": "COMMAND_TYPE_INVALID"
                             }
                         ],
-                        "transcript": "select line one",
-                        "description": "Object not found: select line one"
+                        "transcript": "delete phrase ex",
+                        "description": "Object not found: delete phrase ex"
+                    },
+                    {
+                        "alternativeId": "dc216f80-5363-4d5b-ad5b-d029400bf7d5",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "delete phrase ex",
+                        "description": "Object not found: delete phrase ex"
+                    },
+                    {
+                        "alternativeId": "56a0b225-e770-4d82-a53e-0cfb15227834",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "delete phrase x",
+                        "description": "Object not found: delete phrase x"
+                    },
+                    {
+                        "alternativeId": "dd033912-d8d5-49fa-aed5-6e3f3428e18e",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "delete phrase ax",
+                        "description": "Object not found: delete phrase ax"
+                    },
+                    {
+                        "alternativeId": "9d5ef9cf-0d49-45a5-b246-cc161b6faa56",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "delete phrase ax",
+                        "description": "Object not found: delete phrase ax"
+                    },
+                    {
+                        "alternativeId": "0cc47122-6cc1-4fd0-8a3f-9bf13a355c49",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "delete phrase acts",
+                        "description": "Object not found: delete phrase acts"
+                    },
+                    {
+                        "alternativeId": "d8434b68-3272-4bbc-9678-2e1dcda324cc",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "delete phrase acts",
+                        "description": "Object not found: delete phrase acts"
+                    },
+                    {
+                        "alternativeId": "14e7c129-8e28-45e0-b745-10a7eed4aea7",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "delete phrase aix",
+                        "description": "Object not found: delete phrase aix"
+                    },
+                    {
+                        "alternativeId": "f7f11ef8-5a1b-46d0-ac58-a18db69e5cf9",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_INVALID"
+                            }
+                        ],
+                        "transcript": "delete phrase aix",
+                        "description": "Object not found: delete phrase aix"
+                    }
+                ]
+            },
+            "callback": "1d2b162b-2559-4b5a-b881-d6ca9f6da86b"
+        },
+        "message": "response"
+    },
+    "startDebug": {
+        "data": {
+            "response": {
+                "alternativesList": [
+                    {
+                        "alternativeId": "2c8a035c-cbaa-4001-b5f7-7cbc64ee0c90",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DEBUGGER_START"
+                            }
+                        ],
+                        "transcript": "start debug",
+                        "description": "start debug"
                     }
                 ],
                 "silenceThreshold": 500,
                 "chunkIds": [
-                    "d3c8ba3e-329d-41d8-94ee-2f9e506898fe"
+                    "2ed6ebc7-9fca-411f-89a4-a8d264905885"
                 ],
-                "endpointId": "a09d4968-ddf1-4c70-85b8-346793a4fb77",
+                "endpointId": "576ee9f5-9a9f-42ad-a354-57acb86f1305",
                 "final": true,
-                "chunkId": "d3c8ba3e-329d-41d8-94ee-2f9e506898fe",
+                "chunkId": "2ed6ebc7-9fca-411f-89a4-a8d264905885",
                 "execute": {
                     "commandsList": [
                         {
-                            "cursorEnd": 10,
-                            "source": "let x = 1;nlet x = 1;nlet y = 2;n",
-                            "type": "COMMAND_TYPE_SELECT"
+                            "type": "COMMAND_TYPE_DEBUGGER_START"
                         }
                     ],
-                    "alternativeId": "2d6a14bb-c1bc-4654-9ebf-45ef73369702",
+                    "alternativeId": "2c8a035c-cbaa-4001-b5f7-7cbc64ee0c90",
                     "commands": [
                         {
-                            "cursorEnd": 10,
-                            "source": "let x = 1;nlet x = 1;nlet y = 2;n",
-                            "type": "COMMAND_TYPE_SELECT"
+                            "type": "COMMAND_TYPE_DEBUGGER_START"
                         }
                     ],
-                    "transcript": "select line one",
-                    "description": "select line 1"
+                    "transcript": "start debug",
+                    "description": "start debug"
                 },
                 "alternatives": [
                     {
-                        "alternativeId": "2d6a14bb-c1bc-4654-9ebf-45ef73369702",
+                        "alternativeId": "2c8a035c-cbaa-4001-b5f7-7cbc64ee0c90",
                         "commands": [
                             {
-                                "cursorEnd": 10,
-                                "source": "let x = 1;nlet x = 1;nlet y = 2;n",
-                                "type": "COMMAND_TYPE_SELECT"
+                                "type": "COMMAND_TYPE_DEBUGGER_START"
                             }
                         ],
-                        "transcript": "select line one",
-                        "description": "select line 1"
-                    },
-                    {
-                        "alternativeId": "55c55a75-ddf2-4a8b-b137-62ba64dcace5",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "transcript": "select line one",
-                        "description": "Object not found: select line one"
+                        "transcript": "start debug",
+                        "description": "start debug"
                     }
                 ]
             },
-            "callback": "1df2e018-9747-42ec-b87e-a51376a2489d"
+            "callback": "176640ce-0cad-4fb5-99d9-c5759469ba28"
         },
         "message": "response"
     },
-    "goToBegginingOfFile": {
+    "firstTab": {
         "data": {
             "response": {
                 "alternativesList": [
                     {
-                        "alternativeId": "d763bb14-a7b0-4031-b387-259b05578db7",
+                        "alternativeId": "d6006c38-a4ce-4366-81e2-e4b6db325968",
                         "commands": [
                             {
-                                "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
-                                "type": "COMMAND_TYPE_DIFF"
+                                "index": 1,
+                                "type": "COMMAND_TYPE_SWITCH_TAB"
                             }
                         ],
-                        "transcript": "go to beginning of file",
-                        "description": "go to beginning of file"
-                    },
-                    {
-                        "alternativeId": "de4bcc69-e7b6-4ccf-854c-3badda1360e7",
-                        "commands": [
-                            {
-                                "text": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
-                                "type": "COMMAND_TYPE_COPY"
-                            },
-                            {
-                                "changes": [
-                                    {
-                                        "stop": 55
-                                    }
-                                ],
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "cut to beginning of file",
-                        "description": "cut to beginning of file"
-                    },
-                    {
-                        "alternativeId": "1d889a1c-958e-4c9a-b6f8-bfef10bea341",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "transcript": "go to beginning of file",
-                        "description": "Object not found: go to beginning of file"
-                    },
-                    {
-                        "alternativeId": "a27f0670-863c-4c07-bd74-dac15970a53e",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "transcript": "cut to beginning of file",
-                        "description": "Object not found: cut to beginning of file"
-                    }
-                ],
-                "silenceThreshold": 1000,
-                "chunkIds": [
-                    "f18a5c14-00f2-43a8-8e66-531203522253"
-                ],
-                "endpointId": "8550fd0e-035d-4d1c-957b-e1d602af8206",
-                "final": true,
-                "requiresLongSilence": true,
-                "chunkId": "f18a5c14-00f2-43a8-8e66-531203522253",
-                "execute": {
-                    "commandsList": [
-                        {
-                            "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
-                            "type": "COMMAND_TYPE_DIFF"
-                        }
-                    ],
-                    "alternativeId": "d763bb14-a7b0-4031-b387-259b05578db7",
-                    "commands": [
-                        {
-                            "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
-                            "type": "COMMAND_TYPE_DIFF"
-                        }
-                    ],
-                    "transcript": "go to beginning of file",
-                    "description": "go to beginning of file"
-                },
-                "alternatives": [
-                    {
-                        "alternativeId": "d763bb14-a7b0-4031-b387-259b05578db7",
-                        "commands": [
-                            {
-                                "source": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "go to beginning of file",
-                        "description": "go to beginning of file"
-                    },
-                    {
-                        "alternativeId": "de4bcc69-e7b6-4ccf-854c-3badda1360e7",
-                        "commands": [
-                            {
-                                "text": "let x = 1;nlet x = 1;nlet x = 1;nlet y = 2;nlet y = 2;n",
-                                "type": "COMMAND_TYPE_COPY"
-                            },
-                            {
-                                "changes": [
-                                    {
-                                        "stop": 55
-                                    }
-                                ],
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "cut to beginning of file",
-                        "description": "cut to beginning of file"
-                    },
-                    {
-                        "alternativeId": "1d889a1c-958e-4c9a-b6f8-bfef10bea341",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "transcript": "go to beginning of file",
-                        "description": "Object not found: go to beginning of file"
-                    },
-                    {
-                        "alternativeId": "a27f0670-863c-4c07-bd74-dac15970a53e",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "transcript": "cut to beginning of file",
-                        "description": "Object not found: cut to beginning of file"
-                    }
-                ]
-            },
-            "callback": "3f1cb86a-d716-445a-ba4a-d425811c7471"
-        },
-        "message": "response"
-    },
-    "deleteLine3": {
-        "data": {
-            "response": {
-                "alternativesList": [
-                    {
-                        "alternativeId": "e57a2ee1-71a2-41d3-83a2-91d4fd1104b5",
-                        "commands": [
-                            {
-                                "changes": [
-                                    {
-                                        "stop": 23,
-                                        "start": 12
-                                    }
-                                ],
-                                "cursor": 12,
-                                "source": "let x = 1;let x = 1;",
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "delete line three",
-                        "description": "delete line 3"
-                    },
-                    {
-                        "alternativeId": "eece2775-a1c8-45f9-9fda-78d366f000a6",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "transcript": "delete line three",
-                        "description": "Object not found: delete line three"
+                        "transcript": "first tab",
+                        "description": "first tab"
                     }
                 ],
                 "silenceThreshold": 500,
                 "chunkIds": [
-                    "a42e79be-825d-4ecd-b05f-baa6fc281428"
+                    "c9bc7ef4-5b3e-4397-9741-5e404604fdc3"
                 ],
-                "endpointId": "13a46a31-39a3-457f-97ce-c38df9867fd3",
+                "endpointId": "ac2c1476-118d-483c-92c1-006417812822",
                 "final": true,
-                "chunkId": "a42e79be-825d-4ecd-b05f-baa6fc281428",
+                "chunkId": "c9bc7ef4-5b3e-4397-9741-5e404604fdc3",
                 "execute": {
                     "commandsList": [
                         {
-                            "changes": [
-                                {
-                                    "stop": 23,
-                                    "start": 12
-                                }
-                            ],
-                            "cursor": 12,
-                            "source": "let x = 1;let x = 1;",
-                            "type": "COMMAND_TYPE_DIFF"
+                            "index": 1,
+                            "type": "COMMAND_TYPE_SWITCH_TAB"
                         }
                     ],
-                    "alternativeId": "e57a2ee1-71a2-41d3-83a2-91d4fd1104b5",
+                    "alternativeId": "d6006c38-a4ce-4366-81e2-e4b6db325968",
                     "commands": [
                         {
-                            "changes": [
-                                {
-                                    "stop": 23,
-                                    "start": 12
-                                }
-                            ],
-                            "cursor": 12,
-                            "source": "let x = 1;let x = 1;",
-                            "type": "COMMAND_TYPE_DIFF"
+                            "index": 1,
+                            "type": "COMMAND_TYPE_SWITCH_TAB"
                         }
                     ],
-                    "transcript": "delete line three",
-                    "description": "delete line 3"
+                    "transcript": "first tab",
+                    "description": "first tab"
                 },
                 "alternatives": [
                     {
-                        "alternativeId": "e57a2ee1-71a2-41d3-83a2-91d4fd1104b5",
+                        "alternativeId": "d6006c38-a4ce-4366-81e2-e4b6db325968",
                         "commands": [
                             {
-                                "changes": [
-                                    {
-                                        "stop": 23,
-                                        "start": 12
-                                    }
-                                ],
-                                "cursor": 12,
-                                "source": "let x = 1;let x = 1;",
-                                "type": "COMMAND_TYPE_DIFF"
+                                "index": 1,
+                                "type": "COMMAND_TYPE_SWITCH_TAB"
                             }
                         ],
-                        "transcript": "delete line three",
-                        "description": "delete line 3"
-                    },
-                    {
-                        "alternativeId": "eece2775-a1c8-45f9-9fda-78d366f000a6",
-                        "commands": [
-                            {
-                                "type": "COMMAND_TYPE_INVALID"
-                            }
-                        ],
-                        "transcript": "delete line three",
-                        "description": "Object not found: delete line three"
+                        "transcript": "first tab",
+                        "description": "first tab"
                     }
                 ]
             },
-            "callback": "df509170-856c-47f3-82ea-a95ffbfe70e2"
-        },
-        "message": "response"
-    },
-    "addParameterHello": {
-        "data": {
-            "response": {
-                "alternativesList": [
-                    {
-                        "alternativeId": "f6f3ded5-00c4-4449-ab40-51c644ad0b0d",
-                        "commands": [
-                            {
-                                "changes": [
-                                    {
-                                        "substitution": "let x = 1;function helloWorld(hello) {}",
-                                        "stop": 38
-                                    }
-                                ],
-                                "cursor": 37,
-                                "source": "let x = 1;function helloWorld(hello) {}",
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "add parameter hello",
-                        "description": "add parameter <code>hello</code>"
-                    },
-                    {
-                        "alternativeId": "e47ece94-6fa0-493f-a10e-b9d1aac20294",
-                        "commands": [
-                            {
-                                "changes": [
-                                    {
-                                        "substitution": "let x = 1;function helloWorld(halo) {}",
-                                        "stop": 38
-                                    }
-                                ],
-                                "cursor": 36,
-                                "source": "let x = 1;function helloWorld(halo) {}",
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "add parameter halo",
-                        "description": "add parameter <code>halo</code>"
-                    },
-                    {
-                        "alternativeId": "156b30e5-9023-4ead-98d5-76209908dc09",
-                        "commands": [
-                            {
-                                "changes": [
-                                    {
-                                        "substitution": "let x = 1;function helloWorld(hallow) {}",
-                                        "stop": 38
-                                    }
-                                ],
-                                "cursor": 38,
-                                "source": "let x = 1;function helloWorld(hallow) {}",
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "add parameter hallow",
-                        "description": "add parameter <code>hallow</code>"
-                    },
-                    {
-                        "alternativeId": "7017536b-1252-44e7-9970-4dd839f6d1ee",
-                        "commands": [
-                            {
-                                "changes": [
-                                    {
-                                        "substitution": "let x = 1;function helloWorld(hollow) {}",
-                                        "stop": 38
-                                    }
-                                ],
-                                "cursor": 38,
-                                "source": "let x = 1;function helloWorld(hollow) {}",
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "add parameter hollow",
-                        "description": "add parameter <code>hollow</code>"
-                    }
-                ],
-                "silenceThreshold": 1000,
-                "chunkIds": [
-                    "0da0837b-f3c6-40b6-88e5-ab570927f4f2"
-                ],
-                "endpointId": "1ae178ac-8eb4-4804-b62a-35f1651fad92",
-                "final": true,
-                "requiresLongSilence": true,
-                "chunkId": "0da0837b-f3c6-40b6-88e5-ab570927f4f2",
-                "execute": {
-                    "commandsList": [
-                        {
-                            "changes": [
-                                {
-                                    "substitution": "let x = 1;function helloWorld(hello) {}",
-                                    "stop": 38
-                                }
-                            ],
-                            "cursor": 37,
-                            "source": "let x = 1;function helloWorld(hello) {}",
-                            "type": "COMMAND_TYPE_DIFF"
-                        }
-                    ],
-                    "alternativeId": "f6f3ded5-00c4-4449-ab40-51c644ad0b0d",
-                    "commands": [
-                        {
-                            "changes": [
-                                {
-                                    "substitution": "let x = 1;function helloWorld(hello) {}",
-                                    "stop": 38
-                                }
-                            ],
-                            "cursor": 37,
-                            "source": "let x = 1;function helloWorld(hello) {}",
-                            "type": "COMMAND_TYPE_DIFF"
-                        }
-                    ],
-                    "transcript": "add parameter hello",
-                    "description": "add parameter <code>hello</code>"
-                },
-                "alternatives": [
-                    {
-                        "alternativeId": "f6f3ded5-00c4-4449-ab40-51c644ad0b0d",
-                        "commands": [
-                            {
-                                "changes": [
-                                    {
-                                        "substitution": "let x = 1;function helloWorld(hello) {}",
-                                        "stop": 38
-                                    }
-                                ],
-                                "cursor": 37,
-                                "source": "let x = 1;function helloWorld(hello) {}",
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "add parameter hello",
-                        "description": "add parameter <code>hello</code>"
-                    },
-                    {
-                        "alternativeId": "e47ece94-6fa0-493f-a10e-b9d1aac20294",
-                        "commands": [
-                            {
-                                "changes": [
-                                    {
-                                        "substitution": "let x = 1;function helloWorld(halo) {}",
-                                        "stop": 38
-                                    }
-                                ],
-                                "cursor": 36,
-                                "source": "let x = 1;function helloWorld(halo) {}",
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "add parameter halo",
-                        "description": "add parameter <code>halo</code>"
-                    },
-                    {
-                        "alternativeId": "156b30e5-9023-4ead-98d5-76209908dc09",
-                        "commands": [
-                            {
-                                "changes": [
-                                    {
-                                        "substitution": "let x = 1;function helloWorld(hallow) {}",
-                                        "stop": 38
-                                    }
-                                ],
-                                "cursor": 38,
-                                "source": "let x = 1;function helloWorld(hallow) {}",
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "add parameter hallow",
-                        "description": "add parameter <code>hallow</code>"
-                    },
-                    {
-                        "alternativeId": "7017536b-1252-44e7-9970-4dd839f6d1ee",
-                        "commands": [
-                            {
-                                "changes": [
-                                    {
-                                        "substitution": "let x = 1;function helloWorld(hollow) {}",
-                                        "stop": 38
-                                    }
-                                ],
-                                "cursor": 38,
-                                "source": "let x = 1;function helloWorld(hollow) {}",
-                                "type": "COMMAND_TYPE_DIFF"
-                            }
-                        ],
-                        "transcript": "add parameter hollow",
-                        "description": "add parameter <code>hollow</code>"
-                    }
-                ]
-            },
-            "callback": "5901155e-f7ce-4138-8a4c-0d8e04c63794"
-        },
-        "message": "response"
-    },
-    "openFileHello": {
-        "data": {
-            "response": {
-                "execute": {
-                    "commandsList": [
-                        {
-                            "path": "hello",
-                            "type": "COMMAND_TYPE_OPEN_FILE_LIST"
-                        }
-                    ],
-                    "alternativeId": "fef9f7e8-8fbd-46d3-8c83-0aa16de00b6e",
-                    "commands": [
-                        {
-                            "path": "hello",
-                            "type": "COMMAND_TYPE_OPEN_FILE_LIST"
-                        }
-                    ],
-                    "transcript": "open file hello",
-                    "description": "open file <code>hello</code>"
-                }
-            },
-            "callback": "991cfacc-956e-4cd1-b865-29d55b150001"
-        },
-        "message": "response"
-    },
-    "openIndexjs": {
-        "data": {
-            "response": {
-                "alternativesList": [
-                    {
-                        "alternativeId": "8dfd6cc5-5f99-46b3-9c8a-e2a00c68fb04",
-                        "commands": [
-                            {
-                                "path": "index.js",
-                                "type": "COMMAND_TYPE_OPEN_FILE_LIST"
-                            }
-                        ],
-                        "transcript": "open index dot js",
-                        "description": "open <code>index.js</code>"
-                    }
-                ],
-                "silenceThreshold": 500,
-                "chunkIds": [
-                    "b2431192-5149-4e78-be52-30dc64c7a8c8"
-                ],
-                "endpointId": "4daa8d6c-7c8a-443e-bc50-dafeb068766e",
-                "final": true,
-                "chunkId": "b2431192-5149-4e78-be52-30dc64c7a8c8",
-                "execute": {
-                    "commandsList": [
-                        {
-                            "path": "index.js",
-                            "type": "COMMAND_TYPE_OPEN_FILE_LIST"
-                        }
-                    ],
-                    "alternativeId": "8dfd6cc5-5f99-46b3-9c8a-e2a00c68fb04",
-                    "commands": [
-                        {
-                            "path": "index.js",
-                            "type": "COMMAND_TYPE_OPEN_FILE_LIST"
-                        }
-                    ],
-                    "transcript": "open index dot js",
-                    "description": "open <code>index.js</code>"
-                },
-                "alternatives": [
-                    {
-                        "alternativeId": "8dfd6cc5-5f99-46b3-9c8a-e2a00c68fb04",
-                        "commands": [
-                            {
-                                "path": "index.js",
-                                "type": "COMMAND_TYPE_OPEN_FILE_LIST"
-                            }
-                        ],
-                        "transcript": "open index dot js",
-                        "description": "open <code>index.js</code>"
-                    }
-                ]
-            },
-            "callback": "827c707d-ac27-4f99-bca6-8c27f82db96f"
-        },
-        "message": "response"
-    },
-    "scrollDown": {
-        "data": {
-            "response": {
-                "alternativesList": [
-                    {
-                        "alternativeId": "d62abc3f-1ada-415a-92f3-8cfd58ee94e4",
-                        "commands": [
-                            {
-                                "text": "pagedown",
-                                "type": "COMMAND_TYPE_PRESS"
-                            }
-                        ],
-                        "transcript": "scroll down",
-                        "description": "scroll down"
-                    }
-                ],
-                "silenceThreshold": 500,
-                "chunkIds": [
-                    "519038ec-1029-407c-aa0e-47e330fff476"
-                ],
-                "endpointId": "51c3bd79-ae98-4bc4-b545-a2b91dad852f",
-                "final": true,
-                "chunkId": "519038ec-1029-407c-aa0e-47e330fff476",
-                "execute": {
-                    "commandsList": [
-                        {
-                            "text": "pagedown",
-                            "type": "COMMAND_TYPE_PRESS"
-                        }
-                    ],
-                    "alternativeId": "d62abc3f-1ada-415a-92f3-8cfd58ee94e4",
-                    "commands": [
-                        {
-                            "text": "pagedown",
-                            "type": "COMMAND_TYPE_PRESS"
-                        }
-                    ],
-                    "transcript": "scroll down",
-                    "description": "scroll down"
-                },
-                "alternatives": [
-                    {
-                        "alternativeId": "d62abc3f-1ada-415a-92f3-8cfd58ee94e4",
-                        "commands": [
-                            {
-                                "text": "pagedown",
-                                "type": "COMMAND_TYPE_PRESS"
-                            }
-                        ],
-                        "transcript": "scroll down",
-                        "description": "scroll down"
-                    }
-                ]
-            },
-            "callback": "0e7fe7ce-af75-4d5a-a74c-3b9633a0db26"
-        },
-        "message": "response"
-    },
-    "scroll": {
-        "data": {
-            "response": {
-                "silenceThreshold": 500,
-                "chunkIds": [
-                    "84e90747-e8b2-44ac-972d-d78c5ee25482",
-                    "b0a8cb5a-450e-4bc1-bdf4-b16f6bbfe7f4"
-                ],
-                "endpointId": "3c440602-6018-4eb1-85eb-c8dbd8015e5f",
-                "final": true,
-                "chunkId": "b0a8cb5a-450e-4bc1-bdf4-b16f6bbfe7f4",
-                "execute": {
-                    "commandsList": [
-                        {
-                            "text": "pagedown",
-                            "type": "COMMAND_TYPE_PRESS"
-                        }
-                    ],
-                    "alternativeId": "d7f88d85-51be-426e-b5ba-723d4dab9304",
-                    "commands": [
-                        {
-                            "text": "pagedown",
-                            "type": "COMMAND_TYPE_PRESS"
-                        }
-                    ],
-                    "transcript": "scroll",
-                    "description": "scroll"
-                }
-            },
-            "callback": "f7c00bfd-624f-44db-ad04-5d9129cbb403"
+            "callback": "c73dbfc8-5da1-4931-b24a-8d39efaadce4"
         },
         "message": "response"
     }

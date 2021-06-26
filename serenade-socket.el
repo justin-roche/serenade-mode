@@ -1,11 +1,12 @@
 (require 'websocket)
 (require 'serenade-desktop)
 (require 'serenade-log)
-(require 'serenade-globals)
-(require 'serenade-heartbeat)
 (require 'serenade-handler)
 
 (setq serenade--websocket nil)
+(setq serenade-id nil)
+(setq serenade--heartbeat-timer nil)
+
 (defvar serenade-prompt-for-application-start nil)
 (defvar serenade-port 17373)
 (defvar serenade-reuse-id-on-connect nil)
@@ -64,5 +65,24 @@
 (defun serenade-connect () 
   (interactive) 
   (serenade--connect))
+
+(defun serenade--heartbeat () 
+  (if serenade--heartbeat-timer (let* ((message (ht ("message" "heartbeat") 
+                                                    ("data" (ht ("id" serenade-id))))) 
+                                       ( message-json (json-serialize message))) 
+                                  (serenade--info "sending heartbeat") 
+                                  (websocket-send-text serenade--websocket message-json))))
+
+(defun serenade--heartbeat-stop () 
+  (if (not (equal nil serenade--heartbeat-timer)) 
+      (progn (serenade--info "stopping heartbeat") 
+             (cancel-timer serenade--heartbeat-timer))))
+
+(defun serenade--heartbeat-reset () 
+  (if (not (equal nil serenade--heartbeat-timer)) 
+      (cancel-timer serenade--heartbeat-timer)))
+
+(defun serenade--heartbeat-start () 
+  (setq serenade--heartbeat-timer (run-with-timer 0 60 'serenade--heartbeat)))
 
 (provide 'serenade-socket)

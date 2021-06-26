@@ -1,4 +1,3 @@
-(require 'serenade-editor-state)
 (require 'serenade-buffer)
 (require 'serenade-log)
 (require 'test-utils)
@@ -97,4 +96,29 @@
                                  (response-json (json-serialize response))) 
                             (websocket-send-text serenade--websocket response-json))))
 
+(defun serenade--get-editor-state (callback limited)
+  ;; This function responds to a get-editor-state command with callback-id CALLBACK. If LIMITED Is true it sends only the file name.
+  (serenade--info (concat "buffer file name: "(buffer-file-name))) 
+  (let* ((filename (if (buffer-file-name) 
+                       (-last-item (s-split "/" (buffer-file-name))) "")) 
+         (buffer-data (if limited (ht ("filename" filename)) 
+                        (ht ("filename" filename) 
+                            ("cursor" (- (point) 1)) 
+                            ("source" 
+                             (buffer-substring-no-properties 
+                              (point-min) 
+                              (point-max)))))) 
+         (response (ht("data" (ht ("data" (ht ("data" buffer-data) 
+                                              ("message" "editorState"))) 
+                                  ("callback" callback))) 
+                      ("message" "callback"))) 
+         (response-json (json-serialize response))) 
+    (websocket-send-text serenade--websocket response-json)))
+
 (provide 'serenade-handler)
+
+;; (let* ((req (load-request "cut")))
+;;   (serenade--handle-message req))
+
+;; (let* ((req (load-request "selectLine2")))
+;;   (serenade--handle-message req))

@@ -1,11 +1,12 @@
 
 
 (require 'serenade-commands)
-(require 'serenade-synchronize)
+(require 'serenade-generate)
 (require 'test-utils)
 
 (describe "formats commands with no arguments " ;;
           (before-each (reset-maps)) 
+          (after-each (serenade--initialize-mode-maps)) 
           (it "formats a single command with no arguments" ;;
               (serenade-define-speech 'global "a" 'b) 
               ( serenade--format-commands ) 
@@ -29,6 +30,7 @@
                         :to-equal 1)))
 (describe "excludes default bindings" ;;
           (before-each (reset-maps)) 
+          (after-each (serenade--initialize-mode-maps)) 
           (it "does not format global defaults" ;;
               (serenade--initialize-mode-maps) 
               (serenade-define-speech 'global "a" 'b) 
@@ -38,6 +40,7 @@
 
 (describe "formats commands with named arguments " ;;
           (before-each (reset-maps)) 
+          (after-each (serenade--initialize-mode-maps)) 
           (it "formats a single command with named arguments" ;;
               (serenade-define-speech 'global "a <z>" 'b) 
               ( serenade--format-commands ) 
@@ -65,9 +68,12 @@
 
 (describe "formats combined form" ;;
           (before-each (reset-maps)) 
+          (after-each (serenade--initialize-mode-maps)) 
           (it "formats combined form for a single command with named arguments" ;;
               (serenade-define-speech 'global "b <z> <x>" 'b) 
               (serenade--format-commands) 
               (expect   (serenade--generate-combined-text) 
                         :to-equal
                         "let emacs = serenade.app(\"Emacs\"); let emacsCommands = {};function addEmacsCommands() { for (const [commandName, command] of Object.entries(emacsCommands)) { serenade.app(\"emacs\").command(commandName, async (api, matches) => { await api.evaluateInPlugin(emacsCommands[commandName]); }); } } addEmacsCommands();serenade.app(\"emacs\").command(`b <%z%> <%x%>`, async (api, matches) => { api.evaluateInPlugin(`(\"b <z> <x>\" ( (\"z\" . \"${matches.z}\") (\"x\" . \"${matches.x}\")) )`) });")))
+
+

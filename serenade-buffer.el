@@ -21,12 +21,4 @@
          (eq major-mode 'js2-mode)) 
       (js2-reparse)))
 
-(defun serenade--update-buffer (source cursor)
-  ;; This function replaces the current buffer contents and cursor with the provided SOURCE and CURSOR position from the diff command.
-  (let ((tmp-buf (generate-new-buffer " *serenade-temp*"))) 
-    (with-current-buffer tmp-buf (insert source)) 
-    (replace-buffer-contents tmp-buf) 
-    (kill-buffer tmp-buf)) 
-  (goto-char cursor))
-
 (provide 'serenade-buffer)

@@ -25,10 +25,10 @@
                       :to-have-been-called)))
 (describe "Start function" ;;
           (before-each (spy-on 'serenade--initialize-mode-maps) 
-                       (spy-on 'serenade--synchronize)) 
+                       (spy-on 'serenade--generate)) 
           (it "calls sync function" ;;
               (serenade-mode) 
-              (expect 'serenade--synchronize 
+              (expect 'serenade--generate 
                       :to-have-been-called)))
 (describe "Connection start" ;;
           (before-each  (spy-on 'serenade--connect) ) 
