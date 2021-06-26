@@ -46,6 +46,12 @@
   "The list of functions to be called after `serenade-mode' has initialized all variables, before connecting fer for the first time." 
   :type 'hook 
   :group 'serenade-mode)
+
+(defcustom serenade-mode-after-edit-hook nil 
+  "The list of functions to be called after an edit has been made in response to a speech command." 
+  :type 'hook 
+  :group 'serenade-mode)
+
 (setq serenade--auto-set-evil t )
 
 (defun serenade--set-evil () 

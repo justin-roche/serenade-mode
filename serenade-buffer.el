@@ -15,10 +15,12 @@
           (setq serenade-buffer nil ))) 
     (setq serenade-buffer nil )))
 
-(defun serenade--after-edit () 
+(defun serenade--after-edit ()
+  ;; This function is called after a speech command is handled
   (if (or(eq major-mode 
              'rjsx-mode) 
          (eq major-mode 'js2-mode)) 
-      (js2-reparse)))
+      (js2-reparse)) 
+  (run-hooks 'serenade-mode-after-edit-hook))
 
 (provide 'serenade-buffer)

@@ -199,6 +199,14 @@ this variable determines whether the generated global defaults are added when th
 
 ## Hooks
 
+### serenade-mode-init-hook  
+
+The list of functions to be called after `serenade-mode' has initialized all variables, before connecting fer for the first time. 
+
+### serenade-mode-after-edit-hook 
+
+The list of functions to be called after an edit has been made in response to a speech command. 
+
 ### serenade-double-line-numbers-on/serenade-double-line-numbers-on
 
 For voice coding it can be useful to display both relative and absolute line numbers simultaneously. Associated hooks are provided to allow customization of this operation. These hooks run if serenade--enable-double-line-numbers is true. 
