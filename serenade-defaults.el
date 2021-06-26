@@ -45,4 +45,26 @@
                                            serenade--insert-yasnippet-with-args  )
                                          ( "snippet <name>" . serenade--insert-yasnippet  )))
 
+(setq serenade--selectors '(;;
+                            "argument" "list"	"argument"	"assert"	"assignment" "assignment"
+                            "value"	"assignment" "variable"	"attribute"	"attribute" "value"
+                            "attribute" "name"	"attribute" "text"	"body"	"break"
+                            "call"	"case"	"catch"	"class" "close" "tag"	"comment"	"comment"
+                            "text"	"condition" "constructor"	"content"	"continue"	"debugger"
+                            "declaration"	"decorator"	"default"	"dictionary" "do"	"do" "while"
+                            "element"	"else" "if" "else"	"enum"	"except"	"export" "for"
+                            "finally"	"function"	"generator" "getter"	"if"	"import"	"interface"
+                            "interface" "list"	"keyword" "argument"	"keyword" "parameter"	"key"
+                            "entry"	"lambda"	"list"	"method" "mixin"	"modifier"	"modifier"
+                            "list"	"name" "named" "parameter"	"named" "parameter" "list"
+                            "namespace"	"object" "open" "tag"	"operator"	"parameter" "list"
+                            "parameter" "value" "parameter"	"parent" "list"	"parent"	"pass"
+                            "positional" "parameter"	"positional" "parameter" "list"	"property"
+                            "prototype" "return"	"return" "type"	"return" "value"	"ruleset"
+                            "set"	"setter"	"statement"	"string" "string"
+                            "text"	"struct"	"switch"	"symbol" "synchronized"	"tag"	"throw"	"top"
+                            "level" "statement" "tuple"	"try"	"type"	"type" "alias"
+                            "using"	"with"	"with" "list"	"with" "alias" "with" "item"	"while"
+                            "value"	"vertical"))
+
 (provide 'serenade-defaults)

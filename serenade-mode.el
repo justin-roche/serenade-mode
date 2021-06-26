@@ -35,6 +35,9 @@
 (defface helm-serenade-command '((t :foreground "#CD009600CD00" 
                                     :underline t)) 
   "Face for serenade helm.")
+(defface helm-serenade-info '((t :foreground "#CD009600CD00" 
+                                 :underline nil)) 
+  "Face for serenade helm.")
 
 (defcustom serenade-enable-double-line-numbers t 
   "if t, serenade mode shows both relative and absolute line numbers")

@@ -25,12 +25,11 @@
   (or (ht-get* serenade-helm-M-x-map cand) 
       nil))
 
-(defun serenade--add-helm-candidate (command speech)
+(defun serenade--add-helm-candidate (speech &optional command)
   ;; add a single helm candidate to the helm source
-  (setq serenade--helm-candidates (append serenade--helm-candidates (list (format "%s %s" command
-                                                                                  (propertize speech
-                                                                                              'face
-                                                                                              'helm-serenade-command))))))
+  (let* ((item (if command (format "%s %s" command (propertize speech 'face 'helm-serenade-command)) 
+                 (format "%s" (propertize speech 'face 'helm-serenade-info))))) 
+    (setq serenade--helm-candidates (append serenade--helm-candidates (list item)))))
 
 (defun serenade--get-helm-candidates (voice-maps) 
   (setq serenade--helm-candidates '())
@@ -40,7 +39,7 @@
               ;; loop over bindings in speech map
               (ht-each '(lambda (speech binding) 
                           (let* ((command (ht-get* binding "command"))) 
-                            (serenade--add-helm-candidate command speech))) value)) voice-maps)
+                            (serenade--add-helm-candidate speech command))) value)) voice-maps)
   serenade--helm-candidates)
 
 (defun serenade--get-helm-active-candidates (voice-maps)
@@ -55,9 +54,15 @@
                     ;; loop over bindings in speech map
                     (ht-each '(lambda (speech binding) 
                                 (let* ((command (ht-get* binding "command"))) 
-                                  (serenade--add-helm-candidate command speech))) ;;
+                                  (serenade--add-helm-candidate speech command))) ;;
                              speech-map))) ) ;;
            voice-maps)
+  serenade--helm-candidates)
+
+(defun serenade--get-helm-selectors (selectors) 
+  (setq serenade--helm-candidates '()) 
+  (-each selectors '(lambda ( value) 
+                      (serenade--add-helm-candidate value)))
   serenade--helm-candidates)
 
 (defun serenade--helm-M-x-transformer (candidates &optional sort) 

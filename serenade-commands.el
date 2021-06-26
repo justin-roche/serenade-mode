@@ -111,6 +111,15 @@
                    :candidates (serenade--get-helm-active-candidates serenade-speech-maps)) 
         :buffer "*helm serenade*"))
 
+(cl-defun 
+    serenade-helm-selectors
+    ()
+  ;; This function provides all current active speech bindings in a helm buffer.
+  (interactive) 
+  (helm :sources (helm-build-sync-source "serenade" 
+                   :candidates (serenade--get-helm-selectors serenade--selectors)) 
+        :buffer "*helm serenade*"))
+
 (defmacro serc (fn &rest args)
   ;; Curry the function FN with ARGS, and add the resulting function to the global namespace with a descriptive name and docstring
   (let* ((formatted-args (-map '(lambda (item) 
