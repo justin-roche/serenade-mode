@@ -25,7 +25,7 @@ Download the serenade-mode source code here, add the serenade-mode directory to 
 (use-package serenade-mode)
 ```
 
-## Usage
+## Getting Started
 
 To start the the mode call:
 
@@ -43,8 +43,8 @@ If all goes well, you should see the active application change to Emacs in the S
 
 Multiple speech patterns can be associated with a command, but a single speech pattern can be associated with only one command.
 
-### Default voice bindings
-Default bindings are those that specify bindings for Serenade's built-in commands. Serenade already recognizes these commands and sends specific messages to the plugin. The map for these is found in serenade-commands.el. All bindings besides these involve the configuration of javascript in the Serenade directory.
+### Builtin default voice bindings
+Builtin bindings are those that specify bindings for Serenade's built-in commands. Serenade already recognizes these commands and sends specific messages to the plugin. The map for these is found in serenade-commands.el. All bindings besides these involve the configuration of javascript in the Serenade directory.
 
 | Pattern | Command                  |
 |:--------------------|:-----------------------------|
@@ -83,7 +83,7 @@ Default bindings are those that specify bindings for Serenade's built-in command
 | step over         | nil                          |
 | continue          | nil                          |
 
-### Additional voice bindings
+### Generated default voice bindings
 
 The __snippet \<name\>__ command inserts a Yasnippet snippet of that name. __snippet \<name\> of \<arg\>__ autofills the first field of the snippet with \<arg\>.
 
@@ -94,11 +94,11 @@ The __snippet \<name\>__ command inserts a Yasnippet snippet of that name. __sni
 | snippet \<name\> of <arg> | serenade--insert-yasnippet-with-args  |
 | snippet <\name\> | serenade--insert-yasnippet  |
 
-## Customization
+# Customization
 
-### Speech Bindings
+## Speech Bindings
 
-To add a speech binding to a speech map, call __serenade-define-speech__ with the symbol for the map, the speech pattern, and the associated command. If a map does not exist, it will be created. Serenade mode must be restarted for these customizations to take effect.
+To add a speech binding to a speech map, call __serenade-define-speech__ with the symbol for the map, the speech pattern, and the associated command. If a map does not exist, it will be created. Serenade mode must be restarted or the function __serenade-generate__ must be called for these customizations to take effect.
 
 ```elisp
 
@@ -124,7 +124,7 @@ It is possible to use an alist as the second argument to define-speech:
                                     ("demote" . org-do-demote)))
 ```
 
-### Macros
+## Macros
 
 To help ensure discoverability, speech maps do not allow lambdas as bound commands. You can instead use the provided currying macro __serc__ within a backquoted list, shown here with its macro expansion:
 
@@ -159,9 +159,9 @@ There is also the provided __serd__ macro, which acts like a defun call but retu
                                     
 ```
 
-### Variables
+## Variables
 
-#### serenade-mode-filetypes 
+### serenade-mode-filetypes 
 
 This variable specifies filetypes that can be used as serenade buffers, which are buffers subject to Serenade's editing operations. By default this includes all the filetypes Serenade handles, with the addition of Elisp files. 
 
@@ -169,7 +169,7 @@ This variable specifies filetypes that can be used as serenade buffers, which ar
   '("js" "py" "c" "h" "cpp" "cc" "cxx" "c++" "hpp" "hh" "hxx" "h++""cs""css" "scss""dart" "go" "html" "vue" "svelte" "java" "js" "jsx" "jsx" "js""jsx" "js" "kt" "py" "rb" "rs" "scss" "sh" "bash" "ts" "tsx" "tsx" "ts""vue" "html" "el")
 ```
 
-#### serenade-directory
+### serenade-directory
 
 To manage custom commands, serenade-mode autogenerates javascript stored in the serenade scripts directory. The location of this directory is specfied by serenade-directory with the default value:
 
@@ -177,54 +177,57 @@ To manage custom commands, serenade-mode autogenerates javascript stored in the 
 "~/.serenade/scripts/"
 ```
 
-#### serenade-sync-on-start
+### serenade-sync-on-start
 
 This variable specifies whether the autogeneration of custom javascript should happen each time the mode is started. Default is true.
 
-#### serenade-evil
+### serenade-evil
 
 This specifies whether certain buffer editing commands integrate with evil or default Emacs editing commands. Default is nil.
 
-#### serenade-helm-M-x
+### serenade-helm-M-x
 
 If true, serenade-mode advices helm-M-x so that speech patterns appear beside the keybinding for M-x commands.
 
-#### serenade--add-builtin-global-defaults 
+### serenade--add-builtin-global-defaults 
 
 this variable determines whether the global defaults are added when the mode loads.
 
-#### serenade--add-generated-global-defaults 
+### serenade--add-generated-global-defaults 
 
 this variable determines whether the generated global defaults are added when the mode loads.
 
-### Hooks
+## Hooks
 
-#### serenade-double-line-numbers-on/serenade-double-line-numbers-on
+### serenade-double-line-numbers-on/serenade-double-line-numbers-on
 
 For voice coding it can be useful to display both relative and absolute line numbers simultaneously. Associated hooks are provided to allow customization of this operation. These hooks run if serenade--enable-double-line-numbers is true. 
 
-## Other functions
+# Functions
 
-### (serenade-helm-commands) 
+## (serenade-generate) 
+Convert custom commands added to serenade speech bindings to javascript.
+
+## (serenade-helm-commands) 
 
 This function displays all the currently bound serenade-mode commands in a helm buffer.
 
-### (serenade-helm-active-commands) 
+## (serenade-helm-active-commands) 
 
 This function displays all the currently bound and active serenade-mode commands in a helm buffer.
 
-### (serenade-helm-selectors) 
+## (serenade-helm-selectors) 
 
 This function displays displays a reference list of serenade selectors in a helm buffer.
 
-### (serenade--log-open-log)
+## (serenade--log-open-log)
 
 This function displays the log for serenade-mode.
 
-## Contributing
+# Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
-## License
+# License
 GNU General Public License
