@@ -201,6 +201,14 @@ For voice coding it can be useful to display both relative and absolute line num
 
 This function displays all the currently bound serenade-mode commands in a helm buffer.
 
+### (serenade-helm-active-commands) 
+
+This function displays all the currently bound and active serenade-mode commands in a helm buffer.
+
+### (serenade-helm-selectors) 
+
+This function displays displays a reference list of serenade selectors in a helm buffer.
+
 ### (serenade--log-open-log)
 
 This function displays the log for serenade-mode.
