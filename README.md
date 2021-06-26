@@ -3,7 +3,7 @@
 Serenade mode is a minor mode allowing voice control of Emacs through integration of [Serenade](http://www.serenade.ai), a tool for voice based structural code editing. Serenade-mode features:
 
 - Voice-command mapping using Elisp 
-- Configurable speech maps for global, major, an minor modes  
+- Configurable speech maps for global, major, and minor modes  
 - Helm and Helm-M-x integration to aid in discoverability of commands 
 - Basic Yasnippet integration
 - Evil integration
@@ -188,6 +188,14 @@ This specifies whether certain buffer editing commands integrate with evil or de
 #### serenade-helm-M-x
 
 If true, serenade-mode advices helm-M-x so that speech patterns appear beside the keybinding for M-x commands.
+
+#### serenade--add-builtin-global-defaults 
+
+this variable determines whether the global defaults are added when the mode loads.
+
+#### serenade--add-generated-global-defaults 
+
+this variable determines whether the generated global defaults are added when the mode loads.
 
 ### Hooks
 

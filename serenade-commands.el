@@ -9,14 +9,17 @@
 (defvar serenade-speech-maps (ht("global" (ht)) ) 
   "hashtable of Serenade voice maps")
 
-(setq serenade--add-builtin-global-defaults t )
-(setq serenade--add-custom-global-defaults t )
+(defvar serenade--add-builtin-global-defaults t)
+;; this variable determines whether the global defaults are added when the mode loads
+
+(defvar serenade--add-generated-global-defaults t)
+;; this variable determines whether the generated global defaults are added when the mode loads
 
 (defun serenade--initialize-mode-maps ()
   ;; This function clears the SERENADE-SPEECH-MAPS and sets them according to the default binding.
   (serenade--clear-mode-maps) 
   (if serenade--add-builtin-global-defaults (serenade--add-builtin-global-defaults)) 
-  (if serenade--add-custom-global-defaults (serenade--add-custom-global-defaults)) 
+  (if serenade--add-generated-global-defaults (serenade--add-generated-global-defaults)) 
   (run-hooks 'serenade-speech-maps-hook))
 
 (defun serenade--clear-mode-maps () 
@@ -29,8 +32,8 @@
 (defun serenade--add-builtin-global-defaults () 
   (serenade-global-set-speech serenade--builtin-global-defaults))
 
-(defun serenade--add-custom-global-defaults () 
-  (serenade-global-set-speech serenade--custom-global-defaults))
+(defun serenade--add-generated-global-defaults () 
+  (serenade-global-set-speech serenade--generated-global-defaults))
 
 (cl-defun 
     serenade-global-set-speech

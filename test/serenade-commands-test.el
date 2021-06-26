@@ -7,7 +7,7 @@
 
 (describe "Default Global Builtin Commands" ;;
           (before-each (serenade--clear-mode-maps) 
-                       (setq serenade--add-custom-global-defaults nil ) 
+                       (setq serenade--add-generated-global-defaults nil ) 
                        (serenade--initialize-mode-maps)) 
           (it "contains builtin commands in global speech map" ;;
               (expect (length (ht-items (serenade--get-global-map))) 
@@ -23,7 +23,7 @@
 
 (describe "Default Global Custom Commands" ;;
           (before-each 
-           (setq serenade--add-custom-global-defaults t ) 
+           (setq serenade--add-generated-global-defaults t ) 
            (setq serenade--add-builtin-global-defaults nil ) 
            (serenade--clear-mode-maps) 
            (serenade--initialize-mode-maps)) 
@@ -31,14 +31,14 @@
            (setq serenade--add-builtin-global-defaults t )) 
           (it "contains default custom commands in global speech map" ;;
               (expect (length (ht-items (serenade--get-global-map))) 
-                      :to-equal (length serenade--custom-global-defaults)) 
+                      :to-equal (length serenade--generated-global-defaults)) 
               (expect (ht-get* serenade-speech-maps "global" "snippet <name>" "command") 
                       :to-equal 'serenade--insert-yasnippet )) 
           (it "adds default custom items to helm map" ;;
               (expect (length (ht-items serenade-helm-M-x-map)) 
                       :to-equal (length (-filter '(lambda (item) 
                                                     (not (eq nil (cdr item))))
-                                                 serenade--custom-global-defaults)))))
+                                                 serenade--generated-global-defaults)))))
 (describe "Global Custom Commands" ;;
           (before-each (serenade--clear-mode-maps)) 
           (it "adds to global speech map" ;;

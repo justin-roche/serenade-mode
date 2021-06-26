@@ -116,9 +116,3 @@
     (websocket-send-text serenade--websocket response-json)))
 
 (provide 'serenade-handler)
-
-;; (let* ((req (load-request "cut")))
-;;   (serenade--handle-message req))
-
-;; (let* ((req (load-request "selectLine2")))
-;;   (serenade--handle-message req))
