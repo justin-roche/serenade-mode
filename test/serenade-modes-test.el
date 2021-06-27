@@ -40,7 +40,8 @@
                                                                                           "test2")))
               (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff"))) 
                 (serenade--handle-message data)) 
-              (expect  'serenade--get-editor-state
+              (expect  'serenade--get-editor-state 
+
                        :not 
                        :to-have-been-called) 
               (expect  'message 
@@ -50,7 +51,8 @@
                                                                  (message "test"))) 
               (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff"))) 
                 (serenade--handle-message data)) 
-              (expect  'serenade--diff
+              (expect  'serenade--diff 
+
                        :not 
                        :to-have-been-called) 
               (expect  'message 

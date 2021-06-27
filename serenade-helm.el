@@ -1,8 +1,6 @@
 (defcustom serenade-helm-M-x t 
   "if true, display speech bindings in helm M-x")
 
-;; helm M-x
-
 (setq serenade-helm-M-x-map (ht))
 (setq serenade--add-helm-candidate '())
 
@@ -24,7 +22,7 @@
       nil))
 
 (defun serenade--add-helm-candidate (speech &optional command)
-  ;; add a single helm candidate to the helm source
+   "add a single helm candidate to the helm source"
   (let* ((item (if command (format "%s %s" command (propertize speech 'face 'helm-serenade-command)) 
                  (format "%s" (propertize speech 'face 'helm-serenade-info))))) 
     (setq serenade--helm-candidates (append serenade--helm-candidates (list item)))))
@@ -41,7 +39,7 @@
   serenade--helm-candidates)
 
 (defun serenade--get-helm-active-candidates (voice-maps)
-  ;; like serenade--get-helm-candidates, except return only candidates for active maps
+   "like serenade--get-helm-candidates, except return only candidates for active maps"
   (setq serenade--helm-candidates '())
   ;; loop over speech maps
   (ht-each '(lambda (speech-map-name speech-map) 

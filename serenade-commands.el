@@ -3,14 +3,14 @@
 (defvar serenade-speech-maps (ht("global" (ht)) ) 
   "hashtable of Serenade voice maps")
 
-(defvar serenade--add-builtin-global-defaults t)
-;; this variable determines whether the global defaults are added when the mode loads
+(defvar serenade--add-builtin-global-defaults t 
+  "this variable determines whether the global defaults are added when the mode loads")
 
-(defvar serenade--add-generated-global-defaults t)
-;; this variable determines whether the generated global defaults are added when the mode loads
+(defvar serenade--add-generated-global-defaults t 
+  "this variable determines whether the generated global defaults are added when the mode loads")
 
-(defun serenade--initialize-speech-maps ()
-  ;; This function clears the SERENADE-SPEECH-MAPS and sets them according to the default binding.
+(defun serenade--initialize-speech-maps () 
+  "This function clears the SERENADE-SPEECH-MAPS and sets them according to the default binding."
   (serenade--clear-speech-maps) 
   (if serenade--add-builtin-global-defaults (serenade--add-builtin-global-defaults)) 
   (if serenade--add-generated-global-defaults (serenade--add-generated-global-defaults)) 
@@ -32,7 +32,7 @@
 (cl-defun 
     serenade-global-set-speech
     (speech &optional command )
-  ;; Convenience function for adding speech bindings to the global serenade speech map. Possible inputs are an association list of speech-command bindings, a single command from which the asociated speech is automatically generated, or a pair of SPEECH and COMMAND.
+  "Convenience function for adding speech bindings to the global serenade speech map. Possible inputs are an association list of speech-command bindings, a single command from which the asociated speech is automatically generated, or a pair of SPEECH and COMMAND."
   (if (and (listp speech)) 
       (dolist (item speech ) 
         (serenade-global-set-speech (car item) 
@@ -49,7 +49,7 @@
 (cl-defun 
     serenade-define-speech
     (mode speech &optional command)
-  ;; this function associates speech pattern SPEECH with an 8lisp function COMMAND for the symbol MODE. If the speech-map provided by MODE does not exist a speech-map is created. If mode is the special symbol 'global then the binding is created for the global speech map. If a previous binding exists for the speech pattern it is overwritten.
+  "this function associates speech pattern SPEECH with an 8lisp function COMMAND for the symbol MODE. If the speech-map provided by MODE does not exist a speech-map is created. If mode is the special symbol 'global then the binding is created for the global speech map. If a previous binding exists for the speech pattern it is overwritten."
   (if (listp speech) 
       (dolist (item speech ) 
         (serenade-define-speech mode (car item) 
@@ -71,8 +71,8 @@
       (serenade--find-in-active-major-map speech) 
       (serenade--find-in-global-map speech)))
 
-(defun serenade--find-in-active-minor-maps (speech)
-  ;; search speech map applicable to the current minor-mode-map-alist. If any contain the speech patterns SPEECH return the command for the speech.
+(defun serenade--find-in-active-minor-maps (speech) 
+  "search speech map applicable to the current minor-mode-map-alist. If any contain the speech patterns SPEECH return the command for the speech." 
   (catch 'result 
     (mapc (lambda (mode-and-map) 
             (if (and (boundp (car mode-and-map)) 
@@ -90,35 +90,29 @@
 (defun serenade--find-in-global-map (speech) 
   (ht-get* serenade-speech-maps "global" speech))
 
-(cl-defun 
-    serenade-helm-commands
-    ()
-  ;; This function provides all current speech bindings in a helm buffer.
+(defun serenade-helm-commands () 
+  "This function provides all current speech bindings in a helm buffer." 
   (interactive) 
   (helm :sources (helm-build-sync-source "serenade" 
                    :candidates (serenade--get-helm-candidates serenade-speech-maps)) 
         :buffer "*helm serenade*"))
 
-(cl-defun 
-    serenade-helm-active-commands
-    ()
-  ;; This function provides all current active speech bindings in a helm buffer.
+(defun serenade-helm-active-commands () 
+  "This function provides all current active speech bindings in a helm buffer." 
   (interactive) 
   (helm :sources (helm-build-sync-source "serenade" 
                    :candidates (serenade--get-helm-active-candidates serenade-speech-maps)) 
         :buffer "*helm serenade*"))
 
-(cl-defun 
-    serenade-helm-selectors
-    ()
-  ;; This function provides all current active speech bindings in a helm buffer.
+(defun serenade-helm-selectors () 
+  "This function provides all current active speech bindings in a helm buffer." 
   (interactive) 
   (helm :sources (helm-build-sync-source "serenade" 
                    :candidates (serenade--get-helm-selectors serenade--selectors)) 
         :buffer "*helm serenade*"))
 
-(defmacro serc (fn &rest args)
-  ;; Curry the function FN with ARGS, and add the resulting function to the global namespace with a descriptive name and docstring
+(defmacro serc (fn &rest args) 
+  "Curry the function FN with ARGS, and add the resulting function to the global namespace with a descriptive name and docstring"
   (let* ((formatted-args (-map '(lambda (item) 
                                   (cond ((eq (type-of item) 'string) item) 
                                         ((eq (type-of item) 'number) 
@@ -139,7 +133,7 @@
     `(intern-soft ',curried-name )))
 
 (defmacro* serd (name args   body &optional &keys pre )
-  ;; Define the function NAME which executes, and add the resulting function to the global namespace.
+  "Define the function NAME which executes, and add the resulting function to the global namespace." 
   `(defun ,(intern-soft (symbol-name name))  ,args 
      (interactive)
      ,body

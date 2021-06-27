@@ -2,8 +2,8 @@
 (defvar serenade-evil t 
   "If true, use evil commands where possible for default commands")
 
-(defun serenade--get-editor-state (callback limited)
-  ;; The default get editor state function. It gets the filename source and cursor for the buffer.
+(defun serenade--get-editor-state (callback limited) 
+  "The default get editor state function. It gets the filename source and cursor for the buffer."
   (let* ((source 
           (buffer-substring-no-properties 
            (point-min) 
@@ -13,8 +13,8 @@
          (cursor  (- (point) 1))) 
     (list callback limited filename source cursor)))
 
-(defun serenade--diff (source cursor)
-  ;; The default diff function. This function replaces the current buffer contents and cursor with the provided SOURCE and CURSOR position from the diff command.
+(defun serenade--diff (source cursor) 
+  "The default diff function. This function replaces the current buffer contents and cursor with the provided SOURCE and CURSOR position from the diff command."
   (let ((tmp-buf (generate-new-buffer " *serenade-temp*"))) 
     (with-current-buffer tmp-buf (insert source)) 
     (replace-buffer-contents tmp-buf) 
@@ -52,8 +52,8 @@
 (defun serenade--switch-tab (index) 
   (winum-select-window-by-number index))
 
-(defun serenade--get-buffer-by-regex (fragment)
-  ;; search for buffer by name and switch to it
+(defun serenade--get-buffer-by-regex (fragment) 
+  "search for buffer by name and switch to it"
   (let* ((matching-buffers (-filter (lambda (elt) 
                                       (s-contains? fragment (buffer-name elt) t)) 
                                     (buffer-list)))) matching-buffers))
@@ -62,8 +62,8 @@
   (let* ((b (serenade--get-buffer-by-regex fragment))) 
     (switch-to-buffer (first b))))
 
-(defun serenade--set-source (source)
-  ;; This function replaces the current buffer contents and cursor with the provided SOURCE and CURSOR position from the diff command.
+(defun serenade--set-source (source) 
+  "This function replaces the current buffer contents and cursor with the provided SOURCE and CURSOR position from the diff command."
   (let ((tmp-buf (generate-new-buffer " *serenade-temp*"))) 
     (with-current-buffer tmp-buf (insert source)) 
     (replace-buffer-contents tmp-buf) 

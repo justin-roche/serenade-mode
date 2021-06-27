@@ -9,16 +9,16 @@
 
 (setq serenade-active-mode-configuration nil )
 
-(defun serenade--initialize-mode-config-map ()
-  ;; This function clears the SERENADE-MODE-CONFIG-MAP and sets only the global (default) mode config
-  ;; (serenade--clear-mode-config-map)
+(defun serenade--initialize-mode-config-map () 
+  "This function clears the SERENADE-MODE-CONFIG-MAP and sets only the global (default) mode config"
+  (serenade--clear-mode-config-map) 
   (serenade--configure-mode :mode 'global ))
 
 (defun serenade--clear-mode-config-map () 
   (setq serenade-mode-config-map (ht ) ))
 
-(defun serenade--set-active-mode-configuration ()
-  ;; Set the active mode configuration based on the major-mode. If none is found, use the global default..
+(defun serenade--set-active-mode-configuration () 
+  "Set the active mode configuration based on the major-mode. If none is found, use the global default."
   (let* ((mode-name (symbol-name major-mode )) 
          (active-config  (ht-get* serenade-mode-config-map mode-name))) 
     (setq serenade-active-mode-configuration (or active-config 
@@ -40,10 +40,14 @@
      get-editor-state
      diff
      post-edit
-     pre-edit) 
+     pre-edit)
+  "This function is used to configure specific mode behavior for modes which does not relate to specific speech bindings. It accepts five optional keyword arguments:
 
-  ;; -A get-editor-state function accepts two parameters, callback and limited, and returns a list of items of form  '(CALLBACK LIMITED FILENAME SOURCE CURSOR), where filename is the name of the file, source is the contents for serenade to change, and cursor is the current location of the cursor)
-  ;; -A diff function accepting two parameters, source and cursor, which updates the buffer with the new source and cursor position.
+:MODE symbol which names the major mode the configuration applies to
+:PRE-EDIT function which will run before every serenade edit in the mode
+:POST-EDIT function which will run after every serenade edit in the mode
+:GET-EDITOR-STATE function accepting two parameters, callback and limited, and returns a list of items of form  '(CALLBACK LIMITED FILENAME SOURCE CURSOR), where filename is the name of the file, source is the contents for serenade to change, and cursor is the current location of the cursor)
+:DIFF function accepting two parameters, source and cursor, which updates the buffer with the new source and cursor position."
   (let* ((config  (make-serenade-mode-configuration ;;
                    :mode (or mode 
                              nil) 
@@ -57,8 +61,8 @@
                                  nil)))) 
     (ht-set serenade-mode-config-map (symbol-name mode) config)))
 
-(defun serenade--set-serenade-buffer ()
-  ;; Determines if the current buffers file extension is a valid member of SERENADE-MODE-FILE-TYPES. If it is set SERENADE-BUFFER to the current buffer, otherwise set it to nil.
+(defun serenade--set-serenade-buffer () 
+  "Determines if the current buffers file extension is a valid member of SERENADE-MODE-FILE-TYPES. If it is set SERENADE-BUFFER to the current buffer, otherwise set it to nil."
   (if (and (buffer-file-name) 
            (file-name-extension (buffer-file-name))) 
       (let* ((ext (file-name-extension (buffer-file-name)))) 
