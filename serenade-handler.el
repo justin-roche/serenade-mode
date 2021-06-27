@@ -1,4 +1,4 @@
-(require 'serenade-buffer)
+(require 'serenade-modes)
 (require 'serenade-log)
 (require 'test-utils)
 (require 'serenade-commands)

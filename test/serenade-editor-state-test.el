@@ -1,6 +1,6 @@
 (require 'ht)
 
-(require 'serenade-buffer)
+(require 'serenade-modes)
 (require 'serenade-handler)
 (require 'test-utils)
 
