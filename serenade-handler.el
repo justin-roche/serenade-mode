@@ -58,7 +58,7 @@
 
 (cl-defun 
     serenade--send-editor-state
-    ((callback limited filename source cursor))
+    (callback limited filename source cursor)
   "This function responds to a get-editor-state command with callback-id CALLBACK. If LIMITED Is true it sends only the file name. The specifics of how cursor and source are sent are determined by the mode configuration."
   (serenade--info (concat "buffer file name: " filename)) 
   (let* ((buffer-data (if limited (ht ("filename" filename)) 

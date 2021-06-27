@@ -73,4 +73,24 @@
 ;; (serenade--configure-mode :mode 'global )
 ;; (serenade--initialize-mode-config-map)
 
+(defun serenade-shell/diff (source cursor) 
+  (let ((proc (get-buffer-process ( current-buffer )))) 
+    (goto-char (process-mark proc)) 
+    (kill-whole-line) 
+    (insert (or contents 
+                "<contents>")) 
+    (goto-char cursor)))
+
+(defun serenade--shell/get-editor-state () 
+  (let ((proc (get-buffer-process ( current-buffer )))) 
+    (goto-char (process-mark proc)) 
+    (let* (( line-contents (thing-at-point 'line t)) 
+           (cursor (point)) 
+           (filename "active-shell.sh"))
+      (list filename line-contents cursor))))
+
+(serenade--configure-mode :mode 'shell-mode 
+                          :get-editor-state 'serenade--shell/get-editor-state 
+                          :diff 'serenade-shell/diff)
+
 (provide 'serenade-modes)
