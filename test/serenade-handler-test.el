@@ -99,22 +99,21 @@
               (create-test-buffer "test.xx" "") 
               (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff"))) 
                 (serenade--handle-message data)) 
-              (expect   'serenade--diff 
-
+              (expect   'serenade--diff
                         :not 
                         :to-have-been-called)))
 
-(describe "calls evaluateInPlugin" ;;
+(describe "calls execute-generated-command" ;;
           (before-each (spy-on 'serenade--get-editor-state) 
                        (spy-on 'websocket-send-text) 
                        (spy-on 'switch-to-buffer) 
-                       (spy-on 'serenade--evaluate-in-plugin)) 
-          (it "calls evaluateInPlugin if there is no valid buffer" ;;
+                       (spy-on 'serenade--execute-generated-command)) 
+          (it "calls execute-generated-command if there is no valid buffer" ;;
               (let* ((data (ht-get* (json-parse-string (load-json-custom-commands))
                                     "evaluateInPlugin")))
                 (create-test-buffer "test.xx" "") 
                 (serenade--handle-message data)) 
-              (expect   'serenade--evaluate-in-plugin 
+              (expect   'serenade--execute-generated-command 
                         :to-have-been-called)))
 
 (describe "Calls cut" ;;
@@ -139,41 +138,41 @@
                 (setq serenade--websocket nil) 
                 (expect   'websocket-send-text 
                           :to-have-been-called-with t res))))
-(describe "calls default commands without arguments" ;;
+(describe "calls builtin commands without arguments" ;;
           (before-each (spy-on 'serenade--send-completed) 
                        (spy-on 'serenade--open-file) 
-                       (spy-on 'serenade--execute-default-command)) 
-          (it "calls default command handler for save" ;;
+                       (spy-on 'serenade--execute-builtin-command)) 
+          (it "calls builtin command handler for save" ;;
               (let* ((req (load-request "save"))) 
                 (create-test-buffer "test.js" "abc") 
                 (serenade--handle-message req) 
-                (expect   'serenade--execute-default-command 
+                (expect   'serenade--execute-builtin-command 
                           :to-have-been-called))))
-(describe "calls default commands with arguments" ;;
+(describe "calls builtin commands with arguments" ;;
           (before-each (spy-on 'serenade--send-completed) 
                        (spy-on 'serenade--switch-tab) 
                        (spy-on 'scroll-down-command) 
                        (spy-on 'scroll-up-command) 
                        (spy-on 'serenade--open-file)) 
-          (it "calls default command handler for scroll" ;;
+          (it "calls builtin command handler for scroll" ;;
               (let* ((req (load-request "scroll"))) 
                 (create-test-buffer "test.js" "abc") 
                 (serenade--handle-message req) 
                 (expect   'scroll-up-command 
                           :to-have-been-called))) 
-          (it "calls default command handler for scroll down" ;;
+          (it "calls builtin command handler for scroll down" ;;
               (let* ((req (load-request "scrollDown"))) 
                 (create-test-buffer "test.js" "abc") 
                 (serenade--handle-message req) 
                 (expect   'scroll-up-command 
                           :to-have-been-called))) 
-          (it "calls default command handler for open <file>" ;;
+          (it "calls builtin command handler for open <file>" ;;
               (let* ((req (load-request "openIndexjs"))) 
                 (create-test-buffer "test.js" "abc") 
                 (serenade--handle-message req) 
                 (expect   'serenade--open-file 
                           :to-have-been-called-with "index.js"))) 
-          (it "calls default command handler for <nth> tab" ;;
+          (it "calls builtin command handler for <nth> tab" ;;
               (let* ((req (load-request "firstTab"))) 
                 (create-test-buffer "test.js" "abc") 
                 (serenade--handle-message req) 
