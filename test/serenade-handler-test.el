@@ -37,21 +37,19 @@
               (expect   (buffer-string) 
                         :to-equal "let x = 1\n")))
 (describe "calls get editor state" ;;
-          (before-each (spy-on 'serenade--get-editor-state) 
-                       (spy-on 'serenade--diff) 
-                       (spy-on 'websocket-send-text) 
-                       (spy-on 'serenade--evaluate-in-plugin)) 
+          (before-each (spy-on 'serenade--send-editor-state) 
+                       (spy-on 'websocket-send-text)) 
           (it "calls get editor state if valid buffer" ;;
               (let* ((data (load-request "getEditorState"))) 
                 (create-test-buffer "test.js" "") 
                 (serenade--handle-message data)) 
-              (expect   'serenade--get-editor-state 
+              (expect   'serenade--send-editor-state 
                         :to-have-been-called)) 
           (it "gets editor state if invalid buffer" ;;
               (let* ((data (load-request "getEditorState"))) 
                 (create-test-buffer "test.xx" "") 
                 (serenade--handle-message data)) 
-              (expect   'serenade--get-editor-state 
+              (expect   'serenade--send-editor-state 
                         :to-have-been-called)))
 
 (describe "gives correct result using undo" ;;
@@ -95,12 +93,11 @@
                 (serenade--handle-message data)) 
               (expect   'serenade--diff 
                         :to-have-been-called)) 
-          (it "does not call diff if invalid buffer" ;;
+          (it "calls diff if invalid buffer" ;;
               (create-test-buffer "test.xx" "") 
               (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff"))) 
                 (serenade--handle-message data)) 
               (expect   'serenade--diff
-                        :not 
                         :to-have-been-called)))
 
 (describe "calls execute-generated-command" ;;

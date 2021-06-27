@@ -25,10 +25,14 @@
          (log-info (concat type ": limited: "  (prin1-to-string limited) ))) 
     (serenade--info log-info) 
     (cond ((equal type "COMMAND_TYPE_GET_EDITOR_STATE") 
-           (serenade--get-editor-state callback limited)) 
-          ((equal type "COMMAND_TYPE_DIFF")
-           ;; (serenade--diff command)
-           (if serenade-buffer (serenade--diff command))) 
+           (serenade--send-editor-state (funcall (serenade-mode-configuration-get-editor-state
+                                                  serenade-active-mode-configuration) callback
+                                                  limited)))
+          ((equal type "COMMAND_TYPE_DIFF") 
+           (funcall (serenade-mode-configuration-diff serenade-active-mode-configuration) 
+                    (ht-get command "source") 
+                    (+(or (ht-get command "cursor") 
+                          0) 1))) 
           ((equal type "COMMAND_TYPE_CUSTOM") nil)
           ;; custom commands are sent with both COMMAND_TYPE_CUSTOM and COMMAND_TYPE_EVALUATE_IN_PLUGIN, so ignore the first of these.
           ((cond ((equal type "COMMAND_TYPE_EVALUATE_IN_PLUGIN") 
@@ -52,31 +56,22 @@
                  (t (serenade--execute-builtin-command (ht-get* message "data" "response" "execute"
                                                                 "transcript"))))))))
 
-(defun serenade--get-editor-state (callback limited)
+(cl-defun 
+    serenade--send-editor-state
+    ((callback limited filename source cursor))
   ;; This function responds to a get-editor-state command with callback-id CALLBACK. If LIMITED Is true it sends only the file name. The specifics of how cursor and source are sent are determined by the mode configuration.
-  (serenade--info (concat "buffer file name: "(buffer-file-name))) 
-  (let* ((filename (serenade--get-filename)) 
-         (buffer-data (if limited (ht ("filename" filename)) 
+  (serenade--info (concat "buffer file name: " filename)) 
+  (let* ((buffer-data (if limited (ht ("filename" filename)) 
                         (ht ("filename" filename) 
-                            ("cursor" (funcall (serenade-mode-configuration-get-cursor
-                                                serenade-active-mode-configuration)))
-                            ("source" (funcall (serenade-mode-configuration-get-source
-                                                serenade-active-mode-configuration )))))) 
+                            ("cursor" cursor) 
+                            ("source" source)))) 
          (response (ht("data" (ht ("data" (ht ("data" buffer-data) 
                                               ("message" "editorState"))) 
                                   ("callback" callback))) 
                       ("message" "callback"))) 
-         (response-json (json-serialize response))) 
+         (response-json (json-serialize response)))
+    ;; (debug)
     (websocket-send-text serenade--websocket response-json)))
-
-(defun serenade--diff (command)
-  ;; Replaces source and cursor with those sent from Serenades. The specifics of those operations are determined by the mode configuration.
-  (serenade--info "diffing...") 
-  (funcall (serenade-mode-configuration-set-source serenade-active-mode-configuration) 
-           (ht-get command "source")) 
-  (funcall (serenade-mode-configuration-set-cursor serenade-active-mode-configuration) 
-           (+(or (ht-get command "cursor") 
-                 0) 1)))
 
 (defun serenade--send-completed (callback)
   ;; Sends the completed message to serenade command having callback CALLBACK.
@@ -96,7 +91,6 @@
             (bound-fn (ht-get* found-command "command"))) 
       (if args (apply bound-fn args) 
         (funcall bound-fn))))
-
 
 (defun serenade--execute-generated-command (command)
   ;; This function is responsible for calling the associated function for generated commands the input text is parsed as a list and evaluated.
@@ -118,7 +112,5 @@
                                                  (cl-parse-integer value) value)) ) args))) 
              (apply bound-fn converted-args)) 
     (funcall bound-fn)))
-
-
 
 (provide 'serenade-handler)

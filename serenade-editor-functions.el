@@ -2,27 +2,23 @@
 (defvar serenade-evil t 
   "If true, use evil commands where possible for default commands")
 
-(defun serenade--get-source () 
-  (buffer-substring-no-properties 
-   (point-min) 
-   (point-max)))
+(defun serenade--get-editor-state (callback limited) 
+  (let* ((source 
+          (buffer-substring-no-properties 
+           (point-min) 
+           (point-max))) 
+         (filename  (if (buffer-file-name) 
+                        (-last-item (s-split "/" (buffer-file-name))) "")) 
+         (cursor  (- (point) 1))) 
+    (list callback limited filename source cursor)))
 
-(defun serenade--set-source (source)
+(defun serenade--diff (source cursor)
   ;; This function replaces the current buffer contents and cursor with the provided SOURCE and CURSOR position from the diff command.
   (let ((tmp-buf (generate-new-buffer " *serenade-temp*"))) 
     (with-current-buffer tmp-buf (insert source)) 
     (replace-buffer-contents tmp-buf) 
-    (kill-buffer tmp-buf)))
-
-(defun serenade--get-filename () 
-  (if (buffer-file-name) 
-      (-last-item (s-split "/" (buffer-file-name))) ""))
-
-(defun serenade--get-cursor () 
-  (- (point) 1))
-
-(defun serenade--set-cursor (loc) 
-  (goto-char loc))
+    (kill-buffer tmp-buf)) 
+  (goto-char cursor))
 
 (defun serenade--select-target (min max) 
   (if serenade-evil (progn (goto-char min) 

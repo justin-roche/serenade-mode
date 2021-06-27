@@ -29,43 +29,31 @@
 (cl-defstruct 
     serenade-mode-configuration
   mode
-  get-cursor
-  get-filename
-  get-source
+  get-editor-state
+  diff
   post-edit
-  pre-edit
-  set-cursor
-  set-source)
+  pre-edit)
 
 (cl-defun 
     serenade--configure-mode 
     (&optional 
      &keys
      mode
-     get-cursor
-     get-filename
-     get-source
+     get-editor-state
+     diff
      post-edit
-     pre-edit
-     set-cursor
-     set-source) 
+     pre-edit) 
   (let* ((config  (make-serenade-mode-configuration ;;
                    :mode (or mode 
                              nil) 
-                   :get-cursor (or get-cursor 
-                                   'serenade--get-cursor) 
-                   :get-filename (or get-filename 
-                                     'serenade--get-filename) 
-                   :get-source (or get-source 
-                                   'serenade--get-source) 
+                   :get-editor-state (or get-editor-state 
+                                         'serenade--get-editor-state) 
+                   :diff (or diff 
+                             'serenade--diff) 
                    :post-edit (or post-edit 
                                   nil) 
                    :pre-edit (or pre-edit 
-                                 nil) 
-                   :set-cursor (or set-cursor 
-                                   'serenade--set-cursor) 
-                   :set-source (or set-source 
-                                   'serenade--set-source)))) 
+                                 nil))))
     (ht-set serenade-mode-configurations (symbol-name mode) config)))
 
 (serenade--configure-mode :mode 'global)
