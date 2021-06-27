@@ -43,10 +43,10 @@
      pre-edit)
   "This function is used to configure specific mode behavior for modes which does not relate to specific speech bindings. It accepts five optional keyword arguments:
 
-:MODE symbol which names the major mode the configuration applies to
-:PRE-EDIT function which will run before every serenade edit in the mode
-:POST-EDIT function which will run after every serenade edit in the mode
-:GET-EDITOR-STATE function accepting two parameters, callback and limited, and returns a list of items of form  '(CALLBACK LIMITED FILENAME SOURCE CURSOR), where filename is the name of the file, source is the contents for serenade to change, and cursor is the current location of the cursor)
+:MODE symbol which names the major mode the configuration applies to.
+:PRE-EDIT function which will run before every serenade edit in the mode.
+:POST-EDIT function which will run after every serenade edit in the mode.
+:GET-EDITOR-STATE function which returns a list of items of form  '(FILENAME SOURCE CURSOR), where filename is the name of the file, source is the contents for serenade to change, and cursor is the current location of the cursor).
 :DIFF function accepting two parameters, source and cursor, which updates the buffer with the new source and cursor position."
   (let* ((config  (make-serenade-mode-configuration ;;
                    :mode (or mode 

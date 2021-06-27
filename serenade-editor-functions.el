@@ -2,7 +2,7 @@
 (defvar serenade-evil t 
   "If true, use evil commands where possible for default commands")
 
-(defun serenade--get-editor-state (callback limited) 
+(defun serenade--get-editor-state () 
   "The default get editor state function. It gets the filename source and cursor for the buffer."
   (let* ((source 
           (buffer-substring-no-properties 
@@ -11,7 +11,7 @@
          (filename  (if (buffer-file-name) 
                         (-last-item (s-split "/" (buffer-file-name))) "")) 
          (cursor  (- (point) 1))) 
-    (list callback limited filename source cursor)))
+    (list filename source cursor)))
 
 (defun serenade--diff (source cursor) 
   "The default diff function. This function replaces the current buffer contents and cursor with the provided SOURCE and CURSOR position from the diff command."

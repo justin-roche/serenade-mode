@@ -25,9 +25,9 @@
          (log-info (concat type ": limited: "  (prin1-to-string limited) ))) 
     (serenade--info log-info) 
     (cond ((equal type "COMMAND_TYPE_GET_EDITOR_STATE") 
-           (serenade--send-editor-state (funcall (serenade-mode-configuration-get-editor-state
-                                                  serenade-active-mode-configuration) callback
-                                                  limited)))
+           (let* ((results  (funcall (serenade-mode-configuration-get-editor-state
+                                      serenade-active-mode-configuration))))
+             (apply 'serenade--send-editor-state (append (list callback limited) results)))) 
           ((equal type "COMMAND_TYPE_DIFF") 
            (funcall (serenade-mode-configuration-diff serenade-active-mode-configuration) 
                     (ht-get command "source") 
@@ -81,9 +81,7 @@
                                  (response-json (json-serialize response))) 
                             (websocket-send-text serenade--websocket response-json))))
 
-(defun 
-    serenade--execute-builtin-command
-    ( transcript &optional args)
+(defun serenade--execute-builtin-command ( transcript &optional args) 
   "Evaluate bindings for builtin commands. Builtin commands are commands with speech bindings that do not need registered as custom commands. Speech command with TRANSCRIPT is mapped to its function call in the speech maps. For speech commands that have substititions, such as '<nth> tab ' and 'open <file> ', function is applied with ARGS."
   (serenade--info "executing builtin command") 
   (if-let* ((found-command  (serenade--find-voice-binding transcript)) 
@@ -113,3 +111,9 @@
     (funcall bound-fn)))
 
 (provide 'serenade-handler)
+
+;; (require 'test-utils)
+;; (let* ((data (load-request "getEditorState")))
+
+;;   ;; (create-test-buffer "test.js" "")
+;;   (serenade--handle-message data))

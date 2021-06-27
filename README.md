@@ -159,6 +159,10 @@ There is also the provided __serd__ macro, which acts like a defun call but retu
                                     
 ```
 
+### Mode configuration
+
+
+
 ## Variables
 
 ### serenade-mode-filetypes 

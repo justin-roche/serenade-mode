@@ -21,8 +21,8 @@
   (or (ht-get* serenade-helm-M-x-map cand) 
       nil))
 
-(defun serenade--add-helm-candidate (speech &optional command)
-   "add a single helm candidate to the helm source"
+(defun serenade--add-helm-candidate (speech &optional command) 
+  "add a single helm candidate to the helm source"
   (let* ((item (if command (format "%s %s" command (propertize speech 'face 'helm-serenade-command)) 
                  (format "%s" (propertize speech 'face 'helm-serenade-info))))) 
     (setq serenade--helm-candidates (append serenade--helm-candidates (list item)))))
@@ -38,8 +38,8 @@
                             (serenade--add-helm-candidate speech command))) value)) voice-maps)
   serenade--helm-candidates)
 
-(defun serenade--get-helm-active-candidates (voice-maps)
-   "like serenade--get-helm-candidates, except return only candidates for active maps"
+(defun serenade--get-helm-active-candidates (voice-maps) 
+  "like serenade--get-helm-candidates, except return only candidates for active maps" 
   (setq serenade--helm-candidates '())
   ;; loop over speech maps
   (ht-each '(lambda (speech-map-name speech-map) 
