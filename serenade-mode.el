@@ -98,7 +98,7 @@
   :group 'serenade-mode
   (serenade-mode-toggle))
 
-(serenade--initialize-mode-maps)
+(serenade--initialize-speech-maps)
 (provide 'serenade-mode)
 
 ;;; serenade-mode.el ends here

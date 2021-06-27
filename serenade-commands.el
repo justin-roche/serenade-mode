@@ -15,14 +15,14 @@
 (defvar serenade--add-generated-global-defaults t)
 ;; this variable determines whether the generated global defaults are added when the mode loads
 
-(defun serenade--initialize-mode-maps ()
+(defun serenade--initialize-speech-maps ()
   ;; This function clears the SERENADE-SPEECH-MAPS and sets them according to the default binding.
-  (serenade--clear-mode-maps) 
+  (serenade--clear-speech-maps) 
   (if serenade--add-builtin-global-defaults (serenade--add-builtin-global-defaults)) 
   (if serenade--add-generated-global-defaults (serenade--add-generated-global-defaults)) 
   (run-hooks 'serenade-speech-maps-hook))
 
-(defun serenade--clear-mode-maps () 
+(defun serenade--clear-speech-maps () 
   (setq serenade-speech-maps (ht("global" (ht)) ) ) 
   (serenade--clear-helm-M-x-map))
 
@@ -151,10 +151,5 @@
      ,body
      (if ,pre (put ',name 'serenade-pre-hook ,pre)) 
      (intern-soft ',name )))
-
-;; (serenade-define-speech 'global `(("a" . ,(serd custom-lambdas()
-;;                                                 (setq test-val 1)
-;;                                                 :pre 1))))
-;; (serenade--call-function-with-args (ht-get* (serenade--find-voice-binding "a") "command" )nil)
 
 (provide 'serenade-commands)

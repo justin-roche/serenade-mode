@@ -24,7 +24,7 @@
               (expect 'serenade-mode--stop 
                       :to-have-been-called)))
 (describe "Start function" ;;
-          (before-each (spy-on 'serenade--initialize-mode-maps) 
+          (before-each (spy-on 'serenade--initialize-speech-maps) 
                        (spy-on 'serenade--generate)) 
           (it "calls sync function" ;;
               (serenade-mode) 

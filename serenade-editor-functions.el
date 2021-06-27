@@ -43,13 +43,25 @@
   (let* ((b (serenade--get-buffer-by-regex fragment))) 
     (switch-to-buffer (first b))))
 
-(defun serenade--update-buffer (source cursor)
+(defun serenade--set-source (source)
   ;; This function replaces the current buffer contents and cursor with the provided SOURCE and CURSOR position from the diff command.
   (let ((tmp-buf (generate-new-buffer " *serenade-temp*"))) 
     (with-current-buffer tmp-buf (insert source)) 
     (replace-buffer-contents tmp-buf) 
-    (kill-buffer tmp-buf)) 
-  (goto-char cursor))
+    (kill-buffer tmp-buf)))
+
+;; (serenade--configure-mode :post-edit '(lambda ()
+;;                                         ;;
+;;                                         (message "wowo"))
+;;                           :pre-edit
+
+;;                           :get-source '(lambda ()
+;;                                           ;;
+;;                                           )
+
+;;                           :get-cursor
+;;                           :update-source
+;;                           :update-cursor )
 
 (provide 'serenade-editor-functions)
 

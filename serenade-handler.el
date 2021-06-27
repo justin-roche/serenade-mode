@@ -19,13 +19,15 @@
 (defun serenade--handle-command (command message callback)
   ;; Handle a serenade command COMMAND.
   (serenade--set-serenade-buffer) 
+  (serenade--set-active-mode-configuration) 
   (let* ((type (ht-get*  command "type")) 
          (limited (ht-get* command "limited" )) 
          (log-info (concat type ": limited: "  (prin1-to-string limited) ))) 
     (serenade--info log-info) 
     (cond ((equal type "COMMAND_TYPE_GET_EDITOR_STATE") 
            (serenade--get-editor-state callback limited)) 
-          ((equal type "COMMAND_TYPE_DIFF") 
+          ((equal type "COMMAND_TYPE_DIFF")
+           ;; (serenade--diff command)
            (if serenade-buffer (serenade--diff command))) 
           ((equal type "COMMAND_TYPE_CUSTOM") nil)
           ;; custom commands are sent with both COMMAND_TYPE_CUSTOM and COMMAND_TYPE_EVALUATE_IN_PLUGIN, so ignore the first of these.
@@ -52,9 +54,11 @@
 
 (defun serenade--diff (command) 
   (serenade--info "diffing...") 
-  (serenade--update-buffer (ht-get command "source") 
-                           (+(or (ht-get command "cursor") 
-                                 0) 1)))
+  (funcall (serenade-mode-configuration-set-source serenade-active-mode-configuration) 
+           (ht-get command "source")) 
+  (funcall (serenade-mode-configuration-set-cursor serenade-active-mode-configuration) 
+           (+(or (ht-get command "cursor") 
+                 0) 1)))
 
 (cl-defun 
     serenade--execute-default-command
@@ -84,7 +88,10 @@
                                                   (value (cdr arg))) 
                                              (if  (s-matches? "[0-9]+" value) 
                                                  (cl-parse-integer value) value)) ) args))) 
-             (apply bound-fn converted-args)) 
+             (apply bound-fn converted-args))
+    ;; (condition-case nil (apply bound-fn converted-args)
+    ;;   ((debug error) nil))
+    ;; )
     (funcall bound-fn)))
 
 (defun serenade--send-completed (callback)
@@ -99,15 +106,13 @@
 (defun serenade--get-editor-state (callback limited)
   ;; This function responds to a get-editor-state command with callback-id CALLBACK. If LIMITED Is true it sends only the file name.
   (serenade--info (concat "buffer file name: "(buffer-file-name))) 
-  (let* ((filename (if (buffer-file-name) 
-                       (-last-item (s-split "/" (buffer-file-name))) "")) 
+  (let* ((filename (serenade--get-filename)) 
          (buffer-data (if limited (ht ("filename" filename)) 
                         (ht ("filename" filename) 
-                            ("cursor" (- (point) 1)) 
-                            ("source" 
-                             (buffer-substring-no-properties 
-                              (point-min) 
-                              (point-max)))))) 
+                            ("cursor" (funcall (serenade-mode-configuration-get-cursor
+                                                serenade-active-mode-configuration)))
+                            ("source" (funcall (serenade-mode-configuration-get-source
+                                                serenade-active-mode-configuration )))))) 
          (response (ht("data" (ht ("data" (ht ("data" buffer-data) 
                                               ("message" "editorState"))) 
                                   ("callback" callback))) 
@@ -116,3 +121,9 @@
     (websocket-send-text serenade--websocket response-json)))
 
 (provide 'serenade-handler)
+
+;; (let* ((req (load-request "selectLine2")))
+;;   (serenade--handle-message req))
+;; (serenade--get-editor-state "1" nil)
+;; (let* ((req (load-request "goLine2")))
+;;   (serenade--handle-message req))

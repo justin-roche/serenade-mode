@@ -6,9 +6,9 @@
 (require 'test-utils)
 
 (describe "Default Global Builtin Commands" ;;
-          (before-each (serenade--clear-mode-maps) 
+          (before-each (serenade--clear-speech-maps) 
                        (setq serenade--add-generated-global-defaults nil ) 
-                       (serenade--initialize-mode-maps)) 
+                       (serenade--initialize-speech-maps)) 
           (it "contains builtin commands in global speech map" ;;
               (expect (length (ht-items (serenade--get-global-map))) 
                       :to-equal (length serenade--builtin-global-defaults)) 
@@ -25,8 +25,8 @@
           (before-each 
            (setq serenade--add-generated-global-defaults t ) 
            (setq serenade--add-builtin-global-defaults nil ) 
-           (serenade--clear-mode-maps) 
-           (serenade--initialize-mode-maps)) 
+           (serenade--clear-speech-maps) 
+           (serenade--initialize-speech-maps)) 
           (after-each 
            (setq serenade--add-builtin-global-defaults t )) 
           (it "contains default custom commands in global speech map" ;;
@@ -40,7 +40,7 @@
                                                     (not (eq nil (cdr item))))
                                                  serenade--generated-global-defaults)))))
 (describe "Global Custom Commands" ;;
-          (before-each (serenade--clear-mode-maps)) 
+          (before-each (serenade--clear-speech-maps)) 
           (it "adds to global speech map" ;;
               (serenade-global-set-speech "a" 'b) 
               (expect (length (ht-items (serenade--get-global-map))) 
@@ -69,7 +69,7 @@
               (expect (ht-get*  (serenade--get-global-map) "g"  "command") 
                       :to-equal 'h )))
 (describe "Define-speech" ;;
-          (before-each (serenade--initialize-mode-maps)) 
+          (before-each (serenade--initialize-speech-maps)) 
           (it "define-speech can be called with a list" ;;
               (progn (serenade-define-speech 'org-mode '(("a" . b) 
                                                          ("c" . d)))) 
@@ -78,7 +78,7 @@
               (expect(ht-get* serenade-speech-maps "org-mode"  "c" "command") 
                      :to-equal 'd)))
 (describe "Auto-define-speech" ;;
-          (before-each (serenade--clear-mode-maps)) 
+          (before-each (serenade--clear-speech-maps)) 
           (it "determines speech value when one command only is provided" ;;
               (serenade-auto-define-speech 'global 'uncomment-region) 
               (expect (length (ht-items (serenade--get-global-map))) 
@@ -94,7 +94,7 @@
               (expect (ht-get*  (serenade--get-global-map) "uncomment region"  "command") 
                       :to-equal 'uncomment-region )))
 (describe "Mode Custom Commands" ;;
-          (before-each (serenade--initialize-mode-maps)) 
+          (before-each (serenade--initialize-speech-maps)) 
           (it "adds to existing mode voice maps" ;;
               (progn (serenade-define-speech 'org-mode "a" 'b) 
                      (serenade-define-speech 'org-mode "c" 'd)) 
@@ -111,7 +111,7 @@
            (setq rjsx-mode nil) 
            (setq major-mode 'org-mode ) 
            (setq org-mode t ) 
-           (serenade--initialize-mode-maps) ) 
+           (serenade--initialize-speech-maps) ) 
           (it "finds voice binding for minor mode" ;;
               (progn (serenade-define-speech 'edebug-mode "a" 'c)) 
               (expect (ht-get* (serenade--find-voice-binding "a") "command") 
@@ -146,7 +146,7 @@
               (expect (ht-get* (serenade--find-voice-binding "a") "command") 
                       :to-equal 'd)))
 (describe "Currying macro" ;;
-          (before-each (serenade--initialize-mode-maps) 
+          (before-each (serenade--initialize-speech-maps) 
                        (defun curry-spy-4 (a b c d ) 
                          (setq curry-result (concat a b c d ) )) 
                        (defun curry-spy-3 (a b ) 
@@ -187,7 +187,7 @@
               (expect curry-result 
                       :to-equal "abcd")))
 (describe "Serd macro" ;;
-          (before-each (serenade--initialize-mode-maps)) 
+          (before-each (serenade--initialize-speech-maps)) 
           (it "calls new function by provided name" ;;
               (serenade-define-speech 'global `(("a <x> <y>" . ,(serd custom-lambda() 
                                                                       (setq test-val 1) )))) 

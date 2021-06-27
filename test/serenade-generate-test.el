@@ -6,7 +6,7 @@
 
 (describe "formats commands with no arguments " ;;
           (before-each (reset-maps)) 
-          (after-each (serenade--initialize-mode-maps)) 
+          (after-each (serenade--initialize-speech-maps)) 
           (it "formats a single command with no arguments" ;;
               (serenade-define-speech 'global "a" 'b) 
               ( serenade--format-commands ) 
@@ -30,17 +30,17 @@
                         :to-equal 1)))
 (describe "excludes default bindings" ;;
           (before-each (reset-maps)) 
-          (after-each (serenade--initialize-mode-maps)) 
+          (after-each (serenade--initialize-speech-maps)) 
           (it "does not format global defaults" ;;
-              (serenade--initialize-mode-maps) 
+              (serenade--initialize-speech-maps) 
               (serenade-define-speech 'global "a" 'b) 
               ( serenade--format-commands ) 
               (expect   (length serenade--formatted-commands--no-slots) 
-                        :to-equal 3)))
+                        :to-equal 5)))
 
 (describe "formats commands with named arguments " ;;
           (before-each (reset-maps)) 
-          (after-each (serenade--initialize-mode-maps)) 
+          (after-each (serenade--initialize-speech-maps)) 
           (it "formats a single command with named arguments" ;;
               (serenade-define-speech 'global "a <z>" 'b) 
               ( serenade--format-commands ) 
@@ -68,7 +68,7 @@
 
 (describe "formats combined form" ;;
           (before-each (reset-maps)) 
-          (after-each (serenade--initialize-mode-maps)) 
+          (after-each (serenade--initialize-speech-maps)) 
           (it "formats combined form for a single command with named arguments" ;;
               (serenade-define-speech 'global "b <z> <x>" 'b) 
               (serenade--format-commands) 

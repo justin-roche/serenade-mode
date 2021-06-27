@@ -6,7 +6,7 @@
 
 (describe "Updates serenade helm M-x map" ;;
           (before-each (setf serenade-helm-M-x-map (ht)) 
-                       (serenade--clear-mode-maps)) 
+                       (serenade--clear-speech-maps)) 
           (it "adds new voice binding for commad" (serenade--update-helm-M-x-map "a" 'b) 
               (expect   (ht-get* serenade-helm-M-x-map "b") 
                         :to-equal "a")) 
@@ -20,7 +20,7 @@
                         :to-equal "a")))
 (describe "calls to define-speech update helm M-x map" ;;
           (before-each (setf serenade-helm-M-x-map (ht)) 
-                       (serenade--clear-mode-maps)) 
+                       (serenade--clear-speech-maps)) 
           (it "adds new M-x binding for command if M-x enabled" ;;
               (setq serenade-helm-M-x t) 
               (serenade-global-set-speech "a" 'b) 
@@ -33,7 +33,7 @@
                         :to-equal nil)))
 (describe "gets unrestricted serenade-commands list" ;;
           (before-each (setf serenade-helm-M-x-map (ht)) 
-                       (serenade--clear-mode-maps))
+                       (serenade--clear-speech-maps))
           ;;
           (it "includes inactive modes" ;;
               (serenade-global-set-speech "a" 'b) 
@@ -44,7 +44,7 @@
                        :to-equal 1)))
 (describe "gets active serenade-commands list" ;;
           (before-each (setf serenade-helm-M-x-map (ht)) 
-                       (serenade--clear-mode-maps))
+                       (serenade--clear-speech-maps))
           ;;
           (it "excludes inactive modes" ;;
               (serenade-define-speech 'a-mode "a" 'b) 

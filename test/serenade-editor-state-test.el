@@ -1,9 +1,11 @@
 (require 'ht)
+
+(require 'serenade-buffer)
 (require 'serenade-handler)
 (require 'test-utils)
 
 (describe "gets editor state from buffer" ;;
-          (before-each (spy-on 'websocket-send-text)) 
+          (before-each (serenade--set-active-mode-configuration)(spy-on 'websocket-send-text)) 
           (it "gets editor state" ;;
               (let* ((data (load-response "getEditorState"))) 
                 (switch-to-buffer (get-buffer-create "test.js")) 

@@ -44,7 +44,7 @@ If all goes well, you should see the active application change to Emacs in the S
 Multiple speech patterns can be associated with a command, but a single speech pattern can be associated with only one command.
 
 ### Builtin default voice bindings
-Builtin bindings are those that specify bindings for Serenade's built-in commands. Serenade already recognizes these commands and sends specific messages to the plugin. The map for these is found in serenade-commands.el. All bindings besides these involve the configuration of javascript in the Serenade directory.
+Builtin bindings are those that specify bindings for Serenade's built-in commands. Serenade already recognizes these commands and sends specific messages to the plugin. The map for these is found in serenade-defaults.el. All bindings besides these involve the configuration of javascript in the Serenade directory.
 
 | Pattern | Command                  |
 |:--------------------|:-----------------------------|
