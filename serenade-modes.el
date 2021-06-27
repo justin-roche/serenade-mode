@@ -86,11 +86,14 @@
     (goto-char (process-mark proc)) 
     (let* (( line-contents (thing-at-point 'line t)) 
            (cursor (point)) 
-           (filename "active-shell.sh"))
+           (filename "active-shell.sh")) 
       (list filename line-contents cursor))))
 
 (serenade--configure-mode :mode 'shell-mode 
                           :get-editor-state 'serenade--shell/get-editor-state 
                           :diff 'serenade-shell/diff)
+
+(serenade--configure-mode :mode 'rjsx-mode 
+                          :post-edit 'js2-reparse)
 
 (provide 'serenade-modes)

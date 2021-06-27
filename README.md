@@ -161,8 +161,15 @@ There is also the provided __serd__ macro, which acts like a defun call but retu
 
 ### Mode configuration
 
+For some modes it can be useful to specify configurations that are not specific to particular speech bindings. For this there is the function __serenade-configure-mode__. This can be used to expose only a portion of the buffer as editable (as with shell-mode), or for cleanup:  
 
+```elisp
 
+(serenade--configure-mode :mode 'rjsx-mode 
+                          :post-edit 'js2-reparse)                                    
+```
+
+For more about the mode configuration options, see the documentation in the source code.
 ## Variables
 
 ### serenade-mode-filetypes 
