@@ -24,13 +24,14 @@
 ;; see <http://www.gnu.org/licenses/>.
 
 (require 'serenade-socket)
+(require 'serenade-editor-functions)
 (require 'serenade-commands)
+(require 'serenade-modes)
 (require 'serenade-log)
 (require 'serenade-helm)
 (require 'serenade-snippet)
 (require 'serenade-keys-patch)
 (require 'serenade-generate)
-(require 'serenade-editor-functions)
 
 (defface helm-serenade-command '((t :foreground "#CD009600CD00" 
                                     :underline t)) 
@@ -99,6 +100,7 @@
   (serenade-mode-toggle))
 
 (serenade--initialize-speech-maps)
+(serenade--initialize-mode-config-map)
 (provide 'serenade-mode)
 
 ;;; serenade-mode.el ends here

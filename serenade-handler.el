@@ -1,7 +1,10 @@
+(require 'serenade-editor-functions)
 (require 'serenade-modes)
 (require 'serenade-log)
 (require 'test-utils)
 (require 'serenade-commands)
+;; (require 'serenade--websocket)
+;; (require 'serenade-modes)
 
 (defun serenade--handle-message (message)
   ;; Handle a serenade MESSAGE. Iterate through the messages command list calling handle command.
@@ -12,8 +15,8 @@
          (command-list (append command-vector nil))) 
     (if transcript (serenade--info (concat "received command: " transcript))) 
     (dolist (command command-list ) 
-      (serenade--handle-command command message callback)) 
-    (serenade--after-edit) 
+      (serenade--handle-command command message callback))
+    ;; (serenade--after-edit)
     (if serenade--websocket (serenade--send-completed callback))))
 
 (defun serenade--handle-command (command message callback)
@@ -24,10 +27,11 @@
          (limited (ht-get* command "limited" )) 
          (log-info (concat type ": limited: "  (prin1-to-string limited) ))) 
     (serenade--info log-info) 
-    (cond ((equal type "COMMAND_TYPE_GET_EDITOR_STATE") 
+    (cond ((equal type "COMMAND_TYPE_GET_EDITOR_STATE")
            (serenade--send-editor-state (funcall (serenade-mode-configuration-get-editor-state
                                                   serenade-active-mode-configuration) callback
-                                                  limited)))
+                                                  limited))
+           ) 
           ((equal type "COMMAND_TYPE_DIFF") 
            (funcall (serenade-mode-configuration-diff serenade-active-mode-configuration) 
                     (ht-get command "source") 
@@ -114,3 +118,9 @@
     (funcall bound-fn)))
 
 (provide 'serenade-handler)
+
+;; (let* ((req (load-request "selectLine2")))
+;;   (serenade--handle-message req))
+;; (serenade--initialize-mode-config-map)
+;; (let* ((req (load-request "goLine2")))
+;;   (serenade--handle-message req))

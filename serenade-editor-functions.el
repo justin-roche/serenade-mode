@@ -2,7 +2,8 @@
 (defvar serenade-evil t 
   "If true, use evil commands where possible for default commands")
 
-(defun serenade--get-editor-state (callback limited) 
+(defun serenade--get-editor-state (callback limited)
+  ;; The default get editor state function. It gets the filename source and cursor for the buffer.
   (let* ((source 
           (buffer-substring-no-properties 
            (point-min) 
@@ -13,7 +14,7 @@
     (list callback limited filename source cursor)))
 
 (defun serenade--diff (source cursor)
-  ;; This function replaces the current buffer contents and cursor with the provided SOURCE and CURSOR position from the diff command.
+  ;; The default diff function. This function replaces the current buffer contents and cursor with the provided SOURCE and CURSOR position from the diff command.
   (let ((tmp-buf (generate-new-buffer " *serenade-temp*"))) 
     (with-current-buffer tmp-buf (insert source)) 
     (replace-buffer-contents tmp-buf) 
@@ -67,19 +68,6 @@
     (with-current-buffer tmp-buf (insert source)) 
     (replace-buffer-contents tmp-buf) 
     (kill-buffer tmp-buf)))
-
-;; (serenade--configure-mode :post-edit '(lambda ()
-;;                                         ;;
-;;                                         (message "wowo"))
-;;                           :pre-edit
-
-;;                           :get-source '(lambda ()
-;;                                           ;;
-;;                                           )
-
-;;                           :get-cursor
-;;                           :update-source
-;;                           :update-cursor )
 
 (provide 'serenade-editor-functions)
 
