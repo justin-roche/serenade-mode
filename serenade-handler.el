@@ -1,14 +1,14 @@
-(require 'serenade-editor-functions)
-(require 'serenade-modes)
-(require 'serenade-log)
-(require 'test-utils)
-(require 'serenade-commands)
 ;; (require 'serenade--websocket)
 ;; (require 'serenade-modes)
 
 (defun serenade--handle-message (message)
   ;; Handle a serenade MESSAGE. Iterate through the messages command list calling handle command.
   (serenade--info (concat "\n" (extract-json message ))) 
+  (serenade--set-serenade-buffer) 
+  (serenade--set-active-mode-configuration) 
+  (if-let* ((pre-edit (serenade-mode-configuration-pre-edit
+                        serenade-active-mode-configuration)))
+      (funcall pre-edit))
   (let* ((callback (ht-get* message "data" "callback")) 
          (command-vector (ht-get* message "data" "response" "execute" "commandsList")) 
          (transcript (ht-get* message "transcript")) 
@@ -17,21 +17,21 @@
     (dolist (command command-list ) 
       (serenade--handle-command command message callback))
     ;; (serenade--after-edit)
+    (if-let* ((post-edit (serenade-mode-configuration-post-edit
+                          serenade-active-mode-configuration)))
+        (funcall post-edit)) 
     (if serenade--websocket (serenade--send-completed callback))))
 
 (defun serenade--handle-command (command message callback)
   ;; Handle a serenade command COMMAND.
-  (serenade--set-serenade-buffer) 
-  (serenade--set-active-mode-configuration) 
   (let* ((type (ht-get*  command "type")) 
          (limited (ht-get* command "limited" )) 
          (log-info (concat type ": limited: "  (prin1-to-string limited) ))) 
     (serenade--info log-info) 
-    (cond ((equal type "COMMAND_TYPE_GET_EDITOR_STATE")
+    (cond ((equal type "COMMAND_TYPE_GET_EDITOR_STATE") 
            (serenade--send-editor-state (funcall (serenade-mode-configuration-get-editor-state
                                                   serenade-active-mode-configuration) callback
-                                                  limited))
-           ) 
+                                                  limited)))
           ((equal type "COMMAND_TYPE_DIFF") 
            (funcall (serenade-mode-configuration-diff serenade-active-mode-configuration) 
                     (ht-get command "source") 

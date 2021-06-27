@@ -1,5 +1,3 @@
-(require 's)
-(require 'serenade-log)
 (defcustom serenade-helm-M-x t 
   "if true, display speech bindings in helm M-x")
 

@@ -1169,7 +1169,8 @@
                     "commandsList": [
                         {
                             "limited": false,
-                            "type": "COMMAND_TYPE_DIFF"
+                            "type": "COMMAND_TYPE_DIFF",
+                            "source": ""
                         }
                     ]
                 }

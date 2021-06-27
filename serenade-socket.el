@@ -1,8 +1,3 @@
-(require 'websocket)
-(require 'serenade-desktop)
-(require 'serenade-log)
-(require 'serenade-handler)
-
 (setq serenade--websocket nil)
 (setq serenade-id nil)
 (setq serenade--heartbeat-timer nil)

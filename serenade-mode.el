@@ -23,6 +23,15 @@
 ;; For a full copy of the GNU General Public License
 ;; see <http://www.gnu.org/licenses/>.
 
+(require 'ht)
+(require 'dash)
+(require 's)
+(require 'cl)
+(require 'websocket)
+(require 'log4e)
+(require 'yasnippet)
+
+(require 'serenade-defaults)
 (require 'serenade-socket)
 (require 'serenade-editor-functions)
 (require 'serenade-commands)
@@ -32,6 +41,8 @@
 (require 'serenade-snippet)
 (require 'serenade-keys-patch)
 (require 'serenade-generate)
+(require 'serenade-desktop)
+(require 'serenade-handler)
 
 (defface helm-serenade-command '((t :foreground "#CD009600CD00" 
                                     :underline t)) 

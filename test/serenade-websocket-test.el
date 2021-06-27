@@ -1,8 +1,3 @@
-
-(require 'ht)
-(require 'serenade-socket)
-(require 'test-utils)
-
 (describe "Prompts for start on error" ;;
           (before-each (spy-on 'serenade-start-prompt)) 
           (it "calls open socket from connect" ;;
@@ -19,7 +14,7 @@
                       (bc/revert-serenade-reuse-id-on-connect)) 
           (it "sends register message" ;;
               (let* ((data (json-serialize (ht-get* (json-parse-string (load-json-responses))
-                                                    "register"))))
+                                                    "register")))) 
                 (setq serenade-reuse-id-on-connect t ) 
                 (serenade--register ) 
                 (expect   'websocket-send-text 

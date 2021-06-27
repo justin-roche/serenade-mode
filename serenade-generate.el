@@ -1,4 +1,3 @@
-(require 'ht)
 
 (defvar serenade-directory "~/.serenade/scripts/"
   ;;The directory in which to save auto-generated Serenade custom commands.

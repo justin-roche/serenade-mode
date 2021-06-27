@@ -1,37 +1,74 @@
-(require 'serenade-mode)
-(require 'serenade-modes)
-(require 'serenade-handler)
-(require 'test-utils)
-(require 'ht)
 
-(describe "initializes mode config"    ;;
+(describe "initializes mode config" ;;
+          (before-each ) 
           (it "contains global config" ;;
-              (serenade--initialize-mode-config-map) 
               (let* ((x  (ht-get* serenade-mode-config-map "global"))) 
                 (expect  (serenade-mode-configuration-mode x) 
-                         :to-equal 'global)) 
-              (expect  (length (ht-items serenade-mode-config-map) ) 
-                       :to-equal 1)) 
+                         :to-equal 'global))) 
           (it "sets mode config to global by default" ;;
-              (serenade--initialize-mode-config-map) 
               (serenade--set-active-mode-configuration) 
               (expect  (serenade-mode-configuration-mode serenade-active-mode-configuration) 
                        :to-equal 'global)) 
           (it "global config uses default functions" ;;
-              (serenade--initialize-mode-config-map) 
               (serenade--set-active-mode-configuration) 
               (expect  (serenade-mode-configuration-diff serenade-active-mode-configuration) 
                        :to-equal 'serenade--diff) 
               (expect  (serenade-mode-configuration-get-editor-state
                         serenade-active-mode-configuration)
-                       :to-equal 'serenade--get-editor-state)) 
-          (it "goes to lines by number" ;;
-              (serenade--initialize-mode-config-map) 
-              (create-test-buffer "test2.js" "let x = 1\n let y = 2") 
-              (let* ((req (load-request "goLine2"))) 
-                (serenade--handle-message req)) 
-              (expect (point) 
-                      :to-equal 11)))
+                       :to-equal 'serenade--get-editor-state)))
+(describe "custom mode config" ;;
+          (before-each (serenade--initialize-mode-config-map) 
+                       (spy-on 'message)) 
+          (it "adds mode configs" (serenade--configure-mode :mode 'org-mode) 
+              (expect  (length (ht-items serenade-mode-config-map) ) 
+                       :to-equal 2) 
+              (expect  (ht-keys serenade-mode-config-map) 
+                       :to-equal '("org-mode" "global"))) 
+          (it "sets active mode to current major mode" (serenade--configure-mode :mode 'org-mode) 
+              (create-test-buffer "test.org" "") 
+              (org-mode) 
+              (serenade--set-active-mode-configuration) 
+              (expect  (serenade-mode-configuration-mode serenade-active-mode-configuration) 
+                       :to-equal 'org-mode)))
+(describe "calls handlers" ;;
+          (before-each (serenade--initialize-mode-config-map) 
+                       (spy-on 'serenade--get-editor-state) 
+                       (spy-on 'message)) 
+          (it "calls get-editor-state fn" (serenade--configure-mode :mode 'org-mode 
+                                                                    :get-editor-state '(lambda (s c) 
+                                                                                         (message
+                                                                                          "test2")))
+              (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff"))) 
+                (serenade--handle-message data)) 
+              (expect  'serenade--get-editor-state
+                       :not 
+                       :to-have-been-called) 
+              (expect  'message 
+                       :to-have-been-called-with "test2")) 
+          (it "calls diff fn" (serenade--configure-mode :mode 'org-mode 
+                                                        :diff '(lambda (s c) 
+                                                                 (message "test"))) 
+              (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff"))) 
+                (serenade--handle-message data)) 
+              (expect  'serenade--diff
+                       :not 
+                       :to-have-been-called) 
+              (expect  'message 
+                       :to-have-been-called-with "test")) 
+          (it "calls post-edit fn" (serenade--configure-mode :mode 'org-mode 
+                                                             :post-edit '(lambda (s c) 
+                                                                           (message "3"))) 
+              (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff"))) 
+                (serenade--handle-message data)) 
+              (expect  'message 
+                       :to-have-been-called-with "3")) 
+          (it "calls pre-edit fn" (serenade--configure-mode :mode 'org-mode 
+                                                            :pre-edit '(lambda (s c) 
+                                                                         (message "4"))) 
+              (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff"))) 
+                (serenade--handle-message data)) 
+              (expect  'message 
+                       :to-have-been-called-with "4")))
 (describe "determines serenade buffer"     ;;
           (it "returns nil if no filetype" ;;
               (switch-to-buffer (get-buffer-create "test")) 

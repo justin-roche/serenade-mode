@@ -1,5 +1,3 @@
-(require 'yasnippet)
-
 (defun serenade--get-snippet (name) 
   (ignore-errors (let* ((found-snippet (yas-lookup-snippet name))) 
                    (message (prin1-to-string (yas--template-content found-snippet))) found-snippet)))

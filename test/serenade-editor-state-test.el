@@ -1,8 +1,8 @@
-(require 'ht)
+;; (require 'ht)
 
-(require 'serenade-modes)
-(require 'serenade-handler)
-(require 'test-utils)
+;; (require 'serenade-modes)
+;; (require 'serenade-handler)
+;; (require 'test-utils)
 
 ;; (describe "gets editor state from buffer" ;;
 ;;           (before-each (serenade--set-active-mode-configuration)

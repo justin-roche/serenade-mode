@@ -1,6 +1,3 @@
-(require 'ht)
-
-
 (defcustom serenade-mode-filetypes 
   '("js" "py" "c" "h" "cpp" "cc" "cxx" "c++" "hpp" "hh" "hxx" "h++""cs""css" "scss""dart" "go"
     "html" "vue" "svelte" "java" "js" "jsx" "jsx" "js""jsx" "js" "kt" "py" "rb" "rs" "scss" "sh"
@@ -44,6 +41,9 @@
      diff
      post-edit
      pre-edit) 
+
+  ;; -A get-editor-state function accepts two parameters, callback and limited, and returns a list of items of form  '(CALLBACK LIMITED FILENAME SOURCE CURSOR), where filename is the name of the file, source is the contents for serenade to change, and cursor is the current location of the cursor)
+  ;; -A diff function accepting two parameters, source and cursor, which updates the buffer with the new source and cursor position.
   (let* ((config  (make-serenade-mode-configuration ;;
                    :mode (or mode 
                              nil) 
@@ -70,4 +70,3 @@
 ;; (serenade--initialize-mode-config-map)
 
 (provide 'serenade-modes)
-

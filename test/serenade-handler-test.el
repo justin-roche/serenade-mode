@@ -1,10 +1,4 @@
-(require 'ht)
-
-(require 'serenade-mode)
-;; (require 'serenade-editor-functions)
-;; (require 'serenade-handler)
 (require 'json)
-(require 'test-utils)
 (require 'evil)
 
 (describe "gives correct result using target functions" ;;
@@ -57,39 +51,39 @@
                         :to-have-been-called)))
 
 (describe "gives correct result using keypress functions" ;;
-          (before-each (spy-on 'websocket-send-text))
+          (before-each (spy-on 'websocket-send-text)) 
           (it "copies a selection" ;;
-              (create-test-buffer "test3.js" "let x = 1\nlet y = 2\n")
-              (serenade--select-target 11 20)
-              (let* ((req2 (load-request "copy")))
-                (serenade--handle-message req2))
-              (expect    (car kill-ring-yank-pointer)
-                         :to-equal "let y = 2\n"))
+              (create-test-buffer "test3.js" "let x = 1\nlet y = 2\n") 
+              (serenade--select-target 11 20) 
+              (let* ((req2 (load-request "copy"))) 
+                (serenade--handle-message req2)) 
+              (expect    (car kill-ring-yank-pointer) 
+                         :to-equal "let y = 2\n")) 
           (it "pastes evil" ;;
-              (create-test-buffer "test7.js" "let x = 1\nlet y = 2")
-              (setq serenade-evil t)
-              (let* ((req1 (load-request "copyLine1"))
-                     (req2 (load-request "paste")))
-                (serenade--handle-message req1)
-                (serenade--handle-message req2))
-              (expect   (buffer-string)
+              (create-test-buffer "test7.js" "let x = 1\nlet y = 2") 
+              (setq serenade-evil t) 
+              (let* ((req1 (load-request "copyLine1")) 
+                     (req2 (load-request "paste"))) 
+                (serenade--handle-message req1) 
+                (serenade--handle-message req2)) 
+              (expect   (buffer-string) 
                         :to-equal "let x = 1\nlet y = 2\n\nlet x = 1")))
 (describe "calls diff" ;;
-          (before-each (spy-on 'serenade--get-editor-state)
-                       (spy-on 'serenade--diff)
-                       (spy-on 'websocket-send-text)
-                       (spy-on 'serenade--evaluate-in-plugin))
+          (before-each (spy-on 'serenade--get-editor-state) 
+                       (spy-on 'serenade--diff) 
+                       (spy-on 'websocket-send-text) 
+                       (spy-on 'serenade--evaluate-in-plugin)) 
           (it "calls diff if valid buffer" ;;
-              (create-test-buffer "test.js" "")
-              (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff")))
-                (serenade--handle-message data))
-              (expect   'serenade--diff
-                        :to-have-been-called))
+              (create-test-buffer "test.js" "") 
+              (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff"))) 
+                (serenade--handle-message data)) 
+              (expect   'serenade--diff 
+                        :to-have-been-called)) 
           (it "calls diff if invalid buffer" ;;
-              (create-test-buffer "test.xx" "")
-              (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff")))
-                (serenade--handle-message data))
-              (expect   'serenade--diff
+              (create-test-buffer "test.xx" "") 
+              (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff"))) 
+                (serenade--handle-message data)) 
+              (expect   'serenade--diff 
                         :to-have-been-called)))
 
 (describe "calls execute-generated-command" ;;

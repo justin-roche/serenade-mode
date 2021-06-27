@@ -1,9 +1,4 @@
 
-
-(require 'serenade-commands)
-(require 'serenade-generate)
-(require 'test-utils)
-
 (describe "formats commands with no arguments " ;;
           (before-each (reset-maps)) 
           (after-each (serenade--initialize-speech-maps)) 

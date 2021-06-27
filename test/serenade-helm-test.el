@@ -1,9 +1,4 @@
 
-
-(provide 'serenade-helm)
-(setq lexical-binding t)
-(require 'ht)
-
 (describe "Updates serenade helm M-x map" ;;
           (before-each (setf serenade-helm-M-x-map (ht)) 
                        (serenade--clear-speech-maps)) 
