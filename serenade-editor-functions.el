@@ -21,6 +21,10 @@
     (kill-buffer tmp-buf)) 
   (goto-char cursor))
 
+(defun serenade--read-only-diff (source cursor) 
+  "A diff function for read-only buffers. This function replaces the current buffer cursor but not the source."
+  (goto-char cursor))
+
 (defun serenade--select-target (min max) 
   (if serenade-evil (progn (goto-char min) 
                            (evil-visual-state ) 

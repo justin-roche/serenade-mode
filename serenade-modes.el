@@ -10,15 +10,26 @@
 (setq serenade-active-mode-configuration nil )
 
 (defun serenade--initialize-mode-config-map () 
-  "This function clears the SERENADE-MODE-CONFIG-MAP and sets only the global (default) mode config"
+  "This function clears the SERENADE-MODE-CONFIG-MAP and sets only the global (default) mode config" 
+  (setq serenade-active-mode-configuration nil ) 
   (serenade--clear-mode-config-map) 
-  (serenade--configure-mode :mode 'global ))
+  (serenade--configure-mode :mode 'global ) 
+  (serenade--add-default-mode-configs))
+
+(defun serenade--add-default-mode-configs () 
+  (serenade--configure-mode :mode 'shell-mode 
+                            :get-editor-state 'serenade--shell/get-editor-state 
+                            :diff 'serenade-shell/diff) 
+  (serenade--configure-mode :mode 'treemacs-mode 
+                            :diff 'serenade--read-only-diff) 
+  (serenade--configure-mode :mode 'rjsx-mode 
+                            :post-edit 'js2-reparse))
 
 (defun serenade--clear-mode-config-map () 
   (setq serenade-mode-config-map (ht ) ))
 
 (defun serenade--set-active-mode-configuration () 
-  "Set the active mode configuration based on the major-mode. If none is found, use the global default."
+  "Set the active mode configuration based on the major-mode. If none is found, use the global default. TODO: set read only if read-only buffer and global config."
   (let* ((mode-name (symbol-name major-mode )) 
          (active-config  (ht-get* serenade-mode-config-map mode-name))) 
     (setq serenade-active-mode-configuration (or active-config 
@@ -27,15 +38,14 @@
 (cl-defstruct 
     serenade-mode-configuration
   mode
-  get-editor-state
-  diff
-  post-edit
-  pre-edit)
+  (get-editor-state 'serenade--get-editor-state) 
+  (diff 'serenade--diff) 
+  (post-edit nil) 
+  ( pre-edit nil ))
 
 (cl-defun 
     serenade--configure-mode 
-    (&optional 
-     &keys
+    (&key 
      mode
      get-editor-state
      diff
@@ -58,7 +68,7 @@
                    :post-edit (or post-edit 
                                   nil) 
                    :pre-edit (or pre-edit 
-                                 nil)))) 
+                                 nil))))
     (ht-set serenade-mode-config-map (symbol-name mode) config)))
 
 (defun serenade--set-serenade-buffer () 
@@ -73,7 +83,16 @@
 ;; (serenade--configure-mode :mode 'global )
 ;; (serenade--initialize-mode-config-map)
 
+(defun serenade--shell/get-editor-state () 
+  (message "calling get state") 
+  (serenade--shell/go-to-prompt) 
+  (let* (( line-contents (thing-at-point 'line t)) 
+         (cursor (point)) 
+         (filename "active-shell.sh")) 
+    (list filename line-contents cursor)))
+
 (defun serenade-shell/diff (source cursor) 
+  (message "calling diff") 
   (let ((proc (get-buffer-process ( current-buffer )))) 
     (goto-char (process-mark proc)) 
     (kill-whole-line) 
@@ -81,19 +100,11 @@
                 "<contents>")) 
     (goto-char cursor)))
 
-(defun serenade--shell/get-editor-state () 
+(defun serenade--shell/go-to-prompt () 
   (let ((proc (get-buffer-process ( current-buffer )))) 
-    (goto-char (process-mark proc)) 
-    (let* (( line-contents (thing-at-point 'line t)) 
-           (cursor (point)) 
-           (filename "active-shell.sh")) 
-      (list filename line-contents cursor))))
-
-(serenade--configure-mode :mode 'shell-mode 
-                          :get-editor-state 'serenade--shell/get-editor-state 
-                          :diff 'serenade-shell/diff)
-
-(serenade--configure-mode :mode 'rjsx-mode 
-                          :post-edit 'js2-reparse)
+    (goto-char (process-mark proc))))
 
 (provide 'serenade-modes)
+(serenade--initialize-mode-config-map)
+(serenade--set-active-mode-configuration)
+;; (message (serenade-mode-configuration-get-editor-state serenade-active-mode-configuration))

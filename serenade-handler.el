@@ -4,6 +4,8 @@
   (serenade--info (concat "\n" (extract-json message ))) 
   (serenade--set-serenade-buffer) 
   (serenade--set-active-mode-configuration) 
+  (serenade--info (concat "active mode: " (prin1-to-string serenade-active-mode-configuration))) 
+  (serenade--info (prin1-to-string (ht-keys serenade-mode-config-map ))) 
   (if-let* ((pre-edit (serenade-mode-configuration-pre-edit serenade-active-mode-configuration))) 
       (funcall pre-edit)) 
   (let* ((callback (ht-get* message "data" "callback")) 
@@ -12,10 +14,11 @@
          (command-list (append command-vector nil))) 
     (if transcript (serenade--info (concat "received command: " transcript))) 
     (dolist (command command-list ) 
-      (serenade--handle-command command message callback)) 
+      (serenade--handle-command command message callback))
+    ;; TODO: run post edit only when edits have occurred
     (if-let* ((post-edit (serenade-mode-configuration-post-edit
                           serenade-active-mode-configuration)))
-        (funcall post-edit)) 
+        (progn (funcall post-edit))) 
     (if serenade--websocket (serenade--send-completed callback))))
 
 (defun serenade--handle-command (command message callback) 
@@ -25,10 +28,13 @@
          (log-info (concat type ": limited: "  (prin1-to-string limited) ))) 
     (serenade--info log-info) 
     (cond ((equal type "COMMAND_TYPE_GET_EDITOR_STATE") 
-           (let* ((results  (funcall (serenade-mode-configuration-get-editor-state
-                                      serenade-active-mode-configuration))))
-             (apply 'serenade--send-editor-state (append (list callback limited) results)))) 
+           (progn ;; (message "getting editor state function")
+             (serenade--info (concat "get state fn is: ?" "mode is " (symbol-name major-mode ))) 
+             (let* ((results  (funcall (serenade-mode-configuration-get-editor-state
+                                        serenade-active-mode-configuration))))
+               (apply 'serenade--send-editor-state (append (list callback limited) results))))) 
           ((equal type "COMMAND_TYPE_DIFF") 
+           (serenade--info (concat "diff fn is: ?" "mode is " (symbol-name major-mode ))) 
            (funcall (serenade-mode-configuration-diff serenade-active-mode-configuration) 
                     (ht-get command "source") 
                     (+(or (ht-get command "cursor") 
@@ -112,8 +118,13 @@
 
 (provide 'serenade-handler)
 
-;; (require 'test-utils)
+(require 'test-utils)
 ;; (let* ((data (load-request "getEditorState")))
 
 ;;   ;; (create-test-buffer "test.js" "")
+;;   (serenade--handle-message data))
+;; (serenade--configure-mode :mode 'org-mode
+;;                           :get-editor-state (lambda (s c)
+;;                                               (message "test2")))
+;; (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff")))
 ;;   (serenade--handle-message data))

@@ -67,21 +67,6 @@ Builtin bindings are those that specify bindings for Serenade's built-in command
 | scroll up         | scroll-down-command          |
 | open file list    | list-buffers                 |
 | style             | nil                          |
-| go to definition  | nil                          |
-| add breakpoint    | nil                          |
-| remove breakpoint | nil                          |
-| toggle breakpoint | nil                          |
-| start debug       | nil                          |
-| start debugging   | nil                          |
-| stop debug        | nil                          |
-| stop debugging    | nil                          |
-| pause debug       | nil                          |
-| show hover        | nil                          |
-| continue debug    | nil                          |
-| step into         | nil                          |
-| step out          | nil                          |
-| step over         | nil                          |
-| continue          | nil                          |
 
 ### Generated default voice bindings
 
@@ -91,8 +76,8 @@ The __snippet \<name\>__ command inserts a Yasnippet snippet of that name. __sni
 |:--------------------|:-----------------------------|
 | show commands | serenade-commands  | 
 | serenade log | serenade-commands-log-open-log  | 
-| snippet \<name\> of <arg> | serenade--insert-yasnippet-with-args  |
-| snippet <\name\> | serenade--insert-yasnippet  |
+| snippet \<name\> of \<arg\> | serenade--insert-yasnippet-with-args  |
+| snippet \<name\> | serenade--insert-yasnippet  |
 
 # Customization
 
