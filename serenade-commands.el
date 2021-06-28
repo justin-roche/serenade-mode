@@ -63,8 +63,28 @@
                (serenade--set-speech-bindings name speech command))) 
       (if serenade-helm-M-x (serenade--update-helm-M-x-map speech command)))))
 
+(defun serenade--sort-args (args) 
+  (-map '(lambda (item) 
+           (s-trim (s-replace-regexp "\\\(%[0-9]+\\\)" "" item))) 
+        (-sort '(lambda (arg1 arg2) 
+                  (let* ((n1 (string-to-number (car (nth 0 (s-match-strings-all "\\\([0-9]+\\\)"
+                                                                                arg1)))))
+                         (n2 (string-to-number (car (nth 0 (s-match-strings-all "\\\([0-9]+\\\)"
+                                                                                arg2))))))
+                    (< n1 n2))) ;;
+               args)))
+
 (defun serenade--set-speech-bindings (map-name pattern command) 
-  (ht-set (ht-get serenade-speech-maps name ) speech (ht ("command" command))))
+  "Add the speech binding, removing any argument transformers in the pattern and extraneous spaces in arguments and around the pattern. If there are arguments, sort based on order transformer if present. If there are no args arguments is set to nil."
+  (let* ((clean-pattern (s-trim (s-replace " >" ">" (s-replace "< " "<" (s-replace-regexp "%[0-9]+"
+                                                                                          ""
+                                                                                          pattern)))))
+         (args (-flatten (-map 'cdr (s-match-strings-all "<\\(.+?\\\)>" pattern)))) 
+         (maybe-sorted-args (if args (if (s-matches-p "%[0-9]" (first args)) ;;
+                                         (serenade--sort-args args)          ;;
+                                       args  ) nil))) 
+    (ht-set (ht-get serenade-speech-maps name ) clean-pattern (ht ("command" command) 
+                                                                  ("arguments" maybe-sorted-args)))))
 
 (defun serenade--find-voice-binding (speech) 
   (or (serenade--find-in-active-minor-maps speech) 
@@ -141,3 +161,5 @@
      (intern-soft ',name )))
 
 (provide 'serenade-commands)
+
+;; (serenade-define-speech 'global "open buffer <%2 name> <%1 direction>" 'test-fn-2)

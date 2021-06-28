@@ -99,32 +99,25 @@
   "This function is responsible for calling the associated function for generated commands the input text is parsed as a list and evaluated."
   (let* ((command-text (ht-get* command "text")) 
          (input-list (eval (car (read-from-string (concat "'"command-text))))) 
-         (speech-binding (car input-list) ) 
-         (found-command  (serenade--find-voice-binding speech-binding))) 
+         (speech-pattern (car input-list) ) 
+         (found-command  (serenade--find-voice-binding speech-pattern))) 
     (if (not found-command) 
         (message (concat "no command found for \"" speech-binding "\"" )) 
-      (serenade--call-generated-command-with-args  (ht-get* found-command "command") 
-                                                   (car (cdr input-list))))))
+      (serenade--call-generated-command-with-args  found-command (car (cdr input-list))))))
 
-(defun serenade--call-generated-command-with-args (bound-fn args) 
-  "parses the args which are received as alist. If the argument is a symbol return the symbol, accounting for numbers. Otherwise return the name of the symbol, accounting for strings."
-  (if args (let* ((converted-args (-map '(lambda (arg ) 
-                                           (let* ((key (car arg)) 
-                                                  (value (cdr arg))) 
-                                             (if  (s-matches? "[0-9]+" value) 
-                                                 (cl-parse-integer value) value)) ) args))) 
-             (apply bound-fn converted-args)) 
-    (funcall bound-fn)))
+(defun serenade--call-generated-command-with-args (found-command args) 
+  "parses the args which are received as alist. If the argument is a symbol return the symbol, accounting for numbers. Otherwise return the name of the symbol, accounting for strings. ARGS are an alist of the forma (ARGUMENT-NAME . ARGUMENT-VALUE)."
+  ;; (debug)
+  (let* (( bound-fn (ht-get* found-command "command"))) 
+    (if args (let* ((arguments-definition (ht-get* found-command "arguments")) 
+                    (converted-args (-map '(lambda (arg-name ) 
+                                             (let* ((value (cdr (assoc arg-name args))))
+                                               ;; (debug)
+                                               (if  (s-matches? "[0-9]+" value) 
+                                                   (cl-parse-integer value) value)) )
+                                          arguments-definition))) 
+               (apply bound-fn converted-args)) 
+      (funcall bound-fn))))
 
 (provide 'serenade-handler)
-
 (require 'test-utils)
-;; (let* ((data (load-request "getEditorState")))
-
-;;   ;; (create-test-buffer "test.js" "")
-;;   (serenade--handle-message data))
-;; (serenade--configure-mode :mode 'org-mode
-;;                           :get-editor-state (lambda (s c)
-;;                                               (message "test2")))
-;; (let* ((data (ht-get* (json-parse-string (load-json-commands)) "diff")))
-;;   (serenade--handle-message data))

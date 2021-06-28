@@ -152,31 +152,27 @@
                          (setq curry-result b ))) 
           (it "calls functions with arguments in binding list" ;;
               (serenade-define-speech 'global `(("a" . ,(serc curry-spy-1 "a")))) 
-              (serenade--call-generated-command-with-args (ht-get* (serenade--find-voice-binding
-                                                                    "a") "command")nil )
+              (serenade--call-generated-command-with-args (serenade--find-voice-binding "a")nil ) 
               (expect curry-result 
                       :to-equal "a") 
               (expect(ht-get* serenade-speech-maps "global"  "a" "command") 
                      :to-equal 'serenade-curried->curry-spy-1->a)) 
           (it "calls functions with multiple arguments in binding list" ;;
               (serenade-define-speech 'global `(("a" . ,(serc curry-spy-2 "a" "b")))) 
-              (serenade--call-generated-command-with-args (ht-get* (serenade--find-voice-binding
-                                                                    "a") "command")nil )
+              (serenade--call-generated-command-with-args (serenade--find-voice-binding "a")nil ) 
               (expect curry-result 
                       :to-equal "ab") 
               (expect(ht-get* serenade-speech-maps "global"  "a" "command") 
                      :to-equal 'serenade-curried->curry-spy-2->a--b)) 
           (it "calls functions with arguments from speech" ;;
               (serenade-define-speech 'global `(("a <x>" . ,(serc curry-spy-3 "p" )))) 
-              (serenade--call-generated-command-with-args (ht-get* (serenade--find-voice-binding
-                                                                    "a <x>") "command")
+              (serenade--call-generated-command-with-args (serenade--find-voice-binding "a <x>") 
                                                           '( ("x" . "q" ) ) ) 
               (expect curry-result 
                       :to-equal "pq")) 
           (it "calls functions with multiple arguments from bindings and speech" ;;
               (serenade-define-speech 'global `(("a <x> <y>" . ,(serc curry-spy-4 "a" "b" )))) 
-              (serenade--call-generated-command-with-args (ht-get* (serenade--find-voice-binding
-                                                                    "a <x> <y>") "command")
+              (serenade--call-generated-command-with-args (serenade--find-voice-binding "a <x> <y>") 
                                                           '(( "x" . "c" ) 
                                                             ( "y" . "d" )) ) 
               (expect curry-result 
@@ -192,15 +188,13 @@
           (it "calls new function through speech map" ;;
               (serenade-define-speech 'global `(("a" . ,(serd custom-lambda() 
                                                               (setq test-val 1) )))) 
-              (serenade--call-generated-command-with-args (ht-get* (serenade--find-voice-binding
-                                                                    "a") "command" )nil)
+              (serenade--call-generated-command-with-args (serenade--find-voice-binding "a")nil) 
               (expect test-val 
                       :to-equal 1)) 
           (it "calls new function with args" ;;
               (serenade-define-speech 'global `(("a <n>" . ,(serd custom-lambda(a) 
                                                                   (setq test-val a) )))) 
-              (serenade--call-generated-command-with-args (ht-get* (serenade--find-voice-binding
-                                                                    "a <n>") "command" ) 
+              (serenade--call-generated-command-with-args (serenade--find-voice-binding "a <n>") 
                                                           '(( "n" . "4" ))) 
               (expect test-val 
                       :to-equal 4)))

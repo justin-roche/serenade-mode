@@ -102,11 +102,27 @@ To add variables to the speech pattern, enclose them in brackets. Arguments are 
    (serenade-define-speech 'global "open buffer <name>" 'switch-to-buffer) 
 ```
 
+To reorder the input of arguments to the command, include __%n__ as an argument transformer in the pattern definition:
+
+```elisp
+
+   (serenade-define-speech 'global "open buffer <%2 name> <%1 direction>" 'another-switch-buffer-fn) 
+
+```
+
 It is possible to use an alist as the second argument to define-speech:
 
 ```elisp
 (serenade-define-speech 'org-mode '(("promote" . org-do-promote) 
                                     ("demote" . org-do-demote)))
+```
+
+The convenience function __serenade-global-set-speech__ has the same signature as define-speech, but applies to the global map only:
+
+```elisp
+
+(serenade-global-set-speech '( ("a" . b) ))
+
 ```
 
 ## Macros
