@@ -31,7 +31,11 @@
               (serenade-define-speech 'global "a" 'b) 
               ( serenade--format-commands ) 
               (expect   (length serenade--formatted-commands--no-slots) 
-                        :to-equal 5)))
+                        :to-equal ( + 1(length (-filter '(lambda (item) 
+                                                           (eq (ht-get* serenade-speech-maps
+                                                                        "global" (car item)
+                                                                        "arguments") nil))
+                                                        serenade--generated-global-defaults))))))
 
 (describe "formats commands with named arguments " ;;
           (before-each (reset-maps)) 

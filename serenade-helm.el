@@ -2,9 +2,13 @@
   "if true, display speech bindings in helm M-x")
 
 (setq serenade-helm-M-x-map (ht))
-(setq serenade--add-helm-candidate '())
+;; the map consulted by helm for displaying speech bindings next to commands"
+
+(setq serenade--add-helm-candidates '())
+;; the current helm candidates"
 
 (defun serenade--update-helm-M-x-map (speech command) 
+  "This updates the serenade-helm-M-x-map with SPEECH and COMMAND, combinng synonmys and excluding identical speech patterns."
   (if command (if-let* ((current (ht-get* serenade-helm-M-x-map (symbol-name command)))) 
                   (progn (if  (not (member speech (s-split "|" current t))) 
                              (ht-set serenade-helm-M-x-map (symbol-name command) 
@@ -15,7 +19,6 @@
   (setq serenade-helm-M-x-map (ht)))
 
 (defun serenade--helm-M-x-match (cand) 
-  (message "matching..") 
   (if-let* ((cand  (ht-get* serenade-helm-M-x-map cand))) 
       (serenade--info (concat "matched: " cand))) 
   (or (ht-get* serenade-helm-M-x-map cand) 
