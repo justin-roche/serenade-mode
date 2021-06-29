@@ -19,7 +19,7 @@ Emacs has a long and distinguished history of voice control modes, summarized at
 
 >"we argue...that for spoken command and control there is little communicative significance to natural language and that humans are best served with primitive systems of sequentially combined symbols."
 
-This view is, I think, likely to be more true in the case of highly unstructured text like prose, emails, and the like, than in the case of highly structured editing contexts like programming languages, where humans already possess a relatively simple repetoire of concepts that map, without distraction, to less granular editing processes. 
+This view is, I think, likely to be more true in the case of highly unstructured text like prose, emails, and the like, than in the case of highly structured editing contexts like programming languages, where humans already possess a relatively simple repetoire of concepts that map, without distraction, to less granular editing processes. In these contexts, the structured nature of code ought rather to confer an advantage in allowing better dictation, which is the approach taken in Serenade. 
 
 Another potential candidate is [Talon](https://talonvoice.com/), but here again, Talon does not provide out-of-the-box the facility for structural editing. 
 
@@ -177,7 +177,7 @@ There is also the provided __serd__ macro, which acts like a defun call but retu
                                     
 ```
 
-### Mode configuration
+## Mode configuration
 
 For some modes it can be useful to specify configurations that are not specific to particular speech bindings. For this there is the function __serenade-configure-mode__. This can be used to expose only a portion of the buffer as editable (as with shell-mode), or for cleanup:  
 
@@ -240,28 +240,28 @@ The list of functions to be called after an edit has been made in response to a 
 
 For voice coding it can be useful to display both relative and absolute line numbers simultaneously. Associated hooks are provided to allow customization of this operation. These hooks run if serenade--enable-double-line-numbers is true. 
 
-# Functions
+## Functions
 
-## (serenade-generate) 
+### (serenade-generate) 
 Convert custom commands added to serenade speech bindings to javascript.
 
-## (serenade-helm-commands) 
+### (serenade-helm-commands) 
 
 This function displays all the currently bound serenade-mode commands in a helm buffer.
 
-## (serenade-helm-active-commands) 
+### (serenade-helm-active-commands) 
 
 This function displays all the currently bound and active serenade-mode commands in a helm buffer.
 
-## (serenade-helm-selectors) 
+### (serenade-helm-selectors) 
 
 This function displays displays a reference list of serenade selectors in a helm buffer.
 
-## (serenade--log-open-log)
+### (serenade--log-open-log)
 
 This function displays the log for serenade-mode.
 
-# Contributing
+## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
