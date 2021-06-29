@@ -140,7 +140,7 @@
                      (serenade-global-set-speech "a" 'c)) 
               (expect (ht-get* (serenade--find-voice-binding "a") "command") 
                       :to-equal 'd)))
-(describe "Currying macro" ;;
+(describe "Serc macro" ;;
           (before-each (serenade--initialize-speech-maps) 
                        (defun curry-spy-4 (a b c d ) 
                          (setq curry-result (concat a b c d ) )) 
@@ -150,21 +150,21 @@
                          (setq curry-result (concat a b) )) 
                        (defun curry-spy-1 (b) 
                          (setq curry-result b ))) 
-          (it "calls functions with arguments in binding list" ;;
+          (it "calls functions with bound arguments" ;;
               (serenade-define-speech 'global `(("a" . ,(serc curry-spy-1 "a")))) 
               (serenade--call-generated-command-with-args (serenade--find-voice-binding "a")nil ) 
               (expect curry-result 
                       :to-equal "a") 
               (expect(ht-get* serenade-speech-maps "global"  "a" "command") 
                      :to-equal 'serenade-curried->curry-spy-1->a)) 
-          (it "calls functions with number arguments in binding list" ;;
+          (it "calls functions with bound number arguments" ;;
               (serenade-define-speech 'global `(("a" . ,(serc curry-spy-1 1)))) 
               (serenade--call-generated-command-with-args (serenade--find-voice-binding "a")nil ) 
               (expect curry-result 
                       :to-equal 1) 
               (expect(ht-get* serenade-speech-maps "global"  "a" "command") 
                      :to-equal 'serenade-curried->curry-spy-1->1)) 
-          (it "calls functions with multiple arguments in binding list" ;;
+          (it "calls functions with multiple bound arguments" ;;
               (serenade-define-speech 'global `(("a" . ,(serc curry-spy-2 "a" "b")))) 
               (serenade--call-generated-command-with-args (serenade--find-voice-binding "a")nil ) 
               (expect curry-result 
@@ -183,7 +183,17 @@
                                                           '(( "x" . "c" ) 
                                                             ( "y" . "d" )) ) 
               (expect curry-result 
-                      :to-equal "abcd")))
+                      :to-equal "abcd")) 
+          (it "allows binding functions and passing through arguments" ;;
+              (defun test-invoker (fn x) 
+                (funcall fn x)) 
+              (defun test-setter (x) 
+                (setq test-result x)) 
+              (serenade-define-speech 'global `(("a <x>" . ,(serc test-invoker test-setter )))) 
+              (serenade--call-generated-command-with-args (serenade--find-voice-binding "a <x>") 
+                                                          '(( "x" . "c" )) ) 
+              (expect test-result 
+                      :to-equal "c")))
 (describe "Serd macro" ;;
           (before-each (serenade--initialize-speech-maps)) 
           (it "calls new function by provided name" ;;
@@ -216,7 +226,7 @@
                       :to-equal 4)) 
           (it "calls new function with multiple args" ;;
               (serenade-define-speech 'global `(("a <a> <b>" . ,(serd custom-lambda(a b) 
-                                                                      (setq test-val (+ a b)) ))))
+                                                                      (setq test-val (+ a b)) )))) 
               (serenade--call-generated-command-with-args (serenade--find-voice-binding "a <a> <b>") 
                                                           '(( "a" . "4" ) 
                                                             ( "b" . "5" ))) 

@@ -73,6 +73,7 @@
     (setq serenade-evil nil ) ))
 
 (defun serenade-mode--start () 
+  "Called when the mode is started, this function is responsible for calling generate."
   (run-hooks 'serenade-mode-init-hook) 
   (serenade--info "connecting to serenade") 
   (serenade--info (concat "evil mode" (prin1-to-string serenade-evil))) 
@@ -95,6 +96,12 @@
 (defun serenade-mode-stop () 
   (interactive) 
   (serenade-mode--stop))
+
+(defun serenade-mode-reconnect () 
+  "Disconnect and reconnect to Serenade app." 
+  (interactive) 
+  (serenade-mode--stop) 
+  (serenade-mode--start))
 
 (defun serenade-mode-toggle () 
   (if serenade-mode (serenade-mode--start) 
