@@ -1,12 +1,29 @@
 # Serenade Mode
 
-Serenade mode is a minor mode allowing voice control of Emacs through integration of [Serenade](http://www.serenade.ai), a tool for voice based structural code editing. Serenade-mode features:
+Serenade mode is a minor mode allowing voice-based [structure editing](https://en.wikipedia.org/wiki/Structure_editor) and control of Emacs through integration of [Serenade](http://www.serenade.ai). Serenade-mode features:
 
 - Voice-command mapping using Elisp 
 - Configurable speech maps for global, major, and minor modes  
 - Helm and Helm-M-x integration to aid in discoverability of commands 
 - Basic Yasnippet integration
 - Evil integration
+
+## Why another Emacs voice control mode?
+
+Emacs has a long and distinguished history of voice control modes, summarized at [EmacsWiki](https://www.emacswiki.org/emacs/SpeechToText). Many are no longer accessible, and those that are suffer from the following drawbacks: 
+
+- VoiceCode was capable of some impressive structure editing, but seems tightly coupled to a particular, seemingly unmaintained voice recognition and parsing platform, which, given its age and dormant status is probably not a good option for state-of-the-art voice recognition.
+- VoiceKey is really only a keyboard replacement.
+- VrMode is meant to integrate with Dragon, which is now defunct on the MacOS platform.
+- EmacsListen is is an implementation of ShortTalk, a combinatorial speech grammer for expressing editing commands. ShorTalk, as detailed in the research [paper](http://shorttalk-emacs.sourceforge.net/papers/fallacy.pdf) on the subject, is a grammer designed for non-structured editing:
+
+>"we argue...that for spoken command and control there is little communicative significance to natural language and that humans are best served with primitive systems of sequentially combined symbols."
+
+This view is, I think, likely to be more true in the case of highly unstructured text like prose, emails, and the like, than in the case of highly structured editing contexts like programming languages, where humans already possess a relatively simple repetoire of concepts that map, without distraction, to less granular editing processes. 
+
+Another potential candidate is [Talon](https://talonvoice.com/), but here again, Talon does not provide out-of-the-box the facility for structural editing. 
+
+## Design principles
 
 The guiding principles for the design of the mode are:
 
