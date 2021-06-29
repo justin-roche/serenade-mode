@@ -75,7 +75,8 @@
                                               ("message" "editorState"))) 
                                   ("callback" callback))) 
                       ("message" "callback"))) 
-         (response-json (json-serialize response))) 
+         (response-json (json-serialize response)))
+    ;; (message (prin1-to-string response-json))
     (websocket-send-text serenade--websocket response-json)))
 
 (defun serenade--send-completed (callback) 
@@ -97,6 +98,7 @@
 
 (defun serenade--execute-generated-command (command) 
   "This function is responsible for calling the associated function for generated commands the input text is parsed as a list and evaluated."
+  (serenade--info "executing generated command") 
   (let* ((command-text (ht-get* command "text")) 
          (input-list (eval (car (read-from-string (concat "'"command-text))))) 
          (speech-pattern (car input-list) ) 
@@ -117,7 +119,15 @@
                                                    (cl-parse-integer value) value)) )
                                           arguments-definition))) 
                (apply bound-fn converted-args)) 
-      (funcall bound-fn))))
+      (progn ;;
+        (funcall bound-fn)))))
 
 (provide 'serenade-handler)
 (require 'test-utils)
+
+(defun serenade-run-test () 
+  (interactive) 
+  (let* ((data (ht-get* (json-parse-string (load-json-custom-commands)) "center"))) 
+    (serenade--handle-message data)))
+
+;; (spacemacs/set-leader-keys (kbd "avt") 'serenade-run-test)

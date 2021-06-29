@@ -157,6 +157,13 @@
                       :to-equal "a") 
               (expect(ht-get* serenade-speech-maps "global"  "a" "command") 
                      :to-equal 'serenade-curried->curry-spy-1->a)) 
+          (it "calls functions with number arguments in binding list" ;;
+              (serenade-define-speech 'global `(("a" . ,(serc curry-spy-1 1)))) 
+              (serenade--call-generated-command-with-args (serenade--find-voice-binding "a")nil ) 
+              (expect curry-result 
+                      :to-equal 1) 
+              (expect(ht-get* serenade-speech-maps "global"  "a" "command") 
+                     :to-equal 'serenade-curried->curry-spy-1->1)) 
           (it "calls functions with multiple arguments in binding list" ;;
               (serenade-define-speech 'global `(("a" . ,(serc curry-spy-2 "a" "b")))) 
               (serenade--call-generated-command-with-args (serenade--find-voice-binding "a")nil ) 

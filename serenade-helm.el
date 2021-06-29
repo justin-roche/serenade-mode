@@ -8,7 +8,7 @@
 ;; the current helm candidates"
 
 (defun serenade--update-helm-M-x-map (speech command) 
-  "This updates the serenade-helm-M-x-map with SPEECH and COMMAND, combinng synonmys and excluding identical speech patterns."
+  "This updates the serenade-helm-M-x-map with SPEECH and COMMAND, combinng synonmys and excluding identical speech patterns. TODO: throw error if duplicate pattern?"
   (if command (if-let* ((current (ht-get* serenade-helm-M-x-map (symbol-name command)))) 
                   (progn (if  (not (member speech (s-split "|" current t))) 
                              (ht-set serenade-helm-M-x-map (symbol-name command) 

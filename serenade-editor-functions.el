@@ -4,6 +4,7 @@
 
 (defun serenade--get-editor-state () 
   "The default get editor state function. It gets the filename source and cursor for the buffer."
+  (serenade--info "normal STATE") 
   (let* ((source 
           (buffer-substring-no-properties 
            (point-min) 
@@ -15,6 +16,7 @@
 
 (defun serenade--diff (source cursor) 
   "The default diff function. This function replaces the current buffer contents and cursor with the provided SOURCE and CURSOR position from the diff command."
+  (serenade--info "normal DIFF") 
   (let ((tmp-buf (generate-new-buffer " *serenade-temp*"))) 
     (with-current-buffer tmp-buf (insert source)) 
     (replace-buffer-contents tmp-buf) 
@@ -23,6 +25,7 @@
 
 (defun serenade--read-only-diff (source cursor) 
   "A diff function for read-only buffers. This function replaces the current buffer cursor but not the source."
+  (serenade--info "read only diff") 
   (goto-char cursor))
 
 (defun serenade--select-target (min max) 

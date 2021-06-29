@@ -135,7 +135,7 @@
   "Curry the function FN with ARGS, and add the resulting function to the global namespace with a descriptive name and docstring"
   (let* ((formatted-args (-map '(lambda (item) 
                                   (cond ((eq (type-of item) 'string) item) 
-                                        ((eq (type-of item) 'number) 
+                                        ((eq (type-of item) 'integer) 
                                          (number-to-string item)) 
                                         ((eq (type-of item) 'symbol) 
                                          (symbol-name item)))) args )) 
@@ -163,3 +163,6 @@
 (provide 'serenade-commands)
 
 ;; (serenade-define-speech 'global "open buffer <%2 name> <%1 direction>" 'test-fn-2)
+;; (serenade-define-speech 'treemacs `(;;
+;; ("center" . ,(serc evil-scroll-line-to-center "a"))))
+

@@ -56,7 +56,7 @@
 :MODE symbol which names the major mode the configuration applies to.
 :PRE-EDIT function which will run before every serenade edit in the mode.
 :POST-EDIT function which will run after every serenade edit in the mode.
-:GET-EDITOR-STATE function which returns a list of items of form  '(FILENAME SOURCE CURSOR), where filename is the name of the file, source is the contents for serenade to change, and cursor is the current location of the cursor).
+:GET-EDITOR-STATE function which returns a list of items of form  '(FILENAME SOURCE CURSOR), where filename is the name of the file, source is the contents for serenade to change, and cursor is the current location of the cursor). The source returned, importantly, must be an empty string if there are no contents.
 :DIFF function accepting two parameters, source and cursor, which updates the buffer with the new source and cursor position."
   (let* ((config  (make-serenade-mode-configuration ;;
                    :mode (or mode 
@@ -68,7 +68,7 @@
                    :post-edit (or post-edit 
                                   nil) 
                    :pre-edit (or pre-edit 
-                                 nil))))
+                                 nil)))) 
     (ht-set serenade-mode-config-map (symbol-name mode) config)))
 
 (defun serenade--set-serenade-buffer () 
@@ -84,15 +84,17 @@
 ;; (serenade--initialize-mode-config-map)
 
 (defun serenade--shell/get-editor-state () 
-  (message "calling get state") 
+  (serenade--info "calling SHELL get state") 
   (serenade--shell/go-to-prompt) 
-  (let* (( line-contents (thing-at-point 'line t)) 
+  (let* (( line-contents (or (thing-at-point 'line t) 
+                             "")) 
          (cursor (point)) 
          (filename "active-shell.sh")) 
+    (serenade--info (format "line-contents %s cursor %s" line-contents cursor)) 
     (list filename line-contents cursor)))
 
 (defun serenade-shell/diff (source cursor) 
-  (message "calling diff") 
+  (serenade--info "shell diff") 
   (let ((proc (get-buffer-process ( current-buffer )))) 
     (goto-char (process-mark proc)) 
     (kill-whole-line) 
