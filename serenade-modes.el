@@ -84,8 +84,8 @@
 ;; (serenade--initialize-mode-config-map)
 
 (defun serenade--shell/get-editor-state () 
-  (serenade--info "calling SHELL get state") 
-  (serenade--shell/go-to-prompt) 
+  (serenade--info "calling SHELL get state")
+  ;; (serenade--shell/go-to-prompt)
   (let* (( line-contents (or (thing-at-point 'line t) 
                              "")) 
          (cursor (point)) 
@@ -101,10 +101,6 @@
     (insert (or contents 
                 "<contents>")) 
     (goto-char cursor)))
-
-(defun serenade--shell/go-to-prompt () 
-  (let ((proc (get-buffer-process ( current-buffer )))) 
-    (goto-char (process-mark proc))))
 
 (provide 'serenade-modes)
 (serenade--initialize-mode-config-map)
