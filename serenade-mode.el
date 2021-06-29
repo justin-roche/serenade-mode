@@ -31,9 +31,10 @@
 (require 'log4e)
 (require 'yasnippet)
 
-(require 'serenade-defaults)
 (require 'serenade-socket)
 (require 'serenade-editor-functions)
+(require 'serenade-macros)
+(require 'serenade-defaults)
 (require 'serenade-commands)
 (require 'serenade-modes)
 (require 'serenade-log)

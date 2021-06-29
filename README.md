@@ -161,7 +161,6 @@ The currying macro is compatabile with speech pattern variables, which are appli
 
 There is also the provided __serd__ macro, which acts like a defun call but returns the symbol of the new function, allowing you to inline function definitions in the speech map.
 
-
 ```elisp
 
 (serenade-define-speech 'global `(("a <n>" . ,(serd custom-fn(a) 
@@ -177,8 +176,7 @@ There is also the provided __serd__ macro, which acts like a defun call but retu
                                     
 ```
 
-
-To inline interactive function calls the __seri__ macro simply returns a symbol for the interactive invocation of the function:
+To inline interactive function calls, use the __seri__ macro, which simply returns a symbol for the interactive invocation of the function:
 
 
 ```elisp
