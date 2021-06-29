@@ -147,9 +147,21 @@
       `(lambda 
          (&rest 
           speech-args) 
-         ,(format "Run %s with arguments: %s" fn (mapconcat 'identity formatted-args ", ")) 
-         (interactive) 
+         ,(format "Run %s with arguments: %s" fn (mapconcat 'identity formatted-args ", "))
+         ;; (interactive)
+         ;; TODO: no error caught here? (condition-case nil)
          (apply ',fn (append ',args speech-args)))) 
+    `(intern-soft ',curried-name )))
+
+(defmacro seri (fn ) 
+  "Call the function FN interactively, and add the resulting function to the global namespace with a descriptive name and docstring. Return the new symbol."
+  (let* ((curried-name (intern (concat "serenade-interactive->" (symbol-name fn) )))) 
+    (defalias  curried-name 
+      `(lambda 
+         (&rest 
+          speech-args) 
+         ,(format "Call %s interactively." fn ) 
+         (call-interactively ',fn))) 
     `(intern-soft ',curried-name )))
 
 (defmacro* serd (name args   body &optional &keys pre )
@@ -165,4 +177,3 @@
 ;; (serenade-define-speech 'global "open buffer <%2 name> <%1 direction>" 'test-fn-2)
 ;; (serenade-define-speech 'treemacs `(;;
 ;; ("center" . ,(serc evil-scroll-line-to-center "a"))))
-
