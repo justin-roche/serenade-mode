@@ -109,7 +109,7 @@
 
 (defun serenade--call-generated-command-with-args (found-command args) 
   "parses the args which are received as alist. If the argument is a symbol return the symbol, accounting for numbers. Otherwise return the name of the symbol, accounting for strings. ARGS are an alist of the forma (ARGUMENT-NAME . ARGUMENT-VALUE)."
-  ;; (debug)
+  ;; (debug) 
   (let* (( bound-fn (ht-get* found-command "command"))) 
     (if args (let* ((arguments-definition (ht-get* found-command "arguments")) 
                     (converted-args (-map '(lambda (arg-name ) 
@@ -130,4 +130,3 @@
   (let* ((data (ht-get* (json-parse-string (load-json-custom-commands)) "center"))) 
     (serenade--handle-message data)))
 
-;; (spacemacs/set-leader-keys (kbd "avt") 'serenade-run-test)

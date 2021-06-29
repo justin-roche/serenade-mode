@@ -192,6 +192,15 @@
               (custom-lambda) 
               (expect test-val 
                       :to-equal 1)) 
+          (it "calls bodies with multiple elements" ;;
+              (serenade-define-speech 'global `(("a <x> <y>" . ,(serd custom-lambda() 
+                                                                      (setq test-val 1) 
+                                                                      (setq test-val-2 2))))) 
+              (custom-lambda) 
+              (expect test-val 
+                      :to-equal 1) 
+              (expect test-val-2 
+                      :to-equal 2)) 
           (it "calls new function through speech map" ;;
               (serenade-define-speech 'global `(("a" . ,(serd custom-lambda() 
                                                               (setq test-val 1) )))) 
@@ -204,4 +213,12 @@
               (serenade--call-generated-command-with-args (serenade--find-voice-binding "a <n>") 
                                                           '(( "n" . "4" ))) 
               (expect test-val 
-                      :to-equal 4)))
+                      :to-equal 4)) 
+          (it "calls new function with multiple args" ;;
+              (serenade-define-speech 'global `(("a <a> <b>" . ,(serd custom-lambda(a b) 
+                                                                      (setq test-val (+ a b)) ))))
+              (serenade--call-generated-command-with-args (serenade--find-voice-binding "a <a> <b>") 
+                                                          '(( "a" . "4" ) 
+                                                            ( "b" . "5" ))) 
+              (expect test-val 
+                      :to-equal 9)))

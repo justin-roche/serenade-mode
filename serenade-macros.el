@@ -31,12 +31,10 @@
          (call-interactively ',fn))) 
     `(intern-soft ',curried-name )))
 
-(defmacro* serd (name args   body &optional &keys pre )
-  "Define the function NAME which executes, and add the resulting function to the global namespace."
+(defmacro serd (name args  &rest body) 
+  "Define the function NAME which executes, and add the resulting function to the global namespace." 
   `(defun ,(intern-soft (symbol-name name))  ,args 
-     (interactive)
-     ,body
-     (if ,pre (put ',name 'serenade-pre-hook ,pre)) 
+     ,@body
      (intern-soft ',name )))
 
 (provide 'serenade-macros)
