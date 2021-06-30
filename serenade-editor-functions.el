@@ -1,5 +1,5 @@
 
-(defvar serenade-evil t 
+(defvar serenade-evil nil 
   "If true, use evil commands where possible for default commands")
 
 (defun serenade--get-editor-state () 
