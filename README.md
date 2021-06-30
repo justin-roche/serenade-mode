@@ -30,7 +30,7 @@ The guiding principles for the design of the mode are:
 
 First, download Serenade and start the application.
 
-Download the serenade-mode source code here, add the serenade-mode directory to your Emacs load path, and call:
+Next, download the serenade-mode source code here, add the serenade-mode directory to your Emacs load path, and call:
 
 ```elisp
 (use-package serenade-mode)
@@ -172,7 +172,6 @@ There is also the provided __serd__ macro, which acts like a defun call but retu
 
 (serenade-define-speech 'global `(("a <n>" . ,(defun custom-fn
                                                   (a)
-                                                (interactive)
                                                 (setq test-val a)
                                                 (intern-soft 'custom-fn))))) 
                                     
@@ -275,7 +274,7 @@ This function displays displays a reference list of serenade selectors in a helm
 
 This function displays the log for serenade-mode.
 
-## Contributing
+# Contributing
 Pull requests, issues, and feature requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
