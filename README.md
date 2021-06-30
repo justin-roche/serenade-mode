@@ -264,11 +264,11 @@ This function displays all the currently bound serenade-mode commands in a helm 
 
 ### (serenade-helm-active-commands) 
 
-This function displays all the currently bound and active serenade-mode commands in a helm buffer.
+This function displays all the currently bound and active serenade-mode commands in a helm buffer, ie. commands which, if given, map to an active speech map.
 
 ### (serenade-helm-selectors) 
 
-This function displays displays a reference list of serenade selectors in a helm buffer.
+This function displays displays a reference list of serenade selectors, such as "paramter", "argument", "method", etc. in a helm buffer.
 
 ### (serenade--log-open-log)
 
