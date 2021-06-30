@@ -53,13 +53,19 @@ To start the the mode call:
 
 If all goes well, you should see the active application change to Emacs in the Serenade application's overlay window.
 
-### Terminology
-- A __speech binding__ is the association of a speech pattern and a command
-- A __speech pattern__ is the speech input, such as "save" or "switch to buffer \<name\>"
-- A __command__ is the command associated with a speech pattern 
-- A __speech map__ is a grouping of speech bindings active for a given major or minor mode (the global map is always active)
+### Command Taxonomy
+- __sctructural commands__ are commands entirely handled by Serenade. These are commands like __"add function \<name\>"__ and __"delete second parameter"__. They are documented on the Serenade homepage.
+- __builtin commands__ are commands sent by Serenade to be handled by the plugin: commands such as __"cut"__ and __"copy"__ are implemented by the mode but are not registered by the mode as new speech patterns. 
+- __generated commands__ are commands which are registered as Serenade "custom commands". This is the class for which you can create a new speech pattern associated with some behavior of the mode.
 
-Multiple speech patterns can be associated with a command, but a single speech pattern can be associated with only one command.
+The implementation of a generated command includes the following components:
+
+- A __speech binding__ is the association of a speech pattern and a command.
+- A __speech pattern__ is the speech input, such as "save" or "switch to buffer \<name\>".
+- A __command__ is the elisp command associated with a speech pattern, a function such as 'next-buffer. 
+- A __speech map__ is a grouping of speech bindings active for a given major or minor mode (the global map is always active).
+
+Multiple speech patterns can be associated with a command, but a single speech pattern can be associated with only one command per speech map.
 
 ### Builtin default voice bindings
 Builtin bindings are those that specify bindings for Serenade's built-in commands. Serenade already recognizes these commands and sends specific messages to the plugin. The map for these is found in serenade-defaults.el. All bindings besides these involve the configuration of javascript in the Serenade directory.
