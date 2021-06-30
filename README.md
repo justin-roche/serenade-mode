@@ -54,9 +54,11 @@ To start the the mode call:
 If all goes well, you should see the active application change to Emacs in the Serenade application's overlay window.
 
 ### Command Taxonomy
-- __sctructural commands__ are commands entirely handled by Serenade. These are commands like __"add function \<name\>"__ and __"delete second parameter"__. They are documented on the Serenade homepage.
-- __builtin commands__ are commands sent by Serenade to be handled by the plugin: commands such as __"cut"__ and __"copy"__ are implemented by the mode but are not registered by the mode as new speech patterns. 
-- __generated commands__ are commands which are registered as Serenade "custom commands". This is the class for which you can create a new speech pattern associated with some behavior of the mode.
+- __Serenade commands__ are commands entirely handled by Serenade. These are commands like __"add function \<name\>"__ and __"delete second parameter"__. They are documented on the Serenade homepage. 
+- __Builtin commands__ are commands sent by Serenade to be handled by the plugin: commands such as __"cut"__ and __"copy"__ are implemented by the mode but are not registered by the mode as new speech patterns. 
+- __Generated commands__ are commands which are registered as Serenade "custom commands". This is the class for which you can create a new speech pattern associated with some behavior of Emacs.
+- __Default commands__ are either builtin or generated commands included as part as Serenade-mode by default.
+- __Custom commands__ are commands you add. 
 
 The implementation of a generated command includes the following components:
 
@@ -107,7 +109,7 @@ The __snippet \<name\>__ command inserts a Yasnippet snippet of that name. __sni
 
 ## Speech Bindings
 
-To add a speech binding to a speech map, call __serenade-define-speech__ with the symbol for the map, the speech pattern, and the associated command. If a map does not exist, it will be created. Serenade mode must be restarted or the function __serenade-generate__ must be called for these customizations to take effect.
+To add a speech binding to a speech map, call __serenade-define-speech__ with the symbol for the map, the speech pattern, and the associated command. If a map does not exist, it will be created. Serenade mode must be restarted or the function __serenade-generate__ must be called for these customizations to take effect. It is possible to bind any speech pattern that does not conflict with Serenade commands.
 
 ```elisp
 
