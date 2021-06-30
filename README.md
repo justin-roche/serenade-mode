@@ -2,7 +2,7 @@
 
 Serenade mode is a minor mode allowing voice-based [structure editing](https://en.wikipedia.org/wiki/Structure_editor) and control of Emacs through integration of [Serenade](http://www.serenade.ai). Serenade-mode features:
 
-- Voice-command mapping using Elisp 
+- speech-command mapping using Elisp 
 - Configurable speech maps for global, major, and minor modes  
 - Helm and Helm-M-x integration to aid in discoverability of commands 
 - Basic Yasnippet integration
@@ -69,7 +69,7 @@ The implementation of a generated command includes the following components:
 
 Multiple speech patterns can be associated with a command (synonyms), but a single speech pattern can be associated with only one command per speech map.
 
-### Built-In default voice bindings
+### Built-In default speech bindings
 Built-In bindings are those that specify bindings for Serenade's built-in commands. Serenade already recognizes these commands and sends specific messages to the plugin. The map for these is found in serenade-defaults.el. All bindings besides these involve the configuration of javascript in the Serenade directory.
 
 | Pattern | Command                  |
@@ -94,7 +94,7 @@ Built-In bindings are those that specify bindings for Serenade's built-in comman
 | open file list    | list-buffers                 |
 | style             | nil                          |
 
-### Generated default voice bindings
+### Generated default speech bindings
 
 The __snippet \<name\>__ command inserts a Yasnippet snippet of that name. __snippet \<name\> of \<arg\>__ autofills the first field of the snippet with \<arg\>.
 
