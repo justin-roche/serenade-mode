@@ -4,7 +4,7 @@
   "hashtable of Serenade voice maps")
 
 (defvar serenade--add-builtin-global-defaults t 
-  "this variable determines whether the global defaults are added when the mode loads")
+  "this variable determines whether the builtin global defaults are added when the mode loads")
 
 (defvar serenade--add-generated-global-defaults t 
   "this variable determines whether the generated global defaults are added when the mode loads")
@@ -49,7 +49,7 @@
 (cl-defun 
     serenade-define-speech
     (mode speech &optional command)
-  "this function associates speech pattern SPEECH with an 8lisp function COMMAND for the symbol MODE. If the speech-map provided by MODE does not exist a speech-map is created. If mode is the special symbol 'global then the binding is created for the global speech map. If a previous binding exists for the speech pattern it is overwritten."
+  "this function associates speech pattern SPEECH with an Elisp function COMMAND for the symbol MODE. If the speech-map provided by MODE does not exist a speech-map is created. If mode is the special symbol 'global then the binding is created for the global speech map. If a previous binding exists for the speech pattern it is overwritten."
   (if (listp speech) 
       (dolist (item speech ) 
         (serenade-define-speech mode (car item) 
@@ -130,7 +130,6 @@
   (helm :sources (helm-build-sync-source "serenade" 
                    :candidates (serenade--get-helm-selectors serenade--selectors)) 
         :buffer "*helm serenade*"))
-
 
 (provide 'serenade-commands)
 
