@@ -28,6 +28,11 @@
   (serenade--info "read only diff") 
   (goto-char cursor))
 
+(defun serenade--minibuffer-diff (source cursor) 
+  "A diff function for read-only buffers. This function replaces the current buffer cursor but not the source."
+  ;; ( cursor)
+  )
+
 (defun serenade--select-target (min max) 
   (if serenade-evil (progn (goto-char min) 
                            (evil-visual-state ) 
