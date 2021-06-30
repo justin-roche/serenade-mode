@@ -21,7 +21,7 @@
                        (spy-on 'message)) 
           (it "adds mode configs" (serenade--configure-mode :mode 'org-mode) 
               (expect  (length (ht-items serenade-mode-config-map) ) 
-                       :to-equal 5)
+                       :to-equal 6)
               ;; (expect  (ht-keys serenade-mode-config-map)
               ;;          :to-equal '("org-mode" "global"))
               ) 
