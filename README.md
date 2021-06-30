@@ -268,7 +268,7 @@ This function displays all the currently bound and active serenade-mode commands
 
 ### (serenade-helm-selectors) 
 
-This function displays displays a reference list of serenade selectors, such as "paramter", "argument", "method", etc. in a helm buffer.
+This function displays displays a reference list of serenade selectors, such as "parameter", "argument", "method", etc. in a helm buffer.
 
 ### (serenade--log-open-log)
 
