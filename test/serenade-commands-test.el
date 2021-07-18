@@ -3,6 +3,8 @@
 (describe "Default Global Builtin Commands" ;;
           (before-each (serenade--clear-speech-maps) 
                        (setq serenade--add-generated-global-defaults nil ) 
+                       (setq serenade-completion-frontend 'helm) 
+                       (serenade--initialize-completion-frontend) 
                        (serenade--initialize-speech-maps)) 
           (it "contains builtin commands in global speech map" ;;
               (expect (length (ht-items (serenade--get-global-map))) 
@@ -20,6 +22,8 @@
           (before-each 
            (setq serenade--add-generated-global-defaults t ) 
            (setq serenade--add-builtin-global-defaults nil ) 
+           (setq serenade-completion-frontend 'helm) 
+           (serenade--initialize-completion-frontend) 
            (serenade--clear-speech-maps) 
            (serenade--initialize-speech-maps)) 
           (after-each 

@@ -50,7 +50,7 @@
                                  :underline nil)) 
   "Face for serenade helm.")
 
-(defcustom serenade-completion-frontend 'helm 
+(defcustom serenade-completion-frontend 'helm
   "if t, serenade mode shows both relative and absolute line numbers")
 
 (defcustom serenade-helm-M-x nil 
@@ -76,15 +76,18 @@
       (setq serenade-evil t) 
     (setq serenade-evil nil ) ))
 
-(defun serenade-mode--start () 
-  "Called when the mode is started, this function is responsible for calling generate."
-  (run-hooks 'serenade-mode-init-hook) 
+(defun serenade--initialize-completion-frontend () 
   (if (eq serenade-completion-frontend 'helm) 
       (progn 
         (require 'serenade-helm) 
-        (setq serenade-helm-M-x t))) 
+        (setq serenade-helm-M-x t))))
+
+(defun serenade-mode--start () 
+  "Called when the mode is started, this function is responsible for calling generate."
+  (run-hooks 'serenade-mode-init-hook) 
   (serenade--info "connecting to serenade") 
   (serenade--info (concat "evil mode" (prin1-to-string serenade-evil))) 
+  (serenade--initialize-completion-frontend) 
   (if serenade--auto-set-evil (serenade--set-evil)) 
   (if serenade-enable-double-line-numbers (run-hooks 'serenade-double-line-numbers-on-hook)) 
   (if serenade-sync-on-start (serenade--generate)) 
