@@ -1,6 +1,4 @@
 (require 'ht)
-;; (with-eval-after-load "helm"
-;;   (require 'serenade-helm))
 
 (defvar serenade-speech-maps (ht("global" (ht)) ) 
   "hashtable of Serenade voice maps")
@@ -134,7 +132,3 @@
         :buffer "*helm serenade*"))
 
 (provide 'serenade-commands)
-
-;; (serenade-define-speech 'global "open buffer <%2 name> <%1 direction>" 'test-fn-2)
-;; (serenade-define-speech 'treemacs `(;;
-;; ("center" . ,(serc evil-scroll-line-to-center "a"))))

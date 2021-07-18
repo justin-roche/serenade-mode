@@ -10,7 +10,6 @@
 (depends-on "log4e")
 (depends-on "ht")
 (depends-on "cl")
-(depends-on "helm")
 (depends-on "dash")
 (depends-on "s")
 

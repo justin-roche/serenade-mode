@@ -9,7 +9,7 @@
           (it "initializes maps" ;;
               ;; (serenade-mode)
               (expect (length (ht-items (serenade--get-global-map))) 
-                      :to-equal (+ (length serenade--generated-global-defaults)
+                      :to-equal (+ (length serenade--generated-global-defaults) 
                                    (length serenade--builtin-global-defaults)))))
 (describe "Mode initialization" ;;
           (before-each (spy-on 'serenade-mode--start) 

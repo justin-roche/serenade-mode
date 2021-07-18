@@ -37,7 +37,6 @@
 (require 'serenade-commands)
 (require 'serenade-modes)
 (require 'serenade-log)
-(require 'serenade-snippet)
 (require 'serenade-keys-patch)
 (require 'serenade-generate)
 (require 'serenade-desktop)
@@ -50,7 +49,10 @@
                                  :underline nil)) 
   "Face for serenade helm.")
 
-(defcustom serenade-completion-frontend 'helm
+(defcustom serenade-completion-frontend nil 
+  "if t, serenade mode shows both relative and absolute line numbers")
+
+(defcustom serenade-snippet-engine nil 
   "if t, serenade mode shows both relative and absolute line numbers")
 
 (defcustom serenade-helm-M-x nil 
@@ -71,16 +73,21 @@
 
 (setq serenade--auto-set-evil t )
 
-(defun serenade--set-evil () 
-  (if (eq evil-mode t) 
+(defun serenade--initialize-evil () 
+  (if (bound-and-true-p evil-mode) 
       (setq serenade-evil t) 
     (setq serenade-evil nil ) ))
 
 (defun serenade--initialize-completion-frontend () 
   (if (eq serenade-completion-frontend 'helm) 
       (progn 
-        (require 'serenade-helm) 
-        (setq serenade-helm-M-x t))))
+        (setq serenade-helm-M-x t) 
+        (require 'serenade-helm))))
+
+(defun serenade--initialize-snippet-engine () 
+  (if (eq serenade-snippet-engine 'yasnippet) 
+      (progn 
+        (require 'serenade-snippet))))
 
 (defun serenade-mode--start () 
   "Called when the mode is started, this function is responsible for calling generate."
@@ -88,7 +95,8 @@
   (serenade--info "connecting to serenade") 
   (serenade--info (concat "evil mode" (prin1-to-string serenade-evil))) 
   (serenade--initialize-completion-frontend) 
-  (if serenade--auto-set-evil (serenade--set-evil)) 
+  (serenade--initialize-snippet-engine) 
+  (if serenade--auto-set-evil (serenade--initialize-evil)) 
   (if serenade-enable-double-line-numbers (run-hooks 'serenade-double-line-numbers-on-hook)) 
   (if serenade-sync-on-start (serenade--generate)) 
   (if serenade-helm-M-x (serenade--advise-helm-transformer)) 
@@ -131,7 +139,9 @@
 
 (provide 'serenade-mode)
 
-(with-eval-after-load "serenade-mode" (serenade--initialize-speech-maps) 
+(with-eval-after-load "serenade-mode" (serenade--initialize-completion-frontend) 
+                      (serenade--initialize-snippet-engine) 
+                      (serenade--initialize-speech-maps) 
                       (serenade--initialize-mode-config-map))
 
 ;;; serenade-mode.el ends here
