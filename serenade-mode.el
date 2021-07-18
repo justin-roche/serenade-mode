@@ -50,7 +50,7 @@
                                  :underline nil)) 
   "Face for serenade helm.")
 
-(defcustom serenade-completion-frontend 'interactivey 
+(defcustom serenade-completion-frontend 'helm 
   "if t, serenade mode shows both relative and absolute line numbers")
 
 (defcustom serenade-helm-M-x nil 
@@ -71,12 +71,10 @@
 
 (setq serenade--auto-set-evil t )
 
-;; (if (eq serenade-completion-frontend 'helm) 
-    ;; (progn 
+(if (eq serenade-completion-frontend 'helm) 
+    (progn 
       (require 'serenade-helm) 
-(setq serenade-helm-M-x t)
-;; )
-;; )
+      (setq serenade-helm-M-x t)))
 
 (defun serenade--set-evil () 
   (if (eq evil-mode t) 
@@ -131,7 +129,7 @@
 
 (provide 'serenade-mode)
 
-(with-eval-after-load "serenade-mode" (serenade--initialize-speech-maps) 
-                      (serenade--initialize-mode-config-map))
+(with-eval-after-load "serenade-mode" (serenade--initialize-speech-maps)
+(serenade--initialize-mode-config-map))
 
 ;;; serenade-mode.el ends here
