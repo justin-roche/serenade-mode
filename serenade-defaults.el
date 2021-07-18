@@ -44,11 +44,11 @@
                                             ( "show selectors" . serenade-helm-selectors  ) 
                                             ( "snippet <name> of <arg>" .
                                               serenade--insert-yasnippet-with-args  )
-                                            ( "snippet <name>" . serenade--insert-yasnippet  ) 
-                                            ("<n> mode" . ,(serd  serenade/enable-mode(n) 
-                                                                  (funcall (intern-soft (format
-                                                                                         "%s-mode"
-                                                                                         n)))))
+                                            ( "snippet <name>" . serenade--insert-yasnippet  )
+                                            ;; ("<n> mode" . ,(serd  serenade/enable-mode(n)
+                                            ;;                       (funcall (intern-soft (format
+                                            ;;                                              "%s-mode"
+                                            ;;                                              n)))))
                                             ("abort" . keyboard-quit) 
                                             ("add bookmark <name>" . bookmark-set) 
                                             ("apropos" . apropos) 

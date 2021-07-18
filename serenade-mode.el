@@ -4,9 +4,9 @@
 ;; Author: Justin Roche
 ;; Maintainer: Justin Roche
 ;; Version: 0.0.1
-;; Homepage: homepage
-;; Keywords: keywords
-;; Package-Requires: ((helm "3.6.2")(dash "2.18.1") (winum "2.2.0")(log4e "0.3.3")(yasnippet "0.14.0") (websocket "1.13")(s "1.12.0")(ht "2.4")   )
+;; Homepage: https://github.com/justin-roche/serenade-mode
+;; Keywords: voice
+;; Package-Requires: ((dash "2.18.1")(log4e "0.3.3") (websocket "1.13")(s "1.12.0")(ht "2.4")   )
 
 ;; This file is not part of GNU Emacs
 
@@ -29,7 +29,6 @@
 (require 'cl)
 (require 'websocket)
 (require 'log4e)
-(require 'yasnippet)
 
 (require 'serenade-socket)
 (require 'serenade-editor-functions)
@@ -38,7 +37,6 @@
 (require 'serenade-commands)
 (require 'serenade-modes)
 (require 'serenade-log)
-(require 'serenade-helm)
 (require 'serenade-snippet)
 (require 'serenade-keys-patch)
 (require 'serenade-generate)
@@ -51,6 +49,12 @@
 (defface helm-serenade-info '((t :foreground "#CD009600CD00" 
                                  :underline nil)) 
   "Face for serenade helm.")
+
+(defcustom serenade-completion-frontend 'interactivey 
+  "if t, serenade mode shows both relative and absolute line numbers")
+
+(defcustom serenade-helm-M-x nil 
+  "if true, display speech bindings in helm M-x")
 
 (defcustom serenade-enable-double-line-numbers t 
   "if t, serenade mode shows both relative and absolute line numbers")
@@ -66,6 +70,13 @@
   :group 'serenade-mode)
 
 (setq serenade--auto-set-evil t )
+
+;; (if (eq serenade-completion-frontend 'helm) 
+    ;; (progn 
+      (require 'serenade-helm) 
+(setq serenade-helm-M-x t)
+;; )
+;; )
 
 (defun serenade--set-evil () 
   (if (eq evil-mode t) 
@@ -118,8 +129,9 @@
   :group 'serenade-mode
   (serenade-mode-toggle))
 
-(serenade--initialize-speech-maps)
-(serenade--initialize-mode-config-map)
 (provide 'serenade-mode)
+
+(with-eval-after-load "serenade-mode" (serenade--initialize-speech-maps) 
+                      (serenade--initialize-mode-config-map))
 
 ;;; serenade-mode.el ends here

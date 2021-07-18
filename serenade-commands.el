@@ -1,4 +1,6 @@
-(require 'helm)
+(require 'ht)
+;; (with-eval-after-load "helm"
+;;   (require 'serenade-helm))
 
 (defvar serenade-speech-maps (ht("global" (ht)) ) 
   "hashtable of Serenade voice maps")
@@ -18,7 +20,7 @@
 
 (defun serenade--clear-speech-maps () 
   (setq serenade-speech-maps (ht("global" (ht)) ) ) 
-  (serenade--clear-helm-M-x-map))
+  (if serenade-helm-M-x (serenade--clear-helm-M-x-map)))
 
 (defun serenade--get-global-map () 
   (ht-get serenade-speech-maps "global"))

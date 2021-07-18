@@ -1,5 +1,4 @@
-(defcustom serenade-helm-M-x t 
-  "if true, display speech bindings in helm M-x")
+
 
 (setq serenade-helm-M-x-map (ht))
 ;; the map consulted by helm for displaying speech bindings next to commands"
