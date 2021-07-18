@@ -71,11 +71,6 @@
 
 (setq serenade--auto-set-evil t )
 
-(if (eq serenade-completion-frontend 'helm) 
-    (progn 
-      (require 'serenade-helm) 
-      (setq serenade-helm-M-x t)))
-
 (defun serenade--set-evil () 
   (if (eq evil-mode t) 
       (setq serenade-evil t) 
@@ -84,6 +79,10 @@
 (defun serenade-mode--start () 
   "Called when the mode is started, this function is responsible for calling generate."
   (run-hooks 'serenade-mode-init-hook) 
+  (if (eq serenade-completion-frontend 'helm) 
+      (progn 
+        (require 'serenade-helm) 
+        (setq serenade-helm-M-x t))) 
   (serenade--info "connecting to serenade") 
   (serenade--info (concat "evil mode" (prin1-to-string serenade-evil))) 
   (if serenade--auto-set-evil (serenade--set-evil)) 
@@ -129,7 +128,7 @@
 
 (provide 'serenade-mode)
 
-(with-eval-after-load "serenade-mode" (serenade--initialize-speech-maps)
-(serenade--initialize-mode-config-map))
+(with-eval-after-load "serenade-mode" (serenade--initialize-speech-maps) 
+                      (serenade--initialize-mode-config-map))
 
 ;;; serenade-mode.el ends here
