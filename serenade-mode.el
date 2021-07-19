@@ -5,7 +5,7 @@
 ;; Maintainer: Justin Roche
 ;; Version: 0.0.1
 ;; Homepage: https://github.com/justin-roche/serenade-mode
-;; Keywords: voice
+;; Keywords: voice command
 ;; Package-Requires: ((dash "2.18.1")(log4e "0.3.3") (websocket "1.13")(s "1.12.0")(ht "2.4")   )
 
 ;; This file is not part of GNU Emacs
@@ -49,7 +49,7 @@
                                  :underline nil)) 
   "Face for serenade helm.")
 
-(defcustom serenade-completion-frontend nil 
+(defcustom serenade-completion-frontend 'helm 
   "if t, serenade mode shows both relative and absolute line numbers")
 
 (defcustom serenade-snippet-engine nil 
@@ -79,10 +79,12 @@
     (setq serenade-evil nil ) ))
 
 (defun serenade--initialize-completion-frontend () 
+  "Conditionally reequire serenade-helm if serenade-completion-frontend is set to 'helm"
   (if (eq serenade-completion-frontend 'helm) 
       (progn 
         (setq serenade-helm-M-x t) 
-        (require 'serenade-helm))))
+        (require 'serenade-helm)) 
+    (setq serenade-helm-M-x nil)))
 
 (defun serenade--initialize-snippet-engine () 
   (if (eq serenade-snippet-engine 'yasnippet) 
