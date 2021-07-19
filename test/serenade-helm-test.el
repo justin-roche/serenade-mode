@@ -37,12 +37,12 @@
                        ;; (serenade--initialize-completion-frontend)
                        (serenade--clear-speech-maps)) 
           (it "adds new M-x binding for command if M-x enabled" ;;
-              (setq serenade-helm-M-x t) 
+              (setq serenade--helm-M-x-active t) 
               (serenade-global-set-speech "a" 'b) 
               (expect   (ht-get* serenade-helm-M-x-map "b") 
                         :to-equal "a")) 
           (it "does not add new M-x binding for command if M-x disabled" ;;
-              (setq serenade-helm-M-x nil) 
+              (setq serenade--helm-M-x-active nil) 
               (serenade-global-set-speech "a" 'b) 
               (expect   (ht-get* serenade-helm-M-x-map "b") 
                         :to-equal nil)))

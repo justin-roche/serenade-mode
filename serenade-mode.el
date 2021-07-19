@@ -55,7 +55,7 @@
 (defcustom serenade-snippet-engine nil 
   "if t, serenade mode shows both relative and absolute line numbers")
 
-(defcustom serenade-helm-M-x nil 
+(defcustom serenade-helm-M-x t 
   "if true, display speech bindings in helm M-x")
 
 (defcustom serenade-enable-double-line-numbers t 
@@ -79,12 +79,12 @@
     (setq serenade-evil nil ) ))
 
 (defun serenade--initialize-completion-frontend () 
-  "Conditionally reequire serenade-helm if serenade-completion-frontend is set to 'helm"
+  "Conditionally reequire serenade-helm if serenade-completion-frontend is set to 'helm. If serenade-helm-M-x is true, set serenade--helm-M-x-active to true."
   (if (eq serenade-completion-frontend 'helm) 
       (progn 
-        (setq serenade-helm-M-x t) 
-        (require 'serenade-helm)) 
-    (setq serenade-helm-M-x nil)))
+        (require 'serenade-helm) 
+        (setq serenade--helm-M-x-active t)) 
+    (setq serenade--helm-M-x-active nil)))
 
 (defun serenade--initialize-snippet-engine () 
   (if (eq serenade-snippet-engine 'yasnippet) 
