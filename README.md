@@ -227,9 +227,17 @@ This variable specifies whether the autogeneration of custom javascript should h
 
 This specifies whether certain buffer editing commands integrate with evil or default Emacs editing commands. Default is nil.
 
+### serenade-helm-completion-frontend
+
+Sets the completion frontend to be used. Currently the only supported value is 'helm. If nil, completion support is disabled.
+
 ### serenade-helm-M-x
 
 If true, serenade-mode advices helm-M-x so that speech patterns appear beside the keybinding for M-x commands.
+
+### serenade-snippet-engine
+
+Sets the snippet engine to be used. Currently the only supported value is 'yasnippet. If nil, snippet support is disabled.
 
 ### serenade--add-builtin-global-defaults 
 
