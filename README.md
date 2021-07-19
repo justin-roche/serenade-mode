@@ -223,9 +223,9 @@ To manage custom commands, serenade-mode autogenerates javascript stored in the 
 
 This variable specifies whether the autogeneration of custom javascript should happen each time the mode is started. Default is true.
 
-### serenade-evil
+### serenade-auto-set-evil
 
-This specifies whether certain buffer editing commands integrate with evil or default Emacs editing commands. Default is nil.
+This specifies whether certain buffer editing commands integrate with evil or default Emacs editing commands, based on the presence of evil mode. Default is true.
 
 ### serenade-helm-completion-frontend
 
