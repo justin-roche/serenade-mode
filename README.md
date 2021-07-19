@@ -274,6 +274,9 @@ This function displays displays a reference list of serenade selectors, such as 
 
 This function displays the log for serenade-mode.
 
+# Limitations
+Under the current implementation of generated commands, the mode bindings do not constrain what the speech engine is listening for. The speech engine listens for all commands, and only once the command reaches Emacs is the correct command selected. This may or may not have performance effects on the recognition accuracy of the engine if there are many similar sounding commands.
+
 # Contributing
 Pull requests, issues, and feature requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
