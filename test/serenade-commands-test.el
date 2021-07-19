@@ -4,14 +4,22 @@
           (before-each (serenade--clear-speech-maps) 
                        (setq serenade--add-generated-global-defaults nil ) 
                        (setq serenade-completion-frontend 'helm) 
-                       (serenade--initialize-completion-frontend) 
-                       (serenade--initialize-speech-maps)) 
+                       (serenade--initialize-completion-frontend)) 
           (it "contains builtin commands in global speech map" ;;
+              (serenade--initialize-speech-maps) 
               (expect (length (ht-items (serenade--get-global-map))) 
                       :to-equal (length serenade--builtin-global-defaults)) 
               (expect (ht-get* serenade-speech-maps "global" "save" "command") 
                       :to-equal 'save-buffer )) 
+          (it "does not add builtin items to helm map if helm inactive" ;;
+              (setq serenade--helm-M-x-active nil) 
+              (serenade--initialize-speech-maps) 
+              (expect (length (ht-items serenade-helm-M-x-map))
+                      ;; subtract 1 for the homophone scroll/scroll down
+                      :to-equal 0)) 
           (it "adds builtin items to helm map" ;;
+              (setq serenade--helm-M-x-active t) 
+              (serenade--initialize-speech-maps) 
               (expect (length (ht-items serenade-helm-M-x-map))
                       ;; subtract 1 for the homophone scroll/scroll down
                       :to-equal (-  (length (-filter '(lambda (item) 
