@@ -4,6 +4,16 @@
 (require 'serenade-socket)
 (setq lexical-binding t)
 
+(describe "Initial value of mode variables"     ;;
+          (it "initial value of mode variables" ;;
+              (expect serenade-snippet-engine 
+                      :to-be nil) 
+              (expect serenade-helm-M-x 
+                      :to-be t) 
+              (expect serenade-completion-frontend 
+                      :to-be 'helm) 
+              (expect serenade-snippet-engine 
+                      :to-be nil)))
 (describe "Load behaviors" ;;
           (before-each (load "./serenade-mode.el")) 
           (it "initializes maps" ;;
@@ -47,41 +57,26 @@
               (serenade-mode) 
               (expect 'serenade--initialize-completion-frontend 
                       :to-have-been-called)) 
-          (it "initial value of snippet-engine is nil" ;;
-              (serenade-mode) 
-              (expect serenade-snippet-engine 
-                      :to-be nil)) 
           (it "initializes snippet engine settings" ;;
               (serenade-mode) 
               (expect 'serenade--initialize-snippet-engine 
-                      :to-have-been-called)) 
-          (it "initial value of completion-frontend is 'helm" ;;
-              (serenade-mode) 
-              (expect serenade-completion-frontend 
-                      :to-be 'helm)) 
-          (it "sets serenade--helm-M-x-active to true" ;;
-              (serenade-mode) 
-              (expect serenade--helm-M-x-active 
-                      :to-be t)) 
-          (it "calls connect function" ;;
-              (setq serenade-mode t ) 
-              (serenade-mode) 
-              (expect 'serenade--connect 
                       :to-have-been-called)))
 
-(describe "runs with nil values for optional dependencies" ;;
+(describe "sets values for optional dependencies" ;;
           (before-each (spy-on 'serenade--connect) 
                        (setq serenade-completion-frontend nil ) 
                        (setq serenade-snippet-engine nil )) 
           (it "sets serenade--helm-M-x-active to nil" ;;
+              (setq serenade-helm-M-x nil) 
               (serenade-mode) 
               (expect serenade--helm-M-x-active 
                       :to-be nil)) 
-          (it "calls connect function" ;;
-              (setq serenade-mode t ) 
+          (it "sets serenade--helm-M-x-active to true" ;;
+              (setq serenade-completion-frontend 'helm ) 
+              (setq serenade-helm-M-x t) 
               (serenade-mode) 
-              (expect 'serenade--connect 
-                      :to-have-been-called)))
+              (expect serenade--helm-M-x-active 
+                      :to-be t)))
 (describe "Connection stop" ;;
           (before-each  (spy-on 'serenade--disconnect) ) 
           (it "calls disconnect function" (setf (symbol-value 'serenade-mode) nil) 

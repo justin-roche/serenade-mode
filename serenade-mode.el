@@ -83,10 +83,13 @@
   (if (eq serenade-completion-frontend 'helm) 
       (progn 
         (require 'serenade-helm) 
-        (setq serenade--helm-M-x-active t)) 
+        (if serenade-helm-M-x 
+            (setq serenade--helm-M-x-active t) 
+          (setq serenade--helm-M-x-active nil))) 
     (setq serenade--helm-M-x-active nil)))
 
 (defun serenade--initialize-snippet-engine () 
+  "Conditionally reequire serenade-snippet if serenade-snippet-engine is set to 'yasnippet."
   (if (eq serenade-snippet-engine 'yasnippet) 
       (progn 
         (require 'serenade-snippet))))
