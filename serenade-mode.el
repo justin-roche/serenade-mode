@@ -49,14 +49,14 @@
                                  :underline nil)) 
   "Face for serenade helm.")
 
-(defcustom serenade-completion-frontend 'helm 
-  "if t, serenade mode shows both relative and absolute line numbers")
+(defcustom serenade-completion-frontend nil 
+  "Sets the completion frontend to be used. If nil, completion support is disabled. If 'helm, uses helm for completion.")
 
 (defcustom serenade-snippet-engine nil 
-  "if t, serenade mode shows both relative and absolute line numbers")
+  "Sets the snippet engine to be used. Currently the only supported value is 'yasnippet. If nil, snippet support is disabled.")
 
-(defcustom serenade-helm-M-x t 
-  "if true, display speech bindings in helm M-x")
+(defcustom serenade-helm-M-x nil 
+  "if t, display speech bindings in helm M-x")
 
 (defcustom serenade-enable-double-line-numbers t 
   "if t, serenade mode shows both relative and absolute line numbers")
@@ -98,13 +98,12 @@
   "Called when the mode is started, this function is responsible for calling generate."
   (run-hooks 'serenade-mode-init-hook) 
   (serenade--info "connecting to serenade") 
-  (serenade--info (concat "evil mode" (prin1-to-string serenade-evil))) 
   (serenade--initialize-completion-frontend) 
   (serenade--initialize-snippet-engine) 
   (if serenade--auto-set-evil (serenade--initialize-evil)) 
   (if serenade-enable-double-line-numbers (run-hooks 'serenade-double-line-numbers-on-hook)) 
   (if serenade-sync-on-start (serenade--generate)) 
-  (if serenade-helm-M-x (serenade--advise-helm-transformer)) 
+  (if serenade--helm-M-x-active (serenade--advise-helm-transformer)) 
   (serenade--connect))
 
 (defun serenade-mode-start () 

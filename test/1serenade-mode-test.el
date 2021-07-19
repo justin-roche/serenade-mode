@@ -9,9 +9,9 @@
               (expect serenade-snippet-engine 
                       :to-be nil) 
               (expect serenade-helm-M-x 
-                      :to-be t) 
+                      :to-be nil) 
               (expect serenade-completion-frontend 
-                      :to-be 'helm) 
+                      :to-be nil) 
               (expect serenade-snippet-engine 
                       :to-be nil)))
 (describe "Load behaviors" ;;

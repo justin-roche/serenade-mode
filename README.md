@@ -38,6 +38,14 @@ Next, download the serenade-mode source code here, add the serenade-mode directo
 
 ## Getting Started
 
+To enable helm and yasnippet, set the following variables:
+
+```elisp
+(setq serenade-completion-frontend 'helm)
+(setq serenade-helm-M-x t)
+(setq serenade-snippet-engine 'yasnippet)
+```
+
 To start the the mode call:
 
 ```elisp
@@ -229,11 +237,11 @@ This specifies whether certain buffer editing commands integrate with evil or de
 
 ### serenade-helm-completion-frontend
 
-Sets the completion frontend to be used. The default value is 'helm. If nil, completion support is disabled.
+Sets the completion frontend to be used. If nil, completion support is disabled. If 'helm, uses helm for completion.
 
 ### serenade-helm-M-x
 
-If true, serenade-mode advices helm-M-x so that speech patterns appear beside the keybinding for M-x commands.
+If true, serenade-mode advices helm-M-x so that speech patterns appear beside the keybinding for M-x commands. Default value is nil.
 
 ### serenade-snippet-engine
 
