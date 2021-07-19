@@ -229,7 +229,7 @@ This specifies whether certain buffer editing commands integrate with evil or de
 
 ### serenade-helm-completion-frontend
 
-Sets the completion frontend to be used. Currently the only supported value is 'helm. If nil, completion support is disabled.
+Sets the completion frontend to be used. The default value is 'helm. If nil, completion support is disabled.
 
 ### serenade-helm-M-x
 
