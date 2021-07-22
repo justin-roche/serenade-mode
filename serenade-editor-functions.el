@@ -4,7 +4,7 @@
 
 (defun serenade--get-editor-state () 
   "The default get editor state function. It gets the filename source and cursor for the buffer."
-  (serenade--info "normal STATE") 
+  (serenade--info "normal state") 
   (let* ((source 
           (buffer-substring-no-properties 
            (point-min) 
@@ -16,22 +16,18 @@
 
 (defun serenade--diff (source cursor) 
   "The default diff function. This function replaces the current buffer contents and cursor with the provided SOURCE and CURSOR position from the diff command."
-  (serenade--info "normal DIFF") 
-  (let ((tmp-buf (generate-new-buffer " *serenade-temp*"))) 
-    (with-current-buffer tmp-buf (insert source)) 
-    (replace-buffer-contents tmp-buf) 
-    (kill-buffer tmp-buf)) 
+  (if source (let ((tmp-buf (generate-new-buffer " *serenade-temp*"))) 
+               (with-current-buffer tmp-buf (insert source)) 
+               (replace-buffer-contents tmp-buf) 
+               (kill-buffer tmp-buf))) 
   (goto-char cursor))
 
 (defun serenade--read-only-diff (source cursor) 
   "A diff function for read-only buffers. This function replaces the current buffer cursor but not the source."
-  (serenade--info "read only diff") 
   (goto-char cursor))
 
 (defun serenade--minibuffer-diff (source cursor) 
-  "A diff function for read-only buffers. This function replaces the current buffer cursor but not the source."
-  ;; ( cursor)
-  )
+  "A diff function for read-only buffers. This function replaces the current buffer cursor but not the source.")
 
 (defun serenade--select-target (min max) 
   (if serenade-evil (progn (goto-char min) 
@@ -82,24 +78,3 @@
     (kill-buffer tmp-buf)))
 
 (provide 'serenade-editor-functions)
-
-;; (defun serenade--jump-to-nearest-match (str)
-;;   (interactive)
-;;   (let* ((matchposforward(or (re-search-forward "a" nil t)
-;;                              (point-max)))
-;;          (matchposback(result-search-backward "a" nil t))
-;;          (distance-forward (- matchposforward (point)))
-;;          (distance-back (- (point) matchposback)))
-;;     (debug)
-;;     (if (and (not (eq 0 distance-back))
-;;              (not (eq 0 distance-forward)))
-;;         (goto-char (if (< distance-forward distance-back) matchposforward matchposback))
-;;       (if (and (not (eq 0 distance-back)))
-;;           (goto-char matchposback)
-;;         (if (and (not (eq 0 distance-forward)))
-;;             (goto-char matchposforward))))
-                                        ;(defun jr/ser-t ()
-;; (interactive)
-;; [[(if (and (not (eq 0 distance-back)))
-;;       (goto-char (distance-back)))]]
-;; (serenade--jump-to-nearest-match "a"));     ))

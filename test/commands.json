@@ -1,4 +1,59 @@
 {
+    "goToBegginingOfLine": {
+        "message": "response",
+        "data": {
+            "callback": "cc75082e-de7b-499e-9a5c-02282378e9b4",
+            "response": {
+                "alternatives": [
+                    {
+                        "description": "go to beginning of line",
+                        "transcript": "go to beginning of line",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "alternativeId": "ff941268-c9e9-42e2-8614-833d05f43c7d"
+                    }
+                ],
+                "execute": {
+                    "description": "go to beginning of line",
+                    "transcript": "go to beginning of line",
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "alternativeId": "ff941268-c9e9-42e2-8614-833d05f43c7d",
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ]
+                },
+                "chunkId": "cd3dfe55-98a9-4876-b1ea-612035f8b3ca",
+                "final": true,
+                "endpointId": "8a66f789-43fc-4c8d-b98b-8fb6b964e003",
+                "chunkIds": [
+                    "5eb68c08-b07f-47f8-9733-402af4621a8b",
+                    "cd3dfe55-98a9-4876-b1ea-612035f8b3ca"
+                ],
+                "silenceThreshold": 1000,
+                "alternativesList": [
+                    {
+                        "description": "go to beginning of line",
+                        "transcript": "go to beginning of line",
+                        "commands": [
+                            {
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "alternativeId": "ff941268-c9e9-42e2-8614-833d05f43c7d"
+                    }
+                ]
+            }
+        }
+    },
     "scroll": {
         "message": "response",
         "data": {
@@ -2302,6 +2357,88 @@
                 ]
             },
             "callback": "c73dbfc8-5da1-4931-b24a-8d39efaadce4"
+        },
+        "message": "response"
+    },
+    "addFunctionHello": {
+        "data": {
+            "response": {
+                "alternativesList": [
+                    {
+                        "alternativeId": "1ec0b80d-e13e-4fe8-aa0b-ea996d71f954",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "substitution": "function hello() {}"
+                                    }
+                                ],
+                                "cursor": 14,
+                                "source": "function hello() {}",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "add function hello",
+                        "description": "add function <code>function hello() {}</code>"
+                    }
+                ],
+                "silenceThreshold": 1000,
+                "chunkIds": [
+                    "b80162e9-28c2-4b84-b5c8-05b49e73e087"
+                ],
+                "endpointId": "beacdb3b-e551-42dc-8305-9110029ba983",
+                "final": true,
+                "chunkId": "b80162e9-28c2-4b84-b5c8-05b49e73e087",
+                "execute": {
+                    "commandsList": [
+                        {
+                            "changes": [
+                                {
+                                    "substitution": "function hello() {}"
+                                }
+                            ],
+                            "cursor": 14,
+                            "source": "function hello() {}",
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "alternativeId": "1ec0b80d-e13e-4fe8-aa0b-ea996d71f954",
+                    "commands": [
+                        {
+                            "changes": [
+                                {
+                                    "substitution": "function hello() {}"
+                                }
+                            ],
+                            "cursor": 14,
+                            "source": "function hello() {}",
+                            "type": "COMMAND_TYPE_DIFF"
+                        }
+                    ],
+                    "transcript": "add function hello",
+                    "description": "add function <code>function hello() {}</code>"
+                },
+                "alternatives": [
+                    {
+                        "alternativeId": "1ec0b80d-e13e-4fe8-aa0b-ea996d71f954",
+                        "commands": [
+                            {
+                                "changes": [
+                                    {
+                                        "substitution": "function hello() {}"
+                                    }
+                                ],
+                                "cursor": 14,
+                                "source": "function hello() {}",
+                                "type": "COMMAND_TYPE_DIFF"
+                            }
+                        ],
+                        "transcript": "add function hello",
+                        "description": "add function <code>function hello() {}</code>"
+                    }
+                ]
+            },
+            "callback": "7b916a69-b226-4b75-863a-38e6c94ab576"
         },
         "message": "response"
     }
