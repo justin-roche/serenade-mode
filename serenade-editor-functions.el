@@ -4,7 +4,6 @@
 
 (defun serenade--get-editor-state () 
   "The default get editor state function. It gets the filename source and cursor for the buffer."
-  (serenade--info "normal state") 
   (let* ((source 
           (buffer-substring-no-properties 
            (point-min) 

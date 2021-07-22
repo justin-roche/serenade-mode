@@ -3,7 +3,7 @@
   "Handle a serenade MESSAGE. Iterate through the messages command list calling handle command."
   (serenade--info (concat "\n" (extract-json message))) 
   (serenade--set-serenade-buffer) 
-  (serenade--set-active-mode-configuration)
+  (serenade--set-active-mode-configuration) 
   (if-let* ((pre-edit (serenade-mode-configuration-pre-edit serenade-active-mode-configuration))) 
       (funcall pre-edit)) 
   (let* ((callback (ht-get* message "data" "callback")) 
@@ -30,7 +30,7 @@
                                  (let* ((results (funcall
                                                   (serenade-mode-configuration-get-editor-state
                                                    serenade-active-mode-configuration))))
-                                   (message (concat "results:" (prin1-to-string results))) 
+                                    
                                    (apply 'serenade--send-editor-state (append (list callback
                                                                                      limited)
                                                                                results)))))
@@ -92,8 +92,6 @@
                                    ("callback" callback))) 
                        ("message" "callback"))) 
          (response-json (json-serialize response))) 
-    (message (concat "source" source)) 
-    (message (prin1-to-string response-json)) 
     (websocket-send-text serenade--websocket response-json)))
 
 (defun serenade--send-completed (callback) 
