@@ -65,10 +65,9 @@
     (callback limited filename source cursor)
   "This function responds to a get-editor-state command with callback-id CALLBACK. If LIMITED Is true it sends only the file name. The specifics of how cursor and source are sent are determined by the mode configuration."
   (serenade--info (concat "buffer file name: " filename)) 
-  (let* ((buffer-data (if limited (ht ("filename" filename)) 
-                        (ht ("filename" filename) 
-                            ("cursor" cursor) 
-                            ("source" source)))) 
+  (let* ((buffer-data (ht ("filename" filename) 
+                          ("cursor" cursor) 
+                          ("source" source))) 
          (response (ht("data" (ht ("data" (ht ("data" buffer-data) 
                                               ("message" "editorState"))) 
                                   ("callback" callback))) 
