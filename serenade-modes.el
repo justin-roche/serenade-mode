@@ -21,7 +21,8 @@
                             :get-editor-state 'serenade--shell/get-editor-state 
                             :diff 'serenade-shell/diff) 
   (serenade--configure-mode :mode 'minibuffer-inactive-mode 
-                            :diff 'serenade--read-only-diff) 
+                            :get-editor-state 'serenade-helm/get-editor-state 
+                            :diff 'serenade-helm/diff) 
   (serenade--configure-mode :mode 'treemacs-mode 
                             :diff 'serenade--read-only-diff) 
   (serenade--configure-mode :mode 'rjsx-mode 

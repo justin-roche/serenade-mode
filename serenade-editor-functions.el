@@ -25,8 +25,24 @@
   "A diff function for read-only buffers. This function replaces the current buffer cursor but not the source."
   (goto-char cursor))
 
-(defun serenade--minibuffer-diff (source cursor) 
-  "A diff function for read-only buffers. This function replaces the current buffer cursor but not the source.")
+(defun serenade-helm/get-editor-state () 
+  "A get-editor-state function for the helm minibuffer."
+  (let* ((source helm-pattern) 
+         (filename  "") 
+         (cursor  (- (point) 
+                     (length helm--prompt) 1))) 
+    (list filename source cursor)))
+
+(defun serenade-helm/diff (source cursor) 
+  "A diff function for helm buffers. It updates two items independently, the helm-pattern and the contents of the active minibuffer input."
+  (if source (progn (read-only-mode -1) 
+                    (beginning-of-line) 
+                    (call-interactively 'evil-delete-line) 
+                    (insert source) 
+                    (setq helm-pattern source) 
+                    (message source) 
+                    (helm-update) 
+                    (helm-force-update))))
 
 (defun serenade--select-target (min max) 
   (if serenade-evil (progn (goto-char min) 

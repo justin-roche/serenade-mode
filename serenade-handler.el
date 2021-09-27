@@ -1,17 +1,17 @@
 
 (defun serenade--handle-message (message) 
   "Handle a serenade MESSAGE. Iterate through the messages command list calling handle command."
-  (serenade--info (concat "\n" (extract-json message ))) 
+  ;; (serenade--info (concat "\n" (extract-json message )))
   (serenade--set-serenade-buffer) 
-  (serenade--set-active-mode-configuration) 
-  (serenade--info (prin1-to-string (ht-keys serenade-mode-config-map ))) 
+  (serenade--set-active-mode-configuration)
+  ;; (serenade--info (prin1-to-string (ht-keys serenade-mode-config-map )))
   (if-let* ((pre-edit (serenade-mode-configuration-pre-edit serenade-active-mode-configuration))) 
       (funcall pre-edit)) 
   (let* ((callback (ht-get* message "data" "callback")) 
          (command-vector (ht-get* message "data" "response" "execute" "commandsList")) 
          (transcript (ht-get* message "transcript")) 
-         (command-list (append command-vector nil))) 
-    (if transcript (serenade--info (concat "received command: " transcript))) 
+         (command-list (append command-vector nil)))
+    ;; (if transcript (serenade--info (concat "received command: " transcript)))
     (dolist (command command-list ) 
       (serenade--handle-command command message callback))
     ;; TODO: run post edit only when edits have occurred
@@ -23,12 +23,13 @@
 (defun serenade--handle-command (command message callback) 
   "Handle a serenade command COMMAND."
   (let* ((type (ht-get*  command "type")) 
-         (limited (ht-get* command "limited" )) 
-         (log-info (concat type ": limited: "  (prin1-to-string limited) ))) 
-    (serenade--info log-info) 
+         (limited (ht-get* command "limited" ))
+         ;; (log-info (concat type ": limited: "  (prin1-to-string limited) ))
+         )
+    ;; (serenade--info log-info)
     (cond ((equal type "COMMAND_TYPE_GET_EDITOR_STATE") 
            (progn ;; (message "getting editor state function")
-             (serenade--info (concat "get state fn is: ?" "mode is " (symbol-name major-mode ))) 
+             ;; (serenade--info (concat "get state fn is: ?" "mode is " (symbol-name major-mode )))
              (let* ((results  (funcall (serenade-mode-configuration-get-editor-state
                                         serenade-active-mode-configuration))))
                (apply 'serenade--send-editor-state (append (list callback limited) results))))) 
@@ -64,7 +65,7 @@
     serenade--send-editor-state
     (callback limited filename source cursor)
   "This function responds to a get-editor-state command with callback-id CALLBACK. If LIMITED Is true it sends only the file name. The specifics of how cursor and source are sent are determined by the mode configuration."
-  (serenade--info (concat "buffer file name: " filename)) 
+  ;; (serenade--info (concat "buffer file name: " filename))
   (let* ((buffer-data (ht ("filename" filename) 
                           ("cursor" cursor) 
                           ("source" source))) 
@@ -78,7 +79,7 @@
 
 (defun serenade--send-completed (callback) 
   "Sends the completed message to serenade command having callback CALLBACK."
-  (serenade--info "sending completed") 
+  ;; (serenade--info "sending completed")
   (if serenade--websocket (let* ((response (ht ("message" "callback") 
                                                ("data" (ht ("callback" callback) 
                                                            ("data" (ht ("message" "completed"))))))) 

@@ -111,7 +111,7 @@
   (ht-get* serenade-speech-maps "global" speech))
 
 (defun serenade-helm-commands () 
-  "This function provides all current speech bindings in a helm buffer." 
+  "This function provides all current speech bindings in a helm buffer. Currently FAILS unless helm has been called at least once before." 
   (interactive) 
   (helm :sources (helm-build-sync-source "serenade" 
                    :candidates (serenade--get-helm-candidates serenade-speech-maps)) 
