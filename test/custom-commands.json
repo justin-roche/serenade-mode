@@ -1,79 +1,20 @@
 {
-    "evaluateInPlugin": {
-        "data": {
-            "response": {
-                "execute": {
-                    "commandsList": [
-                        {
-                            "limited": false,
-                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN"
-                        }
-                    ]
-                }
-            },
-            "callback": "956e2039-88fd-4d35-9e71-ba42abdde6bb"
-        }
-    },
-    "manyCommands": {
+    "center": {
         "message": "response",
         "data": {
-            "callback": "4b472afe-e6d0-402c-bdca-d58a84a846ff",
+            "callback": "9758a7ef-9689-4f59-81bd-69ad4232d2e5",
             "response": {
                 "execute": {
                     "commandsList": [
                         {
                             "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN",
-                            "text": "(\"open buffer <a> <b> <c> <d> <e>\" ( (\"a\" . \"aa\") (\"b\" . \"bb\") (\"c\" . \"cc\") (\"d\" . \"dd\") (\"e\" . \"ee\") ) )"
+                            "text": "(\"center\")"
                         }
                     ],
                     "commands": [
                         {
                             "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN",
-                            "text": "(\"open buffer <name> <direction>\" ( (\"name\" . \"index\") (\"direction\" . \"left\")) )"
-                        }
-                    ]
-                }
-            }
-        }
-    },
-    "openBufferTextText": {
-        "message": "response",
-        "data": {
-            "callback": "4b472afe-e6d0-402c-bdca-d58a84a846ff",
-            "response": {
-                "execute": {
-                    "commandsList": [
-                        {
-                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN",
-                            "text": "(\"open buffer <name> <direction>\" ( (\"name\" . \"index\") (\"direction\" . \"left\")) )"
-                        }
-                    ],
-                    "commands": [
-                        {
-                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN",
-                            "text": "(\"open buffer <name> <direction>\" ( (\"name\" . \"index\") (\"direction\" . \"left\")) )"
-                        }
-                    ]
-                }
-            }
-        }
-    },
-    "openBufferTextAndNumber": {
-        "message": "response",
-        "data": {
-            "callback": "7a5cb05e-f41e-46f8-8a14-69b762d3f8d5",
-            "response": {
-                "execute": {
-                    "commandsList": [
-                        {
-                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN",
-                            "text": "(\"open buffer <name> <n>\" ( (\"name\" . \"index\") (\"n\" . \"3\")) )"
-                        }
-                    ],
-                    "commands": [
-                        {
-                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN",
-                            "text": "(\"open buffer <name> <n>\" ( (\"name\" . \"index\") (\"n\" . \"3\")) )"
+                            "text": "(\"center\")"
                         }
                     ]
                 }
@@ -81,46 +22,239 @@
         }
     },
     "openBufferText": {
+        "message": "response",
+        "data": {
+            "callback": "2c3b74c7-2691-48ad-8d6a-f354c5044551",
+            "response": {
+                "execute": {
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN",
+                            "text": "(\"open buffer <name>\" ( (\"name\" . \"index\")) )"
+                        }
+                    ],
+                    "commands": [
+                        {
+                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN",
+                            "text": "(\"open buffer <name>\" ( (\"name\" . \"index\")) )"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "openBufferTextAndNumber": {
         "data": {
             "response": {
                 "execute": {
                     "commands": [
                         {
-                            "text": "(\"open buffer <name>\" ( (\"name\" . \"index\")) )",
+                            "text": "(\"open buffer <name> <n>\" ( (\"name\" . \"index\") (\"n\" . \"3\")) )",
                             "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN"
                         }
                     ],
                     "commandsList": [
                         {
-                            "text": "(\"open buffer <name>\" ( (\"name\" . \"index\")) )",
+                            "text": "(\"open buffer <name> <n>\" ( (\"name\" . \"index\") (\"n\" . \"3\")) )",
                             "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN"
                         }
                     ]
                 }
             },
-            "callback": "2c3b74c7-2691-48ad-8d6a-f354c5044551"
+            "callback": "7a5cb05e-f41e-46f8-8a14-69b762d3f8d5"
         },
         "message": "response"
     },
-    "center": {
+    "openBufferTextText": {
         "data": {
             "response": {
                 "execute": {
                     "commands": [
                         {
-                            "text": "(\"center\")",
+                            "text": "(\"open buffer <name> <direction>\" ( (\"name\" . \"index\") (\"direction\" . \"left\")) )",
                             "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN"
                         }
                     ],
                     "commandsList": [
                         {
-                            "text": "(\"center\")",
+                            "text": "(\"open buffer <name> <direction>\" ( (\"name\" . \"index\") (\"direction\" . \"left\")) )",
                             "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN"
                         }
                     ]
                 }
             },
-            "callback": "9758a7ef-9689-4f59-81bd-69ad4232d2e5"
+            "callback": "4b472afe-e6d0-402c-bdca-d58a84a846ff"
+        },
+        "message": "response"
+    },
+    "manyCommands": {
+        "data": {
+            "response": {
+                "execute": {
+                    "commands": [
+                        {
+                            "text": "(\"open buffer <name> <direction>\" ( (\"name\" . \"index\") (\"direction\" . \"left\")) )",
+                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN"
+                        }
+                    ],
+                    "commandsList": [
+                        {
+                            "text": "(\"open buffer <a> <b> <c> <d> <e>\" ( (\"a\" . \"aa\") (\"b\" . \"bb\") (\"c\" . \"cc\") (\"d\" . \"dd\") (\"e\" . \"ee\") ) )",
+                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN"
+                        }
+                    ]
+                }
+            },
+            "callback": "4b472afe-e6d0-402c-bdca-d58a84a846ff"
+        },
+        "message": "response"
+    },
+    "evaluateInPlugin": {
+        "data": {
+            "callback": "956e2039-88fd-4d35-9e71-ba42abdde6bb",
+            "response": {
+                "execute": {
+                    "commandsList": [
+                        {
+                            "type": "COMMAND_TYPE_EVALUATE_IN_PLUGIN",
+                            "limited": false
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "pretty": {
+        "data": {
+            "response": {
+                "alternativesList": [
+                    {
+                        "errorCode": 0,
+                        "alternativeId": "3a1bf9f6-a970-48ed-97c0-f06a5ff1e0ee",
+                        "transcript": "pretty",
+                        "description": "pretty",
+                        "remaining": "",
+                        "commands": [
+                            {
+                                "callbackType": 0,
+                                "range": null,
+                                "language": 0,
+                                "limited": false,
+                                "insertDiff": "",
+                                "errorCode": 0,
+                                "customCommandId": "0.44631135608659767",
+                                "cursorEnd": 0,
+                                "index": 0,
+                                "path": "",
+                                "text": "",
+                                "direction": "",
+                                "cursor": 0,
+                                "source": "",
+                                "type": "COMMAND_TYPE_CUSTOM",
+                                "replacements": {
+                                },
+                                "changes": [],
+                                "modifiers": []
+                            }
+                        ]
+                    }
+                ],
+                "silenceThreshold": 500,
+                "endpointId": "1f36f97c-912e-4a44-8d26-f58a37d0aa6d",
+                "final": true,
+                "suggestion": "",
+                "textResponse": false,
+                "chunkId": "c0057936-b69e-40e8-a5d6-71fac6a105d0",
+                "execute": {
+                    "commandsList": [
+                        {
+                            "callbackType": 0,
+                            "range": null,
+                            "language": 0,
+                            "limited": false,
+                            "insertDiff": "",
+                            "errorCode": 0,
+                            "customCommandId": "0.44631135608659767",
+                            "cursorEnd": 0,
+                            "index": 0,
+                            "path": "",
+                            "text": "",
+                            "direction": "",
+                            "cursor": 0,
+                            "source": "",
+                            "type": "COMMAND_TYPE_CUSTOM",
+                            "replacements": {
+                            },
+                            "changes": [],
+                            "modifiers": []
+                        }
+                    ],
+                    "errorCode": 0,
+                    "alternativeId": "3a1bf9f6-a970-48ed-97c0-f06a5ff1e0ee",
+                    "transcript": "pretty",
+                    "description": "pretty",
+                    "remaining": "",
+                    "commands": [
+                        {
+                            "callbackType": 0,
+                            "range": null,
+                            "language": 0,
+                            "limited": false,
+                            "insertDiff": "",
+                            "errorCode": 0,
+                            "customCommandId": "0.44631135608659767",
+                            "cursorEnd": 0,
+                            "index": 0,
+                            "path": "",
+                            "text": "",
+                            "direction": "",
+                            "cursor": 0,
+                            "source": "",
+                            "type": "COMMAND_TYPE_CUSTOM",
+                            "replacements": {
+                            },
+                            "changes": [],
+                            "modifiers": []
+                        }
+                    ]
+                },
+                "chunkIds": [
+                    "c0057936-b69e-40e8-a5d6-71fac6a105d0"
+                ],
+                "alternatives": [
+                    {
+                        "errorCode": 0,
+                        "alternativeId": "3a1bf9f6-a970-48ed-97c0-f06a5ff1e0ee",
+                        "transcript": "pretty",
+                        "description": "pretty",
+                        "remaining": "",
+                        "commands": [
+                            {
+                                "callbackType": 0,
+                                "range": null,
+                                "language": 0,
+                                "limited": false,
+                                "insertDiff": "",
+                                "errorCode": 0,
+                                "customCommandId": "0.44631135608659767",
+                                "cursorEnd": 0,
+                                "index": 0,
+                                "path": "",
+                                "text": "",
+                                "direction": "",
+                                "cursor": 0,
+                                "source": "",
+                                "type": "COMMAND_TYPE_CUSTOM",
+                                "replacements": {
+                                },
+                                "changes": [],
+                                "modifiers": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            "callback": "172fe2cb-8e06-45dc-b08f-f15dda7561e3"
         },
         "message": "response"
     }

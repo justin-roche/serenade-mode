@@ -58,6 +58,9 @@
 (defcustom serenade-helm-M-x nil 
   "if t, display speech bindings in helm M-x")
 
+(defcustom serenade-truncate-log-length 1000 
+  "Maximum length of serenade-log")
+
 (defcustom serenade-enable-double-line-numbers t 
   "if t, serenade mode shows both relative and absolute line numbers")
 

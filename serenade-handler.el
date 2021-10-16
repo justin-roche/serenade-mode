@@ -1,7 +1,7 @@
 
 (defun serenade--handle-message (message) 
   "Handle a serenade MESSAGE. Iterate through the messages command list calling handle command."
-  ;; (serenade--info (concat "\n" (extract-json message )))
+  (serenade--info (concat "\n" (extract-json message ))) 
   (serenade--set-serenade-buffer) 
   (serenade--set-active-mode-configuration)
   ;; (serenade--info (prin1-to-string (ht-keys serenade-mode-config-map )))
@@ -25,8 +25,7 @@
   (let* ((type (ht-get*  command "type")) 
          (limited (ht-get* command "limited" ))
          ;; (log-info (concat type ": limited: "  (prin1-to-string limited) ))
-         )
-    ;; (serenade--info log-info)
+         ) 
     (cond ((equal type "COMMAND_TYPE_GET_EDITOR_STATE") 
            (progn ;; (message "getting editor state function")
              ;; (serenade--info (concat "get state fn is: ?" "mode is " (symbol-name major-mode )))
@@ -100,13 +99,15 @@
   (let* ((command-text (ht-get* command "text")) 
          (input-list (eval (car (read-from-string (concat "'"command-text))))) 
          (speech-pattern (car input-list) ) 
-         (found-command  (serenade--find-voice-binding speech-pattern))) 
+         (found-command  (serenade--find-voice-binding speech-pattern)))
+    ;; (debug)
     (if (not found-command) 
-        (message (concat "no command found for \"" speech-binding "\"" )) 
+        (message (concat "no command found for \"" speech-pattern "\"" )) 
       (serenade--call-generated-command-with-args  found-command (car (cdr input-list))))))
 
 (defun serenade--call-generated-command-with-args (found-command args) 
   "parses the args which are received as alist. If the argument is a symbol return the symbol, accounting for numbers. Otherwise return the name of the symbol, accounting for strings. ARGS are an alist of the forma (ARGUMENT-NAME . ARGUMENT-VALUE)."
+  (message (prin1-to-string args)) 
   (let* (( bound-fn (ht-get* found-command "command"))) 
     (if args (let* ((arguments-definition (ht-get* found-command "arguments")) 
                     (converted-args (-map '(lambda (arg-name ) 
@@ -119,11 +120,12 @@
         (funcall bound-fn)))))
 
 (provide 'serenade-handler)
-;; (require 'test-utils)
+(require 'test-utils)
 
-;; (defun serenade-run-test ()
-;;   (interactive)
-;;   (let* ((data (ht-get* (json-parse-string (load-json-commands)) "goToBegginingOfLine")))
-;;     (serenade--handle-message data)))
+(defun serenade-run-test () 
+  (interactive) 
+  (let* ((data (ht-get* (json-parse-string (load-json-custom-commands)) "pretty"))) 
+    (debug) 
+    (serenade--handle-message data)))
 
 ;; (serenade-run-test)
