@@ -90,8 +90,8 @@
   (serenade--info "executing builtin command") 
   (if-let* ((found-command  (serenade--find-voice-binding transcript)) 
             (bound-fn (ht-get* found-command "command"))) 
-      (if args (apply bound-fn args) 
-        (funcall bound-fn))))
+      (progn (if args (apply bound-fn args) 
+               (funcall bound-fn)))))
 
 (defun serenade--execute-generated-command (command) 
   "This function is responsible for calling the associated function for generated commands the input text is parsed as a list and evaluated."

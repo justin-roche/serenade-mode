@@ -3,6 +3,7 @@
 (setq serenade--builtin-global-defaults '(;;
                                           ( "copy" .   serenade--copy-selection ) 
                                           ( "cut" .   serenade--cut-selection ) 
+                                          ( "delete" .   serenade--delete-selection ) 
                                           ( "select <target>" .   serenade--select-target ) 
                                           ( "undo" .   serenade--undo ) 
                                           ( "redo" .   serenade--redo ) 

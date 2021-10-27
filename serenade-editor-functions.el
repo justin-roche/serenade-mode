@@ -58,6 +58,12 @@
                  (region-end)) 
     (setq mark-active nil)))
 
+(defun serenade--delete-selection () 
+  (if serenade-evil (execute-kbd-macro (kbd "d" )) 
+    (kill-region (region-beginning) 
+                 (region-end)) 
+    (setq mark-active nil)))
+
 (defun serenade--copy-selection () 
   (if serenade-evil (progn (execute-kbd-macro (kbd "y")) 
                            (evil-normal-state)) 

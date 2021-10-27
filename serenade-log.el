@@ -17,10 +17,11 @@
          (serenade--info (prin1-to-string data ))))
 
 (defun serenade--truncate-log (orig-fn &rest args) 
-  (with-current-buffer " *log4e-serenade*" (let* ((log-size (count-lines (point-min) 
-                                                                         (point-max)))) 
-                                             (if (> log-size serenade-truncate-log-length) 
-                                                 (serenade--log-clear-log)))) 
+  (if (get-buffer " *log4e-serenade*") 
+      (with-current-buffer " *log4e-serenade*" (let* ((log-size (count-lines (point-min) 
+                                                                             (point-max)))) 
+                                                 (if (> log-size serenade-truncate-log-length) 
+                                                     (serenade--log-clear-log))))) 
   (apply orig-fn args))
 
 (advice-add 'serenade--info 

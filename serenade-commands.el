@@ -1,4 +1,5 @@
 (require 'ht)
+(require 'helm)
 
 (defvar serenade-speech-maps (ht("global" (ht)) ) 
   "hashtable of Serenade voice maps")
